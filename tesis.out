@@ -1,0 +1,78 @@
+\BOOKMARK [0][-]{chapter*.6}{Resumen}{}% 1
+\BOOKMARK [0][-]{chapter*.8}{Introducci\363n}{}% 2
+\BOOKMARK [0][-]{chapter.1}{Planteamiento del Problema}{}% 3
+\BOOKMARK [1][-]{section.1.1}{Descripci\363n de la Realidad Problem\341tica}{chapter.1}% 4
+\BOOKMARK [1][-]{section.1.2}{Formulaci\363n del Problema}{chapter.1}% 5
+\BOOKMARK [2][-]{subsection.1.2.1}{Problema General}{section.1.2}% 6
+\BOOKMARK [2][-]{subsection.1.2.2}{Problemas Espec\355ficos}{section.1.2}% 7
+\BOOKMARK [1][-]{section.1.3}{Objetivos de la Investigaci\363n}{chapter.1}% 8
+\BOOKMARK [2][-]{subsection.1.3.1}{Objetivo General}{section.1.3}% 9
+\BOOKMARK [2][-]{subsection.1.3.2}{Objetivos Espec\355ficos}{section.1.3}% 10
+\BOOKMARK [1][-]{section.1.4}{Hip\363tesis}{chapter.1}% 11
+\BOOKMARK [2][-]{subsection.1.4.1}{Hip\363tesis General}{section.1.4}% 12
+\BOOKMARK [2][-]{subsection.1.4.2}{Hip\363tesis Espec\355ficas}{section.1.4}% 13
+\BOOKMARK [1][-]{section.1.5}{Justificaci\363n de la Investigaci\363n}{chapter.1}% 14
+\BOOKMARK [2][-]{subsection.1.5.1}{Te\363rica}{section.1.5}% 15
+\BOOKMARK [2][-]{subsection.1.5.2}{Pr\341ctica}{section.1.5}% 16
+\BOOKMARK [2][-]{subsection.1.5.3}{Metodol\363gica}{section.1.5}% 17
+\BOOKMARK [1][-]{section.1.6}{Delimitaci\363n del Estudio}{chapter.1}% 18
+\BOOKMARK [2][-]{subsection.1.6.1}{Espacial}{section.1.6}% 19
+\BOOKMARK [2][-]{subsection.1.6.2}{Temporal}{section.1.6}% 20
+\BOOKMARK [2][-]{subsection.1.6.3}{Conceptual}{section.1.6}% 21
+\BOOKMARK [0][-]{chapter.2}{Marco Te\363rico}{}% 22
+\BOOKMARK [1][-]{section.2.1}{Antecedentes de la investigaci\363n}{chapter.2}% 23
+\BOOKMARK [1][-]{section.2.2}{Bases Te\363ricas}{chapter.2}% 24
+\BOOKMARK [2][-]{subsection.2.2.1}{Inteligencia Artificial}{section.2.2}% 25
+\BOOKMARK [2][-]{subsection.2.2.2}{Aprendizaje Autom\341tico}{section.2.2}% 26
+\BOOKMARK [2][-]{subsection.2.2.3}{Aprendizaje Profundo}{section.2.2}% 27
+\BOOKMARK [2][-]{subsection.2.2.4}{Aprendizaje Profundo Multimodal}{section.2.2}% 28
+\BOOKMARK [2][-]{subsection.2.2.5}{Modelo Predictivo}{section.2.2}% 29
+\BOOKMARK [2][-]{subsection.2.2.6}{Miner\355a de Datos}{section.2.2}% 30
+\BOOKMARK [2][-]{subsection.2.2.7}{Metodolog\355as de Miner\355a de Datos}{section.2.2}% 31
+\BOOKMARK [2][-]{subsection.2.2.8}{T\351cnicas de Miner\355a de Datos}{section.2.2}% 32
+\BOOKMARK [2][-]{subsection.2.2.9}{Procesamiento del Lenguaje Natural}{section.2.2}% 33
+\BOOKMARK [1][-]{section.2.3}{Marco Conceptual}{chapter.2}% 34
+\BOOKMARK [2][-]{subsection.2.3.1}{Crowdfunding}{section.2.3}% 35
+\BOOKMARK [2][-]{subsection.2.3.2}{Kickstarter}{section.2.3}% 36
+\BOOKMARK [2][-]{subsection.2.3.3}{Proyecto}{section.2.3}% 37
+\BOOKMARK [2][-]{subsection.2.3.4}{Campa\361a}{section.2.3}% 38
+\BOOKMARK [0][-]{chapter.3}{Metodolog\355a de la Investigaci\363n}{}% 39
+\BOOKMARK [1][-]{section.3.1}{Dise\361o de la investigaci\363n}{chapter.3}% 40
+\BOOKMARK [2][-]{subsection.3.1.1}{Tipo de la investigaci\363n}{section.3.1}% 41
+\BOOKMARK [2][-]{subsection.3.1.2}{Enfoque de la investigaci\363n}{section.3.1}% 42
+\BOOKMARK [2][-]{subsection.3.1.3}{Poblaci\363n}{section.3.1}% 43
+\BOOKMARK [2][-]{subsection.3.1.4}{Muestra}{section.3.1}% 44
+\BOOKMARK [2][-]{subsection.3.1.5}{Operacionalizaci\363n de Variables}{section.3.1}% 45
+\BOOKMARK [1][-]{section.3.2}{T\351cnicas de recolecci\363n de datos}{chapter.3}% 46
+\BOOKMARK [1][-]{section.3.3}{T\351cnicas para el procesamiento y an\341lisis de la informaci\363n}{chapter.3}% 47
+\BOOKMARK [2][-]{subsection.3.3.1}{Metodolog\355a de implementaci\363n de la soluci\363n}{section.3.3}% 48
+\BOOKMARK [3][-]{subsubsection.3.3.1.1}{Comprensi\363n del negocio}{subsection.3.3.1}% 49
+\BOOKMARK [3][-]{subsubsection.3.3.1.2}{Comprensi\363n de los datos}{subsection.3.3.1}% 50
+\BOOKMARK [3][-]{subsubsection.3.3.1.3}{Preparaci\363n de los datos}{subsection.3.3.1}% 51
+\BOOKMARK [3][-]{subsubsection.3.3.1.4}{Modelamiento}{subsection.3.3.1}% 52
+\BOOKMARK [3][-]{subsubsection.3.3.1.5}{Evaluaci\363n}{subsection.3.3.1}% 53
+\BOOKMARK [3][-]{subsubsection.3.3.1.6}{Despliegue}{subsection.3.3.1}% 54
+\BOOKMARK [2][-]{subsection.3.3.2}{Metodolog\355a para la medici\363n de resultados}{section.3.3}% 55
+\BOOKMARK [1][-]{section.3.4}{Cronograma de actividades y presupuesto}{chapter.3}% 56
+\BOOKMARK [0][-]{chapter.4}{Desarrollo del Experimento}{}% 57
+\BOOKMARK [1][-]{section.4.1}{Comprensi\363n del negocio}{chapter.4}% 58
+\BOOKMARK [1][-]{section.4.2}{Comprensi\363n de los datos}{chapter.4}% 59
+\BOOKMARK [1][-]{section.4.3}{Preparaci\363n de los datos}{chapter.4}% 60
+\BOOKMARK [0][-]{chapter.5}{An\341lisis y Discusi\363n de Resultados}{}% 61
+\BOOKMARK [1][-]{section.5.1}{Modelamiento}{chapter.5}% 62
+\BOOKMARK [1][-]{section.5.2}{Evaluaci\363n}{chapter.5}% 63
+\BOOKMARK [1][-]{section.5.3}{Despliegue}{chapter.5}% 64
+\BOOKMARK [0][-]{chapter.6}{Conclusiones y Recomendaciones}{}% 65
+\BOOKMARK [1][-]{section.6.1}{Conclusiones}{chapter.6}% 66
+\BOOKMARK [1][-]{section.6.2}{Recomendaciones}{chapter.6}% 67
+\BOOKMARK [0][-]{chapter*.192}{Referencias}{}% 68
+\BOOKMARK [0][-]{section*.193}{Anexos}{}% 69
+\BOOKMARK [1][-]{section.Alph0.1}{\301rbol de Problemas}{section*.193}% 70
+\BOOKMARK [1][-]{section.Alph0.2}{\301rbol de Objetivos}{section*.193}% 71
+\BOOKMARK [1][-]{section.Alph0.3}{Matriz de Consistencia}{section*.193}% 72
+\BOOKMARK [1][-]{section.Alph0.4}{Comparaci\363n de metodolog\355as de antecedentes}{section*.193}% 73
+\BOOKMARK [1][-]{section.Alph0.5}{Comparaci\363n de objetivos espec\355ficos de antecedentes}{section*.193}% 74
+\BOOKMARK [1][-]{section.Alph0.6}{Par\341metros para modelo predictivo de Metainformaci\363n}{section*.193}% 75
+\BOOKMARK [1][-]{section.Alph0.7}{Par\341metros para modelo predictivo de Descripci\363n}{section*.193}% 76
+\BOOKMARK [1][-]{section.Alph0.8}{Par\341metros para modelo predictivo de Comentarios}{section*.193}% 77
+\BOOKMARK [1][-]{section.Alph0.9}{Par\341metros para modelo de Aprendizaje Profundo Multimodal}{section*.193}% 78
