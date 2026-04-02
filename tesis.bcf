@@ -3170,4 +3170,122 @@
     <bcf:citekey order="96" intorder="1">bk_blei2012lda</bcf:citekey>
     <bcf:citekey order="97" intorder="1">bk_blei2012lda</bcf:citekey>
     <bcf:citekey order="98" intorder="1">bk_blei2012lda</bcf:citekey>
- 
+    <bcf:citekey order="99" intorder="1">tec_grootendorst2022bertopic</bcf:citekey>
+    <bcf:citekey order="100" intorder="1">tec_grootendorst2022bertopic</bcf:citekey>
+    <bcf:citekey order="101" intorder="1">tec_grootendorst2022bertopic</bcf:citekey>
+    <bcf:citekey order="102" intorder="1">tec_grootendorst2022bertopic</bcf:citekey>
+    <bcf:citekey order="103" intorder="1">tec_grootendorst2022bertopic</bcf:citekey>
+    <bcf:citekey order="104" intorder="1">tec_grootendorst2022bertopic</bcf:citekey>
+    <bcf:citekey order="105" intorder="1">tec_grootendorst2022bertopic</bcf:citekey>
+    <bcf:citekey order="106" intorder="1">tec_white2023prompt</bcf:citekey>
+    <bcf:citekey order="107" intorder="1">tec_wei2022cot</bcf:citekey>
+    <bcf:citekey order="108" intorder="1">pr_alvarez2023llm_political</bcf:citekey>
+    <bcf:citekey order="109" intorder="1">tec_lewis2020rag</bcf:citekey>
+    <bcf:citekey order="110" intorder="1">tec_lewis2020rag</bcf:citekey>
+    <bcf:citekey order="111" intorder="1">tec_lewis2020rag</bcf:citekey>
+    <bcf:citekey order="112" intorder="1">tec_chadwick2013hybrid</bcf:citekey>
+    <bcf:citekey order="113" intorder="1">pr_alvi2023twitter_election_review</bcf:citekey>
+    <bcf:citekey order="114" intorder="1">pr_alvi2023twitter_election_review</bcf:citekey>
+    <bcf:citekey order="115" intorder="1">pr_alvi2023twitter_election_review</bcf:citekey>
+    <bcf:citekey order="116" intorder="1">pr_chen2024combating_misinformation</bcf:citekey>
+    <bcf:citekey order="117" intorder="1">tec_ceron2017social</bcf:citekey>
+    <bcf:citekey order="118" intorder="1">pr_gujral2024llm_elections</bcf:citekey>
+    <bcf:citekey order="119" intorder="1">pr_gujral2024llm_elections</bcf:citekey>
+    <bcf:citekey order="120" intorder="1">mc_chadwick2013hybrid</bcf:citekey>
+    <bcf:citekey order="121" intorder="1">mc_ceron2017social</bcf:citekey>
+    <bcf:citekey order="122" intorder="1">mc_lippmann1922public</bcf:citekey>
+    <bcf:citekey order="123" intorder="1">mc_ceron2017social</bcf:citekey>
+    <bcf:citekey order="124" intorder="1">mc_liu2012sentiment</bcf:citekey>
+    <bcf:citekey order="125" intorder="1">mc_ceron2017social</bcf:citekey>
+    <bcf:citekey order="126" intorder="1">mc_liu2012sentiment</bcf:citekey>
+    <bcf:citekey order="127" intorder="1">mc_liu2012sentiment</bcf:citekey>
+    <bcf:citekey order="128" intorder="1">mc_blei2012lda</bcf:citekey>
+    <bcf:citekey order="129" intorder="1">mc_grootendorst2022bertopic</bcf:citekey>
+    <bcf:citekey order="130" intorder="1">mc_grootendorst2022bertopic</bcf:citekey>
+    <bcf:citekey order="131" intorder="1">mc_manning1999foundations</bcf:citekey>
+    <bcf:citekey order="132" intorder="1">mc_devlin2018bert</bcf:citekey>
+    <bcf:citekey order="133" intorder="1">mc_devlin2018bert</bcf:citekey>
+    <bcf:citekey order="134" intorder="1">mc_devlin2018bert</bcf:citekey>
+    <bcf:citekey order="135" intorder="1">mc_mikolov2013word2vec</bcf:citekey>
+    <bcf:citekey order="136" intorder="1">mc_reimers2019sbert</bcf:citekey>
+    <bcf:citekey order="137" intorder="1">mc_reimers2019sbert</bcf:citekey>
+    <bcf:citekey order="138" intorder="1">mc_reimers2019sbert</bcf:citekey>
+    <bcf:citekey order="139" intorder="1">mc_white2023prompt</bcf:citekey>
+    <bcf:citekey order="140" intorder="1">mc_white2023prompt</bcf:citekey>
+    <bcf:citekey order="141" intorder="1">mc_white2023prompt</bcf:citekey>
+    <bcf:citekey order="142" intorder="1">mc_liu2012sentiment</bcf:citekey>
+    <bcf:citekey order="143" intorder="1">mc_plutchik1980emotion</bcf:citekey>
+    <bcf:citekey order="144" intorder="1">mc_wardle2017information</bcf:citekey>
+    <bcf:citekey order="145" intorder="1">pr_chen2024combating_misinformation</bcf:citekey>
+    <bcf:citekey order="146" intorder="1">mc_iyengar2019origins</bcf:citekey>
+    <bcf:citekey order="147" intorder="1">mc_iyengar2019origins</bcf:citekey>
+    <bcf:citekey order="148" intorder="1">mc_garcia2025real_time</bcf:citekey>
+    <bcf:citekey order="149" intorder="1">mc_garcia2025real_time</bcf:citekey>
+    <bcf:citekey order="150" intorder="1">mc_garcia2025real_time</bcf:citekey>
+    <bcf:citekey order="151" intorder="1">mc_ceron2017social</bcf:citekey>
+  </bcf:section>
+  <!-- SORTING TEMPLATES -->
+  <bcf:sortingtemplate name="apa">
+    <bcf:sort order="1">
+      <bcf:sortitem order="1">presort</bcf:sortitem>
+    </bcf:sort>
+    <bcf:sort order="2" final="1">
+      <bcf:sortitem order="1">sortkey</bcf:sortitem>
+    </bcf:sort>
+    <bcf:sort order="3">
+      <bcf:sortitem order="1">sortname</bcf:sortitem>
+      <bcf:sortitem order="2">author</bcf:sortitem>
+      <bcf:sortitem order="3">editor</bcf:sortitem>
+      <bcf:sortitem order="4">sorttitle</bcf:sortitem>
+      <bcf:sortitem order="5">title</bcf:sortitem>
+    </bcf:sort>
+    <bcf:sort order="4">
+      <bcf:sortitem order="1">pubstate</bcf:sortitem>
+    </bcf:sort>
+    <bcf:sort order="5">
+      <bcf:sortitem order="1">sortyear</bcf:sortitem>
+      <bcf:sortitem order="2">year</bcf:sortitem>
+      <bcf:sortitem order="3">eventyear</bcf:sortitem>
+      <bcf:sortitem literal="1" order="4">-2000000000</bcf:sortitem>
+    </bcf:sort>
+    <bcf:sort order="6">
+      <bcf:sortitem order="1">month</bcf:sortitem>
+      <bcf:sortitem order="2">eventmonth</bcf:sortitem>
+      <bcf:sortitem literal="1" order="3">-2000000000</bcf:sortitem>
+    </bcf:sort>
+    <bcf:sort order="7">
+      <bcf:sortitem order="1">day</bcf:sortitem>
+      <bcf:sortitem order="2">eventday</bcf:sortitem>
+      <bcf:sortitem literal="1" order="3">-2000000000</bcf:sortitem>
+    </bcf:sort>
+    <bcf:sort order="8">
+      <bcf:sortitem order="1">sorttitle</bcf:sortitem>
+      <bcf:sortitem order="2">title</bcf:sortitem>
+    </bcf:sort>
+    <bcf:sort order="9">
+      <bcf:sortitem order="1">volume</bcf:sortitem>
+      <bcf:sortitem literal="1" order="2">0</bcf:sortitem>
+    </bcf:sort>
+  </bcf:sortingtemplate>
+  <!-- DATALISTS -->
+  <bcf:datalist section="0"
+                name="apa/apasortcite//global/global/global"
+                type="entry"
+                sortingtemplatename="apa"
+                sortingnamekeytemplatename="apasortcite"
+                labelprefix=""
+                uniquenametemplatename="global"
+                labelalphanametemplatename="global"
+                namehashtemplatename="global">
+  </bcf:datalist>
+  <bcf:datalist section="0"
+                name="apa/global//global/global/global"
+                type="entry"
+                sortingtemplatename="apa"
+                sortingnamekeytemplatename="global"
+                labelprefix=""
+                uniquenametemplatename="global"
+                labelalphanametemplatename="global"
+                namehashtemplatename="global">
+  </bcf:datalist>
+</bcf:controlfile>
