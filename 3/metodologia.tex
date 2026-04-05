@@ -2,33 +2,15 @@
  
 \section{Diseño de la investigación}
  
-En esta sección se explica cuál fue el diseño, el tipo y el enfoque del trabajo de
-investigación, así como también la población, la muestra y la operacionalización de
-variables.
+En esta sección se describe el diseño, el tipo y el enfoque del trabajo de investigación, además de la población, la muestra y la operacionalización de las variables.
  
 \subsection{Tipo de la investigación}
  
-Para determinar el tipo de la investigación, primero fue necesario definir el actual
-trabajo como \textbf{Diseño Experimental} ya que, según \cite{bk_hernandez2014metodologia}
-en su libro \citetitle{bk_hernandez2014metodologia}, se pretende establecer el posible
-efecto de una causa que se manipula. Dentro de esta categoría se clasifica como
-\textbf{Diseño Experimental Puro}, ya que se manipularon intencionalmente una o más
-variables independientes —específicamente la configuración del pipeline de análisis con
-LLMs— con la finalidad de medir el efecto que estas generan en la variable dependiente:
-la exactitud en la clasificación del sentimiento y la coherencia semántica en la detección
-de temas relevantes en el ecosistema digital electoral peruano.
- 
+Para establecer el tipo de investigación, fue necesario definir el presente estudio como de \textbf{Diseño Experimental}, dado que, según \cite{bk_hernandez2014metodologia} en su obra \citetitle{bk_hernandez2014metodologia}, este enfoque busca identificar el posible efecto de una causa que es manipulada. Dentro de esta categoría, se clasifica como un \textbf{Diseño Experimental Puro}, debido a que se intervinieron deliberadamente una o más variables independientes —en este caso, la configuración del pipeline de análisis con LLMs— con el propósito de evaluar su impacto sobre la variable dependiente: la precisión en la clasificación del sentimiento y la coherencia semántica en la detección de temas relevantes dentro del ecosistema digital electoral peruano.
+
 \subsection{Enfoque de la investigación}
  
-El presente trabajo tuvo un \textbf{enfoque cuantitativo} ya que, según
-\cite{bk_hernandez2014metodologia} en su libro \citetitle{bk_hernandez2014metodologia},
-este enfoque utiliza la recolección de datos para probar hipótesis con base en la medición
-numérica y el análisis estadístico, con el fin de establecer pautas de comportamiento y
-probar teorías. Esto se refleja en los 10 pasos del proceso cuantitativo descritos por el
-anterior autor y que fueron aplicados en la investigación, desde la concepción de la idea
-hasta la elaboración del reporte de resultados. En el presente trabajo, las métricas de
-exactitud, coherencia temática y latencia de procesamiento permiten evaluar de forma
-objetiva el desempeño del sistema de inteligencia electoral propuesto.
+El presente estudio adoptó un \textbf{enfoque cuantitativo}, ya que, de acuerdo con \cite{bk_hernandez2014metodologia} en su obra \citetitle{bk_hernandez2014metodologia}, este enfoque se basa en la recolección de datos para contrastar hipótesis mediante la medición numérica y el análisis estadístico, con el propósito de identificar patrones de comportamiento y validar teorías. Esto se evidencia en la aplicación de los 10 pasos del proceso cuantitativo propuestos por el autor, desde la formulación de la idea hasta la elaboración del informe de resultados. En este trabajo, indicadores como la exactitud, la coherencia temática y la latencia de procesamiento permiten evaluar de manera objetiva el desempeño del sistema de inteligencia electoral planteado.
  
 \subsection{Población}
  
@@ -52,8 +34,7 @@ emergencia de temas.
  
 \subsection{Operacionalización de variables}
  
-En la Tabla \ref{4:table1} se presenta la operacionalización de variables para la
-investigación.
+En la Tabla \ref{4:table1} se muestra la operacionalización de las variables correspondientes a la investigación.
  
 \begin{longtable}{M{3cm}M{4.2cm}M{3.6cm}M{4.8cm}}
     \caption[Matriz de operacionalización de variables]{Matriz de operacionalización de variables.}
@@ -114,8 +95,7 @@ investigación.
     \small Fuente: Elaboración propia.
 \end{flushleft}
  
-El trabajo busca resolver el problema de análisis de percepción pública nacional en
-ecosistemas digitales electorales, implementando un pipeline automatizado de inteligencia
+El estudio tiene como objetivo abordar el problema del análisis de la percepción pública a nivel nacional en ecosistemas digitales de carácter electoral, implementando un pipeline automatizado de inteligencia
 electoral que integra análisis de sentimientos con LLMs y detección dinámica de temas
 mediante BERTopic sobre un corpus multicanal de publicaciones en español.
  
@@ -129,8 +109,7 @@ permite capturar la complejidad real del discurso político ciudadano a nivel de
  
 \section{Técnicas de recolección de datos}
  
-Los conjuntos de datos recolectados para la investigación se componen de variables
-cuantitativas —como el score continuo de sentimiento $[-1, 1]$, el volumen de
+Los conjuntos de datos recopilados para la investigación están conformados por variables de carácter cuantitativo, como el score continuo de sentimiento $[-1, 1]$, el volumen de
 publicaciones por período y la frecuencia de temas— y variables cualitativas —como el
 texto de las publicaciones, los fragmentos clave que justifican el sentimiento y las
 etiquetas de temas generadas por el LLM—. Para obtener los tres corpus principales, se
@@ -158,8 +137,7 @@ educación, salud, corrupción y gobernabilidad.
 Como se explicó en el Capítulo II del presente trabajo, dentro de los sistemas de
 analítica de negocio, Big Data y Minería de Datos, las tres metodologías más usadas son
 CRISP-DM, SEMMA y KDD \parencite{tec_braulio2015metodologiasdm}. Para elegir la
-metodología de implementación, se elaboró la Tabla \ref{4:table2} con el fin de comparar
-las utilizadas por los autores en los antecedentes de esta investigación.
+metodología de implementación, creamos la Tabla \ref{4:table2} con el propósito de comparar las variables empleadas por los autores en los antecedentes de esta investigación.
  
 \vspace{2ex}
 \begingroup
@@ -178,12 +156,12 @@ las utilizadas por los autores en los antecedentes de esta investigación.
     & 6
     & \setlist{nolistsep}
     \begin{itemize}[label={--},nosep,noitemsep,leftmargin=*,topsep=0pt,partopsep=0pt]
-        \item Comprensión del negocio.
-        \item Comprensión de los datos.
-        \item Preparación de los datos.
-        \item Modelado.
-        \item Evaluación.
-        \item Despliegue.
+       \item Entendimiento del negocio.
+\item Análisis de los datos.
+\item Preparación de la información.
+\item Construcción del modelo.
+\item Validación.
+\item Implementación.
     \end{itemize}
     \\
     \hline
@@ -192,8 +170,8 @@ las utilizadas por los autores en los antecedentes de esta investigación.
     & 6
     & \setlist{nolistsep}
     \begin{itemize}[label={--},nosep,noitemsep,leftmargin=*,topsep=0pt,partopsep=0pt]
-        \item Formulación del problema.
-        \item Recolección de datos multicanal.
+        \item Planteamiento del problema.
+        \item Obtención de datos multicanal.
         \item Preprocesamiento de texto.
         \item Análisis con LLM.
         \item Evaluación.
@@ -206,7 +184,7 @@ las utilizadas por los autores en los antecedentes de esta investigación.
     & 5
     & \setlist{nolistsep}
     \begin{itemize}[label={--},nosep,noitemsep,leftmargin=*,topsep=0pt,partopsep=0pt]
-        \item Recolección de datos.
+        \item Obtención de datos.
         \item Preprocesamiento y filtrado.
         \item Análisis de sentimientos.
         \item Detección de temas.
@@ -219,8 +197,8 @@ las utilizadas por los autores en los antecedentes de esta investigación.
     & 5
     & \setlist{nolistsep}
     \begin{itemize}[label={--},nosep,noitemsep,leftmargin=*,topsep=0pt,partopsep=0pt]
-        \item Formulación del problema.
-        \item Recolección de datos.
+        \item Planteamiento del problema.
+        \item Obtención de datos.
         \item Preprocesamiento de datos.
         \item Modelado y análisis.
         \item Evaluación.
@@ -232,7 +210,7 @@ las utilizadas por los autores en los antecedentes de esta investigación.
     & 4
     & \setlist{nolistsep}
     \begin{itemize}[label={--},nosep,noitemsep,leftmargin=*,topsep=0pt,partopsep=0pt]
-        \item Recolección de datos.
+        \item Obtención de datos.
         \item Preprocesamiento.
         \item Análisis LLM y clustering.
         \item Evaluación.
@@ -245,11 +223,8 @@ las utilizadas por los autores en los antecedentes de esta investigación.
     \small Fuente: Elaboración propia.
 \end{flushleft}
  
-De las tres metodologías mencionadas por \citeauthor{tec_braulio2015metodologiasdm},
-la mayoría de los antecedentes revisados siguen secuencias de actividades comprendidas
-dentro de CRISP-DM, incluyendo fases de comprensión del negocio, recolección y
-preparación de datos, modelado y evaluación. Además, las siguientes características de la
-literatura influyeron en la elección de la metodología CRISP-DM para el presente trabajo:
+De las tres metodologías señaladas por \citeauthor{tec_braulio2015metodologiasdm}, la mayor parte de los antecedentes analizados siguen secuencias de actividades enmarcadas en CRISP-DM, abarcando etapas como la comprensión del negocio, la recolección y preparación de datos, el modelado y la evaluación. Asimismo, las siguientes características identificadas en la literatura influyeron en la selección de la metodología CRISP-DM para el presente estudio:
+
  
 \begin{itemize}
     \item La metodología contempla entre sus fases la comprensión del negocio además
@@ -261,18 +236,14 @@ literatura influyeron en la elección de la metodología CRISP-DM para el presen
     (fase de Despliegue) a partir de los resultados obtenidos, convirtiendo los indicadores
     del sistema en oportunidades para mejorar la campaña de inteligencia electoral.
  
-    \item Evalúa en todo el proceso los datos y configuraciones del modelo con el fin de
-    construir el mejor pipeline. Estas evaluaciones son importantes para interpretar los
-    resultados y tomar decisiones sobre la arquitectura del sistema.
- 
-    \item A diferencia de SEMMA, que comienza directamente con el muestreo sin hacer
-    hincapié en la comprensión del contexto, y de KDD, cuyo enfoque es más técnico y
-    orientado a métricas sin considerar el entorno del negocio, CRISP-DM contempla
-    explícitamente la formulación del problema, presente en el actual trabajo.
+    \item Permite evaluar de manera continua los datos y las configuraciones del modelo a lo largo de todo el proceso, con el objetivo de construir el pipeline más adecuado. Estas evaluaciones resultan clave para interpretar los resultados y tomar decisiones sobre la arquitectura del sistema.
+
+\item A diferencia de SEMMA, que inicia directamente con el muestreo sin enfatizar la comprensión del contexto, y de KDD, cuyo enfoque es más técnico y centrado en métricas sin considerar el entorno del negocio, CRISP-DM incorpora de forma explícita la formulación del problema, aspecto presente en el desarrollo de este trabajo.
+
 \end{itemize}
  
-Cada una de las fases de la metodología seleccionada, adaptada al contexto de la
-inteligencia electoral con LLMs, se detalla en la Figura \ref{4:fig2}.
+Todas las etapas de la metodología que hemos escogido, adaptada al contexto de la
+inteligencia electoral con LLMs, lo describimos en la Figura \ref{4:fig2}.
  
 \begin{figure}[!ht]
     \begin{center}
@@ -283,7 +254,7 @@ inteligencia electoral con LLMs, se detalla en la Figura \ref{4:fig2}.
     \end{center}
 \end{figure}
  
-Durante el proceso de implementación de la metodología, se definió construir un pipeline
+Durante la ejecución de la metodología, se definió construir un pipeline
 de análisis multicanal que integra análisis de sentimientos con LLMs, detección dinámica
 de temas con BERTopic y un grafo de conocimiento con Neo4j, arquitectura denominada
 \textbf{GraphRAG Electoral}. De acuerdo a la literatura de los antecedentes revisados,
@@ -305,7 +276,7 @@ recolección, procesamiento y análisis se detalla en las subsecciones siguiente
  
 El marco de trabajo del sistema propuesto, denominado \textbf{Pipeline GraphRAG
 Electoral}, se estructura según la arquitectura Medallion en tres capas de datos
-(Bronze, Silver y Gold) y cinco etapas de procesamiento, como se aprecia en la
+(Bronze, Silver y Gold) y cinco etapas de procesamiento, como vemos en la
 Figura \ref{4:fig3}.
  
 \begin{figure}[!ht]
@@ -317,67 +288,66 @@ Figura \ref{4:fig3}.
     \end{center}
 \end{figure}
  
-\subsubsection{Comprensión del negocio}
+\subsubsection{Entendimiento del negocio}
  
-En la primera fase, se definió el problema a partir de comprender el contexto del proceso
-electoral peruano y la necesidad de un sistema automatizado de inteligencia electoral. Las
-actividades y tareas de esta fase se presentan en la Tabla \ref{4:table3}.
+En la fase inicial, se definió el problema a partir de la comprensión del contexto del proceso electoral peruano y la necesidad de contar con un sistema automatizado de inteligencia electoral. Las actividades y tareas correspondientes a esta etapa se detallan en la Tabla \ref{4:table3}.
+
  
 \vspace{2ex}
 \begingroup
 \renewcommand\arraystretch{0.3}
 \begin{longtable}{m{5cm}m{5cm}M{5cm}}
-    \caption[Actividades de la fase Comprensión del negocio]{Actividades de la fase Comprensión del negocio.}
-    \label{4:table3}
-    \footnotesize
-    \small
-    \tabularnewline \specialrule{.1em}{.05em}{.05em}
-    \centering Actividades & \centering Descripción & Tareas \\
-    \specialrule{.1em}{.05em}{.05em}
-    Definir problema, objetivos e hipótesis.
-    & Definición del problema central, los objetivos generales y específicos, y las hipótesis de investigación.
-    & \setlist{nolistsep}
-    \begin{itemize}[label={--},nosep,noitemsep,leftmargin=*,topsep=0pt,partopsep=0pt]
-        \item Identificar la brecha en el análisis de percepción electoral digital.
-        \item Definir los objetivos del sistema de inteligencia electoral.
-        \item Formular las hipótesis del trabajo.
-    \end{itemize}
-    \\
-    \hline
-    Desarrollar la literatura de la investigación.
-    & Revisión de antecedentes y trabajos previos sobre análisis de sentimientos político, LLMs y detección de temas.
-    & \setlist{nolistsep}
-    \begin{itemize}[label={--},nosep,noitemsep,leftmargin=*,topsep=0pt,partopsep=0pt]
-        \item Buscar publicaciones académicas sobre LLMs en contextos electorales.
-        \item Buscar material sobre BERTopic y GraphRAG aplicado a datos políticos.
-    \end{itemize}
-    \\
-    \hline
-    Definir metodología y arquitectura del sistema.
-    & Selección de la metodología de implementación y diseño de la arquitectura del pipeline.
-    & \setlist{nolistsep}
-    \begin{itemize}[label={--},nosep,noitemsep,leftmargin=*,topsep=0pt,partopsep=0pt]
-        \item Evaluar metodologías de la literatura.
-        \item Seleccionar la metodología CRISP-DM.
-        \item Diseñar la arquitectura Medallion del sistema.
-    \end{itemize}
-    \\
-    \specialrule{.1em}{.05em}{.05em}
+\caption[Plan de Ejecución de la fase Entendimiento del negocio]{Plan de Ejecución de la fase Entendimiento del negocio.}
+\label{4:table3}
+\footnotesize
+\small
+\tabularnewline \specialrule{.1em}{.05em}{.05em}
+\centering Plan de Ejecución & \centering Alcance & Acciones \
+\specialrule{.1em}{.05em}{.05em}
+Plantear el problema, los objetivos y las hipótesis.
+& Planteamiento del problema principal, así como de los objetivos generales y específicos y las hipótesis de investigación.
+& \setlist{nolistsep}
+\begin{itemize}[label={--},nosep,noitemsep,leftmargin=*,topsep=0pt,partopsep=0pt]
+\item Identificar la brecha existente en el análisis de la percepción electoral digital.
+\item Establecer los objetivos del sistema de inteligencia electoral.
+\item Formular las hipótesis del estudio.
+\end{itemize}
+\
+\hline
+Desarrollar el marco teórico de la investigación.
+& Revisión de estudios previos relacionados con el análisis de sentimientos en contextos políticos, LLMs y detección de temas.
+& \setlist{nolistsep}
+\begin{itemize}[label={--},nosep,noitemsep,leftmargin=*,topsep=0pt,partopsep=0pt]
+\item Buscar literatura académica sobre el uso de LLMs en escenarios electorales.
+\item Revisar material sobre BERTopic y GraphRAG aplicado a datos políticos.
+\end{itemize}
+\
+\hline
+Definir la metodología y la arquitectura del sistema.
+& Selección de la metodología de trabajo y diseño de la arquitectura del pipeline.
+& \setlist{nolistsep}
+\begin{itemize}[label={--},nosep,noitemsep,leftmargin=*,topsep=0pt,partopsep=0pt]
+\item Analizar metodologías propuestas en la literatura.
+\item Escoger la metodología CRISP-DM.
+\item Diseñar la arquitectura tipo Medallion del sistema.
+\end{itemize}
+\
+\specialrule{.1em}{.05em}{.05em}
 \end{longtable}
 \endgroup
 \begin{flushleft}
-    \small Fuente: Elaboración propia.
+\small Fuente: Elaboración propia.
 \end{flushleft}
  
-\textbf{Actividad 1: Definir problema, objetivos e hipótesis}
+\textbf{Actividad 1: Plantear el problema, los objetivos e hipótesis}
  
-En esta actividad se detalla cómo se identificó la brecha existente en el análisis automatizado de la percepción pública electoral digital en el Perú, se formularon los objetivos de la investigación y se plantearon las hipótesis que guían el trabajo experimental.
+Aquí vemos la manera en que identificamos la brecha existente en el análisis automatizado de la percepción pública electoral digital en el Perú, se formularon los objetivos de la investigación y se plantearon las hipótesis que guían el trabajo experimental.
  
 \textbf{Entregable}: Problema, objetivos e hipótesis definidos.
  
-\textbf{Actividad 2: Desarrollar la literatura de la investigación}
+\textbf{Actividad 2: Desarrollar el marco teórico de la investigación}
  
-A partir de los objetivos definidos, se realizó la búsqueda de antecedentes académicos relacionados con el uso de LLMs en contextos electorales, minería de sentimientos político en español, detección dinámica de temas con BERTopic y sistemas GraphRAG. Se elaboró el marco teórico y conceptual descritos en el Capítulo II del presente trabajo.
+Ya con los objetivos definidos, realizamos la investigación de antecedentes académicos relacionados con el uso de LLMs en contextos electorales, minería de sentimientos político en español, detección dinámica de temas con BERTopic y sistemas GraphRAG. Se elaboró el marco teórico y conceptual descritos en el Capítulo II del presente trabajo.
  
 \textbf{Entregable}: Marco teórico, antecedentes y conceptos operacionales de la investigación.
  
@@ -387,23 +357,20 @@ Luego de revisar los antecedentes y comparar las metodologías utilizadas por ca
  
 \textbf{Entregable}: Metodología de implementación y arquitectura del sistema.
  
-\subsubsection{Comprensión de los datos}
+\subsubsection{Análisis de los datos}
  
-La segunda fase abarcó la recolección y el análisis estadístico exploratorio del corpus
-electoral multicanal. Los datos utilizados comprenden publicaciones de tres fuentes
-principales recolectadas durante el período de campaña presidencial. La lista de
-actividades y tareas se presenta en la Tabla \ref{4:table4}.
+En la segunda fase se llevó a cabo la recolección de datos y el análisis estadístico exploratorio del corpus electoral multicanal. La información empleada incluye publicaciones provenientes de tres fuentes principales, recopiladas durante el período de campaña presidencial. Las actividades y tareas correspondientes se detallan en la Tabla \ref{4:table4}.
  
 \vspace{2ex}
 \begingroup
 \renewcommand\arraystretch{0.3}
 \begin{longtable}{m{4cm}m{5.5cm}M{5.5cm}}
-    \caption[Actividades de la fase Comprensión de los datos]{Actividades de la fase Comprensión de los datos.}
+    \caption[Plan de Ejecución de la fase Análisis de los datos]{Plan de Ejecución de la fase Análisis de los datos.}
     \label{4:table4}
     \footnotesize
     \small
     \tabularnewline \specialrule{.1em}{.05em}{.05em}
-    \centering Actividades & \centering Descripción & Tareas \\
+    \centering Plan de Ejecución & \centering Alcance & Acciones \\
     \specialrule{.1em}{.05em}{.05em}
     Construir corpus de noticias digitales.
     & Construcción del corpus de artículos y titulares de los principales portales de prensa peruanos (capa Bronze).
@@ -502,7 +469,7 @@ En esta actividad se realizó el análisis estadístico descriptivo de los tres 
  
 \textbf{Entregable}: Gráficos estadísticos y descriptivos del corpus por fuente de datos.
  
-\subsubsection{Preparación de los datos}
+\subsubsection{Preparación de la información}
  
 En la tercera fase, los datos crudos de la capa Bronze se transformaron en la capa Silver
 mediante un conjunto de procesos de limpieza, normalización y enriquecimiento. Las
@@ -512,12 +479,12 @@ actividades de esta etapa se detallan en la Tabla \ref{4:table5}.
 \begingroup
 \renewcommand\arraystretch{0.3}
 \begin{longtable}{m{5cm}m{5cm}M{5cm}}
-    \caption[Actividades de la fase Preparación de los datos]{Actividades de la fase Preparación de los datos.}
+    \caption[Plan de Ejecución de la fase Preparación de la información]{Plan de Ejecución de la fase Preparación de la información.}
     \label{4:table5}
     \footnotesize
     \small
     \tabularnewline \specialrule{.1em}{.05em}{.05em}
-    \centering Actividades & \centering Descripción & Tareas \\
+    \centering Plan de Ejecución & \centering Alcance & Acciones \\
     \specialrule{.1em}{.05em}{.05em}
     Limpiar y normalizar el corpus.
     & Preprocesamiento textual de las publicaciones de las tres fuentes para su análisis con LLM.
@@ -573,7 +540,7 @@ Se construyó el diccionario de aliases que alimenta el autómata Aho-Corasick d
  
 \textbf{Entregable}: Diccionario de aliases y autómata Aho-Corasick compilado.
  
-\subsubsection{Modelamiento}
+\subsubsection{Construcción del modelo}
  
 Al concluir la preparación de los datos, los segmentos del corpus enriquecido fueron
 procesados por el pipeline de análisis con LLMs. Las actividades de esta fase se detallan
@@ -583,14 +550,14 @@ en la Tabla \ref{4:table6}.
 \begingroup
 \renewcommand\arraystretch{0.3}
 \begin{longtable}{m{4.6cm}m{4.9cm}M{5.5cm}}
-    \caption[Actividades de la fase Modelamiento]{Actividades de la fase Modelamiento.}
+    \caption[Plan de Ejecución de la fase Construcción del modelo]{Plan de Ejecución de la fase Construcción del modelo.}
     \label{4:table6}
     \footnotesize
     \small
     \tabularnewline \specialrule{.1em}{.05em}{.05em}
-    \centering Actividades & \centering Descripción & Tareas \\
+    \centering Plan de Ejecución & \centering Alcance & Acciones \\
     \specialrule{.1em}{.05em}{.05em}
-    Desarrollar módulo de análisis de sentimientos con LLM.
+    Construir módulo de análisis de sentimientos con LLM.
     & Implementación del análisis de sentimientos a nivel de aspecto mediante prompts diseñados para el contexto electoral peruano.
     & \setlist{nolistsep}
     \begin{itemize}[label={--},nosep,noitemsep,leftmargin=*,topsep=0pt,partopsep=0pt]
@@ -706,19 +673,18 @@ la trazabilidad de cada hallazgo hasta su fuente primaria.
  
 \textbf{Entregable}: Módulo GraphRAG funcional con ejemplos de consultas en lenguaje natural validados.
  
-\subsubsection{Evaluación}
+\subsubsection{Validación}
  
-Esta fase comprende la evaluación del sistema de inteligencia electoral a través de las
-métricas de clasificación y calidad de temas seleccionadas. Las actividades y tareas
-seguidas se detallan en la Tabla \ref{4:table7}.
+Esta fase incluye la evaluación del sistema de inteligencia electoral mediante las métricas seleccionadas de clasificación y calidad de temas. Las actividades y tareas desarrolladas se presentan en la Tabla \ref{4:table7}.
+
  
 \begin{longtable}{m{5cm}m{4.5cm}M{5.5cm}}
-    \caption[Actividades de la fase Evaluación]{Actividades de la fase Evaluación.}
+    \caption[Plan de Ejecución de la fase Validación]{Plan de Ejecución de la fase Validación.}
     \label{4:table7}
     \footnotesize
     \small
     \tabularnewline \specialrule{.1em}{.05em}{.05em}
-    \centering Actividades & \centering Descripción & Tareas \\
+    \centering Plan de Ejecución & \centering Alcance & Acciones \\
     \specialrule{.1em}{.05em}{.05em}
     Evaluar módulo de análisis de sentimientos.
     & Evaluación del desempeño del análisis de sentimientos comparando los resultados del LLM con etiquetas humanas de referencia.
@@ -765,20 +731,19 @@ seguidas se detallan en la Tabla \ref{4:table7}.
     \small Fuente: Elaboración propia.
 \end{flushleft}
  
-\subsubsection{Despliegue}
+\subsubsection{Implementación}
  
-En la última fase de la metodología, el sistema de inteligencia electoral fue desplegado
-como un prototipo funcional accesible para analistas políticos y periodistas. Las
-actividades de esta fase se detallan en la Tabla \ref{4:table8}.
+En la fase final de la metodología, el sistema de inteligencia electoral se implementó como un prototipo funcional, accesible para analistas políticos y periodistas. Las actividades correspondientes a esta etapa se describen en la Tabla \ref{4:table8}.
+
  
 \begin{longtable}{m{4.5cm}m{5.3cm}M{5.2cm}}
-    \caption[Actividades de la fase Despliegue]{Actividades de la fase Despliegue.}
+    \caption[Plan de Ejecución de la fase Implementación]{Plan de Ejecución de la fase Implementación.}
     \label{4:table8}
     \footnotesize
     \centering
     \small
     \tabularnewline \specialrule{.1em}{.05em}{.05em}
-    \centering Actividades & \centering Descripción & Tareas \\
+    \centering Plan de Ejecución & \centering Alcance & Acciones \\
     \specialrule{.1em}{.05em}{.05em}
     Diseñar dashboard de visualización.
     & Diseño e implementación del dashboard interactivo que muestra los indicadores de percepción pública en tiempo real.
@@ -805,16 +770,11 @@ actividades de esta fase se detallan en la Tabla \ref{4:table8}.
     \small Fuente: Elaboración propia.
 \end{flushleft}
  
-Luego de evaluar el desempeño de cada módulo del sistema, se compararon los resultados
-con los antecedentes revisados y se desarrolló una prueba piloto en la que el sistema
-completo fue ejecutado en tiempo real durante una semana de campaña electoral. Los
-detalles de esta prueba y sus resultados se presentan en el Capítulo V.
+Tras evaluar el desempeño de cada módulo del sistema, se procedió a comparar los resultados con los antecedentes analizados y se llevó a cabo una prueba piloto, en la cual el sistema completo operó en tiempo real durante una semana de campaña electoral. Los detalles de esta prueba y sus resultados se presentan en el Capítulo V.
  
 \subsection{Metodología para la medición de resultados}
  
-Para evaluar la performance de los módulos del sistema, que corresponde a la quinta fase
-de la metodología CRISP-DM, se utilizaron diversas métricas como instrumentos de
-medición de desempeño. A continuación, se detallan su concepto y fórmulas de cálculo.
+Para evaluar el desempeño de los módulos del sistema, correspondiente a la quinta fase de la metodología CRISP-DM, se emplearon diversas métricas como instrumentos para medir su rendimiento. A continuación, se describen su definición y fórmulas de cálculo.
  
 \begin{itemize}
     \item \textbf{Matriz de confusión}: Es una tabla de $N \times N$ que resume el nivel de
@@ -853,11 +813,7 @@ medición de desempeño. A continuación, se detallan su concepto y fórmulas de
     \end{equation}
     \myequations{Fórmula para calcular la sensibilidad del módulo de sentimientos}
  
-    \item \textbf{Puntaje F1}: Media armónica de la precisión y la sensibilidad. Se usa
-    cuando las clases de sentimiento están desbalanceadas —lo que es frecuente en corpora
-    electorales donde el sentimiento negativo predomina sobre el positivo— y no es posible
-    dar una conclusión basada solo en exactitud. Se calcula mediante la Ecuación
-    \ref{eq:f1_llm}:
+    \item \textbf{Puntaje F1}: Se define como la media armónica entre la precisión y la sensibilidad. Se emplea especialmente cuando las clases de sentimiento se encuentran desbalanceadas —situación común en corpus electorales, donde el sentimiento negativo suele predominar sobre el positivo— y no es adecuado basar las conclusiones únicamente en la exactitud. Su cálculo se realiza mediante la Ecuación \ref{eq:f1_llm}:
  
     \begin{equation}\label{eq:f1_llm}
     \phantomsection
@@ -888,8 +844,7 @@ medición de desempeño. A continuación, se detallan su concepto y fórmulas de
     captura adecuadamente la percepción electoral real.
 \end{itemize}
  
-La elección de las anteriores métricas para evaluar cada módulo del sistema se realizó
-luego de comparar las utilizadas por los autores en los antecedentes de la investigación:
+La selección de las métricas mencionadas para evaluar cada módulo del sistema se llevó a cabo tras comparar aquellas empleadas por los autores en los antecedentes de la investigación:
  
 \begin{itemize}
     \item \textbf{Exactitud}: \cite{pr_alvi2023twitter_election_review}, \cite{pr_gujral2024llm_elections}.
@@ -902,87 +857,83 @@ luego de comparar las utilizadas por los autores en los antecedentes de la inves
 \begin{landscape}
 \section{Cronograma de actividades y presupuesto}
  
-Se elaboró el cronograma de actividades de toda la investigación, mostrado en la
-Figura \ref{4:fig7}, contemplando desde el inicio de la misma hasta la sustentación del
-trabajo.
+Se desarrolló el cronograma de actividades correspondiente a toda la investigación, el cual se presenta en la Figura \ref{4:fig7}, abarcando desde su inicio hasta la sustentación del trabajo.
  
 \begin{figure}[!ht]
     \begin{center}
         \includegraphics[width=1\textwidth]{3/figures/cronograma.png}
-        \caption[Cronograma de actividades de la investigación]{Cronograma de actividades de la investigación, organizado por fases de la metodología CRISP-DM y distribuido en los meses del período de ejecución.\\
-            Fuente: Elaboración propia.}
+        \caption[Cronograma de actividades de la investigación]{Cronograma de actividades de la investigación, estructurado según las fases de la metodología CRISP-DM y distribuido a lo largo de los meses del período de ejecución.\
+Fuente: Elaboración propia.}
         \label{4:fig7}
     \end{center}
 \end{figure}
 \end{landscape}
  
-Los costos personales del autor de la investigación se presentan en la Tabla
-\ref{4:table9}.
- 
+Los gastos asumidos por los autores para el desarrollo de la investigación se detallan en la Tabla \ref{4:table9}.
+
 \begin{table}[h!]
-    \caption[Presupuesto de costos personales del autor]{Presupuesto de los costos personales del autor de la investigación.}
-    \label{4:table9}
-    \centering
-    \small
-    \begin{tabular}{lcrr}
-        \specialrule{.1em}{.05em}{.05em}
-        \multicolumn{1}{c}{Item} & \multicolumn{1}{c}{Tiempo (horas)} & \multicolumn{1}{c}{Costo (soles)} & \multicolumn{1}{c}{Subtotal} \\
-        \specialrule{.1em}{.05em}{.05em}
-        \multicolumn{4}{l}{Recursos materiales} \\
-        Laptop para desarrollo (GPU integrada)        &        & S/.4,800.00  & S/.4,800.00  \\
-        \hline
-        \multicolumn{4}{l}{Trámites académicos} \\
-        Inscripción a cursos de actualización y TSP         &        & S/.8500.00    & S/.8500.00    \\
-        \hline
-        \multicolumn{4}{l}{Recursos humanos} \\
-        Avance de tesis                               & 900    & Incalculable & --           \\
-        \hline
-        \multicolumn{4}{l}{Servicios generales} \\
-        Internet + electricidad (5 meses)             & 120    & S/.85.00     & S/.680.00    \\
-        \specialrule{.1em}{.05em}{.05em}
-        Total & & & S/.14,880.00 \\
-        \specialrule{.1em}{.05em}{.05em}
-    \end{tabular}
-    \begin{flushleft}
-        \small Fuente: Elaboración propia.
-    \end{flushleft}
+\caption[Presupuesto de costos personales del autor]{Detalle del presupuesto correspondiente a los costos personales del autor en el desarrollo de la investigación.}
+\label{4:table9}
+\centering
+\small
+\begin{tabular}{lcrr}
+\specialrule{.1em}{.05em}{.05em}
+\multicolumn{1}{c}{Ítem} & \multicolumn{1}{c}{Tiempo (horas)} & \multicolumn{1}{c}{Costo (soles)} & \multicolumn{1}{c}{Subtotal} \
+\specialrule{.1em}{.05em}{.05em}
+\multicolumn{4}{l}{Recursos materiales} \
+Equipo de cómputo para desarrollo (GPU integrada) & & S/.4,800.00 & S/.4,800.00 \
+\hline
+\multicolumn{4}{l}{Gestiones académicas} \
+Matrícula en cursos de actualización y TSP & & S/.8500.00 & S/.8500.00 \
+\hline
+\multicolumn{4}{l}{Recursos humanos} \
+Desarrollo del avance de tesis & 900 & No cuantificable & -- \
+\hline
+\multicolumn{4}{l}{Servicios generales} \
+Internet y electricidad (5 meses) & 120 & S/.85.00 & S/.680.00 \
+\specialrule{.1em}{.05em}{.05em}
+Total & & & S/.14,880.00 \
+\specialrule{.1em}{.05em}{.05em}
+\end{tabular}
+\begin{flushleft}
+\small Fuente: Elaboración propia.
+\end{flushleft}
 \end{table}
  
-Los costos por uso de servicios en la nube necesarios para el procesamiento del corpus y
-el entrenamiento de los modelos se presentan en la Tabla \ref{4:table10}.
- 
+Los gastos asociados al uso de servicios en la nube, necesarios para el procesamiento del corpus y el entrenamiento de los modelos, se detallan en la Tabla \ref{4:table10}.
+
 \begin{table}[h!]
-    \caption[Presupuesto de herramientas y servicios en la nube]{Presupuesto de los costos de herramientas y servicios en la nube utilizados en el proyecto.}
-    \label{4:table10}
-    \centering
-    \small
-    \begin{tabular}{lcrcr}
-        \specialrule{.1em}{.05em}{.05em}
-        \multicolumn{1}{c}{Item} & \multicolumn{1}{c}{Unidades} & \multicolumn{1}{c}{Costo (USD)} & \multicolumn{1}{c}{Horas} & \multicolumn{1}{c}{Subtotal} \\
-        \specialrule{.1em}{.05em}{.05em}
-        \multicolumn{4}{l}{Google Cloud Platform (GCP)} & -- \\
-        Instancia VM para scraping (e2-medium, 4 GB RAM)  & 1  & \$0.034  & 400  & \$13.60  \\
-        Cloud Run para pipeline en tiempo real             & 1  & \$0.024  & 300  & \$7.20   \\
-        Cloud Storage para capa Bronze                     & 1  & \$0.020  & --   & \$8.00   \\
-        BigQuery para capa Silver/Gold                     & 1  & \$5.00   & --   & \$15.00  \\
-        \hline
-        \multicolumn{4}{l}{API LLM} & -- \\
-        Gemini Flash API (tokens de análisis)              & -- & \$0.075/1M & -- & \$45.00  \\
-        OpenAI GPT-4o API (validación)                     & -- & \$5.00/1M  & -- & \$25.00  \\
-        \hline
-        \multicolumn{4}{l}{Neo4j AuraDB (grafo)} & -- \\
-        Plan Professional (1 instancia)                    & 3  & \$65.00  & --   & \$195.00 \\
-        \hline
-        \multicolumn{4}{l}{X/Twitter API} & -- \\
-        Plan Basic (hasta 10k tweets/mes)                  & 6  & \$100.00 & --   & \$600.00 \\
-        \hline
-        \multicolumn{4}{l}{YouTube Data API} & -- \\
-        Cuota gratuita (10,000 unidades/día)               & -- & \$0.00   & --   & \$0.00   \\
-        \specialrule{.1em}{.05em}{.05em}
-        Total & & & & \$908.80 \\
-        \specialrule{.1em}{.05em}{.05em}
-    \end{tabular}
-    \begin{flushleft}
-        \small Fuente: Elaboración propia.
-    \end{flushleft}
+\caption[Presupuesto de herramientas y servicios en la nube]{Detalle del presupuesto correspondiente a herramientas y servicios en la nube empleados en el desarrollo del proyecto.}
+\label{4:table10}
+\centering
+\small
+\begin{tabular}{lcrcr}
+\specialrule{.1em}{.05em}{.05em}
+\multicolumn{1}{c}{Ítem} & \multicolumn{1}{c}{Unidades} & \multicolumn{1}{c}{Costo (USD)} & \multicolumn{1}{c}{Horas} & \multicolumn{1}{c}{Subtotal} \
+\specialrule{.1em}{.05em}{.05em}
+\multicolumn{4}{l}{Google Cloud Platform (GCP)} & -- \
+Máquina virtual para scraping (e2-medium, 4 GB RAM) & 1 & $0.034 & 400 & $13.60 \
+Cloud Run para ejecución del pipeline en tiempo real & 1 & $0.024 & 300 & $7.20 \
+Cloud Storage para la capa Bronze & 1 & $0.020 & -- & $8.00 \
+BigQuery para las capas Silver/Gold & 1 & $5.00 & -- & $15.00 \
+\hline
+\multicolumn{4}{l}{API de modelos LLM} & -- \
+Gemini Flash API (tokens de análisis) & -- & $0.075/1M & -- & $45.00 \
+OpenAI GPT-4o API (validación) & -- & $5.00/1M & -- & $25.00 \
+\hline
+\multicolumn{4}{l}{Neo4j AuraDB (base de datos de grafos)} & -- \
+Plan Professional (1 instancia) & 3 & $65.00 & -- & $195.00 \
+\hline
+\multicolumn{4}{l}{API de X/Twitter} & -- \
+Plan Basic (hasta 10k tweets/mes) & 6 & $100.00 & -- & $600.00 \
+\hline
+\multicolumn{4}{l}{YouTube Data API} & -- \
+Cuota gratuita (10,000 unidades/día) & -- & $0.00 & -- & $0.00 \
+\specialrule{.1em}{.05em}{.05em}
+Total & & & & $908.80 \
+\specialrule{.1em}{.05em}{.05em}
+\end{tabular}
+\begin{flushleft}
+\small Fuente: Elaboración propia.
+\end{flushleft}
 \end{table}
