@@ -60,7 +60,7 @@ PG: \newcommand{\ProblemaGeneral}{
 \newcommand{\Pbtwo}{¿Cómo utilizar LLMs para realizar análisis contextual del discurso mediático electoral, permitiendo identificar sentimientos dirigidos, ironía, ambigüedad política, jerga regional peruana y tópicos electorales emergentes en entornos digitales de alta volatilidad?}
 \newcommand{\Pbthree}{¿Cómo construir un grafo de conocimiento electoral que represente relaciones contextuales entre candidatos, medios, tópicos, sentimientos y temporalidad a partir de información extraída desde fuentes digitales no estructuradas?}
 \newcommand{\Pbfour}{¿Cómo implementar un sistema GraphRAG soportado mediante MCP que permita consultas en lenguaje natural sobre el ecosistema electoral combinando recuperación textual y razonamiento estructural?}
-\newcommand{\Pbfive}{¿Cómo evaluar la calidad del sistema integrado en términos de precisión semántica, coherencia temática, fidelidad relacional y utilidad analítica frente a métodos tradicionales de monitoreo electoral?}
+\newcommand{\Pbfive}{¿Cómo evaluar la calidad del sistema integrado en términos de precisión semántica, coherencia temática, fidelidad relacional y utilidad analítica mediante métricas cuantitativas y evaluaciones contra \textit{ground truth} humano y LLM-as-judge?}
 
 \begin{itemize}
 	\item PE1: {\Pbone}
@@ -84,7 +84,7 @@ OG: \newcommand{\ObjetivoGeneral}{
 \newcommand{\Objtwo}{Implementar un modelo de análisis semántico contextual basado en LLMs capaz de identificar polaridad política, ironía, sentimiento dirigido y tópicos electorales emergentes dentro del discurso mediático digital.}
 \newcommand{\Objthree}{Construir un grafo de conocimiento electoral basado en extracción semántica mediante LLMs para representar relaciones entre actores, narrativas y eventos políticos.}
 \newcommand{\Objfour}{Implementar un sistema GraphRAG capaz de combinar recuperación semántica textual y razonamiento estructural sobre grafos para responder consultas electorales en lenguaje natural.}
-\newcommand{\Objfive}{ Evaluar el desempeño técnico y analítico del sistema mediante métricas semánticas, estructurales y evaluaciones humanas comparativas.}
+\newcommand{\Objfive}{Evaluar el desempeño técnico y analítico del sistema mediante métricas semánticas y estructurales, contrastando las salidas del sistema contra \textit{ground truth} humano de referencia y evaluaciones LLM-as-judge sobre un conjunto de preguntas anotado.}
 
 \begin{itemize}
 	\item OE1: {\Objone}
@@ -98,16 +98,16 @@ OG: \newcommand{\ObjetivoGeneral}{
 
 \subsection{Hipótesis General}
 HG: \newcommand{\HipotesisGeneral}{
- El uso integrado de modelos de lenguaje de gran escala (LLMs) y grafos de conocimiento mejora significativamente la capacidad de análisis contextual, estructural y relacional del discurso mediático digital electoral frente a enfoques tradicionales basados en análisis mono-fuente y técnicas convencionales de monitoreo político.
+ El uso integrado de modelos de lenguaje de gran escala (LLMs) y grafos de conocimiento permite construir un sistema de inteligencia electoral capaz de realizar análisis contextual, estructural y relacional del discurso mediático digital con calidad verificable contra \textit{ground truth} humano y evaluaciones LLM-as-judge sobre conjuntos de referencia anotados.
 }
 \HipotesisGeneral
 \subsection{Hipótesis Específicas}
 
-\newcommand{\Hone}{Una arquitectura de procesamiento basada en Medallion Architecture mejora la consistencia semántica, trazabilidad y capacidad de integración de datos electorales multi-fuente respecto a esquemas tradicionales ETL no estratificados.}
-\newcommand{\Htwo}{Los modelos basados en LLMs ajustados al contexto político peruano mejoran significativamente la precisión del análisis de sentimiento dirigido y la detección contextual de tópicos emergentes respecto a modelos tradicionales de análisis semántico y topic modeling.}
-\newcommand{\Hthree}{La integración de extracción semántica basada en LLMs con estructuras de grafos mejora la representación relacional y contextual del ecosistema electoral frente a modelos tabulares tradicionales.}
-\newcommand{\Hfour}{La integración híbrida GraphRAG mejora la relevancia contextual y fidelidad de respuestas respecto a sistemas RAG puramente vectoriales o consultas exclusivas sobre grafos.}
-\newcommand{\Hfive}{El sistema integrado basado en LLMs, grafos de conocimiento y GraphRAG supera a los enfoques tradicionales en precisión analítica, coherencia temática y utilidad interpretativa.}
+\newcommand{\Hone}{Una arquitectura de ingesta y procesamiento basada en \textit{Medallion Architecture} permite integrar datos electorales multi-fuente preservando la consistencia semántica, la trazabilidad y la calidad del corpus, reduciendo además el costo computacional del análisis LLM mediante una cascada de filtros pre-modelo.}
+\newcommand{\Htwo}{Los modelos basados en LLMs en modalidad \textit{few-shot} ajustados al contexto político peruano alcanzan métricas de calidad satisfactorias (F1 macro $\geq 0.80$ en clasificación, MAE $\leq 0.15$ en sentimiento continuo) tanto en el análisis de sentimiento dirigido como en la detección contextual de tópicos emergentes del discurso mediático electoral.}
+\newcommand{\Hthree}{El grafo de conocimiento electoral construido mediante extracción semántica basada en LLMs permite expresar y consultar relaciones contextuales entre candidatos, temas, medios, fragmentos y períodos del ecosistema digital electoral en una única \textit{query} estructural.}
+\newcommand{\Hfour}{La integración híbrida GraphRAG basada en herramientas tipadas sobre el protocolo MCP mejora la relevancia y la corrección de respuestas respecto a un sistema RAG por similitud vectorial sobre el mismo corpus.}
+\newcommand{\Hfive}{El sistema integrado basado en LLMs, grafos de conocimiento y GraphRAG alcanza niveles de calidad analítica y coherencia temática verificables mediante métricas contra \textit{ground truth} humano y evaluaciones LLM-as-judge sobre conjuntos anotados.}
 
 \begin{itemize}
 	\item HE1: \Hone

@@ -662,7 +662,7 @@ A diferencia del diseño conceptual inicial, el sistema implementado no utiliza 
  
 \textbf{Actividad 4: Implementar sistema GraphRAG para consultas}
  
-El módulo de consulta al grafo de conocimiento se implementó como un servidor MCP (\textit{Model Context Protocol}) mediante el framework FastMCP 3.2.4, utilizando transporte \texttt{streamable-http} sobre el puerto 8080. El servidor expone 13 herramientas tipadas que los clientes LLM —como Claude Desktop y Claude.ai— pueden invocar directamente durante una conversación:
+El módulo de consulta al grafo de conocimiento se implementó como un servidor MCP (\textit{Model Context Protocol}) mediante el framework FastMCP 3.2.4, utilizando transporte \texttt{streamable-http} sobre el puerto 8080. El servidor expone 14 herramientas tipadas que los clientes LLM —como Claude Desktop y Claude.ai— pueden invocar directamente durante una conversación:
 
 \begin{itemize}
     \item \texttt{contexto\_candidato}
@@ -712,15 +712,14 @@ Evaluar módulo de análisis de sentimientos.
 & \begin{itemize}[label={--},nosep,leftmargin=*]
 \item Construir conjunto de validación con etiquetas humanas.
 \item Calcular exactitud, precisión, sensibilidad y F1.
-\item Comparar resultados entre distintas configuraciones de prompt.
-\end{itemize} \\ 
+\end{itemize} \\
 \hline
 Evaluar módulo de detección de temas.
 & Evaluación de la calidad de asignación documento--tema y de la deduplicación de temas detectados por el módulo híbrido LLM con catálogo incremental.
 & \begin{itemize}[label={--},nosep,leftmargin=*]
 \item Medir exactitud (\textit{exact}, \textit{lenient} y semántica) de la asignación documento--tema frente a etiquetas humanas.
 \item Medir precisión, sensibilidad y F1 de la fase de \textit{consolidate} + \texttt{llm\_dedup} sobre pares anotados.
-\item Evaluar diversidad temática del corpus diario.
+\item Reportar el conteo de temas únicos detectados en el corpus diario.
 \end{itemize} \\
 \hline
 Evaluar sistema GraphRAG.
