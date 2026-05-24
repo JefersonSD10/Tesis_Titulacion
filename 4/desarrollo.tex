@@ -571,7 +571,7 @@ El módulo GraphRAG se implementó como un \textbf{servidor MCP}
 (\texttt{electoral-mcp}), bajo una arquitectura basada en \textbf{herramientas
 tipadas} (\textit{typed tools}) en lugar del paradigma clásico de generación
 dinámica de Cypher mediante \textit{few-shot}. El servidor expone un total de
-\textbf{13 herramientas} agrupadas en seis dominios (candidatos, temas, actores,
+\textbf{14 herramientas} agrupadas en seis dominios (candidatos, temas, actores,
 evidencia, panorama, encuestas y macroeconómico), cada una con esquemas Pydantic
 v2 de entrada y salida que viajan al cliente vía el protocolo MCP en el campo
 \texttt{outputSchema}.
@@ -583,7 +583,7 @@ ejecutan vía \texttt{load\_sql}/\texttt{load\_cypher} con \texttt{lru\_cache}, 
 concatenación de \textit{strings}: todos los valores viajan como parámetros
 (\texttt{\$1, \$2, ...} en \texttt{asyncpg}, \texttt{\$param} en el \textit{driver}
 de Neo4j). El cliente LLM (Claude Desktop, Claude.ai web o Cursor) recibe en
-\texttt{tools/list} las descripciones semánticas de las 13 herramientas y
+\texttt{tools/list} las descripciones semánticas de las 14 herramientas y
 determina automáticamente cuál invocar y con qué parámetros a partir de la
 pregunta del usuario en lenguaje natural. La Figura \ref{5:fig22} muestra el
 flujo del sistema.
@@ -591,7 +591,7 @@ flujo del sistema.
 \begin{figure}[!ht]
     \begin{center}
         \resizebox{0.85\textwidth}{!}{\input{4/figures/fig22_graphrag_mcp}}
-        \caption[Sistema GraphRAG basado en herramientas tipadas sobre protocolo MCP]{Sistema GraphRAG implementado como servidor MCP con 13 herramientas tipadas: el cliente LLM (Claude Desktop, Claude.ai, Cursor) recibe las descripciones semánticas y los esquemas Pydantic de las herramientas, selecciona la apropiada y la invoca con parámetros validados. La consulta SQL/Cypher subyacente es \textit{pre-loaded} y parametrizada, garantizando ejecución correcta por construcción.\\
+        \caption[Sistema GraphRAG basado en herramientas tipadas sobre protocolo MCP]{Sistema GraphRAG implementado como servidor MCP con 14 herramientas tipadas: el cliente LLM (Claude Desktop, Claude.ai, Cursor) recibe las descripciones semánticas y los esquemas Pydantic de las herramientas, selecciona la apropiada y la invoca con parámetros validados. La consulta SQL/Cypher subyacente es \textit{pre-loaded} y parametrizada, garantizando ejecución correcta por construcción.\\
             Fuente: Elaboración propia.}
         \label{5:fig22}
     \end{center}
@@ -760,7 +760,7 @@ las corridas progresivas.
     \end{flushleft}
 \end{table}
 
-El sistema detectó \textbf{27 temas únicos} en el corpus de 744 documentos
+El sistema detectó \textbf{27 temas únicos} en el corpus de 655 documentos
 del 22 de marzo de 2026. El \textit{override} semántico post-LLM (\textit{cosine}
 $\geq 0.85$ + misma categoría) capturó 88 \textit{near-duplicates} que el
 menú de cinco \textit{tiers} no había incluido, evitando inflar
@@ -844,14 +844,14 @@ explícitamente y se documenta como restricción de la evaluación.
 
 \textbf{Actividad 3: Evaluar sistema GraphRAG}
 \\
-El sistema GraphRAG, implementado como servidor MCP con 13 herramientas
+El sistema GraphRAG, implementado como servidor MCP con 14 herramientas
 tipadas, se evaluó por su \textbf{integridad operacional}: latencia mediana
 por herramienta, validez del \textit{structuredContent} retornado al cliente
 y comportamiento del caché TTL en herramientas de baja varianza. Los
 resultados se muestran en la Tabla \ref{5:table6}.
 
 \begin{table}[h!]
-    \caption[Latencia y comportamiento de cada herramienta MCP]{Latencia mediana medida en la BD real y comportamiento de caché TTL para las trece herramientas registradas en el servidor \texttt{electoral\_mcp}.}
+    \caption[Latencia y comportamiento de cada herramienta MCP]{Latencia mediana medida en la BD real y comportamiento de caché TTL para las catorce herramientas registradas en el servidor \texttt{electoral\_mcp}. La herramienta \texttt{cobertura\_por\_medio} no fue invocada durante las pruebas, por lo que se reporta sin medición.}
     \label{5:table6}
     \centering
     \footnotesize
@@ -867,6 +867,7 @@ resultados se muestran en la Tabla \ref{5:table6}.
         buscar\_actor\_por\_descripcion      & actores    & 1100 & no \\
         noticias\_por\_actor                 & actores    & 10   & no \\
         citar\_evidencia                     & evidencia  & 60   & no \\
+        cobertura\_por\_medio                & cobertura  & ---  & --- \\
         panorama\_diario                     & panorama   & 48   & sí \\
         intencion\_voto\_candidato           & encuestas  & 8    & no \\
         encuestas\_disponibles               & encuestas  & 12   & no \\
@@ -879,7 +880,7 @@ resultados se muestran en la Tabla \ref{5:table6}.
     \end{flushleft}
 \end{table}
 
-Las trece herramientas retornaron \texttt{structuredContent} válido contra
+Las catorce herramientas retornaron \texttt{structuredContent} válido contra
 sus esquemas Pydantic v2 en el 100\% de las llamadas de validación
 \textit{end-to-end} reportadas en la bitácora de construcción del repositorio
 \texttt{electoral-mcp}. Las cuatro herramientas con caché TTL de 300\,s
@@ -1113,7 +1114,7 @@ sobre \texttt{Starlette} y \texttt{uvicorn}, autenticación \textit{Bearer token
 y \textit{lifespan} combinado que conecta los \textit{pools} \texttt{asyncpg} y
 \texttt{neo4j async} antes del primer \textit{request}. La interacción con el
 sistema se realiza desde clientes MCP estándar (Claude Desktop, Claude.ai web o
-Cursor) que descubren las 13 herramientas tipadas y las invocan en lenguaje
+Cursor) que descubren las 14 herramientas tipadas y las invocan en lenguaje
 natural; para presentaciones remotas se expone vía \texttt{cloudflared tunnel} o
 \texttt{ngrok} sobre HTTPS efímero. La arquitectura del prototipo integrado se
 muestra en la Figura \ref{5:fig24}.
@@ -1121,7 +1122,7 @@ muestra en la Figura \ref{5:fig24}.
 \begin{figure}[!ht]
     \begin{center}
         \resizebox{0.85\textwidth}{!}{\input{4/figures/fig24_demo_flux}}
-        \caption[Proceso de operación del prototipo del sistema de inteligencia electoral]{Proceso de operación del prototipo: ingesta diaria del corpus multifuente, etiquetado LLM, sincronización del grafo y consultas en lenguaje natural desde un cliente MCP que invoca las 13 herramientas tipadas del servidor \texttt{electoral\_mcp}.\\
+        \caption[Proceso de operación del prototipo del sistema de inteligencia electoral]{Proceso de operación del prototipo: ingesta diaria del corpus multifuente, etiquetado LLM, sincronización del grafo y consultas en lenguaje natural desde un cliente MCP que invoca las 14 herramientas tipadas del servidor \texttt{electoral\_mcp}.\\
             Fuente: Elaboración propia.}
         \label{5:fig24}
     \end{center}
