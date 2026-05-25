@@ -40,9 +40,10 @@ combinando términos clave —entre ellos \textit{LLM}, \textit{sentiment analys
 repositorio arXiv, lo que permitió delimitar los antecedentes publicados entre 2022
 y 2025.
 
-Posteriormente, cada antecedente se sintetizó en una hoja de cálculo donde se
-contrastaron sus objetivos, metodologías, modelos empleados y métricas reportadas;
-el detalle de esta comparación se consigna en el Anexo \ref{anexo1}.
+Posteriormente, cada antecedente se sintetizó en una hoja de cálculo de trabajo
+interna del equipo, donde se contrastaron sus objetivos, metodologías, modelos
+empleados y métricas reportadas; la síntesis cualitativa de ese ejercicio se
+expone en la sección de antecedentes del Capítulo~II.
 
 \textbf{Actividad 3: Definir metodología y arquitectura del sistema}
 \\
@@ -181,13 +182,41 @@ del formato audiovisual corto.
 \\
 En esta sección se analizaron estadísticamente las variables del corpus electoral
 multicanal: distribución temporal, por fuente, por candidato y por longitud de texto.
-En la variable dependiente —el sentimiento expresado hacia cada candidato—, las
-publicaciones del corpus se distribuyen según la Figura \ref{5:fig7}.
+El corpus electoral procesado en la corrida de referencia del 22 de marzo de 2026
+quedó conformado por \textbf{655 documentos válidos} tras la cascada de filtros
+pre-LLM, distribuidos por fuente según los conteos absolutos reportados en la
+Tabla \ref{5:table_conteos_fuente}. La proporción relativa derivada de estos
+conteos se ilustra gráficamente en la Figura \ref{5:fig7}.
+
+\begin{table}[h!]
+    \caption[Conteos absolutos del corpus electoral por fuente de datos]{Conteos absolutos del corpus electoral procesado por fuente de datos en la corrida del 22 de marzo de 2026 (n=655 documentos válidos tras la cascada de filtros pre-LLM), y porcentaje relativo asociado a cada fuente.}
+    \label{5:table_conteos_fuente}
+    \centering
+    \small
+    \begin{tabular}{l c c}
+        \specialrule{.1em}{.05em}{.05em}
+        \textbf{Fuente} & \textbf{Documentos (N)} & \textbf{Porcentaje} \\
+        \specialrule{.1em}{.05em}{.05em}
+        X/Twitter            & 341 & 52\,\% \\
+        \hline
+        Noticias digitales   & 118 & 18\,\% \\
+        \hline
+        TikTok               & 118 & 18\,\% \\
+        \hline
+        YouTube              &  78 & 12\,\% \\
+        \specialrule{.05em}{.05em}{.05em}
+        \textbf{Total}       & \textbf{655} & \textbf{100\,\%} \\
+        \specialrule{.1em}{.05em}{.05em}
+    \end{tabular}
+    \begin{flushleft}
+        \small Fuente: Elaboración propia, a partir de la vista \texttt{gold\_cobertura\_medios} de Postgres.
+    \end{flushleft}
+\end{table}
 
 \begin{figure}[!ht]
     \begin{center}
         \resizebox{0.85\textwidth}{!}{\input{4/figures/fig7_distribucion_fuentes}}
-        \caption[Distribución del corpus electoral total por fuente de datos]{Distribución del corpus electoral total por las cuatro fuentes de datos (noticias digitales, X/Twitter, YouTube y TikTok), mostrando el volumen relativo de cada canal.\\Fuente: Elaboración propia.}
+        \caption[Distribución del corpus electoral total por fuente de datos]{Distribución relativa (\%) del corpus electoral por las cuatro fuentes de datos (noticias digitales, X/Twitter, YouTube y TikTok), derivada de los conteos absolutos de la Tabla~\ref{5:table_conteos_fuente}.\\Fuente: Elaboración propia.}
         \label{5:fig7}
     \end{center}
 \end{figure}
@@ -618,8 +647,10 @@ schema, idempotencia, latencia, costo, cobertura del catálogo y tasa de
 en producción. El segundo plano corresponde a las \textbf{métricas de
 calidad de salida frente a \textit{ground truth}}, construido específicamente
 para esta tesis sobre dos \textit{gold datasets} independientes: (i) un
-dataset de etiquetado con 100 documentos anotados por un anotador humano
-más 15 pares de temas marcados como mismo/distinto tema, que habilita el
+dataset de etiquetado con 100 documentos anotados de manera asistida por
+dos evaluadores humanos del equipo de investigación, quienes revisaron de
+forma conjunta cada documento y resolvieron por consenso las discrepancias
+encontradas, más 15 pares de temas marcados como mismo/distinto tema, que habilita el
 cálculo de exactitud, F1 macro/micro, MAE/RMSE para el sentimiento continuo
 y precision/recall sobre la deduplicación de temas; y (ii) un dataset de
 consulta con 30 preguntas en lenguaje natural anotadas con su
@@ -678,11 +709,18 @@ documentos de la corrida piloto recibieron el valor geográficamente correcto.
 
 \textbf{Evaluación contra ground truth humano.} Para complementar las
 mediciones operacionales se construyó un \textit{gold dataset} de 100
-documentos anotados por un anotador humano sobre la totalidad de los campos
-del schema \texttt{AnalisisLLM}: categoría temática, relevancia geográfica al
-Perú, candidato protagonista, actores principales y sentimiento hacia el
-tema. La construcción del dataset incluyó 2 correcciones manuales sobre las
-predicciones del LLM (tasa de corrección del 2\%). Los resultados de comparar
+documentos cuyo etiquetado fue realizado mediante un protocolo de
+\textbf{validación asistida por dos evaluadores humanos} del equipo de
+investigación. Ambos evaluadores revisaron de forma conjunta cada documento
+sobre la totalidad de los campos del schema \texttt{AnalisisLLM}
+—categoría temática, relevancia geográfica al Perú, candidato protagonista,
+actores principales y sentimiento hacia el tema— y resolvieron por consenso
+las discrepancias detectadas entre la predicción inicial del LLM y el
+criterio humano, registrándose 2 correcciones manuales (tasa de corrección
+del 2\%). Dado que el protocolo se basó en consenso colaborativo y no en
+anotación independiente paralela, no se reporta un coeficiente
+$\kappa$ de Cohen calculado sobre etiquetas independientes; esta limitación
+de validez interna se discute en el capítulo de conclusiones. Los resultados de comparar
 las predicciones de DeepSeek-Chat contra estas etiquetas humanas se reportan
 en la Tabla \ref{5:table_label_quality}.
 
@@ -722,11 +760,11 @@ $[-1, 1]$ y una correlación Pearson de 0.892 con el etiquetado humano, con
 un sesgo positivo marginal de $+0.051$ que sugiere una ligera tendencia del
 LLM a moderar el sentimiento negativo. El punto débil identificado fue la
 extracción de \textbf{actores principales} (F1 micro 0.295), donde el LLM
-recupera aproximadamente un tercio de los actores que el anotador humano
-marca como tales; este resultado se interpreta como un sub-objetivo del
-\textit{prompt} antes que un fallo del modelo, dado que el LLM tiende a
-listar solo los actores nombrados explícitamente en el texto mientras que el
-anotador humano incorpora actores implícitos por contexto.
+recupera aproximadamente un tercio de los actores que los evaluadores
+humanos marcan como tales; este resultado se interpreta como un sub-objetivo
+del \textit{prompt} antes que un fallo del modelo, dado que el LLM tiende a
+listar solo los actores nombrados explícitamente en el texto mientras que
+los evaluadores humanos incorporan actores implícitos por contexto.
 
 \textbf{Actividad 2: Evaluar módulo de detección de temas}
 \\
@@ -802,7 +840,7 @@ subconjunto de 15 pares marcados como mismo o distinto tema. Los resultados
 se reportan en la Tabla \ref{5:table_topic_quality}.
 
 \begin{table}[h!]
-    \caption[Métricas de calidad del módulo de detección y deduplicación de temas]{Métricas de calidad del módulo de detección dinámica de temas y de la fase de \textit{consolidate} + \texttt{llm\_dedup} contra anotaciones humanas. La \textit{exact match} compara el slug exacto del tema; la \textit{lenient} acepta coincidencias por substring; la semántica mide solapamiento de \textit{tokens} normalizados.}
+    \caption[Métricas de calidad del módulo de detección y deduplicación de temas]{Métricas de calidad del módulo de detección dinámica de temas y de la fase de \textit{consolidate} + \texttt{llm\_dedup} contra anotaciones humanas. La \textit{exact match} compara el slug exacto del tema; la \textit{lenient} acepta coincidencias por substring; la semántica mide solapamiento de \textit{tokens} normalizados. \textbf{Advertencia estadística:} las métricas de deduplicación se calculan sobre n=15 pares —tamaño muestral en el que cada caso impacta cerca de 50 puntos porcentuales en los indicadores—; los valores reportados (0,500 / 0,500 / 0,500) son \textit{referenciales} y \textbf{no deben interpretarse con el mismo rigor estadístico que las métricas del módulo ABSA evaluadas sobre n=100} (Tabla~\ref{5:table_label_quality}), debido al intervalo de confianza considerablemente amplio asociado a una muestra de este tamaño.}
     \label{5:table_topic_quality}
     \centering
     \footnotesize
@@ -891,8 +929,9 @@ latencia de \textit{cache hit} de 0.1--0.2\,ms, frente a 5--48\,ms en
 \textbf{Comparación cuantitativa GraphRAG vs. RAG \textit{baseline} sobre
 \textit{golden set} anotado.} Para evaluar la calidad de respuesta del
 sistema más allá de su integridad operacional, se diseñó un experimento
-controlado siguiendo el \textbf{Diseño Experimental Puro} declarado en el
-capítulo de metodología: se manipuló la variable independiente
+controlado, coherente con el carácter \textbf{cuantitativo} de la
+investigación declarado en el capítulo de metodología:
+se manipuló la variable independiente
 \textit{arquitectura de recuperación} entre dos configuraciones —MCP
 Electoral con herramientas tipadas frente a RAG \textit{baseline} por
 similitud semántica— manteniendo constante el modelo cliente y la batería
@@ -1130,7 +1169,9 @@ muestra en la Figura \ref{5:fig24}.
 
 \textbf{Actividad 2: Ejecutar prototipo con datos electorales en vivo}
 \\
-Durante esta actividad se materializaron los flujos de la arquitectura del
+\noindent\textbf{Nota ética sobre anonimización de actores.} Dado que la prueba piloto se ejecutó sobre datos reales del proceso electoral peruano 2026 —período en el que las candidaturas y los medios involucrados se encuentran activos en campaña— y que la finalidad del presente trabajo es de carácter académico y metodológico, los nombres específicos de los candidatos y de los medios de comunicación que aparecen como salida del sistema se reemplazan en el texto, las figuras y los ejemplos por identificadores anonimizados (\textit{Candidato~A}, \textit{Candidato~B}, \dots, \textit{Medio~1}, \textit{Medio~2}, \dots). Esta decisión obedece a dos consideraciones: (i)~evitar que los indicadores publicados puedan ser interpretados como un juicio de valor sobre actores políticos individuales fuera del contexto técnico de la evaluación; y (ii)~prevenir su uso descontextualizado en el debate público durante el proceso electoral. La correspondencia entre identificadores anonimizados y actores reales se mantiene en los archivos internos del repositorio del proyecto y puede ser puesta a disposición del jurado evaluador bajo acuerdo de confidencialidad para fines de verificación.
+
+\noindent Durante esta actividad se materializaron los flujos de la arquitectura del
 prototipo presentados en la figura previa. La prueba piloto se llevó a cabo
 poniendo el sistema en operación durante una semana de campaña electoral en pleno
 desarrollo —que incluyó un debate presidencial—. El orquestador diario
