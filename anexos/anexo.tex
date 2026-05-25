@@ -3,6 +3,8 @@
 \appendix
 \setcounter{section}{0}% Reset numbering for sections
 \renewcommand{\thesection}{\Alph{section}}% Adjust section printing (from here onward)
+\renewcommand{\thesubsection}{\Alph{section}.\arabic{subsection}}% Subsections of appendix: H.1, H.2 (not 0.8.1)
+\renewcommand{\thesubsubsection}{\Alph{section}.\arabic{subsection}.\arabic{subsubsection}}
 
 % ──────────────────────────────────────────────────────────────
 \section{Árbol de Problemas}
@@ -276,39 +278,33 @@
 
 \label{anexo7}
 
-\begin{table}[h]
-	\centering
-	\small
-	\setlength{\LTpost}{0pt}
-	\begin{longtable}{p{3cm} p{7cm} p{3cm}}
-		\specialrule{.1em}{.05em}{.05em}
-		\centering\textbf{CATEGORÍA} & \centering\textbf{TÉRMINOS} & \centering\arraybackslash\textbf{CANTIDAD} \\
-		\specialrule{.1em}{.05em}{.05em}
-		\endhead
-		
-		Procesos Electorales & elección, voto, votación, candidato, campaña, debate, mitin, encuesta, sondeo & 9 \\
-		\hline
-		
-		Términos Políticos & gobierno, política, legislatura, congreso, república, democracia, parlamento & 7 \\
-		\hline
-		
-		Instituciones & ONPE, JNE, RENIEC, INE, INEI, MINDEF & 6 \\
-		\hline
-		
-		Temas de Campaña & economía, seguridad, educación, salud, corrupción, gobernabilidad, infraestructura & 7 \\
-		\hline
-		
-		Hashtags Electorales & \#EleccionesPerú2026, \#Voto2026, \#DebatePresidencial, \#CuéntaTuVoto & 4+ \\
-		\hline
-		
-		Candidatos & Nombres completos, apodos, siglas de partidos & Dinámico según proceso \\
-		
-		\specialrule{.1em}{.05em}{.05em}
-		
-	\end{longtable}
-	\caption[Diccionario de palabras clave electorales]{Vocabulario controlado utilizado para filtrar publicaciones relevantes en el corpus multi-fuente durante el período de análisis electoral.}
-	\label{tbl:diccionario_palabras_clave}
-\end{table}
+\begingroup
+\renewcommand\arraystretch{1.3}
+\small
+\setlength{\LTpost}{0pt}
+
+\begin{longtable}{p{3cm} p{7cm} p{3cm}}
+	\caption[Diccionario de palabras clave electorales]{Vocabulario controlado utilizado para filtrar publicaciones relevantes en el corpus multi-fuente durante el período de análisis electoral.} \label{tbl:diccionario_palabras_clave} \\
+
+	\specialrule{.1em}{.05em}{.05em}
+	\centering\textbf{CATEGORÍA} & \centering\textbf{TÉRMINOS} & \centering\arraybackslash\textbf{CANTIDAD} \\
+	\specialrule{.1em}{.05em}{.05em}
+	\endfirsthead
+
+	\specialrule{.1em}{.05em}{.05em}
+	\centering\textbf{CATEGORÍA} & \centering\textbf{TÉRMINOS} & \centering\arraybackslash\textbf{CANTIDAD} \\
+	\specialrule{.1em}{.05em}{.05em}
+	\endhead
+
+	Procesos Electorales & elección, voto, votación, candidato, campaña, debate, mitin, encuesta, sondeo & 9 \\ \hline
+	Términos Políticos & gobierno, política, legislatura, congreso, república, democracia, parlamento & 7 \\ \hline
+	Instituciones & ONPE, JNE, RENIEC, INE, INEI, MINDEF & 6 \\ \hline
+	Temas de Campaña & economía, seguridad, educación, salud, corrupción, gobernabilidad, infraestructura & 7 \\ \hline
+	Hashtags Electorales & \#EleccionesPerú2026, \#Voto2026, \#DebatePresidencial, \#CuéntaTuVoto & 4+ \\ \hline
+	Candidatos & Nombres completos, apodos, siglas de partidos & Dinámico según proceso \\
+	\specialrule{.1em}{.05em}{.05em}
+\end{longtable}
+\endgroup
 
 \clearpage
 

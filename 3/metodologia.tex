@@ -6,7 +6,7 @@ En esta sección se describe el diseño, el tipo y el enfoque del trabajo de inv
  
 \subsection{Tipo de la investigación}
  
-Se define el presente estudio como \textbf{Diseño Experimental}, dado que este enfoque busca identificar el posible efecto de una causa que es manipulada,este enfoque es principalmente utilizado por la obra \citetitle{bk_hernandez2014metodologia} creada por \cite{bk_hernandez2014metodologia}. Asimismo, en esta categoría, se categoriza como un \textbf{Diseño Experimental Puro}, debido a que se intervinieron deliberadamente una o más variables independientes —en este caso, la configuración de la arquitectura computacional, que integra un enfoque \textbf{GraphRAG Híbrido} (bases de datos vectoriales con \textit{pgvector} y de grafos con \textit{Neo4j}), la orquestación de múltiples Modelos Fundacionales como  DeepSeek y la exposición de herramientas analíticas vía el \textbf{Model Context Protocol (MCP)}— con el propósito de evaluar su impacto sobre la variable dependiente. Dicho impacto se mide a través de la precisión en la clasificación del sentimiento, la coherencia semántica en la detección de temas, y la eficiencia y relevancia en la recuperación de información del ecosistema digital electoral peruano.
+El presente estudio se define como una \textbf{investigación de tipo cuantitativo}, siguiendo la taxonomía propuesta por \cite{bk_hernandez2014metodologia} en \citetitle{bk_hernandez2014metodologia}, dado que la validación del sistema se sustenta en la recolección sistemática de mediciones numéricas y en el contraste empírico de las hipótesis mediante indicadores objetivos: precisión en la clasificación del sentimiento, coherencia semántica en la detección de temas, y corrección, fidelidad y relevancia de las respuestas generadas por el componente GraphRAG sobre el ecosistema digital electoral peruano. La configuración de la arquitectura computacional —que integra un enfoque \textbf{GraphRAG Híbrido} (bases de datos vectoriales con \textit{pgvector} y de grafos con \textit{Neo4j}), la orquestación de múltiples Modelos Fundacionales como DeepSeek y la exposición de herramientas analíticas vía el \textbf{Model Context Protocol (MCP)}— se evalúa frente a un sistema de referencia (\textit{baseline} RAG por similitud vectorial) sobre un mismo corpus y un mismo \textit{golden set} de preguntas, con el propósito de cuantificar diferencias de desempeño y verificar el cumplimiento de los umbrales declarados en las hipótesis.
 
 
 \subsection{Enfoque de la investigación}
@@ -123,9 +123,9 @@ educación, salud, corrupción y gobernabilidad.
  
 \subsection{Metodología de implementación de la solución}
  
-Según lo explicado en el Capítulo II del presente trabajo, internamente en los sistemas de
-analítica de negocio, la Minería de Datos y Big Data, las tres principales metodologías más usadas son
-SEMMA, CRISP-DM y KDD \parencite{tec_braulio2015metodologiasdm}. Para elegir la
+Según lo explicado en el Capítulo II del presente trabajo, en el ámbito de los sistemas
+de analítica de negocio, la Minería de Datos y Big Data, las tres metodologías de
+referencia más difundidas en la literatura son SEMMA, CRISP-DM y KDD. Para elegir la
 metodología de implementación, se creó la Tabla \ref{4:table2} con el propósito de  realizar una comparativa de las variables empleadas por los distintos antecedentes presentados para el estudio propuesto.
  
 \vspace{2ex}
@@ -209,7 +209,7 @@ Grupo D
     \small Fuente: Elaboración propia.
 \end{flushleft}
  
-De las tres metodologías señaladas por \citeauthor{tec_braulio2015metodologiasdm}, la mayor parte de los antecedentes analizados siguen secuencias de actividades enmarcadas en CRISP-DM, abarcando etapas como en entendimiento del negocio, la recuperación de la información y el procesamiento los datos, la creación del modelo y la evaluación de los resultados. Asimismo, las siguientes características identificadas en los antecedentes influyeron en la selección de la metodología CRISP-DM para el presente estudio:
+De las tres metodologías señaladas (SEMMA, CRISP-DM y KDD), la mayor parte de los antecedentes analizados siguen secuencias de actividades enmarcadas en CRISP-DM, abarcando etapas como en entendimiento del negocio, la recuperación de la información y el procesamiento los datos, la creación del modelo y la evaluación de los resultados. Asimismo, las siguientes características identificadas en los antecedentes influyeron en la selección de la metodología CRISP-DM para el presente estudio:
 
  
 \begin{itemize}
@@ -986,19 +986,19 @@ Equipo de cómputo para desarrollo (GPU integrada) & & S/.4,800.00 & S/.4,800.00
 Matrícula en cursos de actualización y TSP & & S/.8,500.00 & S/.8,500.00 \\
 \hline
 \multicolumn{4}{l}{\textbf{Recursos humanos}} \\
-Desarrollo del avance de tesis & 900 & No cuantificable & -- \\
+Desarrollo del avance de tesis (\textit{valorización académica}) & 900 & S/.30,00 & S/.27\,000,00 \\
 \hline
 \multicolumn{4}{l}{\textbf{Servicios generales}} \\
-Internet y electricidad (5 meses) & 120 & S/.85.00 & S/.680.00 \\
+Internet y electricidad (5 meses) & 120 & S/.85,00 & S/.680,00 \\
 \specialrule{.1em}{.05em}{.05em}
-\textbf{Total} & & & \textbf{S/.14,880.00} \\
+\textbf{Total (incluye valorización académica)} & & & \textbf{S/.41\,880,00} \\
 \specialrule{.1em}{.05em}{.05em}
 \end{tabular}
 \begin{flushleft}
-\small Fuente: Elaboración propia.
+\small Fuente: Elaboración propia. \emph{Nota:} la valorización académica de los recursos humanos es una estimación referencial calculada a una tarifa de S/.\,30,00 por hora (equivalente al salario promedio de un analista \textit{junior} en Lima) sobre las 900 horas dedicadas por el equipo; no constituye un desembolso monetario directo de los autores, sino una valoración del esfuerzo académico empleado.
 \end{flushleft}
 \end{table}
- 
+
 Los gastos asociados al uso de servicios en la nube, necesarios para el procesamiento del corpus y el entrenamiento de los modelos, se detallan en la Tabla \ref{4:table10}.
 
 \begin{table}[h!]
