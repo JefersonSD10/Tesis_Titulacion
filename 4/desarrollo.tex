@@ -973,8 +973,9 @@ herramientas mientras que el RAG ejecuta una sola recuperación semántica.
 del \textit{golden set} para identificar dónde se concentra la ventaja
 estructural de cada arquitectura.
 
+%% La relevancia baja en \texttt{edge\_case} en ambos sistemas se explica por el comportamiento de rechazo informativo ante preguntas sobre datos inexistentes, que el juez interpreta como poco relevante.
 \begin{table}[h!]
-    \caption[Métricas por tipo de pregunta en el golden set MCP vs RAG]{Métricas de corrección, relevancia y similitud de \textit{embeddings} desglosadas por los cuatro tipos de pregunta del \textit{golden set}, expresadas como MCP / RAG / $\Delta$. La relevancia baja en \texttt{edge\_case} en ambos sistemas se explica por el comportamiento de rechazo informativo ante preguntas sobre datos inexistentes, que el juez interpreta como poco relevante.}
+    \caption[Métricas por tipo de pregunta en el golden set MCP vs RAG]{Métricas de corrección, relevancia y similitud de \textit{embeddings} desglosadas por los cuatro tipos de pregunta del \textit{golden set}, expresadas como MCP / RAG / $\Delta$.}
     \label{5:table_mcp_vs_rag_por_tipo}
     \centering
     \footnotesize
