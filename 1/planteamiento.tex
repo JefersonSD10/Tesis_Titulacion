@@ -50,22 +50,24 @@ En consecuencia, se identifica la necesidad de desarrollar un enfoque integral q
 
 \subsection{Problema General}
 PG: \newcommand{\ProblemaGeneral}{
-¿De qué manera un sistema de inteligencia electoral basado en LLMs, grafos de conocimiento y enfoque multi-fuente permite analizar la percepción actual proyectada por los medios de comunicación hacia los candidatos presidenciales en ecosistemas digitales electorales?
+¿Cómo diseñar e implementar un sistema de inteligencia electoral basado en LLMs y grafos de conocimiento que permita analizar de manera integrada el discurso mediático digital multi-fuente sobre candidatos presidenciales en las elecciones Perú 2026, superando las limitaciones de los enfoques tradicionales basados en encuestas o fuentes aisladas?
 }
 \ProblemaGeneral
 
 \subsection{Problemas Específicos}
 
-\newcommand{\Pbone}{¿El uso de LLMs mejora la precisión del análisis de sentimientos en comparación con modelos tradicionales?}
-\newcommand{\Pbtwo}{¿El enfoque multi-fuente mejora la cobertura y representatividad del análisis de la percepción proyectada por los medios de comunicación en ecosistemas digitales?}
-\newcommand{\Pbthree}{¿El uso de grafos de conocimiento permite modelar mejor las relaciones entre actores, temas y medios?}
-\newcommand{\Pbfour}{¿El uso de GraphRAG mejora la generación de insights frente a sistemas RAG tradicionales?}
+\newcommand{\Pbone}{¿Cómo diseñar una arquitectura de ingesta y procesamiento basada en Medallion Architecture que permita integrar datos heterogéneos provenientes de prensa digital, X/Twitter, YouTube y TikTok, preservando la trazabilidad y calidad semántica del corpus electoral?}
+\newcommand{\Pbtwo}{¿Cómo utilizar LLMs para realizar análisis contextual del discurso mediático electoral, permitiendo identificar sentimientos dirigidos, ironía, ambigüedad política, jerga regional peruana y tópicos electorales emergentes en entornos digitales de alta volatilidad?}
+\newcommand{\Pbthree}{¿Cómo construir un grafo de conocimiento electoral que represente relaciones contextuales entre candidatos, medios, tópicos, sentimientos y temporalidad a partir de información extraída desde fuentes digitales no estructuradas?}
+\newcommand{\Pbfour}{¿Cómo implementar un sistema GraphRAG soportado mediante MCP que permita consultas en lenguaje natural sobre el ecosistema electoral combinando recuperación textual y razonamiento estructural?}
+\newcommand{\Pbfive}{¿Cómo evaluar la calidad del sistema integrado en términos de precisión semántica, coherencia temática, fidelidad relacional y utilidad analítica mediante métricas cuantitativas y evaluaciones contra \textit{ground truth} humano y LLM-as-judge?}
 
 \begin{itemize}
 	\item PE1: {\Pbone}
 	\item PE2: {\Pbtwo}
 	\item PE3: {\Pbthree}
 	\item PE4: {\Pbfour}
+	\item PE5: {\Pbfive}
 \end{itemize}
 
 
@@ -73,43 +75,46 @@ PG: \newcommand{\ProblemaGeneral}{
 
 \subsection{Objetivo General}
 OG: \newcommand{\ObjetivoGeneral}{
-Desarrollar un sistema de inteligencia electoral basado en LLMs, grafos de conocimiento y enfoque multi-fuente que permita analizar la percepción actual proyectada por los medios de comunicación hacia los candidatos presidenciales en ecosistemas digitales electorales.
+ Diseñar e implementar un sistema de inteligencia electoral basado en LLMs y grafos de conocimiento para el análisis multi-fuente del discurso mediático digital en las elecciones presidenciales del Perú 2026.
 }
 \ObjetivoGeneral
 \subsection{Objetivos Específicos}
 
-\newcommand{\Objone}{Evaluar la precisión del análisis de sentimientos utilizando LLMs frente a modelos tradicionales de procesamiento de lenguaje natural.}
-\newcommand{\Objtwo}{Analizar el impacto de integrar múltiples fuentes digitales en la cobertura del análisis de la percepción proyectada por los medios de comunicación.}
-\newcommand{\Objthree}{Construir un grafo de conocimiento para representar las relaciones entre actores, medios y temas dentro del ecosistema electoral digital.}
-\newcommand{\Objfour}{Evaluar la calidad de los insights generados mediante GraphRAG frente a sistemas RAG tradicionales.}
-
+\newcommand{\Objone}{Diseñar e implementar una arquitectura de ingesta y armonización multi-fuente basada en Medallion Architecture para integrar contenido electoral digital heterogéneo preservando consistencia, trazabilidad y calidad semántica.}
+\newcommand{\Objtwo}{Implementar un modelo de análisis semántico contextual basado en LLMs capaz de identificar polaridad política, ironía, sentimiento dirigido y tópicos electorales emergentes dentro del discurso mediático digital.}
+\newcommand{\Objthree}{Construir un grafo de conocimiento electoral basado en extracción semántica mediante LLMs para representar relaciones entre actores, narrativas y eventos políticos.}
+\newcommand{\Objfour}{Implementar un sistema GraphRAG capaz de combinar recuperación semántica textual y razonamiento estructural sobre grafos para responder consultas electorales en lenguaje natural.}
+\newcommand{\Objfive}{Evaluar el desempeño técnico y analítico del sistema mediante métricas semánticas y estructurales, contrastando las salidas del sistema contra \textit{ground truth} humano de referencia y evaluaciones LLM-as-judge sobre un conjunto de preguntas anotado.}
 
 \begin{itemize}
 	\item OE1: {\Objone}
 	\item OE2: {\Objtwo}
 	\item OE3: {\Objthree}
 	\item OE4: {\Objfour}
+	\item OE5: {\Objfive}
 \end{itemize}
 
 \section{Hipótesis}
 
 \subsection{Hipótesis General}
 HG: \newcommand{\HipotesisGeneral}{
-El uso de modelos de lenguaje de gran escala (LLMs), grafos de conocimiento y enfoque multi-fuente permite analizar con mayor precisión y contextualización la percepción actual proyectada por los medios de comunicación hacia los candidatos presidenciales en ecosistemas digitales electorales.
+ El uso integrado de modelos de lenguaje de gran escala (LLMs) y grafos de conocimiento permite construir un sistema de inteligencia electoral capaz de realizar análisis contextual, estructural y relacional del discurso mediático digital con calidad verificable contra \textit{ground truth} humano y evaluaciones LLM-as-judge sobre conjuntos de referencia anotados.
 }
 \HipotesisGeneral
 \subsection{Hipótesis Específicas}
 
-\newcommand{\Hone}{Los LLMs mejoran significativamente la precisión del análisis de sentimientos respecto a modelos tradicionales.}
-\newcommand{\Htwo}{La integración multi-fuente incrementa la cobertura y diversidad temática del análisis de la percepción proyectada por los medios de comunicación en ecosistemas digitales.}
-\newcommand{\Hthree}{Los grafos de conocimiento permiten identificar relaciones complejas no detectables mediante métodos tradicionales.}
-\newcommand{\Hfour}{GraphRAG mejora la relevancia, coherencia y contextualización de los insights generados.}
+\newcommand{\Hone}{Una arquitectura de ingesta y procesamiento basada en \textit{Medallion Architecture} permite integrar datos electorales multi-fuente preservando la consistencia semántica, la trazabilidad y la calidad del corpus, reduciendo además el costo computacional del análisis LLM mediante una cascada de filtros pre-modelo.}
+\newcommand{\Htwo}{Los modelos basados en LLMs en modalidad \textit{few-shot} ajustados al contexto político peruano alcanzan métricas de calidad satisfactorias (F1 macro $\geq 0.80$ en clasificación, MAE $\leq 0.15$ en sentimiento continuo) tanto en el análisis de sentimiento dirigido como en la detección contextual de tópicos emergentes del discurso mediático electoral.}
+\newcommand{\Hthree}{El grafo de conocimiento electoral construido mediante extracción semántica basada en LLMs permite expresar y consultar relaciones contextuales entre candidatos, temas, medios, fragmentos y períodos del ecosistema digital electoral en una única \textit{query} estructural.}
+\newcommand{\Hfour}{La integración híbrida GraphRAG basada en herramientas tipadas sobre el protocolo MCP mejora la relevancia y la corrección de respuestas respecto a un sistema RAG por similitud vectorial sobre el mismo corpus.}
+\newcommand{\Hfive}{El sistema integrado basado en LLMs, grafos de conocimiento y GraphRAG alcanza niveles de calidad analítica y coherencia temática verificables mediante métricas contra \textit{ground truth} humano y evaluaciones LLM-as-judge sobre conjuntos anotados.}
 
 \begin{itemize}
 	\item HE1: \Hone
 	\item HE2: \Htwo
 	\item HE3: \Hthree
 	\item HE4: \Hfour
+	\item HE5: \Hfive
 \end{itemize}
 
 

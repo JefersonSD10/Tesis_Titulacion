@@ -1,9 +1,9 @@
 % ══════════════════════════════════════════════════════════════
 % CAPÍTULO 2 — BASES TEÓRICAS
-% Título de tesis: INTELIGENCIA ELECTORAL CON LLM: MINERÍA DE
-% SENTIMIENTOS Y DETECCIÓN DINÁMICA DE TEMAS RELEVANTES PARA
-% ANALIZAR LA PERCEPCIÓN ACTUAL PROYECTADA POR LOS MEDIOS DE
-% COMUNICACIÓN EN ECOSISTEMAS DIGITALES
+% Título de tesis: SISTEMA DE INTELIGENCIA ELECTORAL BASADO EN
+% LLMS Y GRAFOS DE CONOCIMIENTO PARA EL ANÁLISIS MULTI-FUENTE
+% DEL DISCURSO MEDIÁTICO DIGITAL: CASO ELECCIONES
+% PRESIDENCIALES PERÚ 2026
 % Período de datos: enero–mayo 2026
 % Fuentes: YouTube (transcripciones), X/Twitter (tweets),
 %           portales de noticias (scraping web), TikTok
@@ -13,43 +13,71 @@
 \subsection{Inteligencia Artificial}
 % ──────────────────────────────────────────────────────────────
 
-La Inteligencia Artificial (IA) se define como la capacidad de las máquinas para ejecutar procesos inteligentes, donde un agente «inteligente» ideal percibe su entorno y actúa de manera que maximiza sus probabilidades de alcanzar un objetivo \parencite{bk_russell2009intart}. Este concepto se emplea cuando un sistema es capaz de imitar funciones cognitivas propias del ser humano, como el aprendizaje y la resolución de problemas \parencite{bk_russell2004intart}.
+La Inteligencia Artificial (IA) constituye una de las áreas más relevantes dentro de las ciencias computacionales debido a su capacidad para desarrollar sistemas capaces de ejecutar tareas que normalmente requieren habilidades cognitivas humanas. Entre estas capacidades destacan el razonamiento, el aprendizaje, la interpretación de lenguaje natural, la identificación de patrones y la toma de decisiones basada en datos. A lo largo de las últimas décadas, la IA ha evolucionado desde enfoques fundamentados en reglas lógicas y sistemas expertos hacia modelos basados en aprendizaje automático y arquitecturas neuronales de alta complejidad.
 
-A lo largo de la historia se han seguido cuatro grandes enfoques: dos centrados en el comportamiento humano y dos enfocados en la racionalidad. El enfoque empírico nace con la prueba propuesta por Alan Turing en 1950, cuyo computador debía contar con capacidades de procesamiento de lenguaje natural, representación del conocimiento, razonamiento automático y aprendizaje automático. Si el evaluador incluía además una señal de video, la prueba pasaba a denominarse Prueba Global de Turing, sumando también visión computacional y robótica. Por su parte, el enfoque racional se fundamenta en las «leyes del pensamiento» enunciadas por filósofos griegos como Aristóteles, derivando en el estudio de la lógica y, posteriormente, en la tradición logista de la IA.
+Desde una perspectiva conceptual, la Inteligencia Artificial puede entenderse como el conjunto de métodos, algoritmos y técnicas orientados a simular procesos de inteligencia humana mediante sistemas computacionales. \cite{bk_russell2009intart} señalan que la IA comprende el diseño de agentes inteligentes capaces de percibir su entorno, procesar información y ejecutar acciones orientadas al cumplimiento de objetivos específicos. Esta definición amplía la visión tradicional centrada únicamente en automatización, incorporando elementos relacionados con autonomía, adaptación y capacidad de razonamiento.
 
-En la actualidad, la IA posee diversas aplicaciones, entre las que destacan la minería de datos, el procesamiento de lenguaje natural (PLN), la robótica y los videojuegos. Asimismo, comprende distintas ramas como el aprendizaje automático, la visión computacional y los modelos de lenguaje de gran escala, siendo estas últimas de particular interés para la presente investigación. En el contexto mediático-electoral, la IA permite analizar de manera automatizada los grandes volúmenes de contenido que los medios de comunicación producen y difunden a través de ecosistemas digitales durante un proceso electoral.
+El crecimiento exponencial de datos digitales, el incremento de capacidad computacional y los avances en procesamiento paralelo han impulsado significativamente el desarrollo de la IA moderna. En particular, la disponibilidad de grandes volúmenes de información provenientes de plataformas digitales y redes sociales ha favorecido la aparición de modelos capaces de identificar relaciones complejas y patrones semánticos dentro de datos estructurados y no estructurados \parencite{bk_russell2004intart}.
+
+Dentro de este contexto, el aprendizaje automático (Machine Learning) se ha consolidado como uno de los principales enfoques de la Inteligencia Artificial. Este paradigma permite que los sistemas aprendan automáticamente a partir de datos históricos sin necesidad de programar explícitamente cada regla de decisión. Posteriormente, el aprendizaje profundo (Deep Learning) amplió estas capacidades mediante redes neuronales multicapa capaces de procesar representaciones abstractas de alta dimensionalidad \parencite{bk_russell2004intart}.
+
+Los avances recientes en IA han permitido el desarrollo de modelos especializados en Procesamiento de Lenguaje Natural (NLP), visión computacional, reconocimiento de voz y sistemas generativos. Particularmente, los Modelos de Lenguaje de Gran Escala (LLMs) han demostrado un desempeño sobresaliente en tareas relacionadas con comprensión contextual, generación de texto, clasificación semántica y análisis de sentimientos. Estos modelos utilizan arquitecturas basadas en Transformers y mecanismos de atención que permiten capturar relaciones semánticas complejas dentro de secuencias extensas de texto.
+
+En el ámbito político y mediático, la Inteligencia Artificial ha comenzado a desempeñar un papel importante en el análisis automatizado de grandes volúmenes de información digital. Diversos estudios recientes han empleado técnicas de IA para identificar tendencias discursivas, detectar polarización política, analizar sentimientos asociados a actores electorales y monitorear dinámicas de comunicación en redes sociales. Gracias a estas capacidades, la IA permite realizar análisis más escalables, contextualizados y dinámicos en comparación con metodologías tradicionales basadas exclusivamente en análisis manual o técnicas estadísticas convencionales \parencite{bk_russell2004intart}.
+
+Asimismo, la integración de Inteligencia Artificial con grafos de conocimiento y sistemas de recuperación aumentada por generación (RAG) ha ampliado las posibilidades de interpretación y análisis contextual de información compleja. Estas arquitecturas híbridas permiten combinar razonamiento semántico, recuperación de información y generación automática de respuestas fundamentadas, mejorando la capacidad de análisis en sistemas de inteligencia electoral y monitoreo del discurso mediático digital. En el caso de las Elecciones Presidenciales Perú 2026, esta integración resulta especialmente relevante dado el volumen y la heterogeneidad de las cuatro fuentes digitales analizadas.
+
+En consecuencia, la Inteligencia Artificial representa el fundamento tecnológico principal sobre el cual se construye el sistema propuesto en la presente investigación, orientado al análisis multi-fuente del discurso mediático digital en el contexto electoral peruano.
 
 % ──────────────────────────────────────────────────────────────
 \subsection{Aprendizaje Automático}
 % ──────────────────────────────────────────────────────────────
 
-El Aprendizaje Automático (\textit{Machine Learning}) es una disciplina de la Inteligencia Artificial orientada al desarrollo de métodos que permitan a las computadoras aprender a partir de los datos, mediante la identificación de algoritmos y heurísticas que transforman ejemplos en modelos, sin requerir una programación explícita \parencite{bk_russell2009intart}. Sus algoritmos integran diversas tecnologías —como el aprendizaje profundo, las redes neuronales y el procesamiento de lenguaje natural— las cuales funcionan a partir de patrones y conocimientos extraídos de datos previos \parencite{bk_alpaydin2014ml}.
+El Aprendizaje Automático (\textit{Machine Learning}) corresponde a una rama de la Inteligencia Artificial enfocada en el desarrollo de modelos computacionales capaces de aprender patrones y comportamientos a partir de datos históricos, sin depender de instrucciones programadas de manera explícita para cada situación \parencite{bk_russell2009intart}. Este enfoque permite que los sistemas mejoren progresivamente su desempeño mediante la experiencia adquirida durante el procesamiento de información.
 
-Entre los principales enfoques de aprendizaje se encuentran el supervisado, el no supervisado y el aprendizaje por refuerzo. En el \textbf{aprendizaje supervisado}, se emplean datos etiquetados con el objetivo de construir una función que relacione entradas con salidas esperadas. Este tipo se divide en dos categorías: la regresión, que produce valores numéricos continuos, y la clasificación, que asigna elementos a clases definidas. Por su parte, el \textbf{aprendizaje no supervisado} utiliza datos sin etiquetar para identificar estructuras ocultas en la información, comúnmente mediante técnicas de agrupamiento o \textit{clustering}. Finalmente, el \textbf{aprendizaje por refuerzo} se basa en la interacción de un agente con su entorno, donde aprende a tomar decisiones a partir de una retroalimentación en forma de recompensas, optimizando así su comportamiento con el tiempo.
+Los algoritmos de Aprendizaje Automático utilizan técnicas matemáticas y estadísticas para identificar relaciones dentro de grandes volúmenes de datos, posibilitando la construcción de modelos predictivos y analíticos. Asimismo, esta disciplina integra diversas tecnologías relacionadas con redes neuronales, aprendizaje profundo y procesamiento de lenguaje natural, las cuales facilitan el reconocimiento de patrones complejos y la automatización de tareas de análisis inteligente \parencite{bk_alpaydin2014ml}.
+
+Dentro de los principales paradigmas de aprendizaje destacan el aprendizaje supervisado, el aprendizaje no supervisado y el aprendizaje por refuerzo. El \textbf{aprendizaje supervisado} emplea conjuntos de datos etiquetados para entrenar modelos capaces de asociar entradas con resultados esperados. Este enfoque incluye problemas de clasificación, donde los datos son asignados a categorías específicas, y problemas de regresión, orientados a la predicción de valores continuos.
+
+Por otro lado, el \textbf{aprendizaje no supervisado} trabaja con información sin etiquetar, buscando descubrir estructuras ocultas, agrupaciones o relaciones internas dentro de los datos. Entre las técnicas más utilizadas en este enfoque destacan los algoritmos de agrupamiento o \textit{clustering}, ampliamente empleados en análisis exploratorio y detección automática de patrones; en el contexto de la presente investigación, esta técnica es aplicada por BERTopic para identificar temas latentes en el discurso mediático digital.
+
+Finalmente, el \textbf{aprendizaje por refuerzo} se basa en la interacción continua entre un agente inteligente y su entorno. A través de mecanismos de recompensa y penalización, el sistema aprende estrategias orientadas a maximizar beneficios acumulados y optimizar su comportamiento conforme adquiere experiencia durante el proceso de entrenamiento.
 
 % ──────────────────────────────────────────────────────────────
 \subsection{Aprendizaje Profundo}
 % ──────────────────────────────────────────────────────────────
 
-El Aprendizaje Profundo (\textit{Deep Learning}) es una subárea del Aprendizaje Automático que permite a las computadoras ejecutar tareas asociadas a capacidades humanas, como el reconocimiento de imágenes o del lenguaje, mediante el ajuste de parámetros y el entrenamiento de sistemas capaces de aprender de forma autónoma a través de múltiples capas de procesamiento \parencite{gl_sas_deeplearning}. Este enfoque se fundamenta en principios inspirados en el funcionamiento del cerebro humano, utilizando redes neuronales artificiales de gran escala.
+El Aprendizaje Profundo (\textit{Deep Learning}) representa una subdisciplina del Aprendizaje Automático centrada en el uso de redes neuronales artificiales compuestas por múltiples capas de procesamiento. Su objetivo principal consiste en permitir que los sistemas computacionales aprendan representaciones complejas de los datos mediante procesos automáticos de entrenamiento y ajuste de parámetros \parencite{gl_sas_deeplearning}.
 
-A diferencia del Aprendizaje Automático tradicional, el Aprendizaje Profundo integra en un mismo proceso la extracción de características y la clasificación, mientras que en los métodos convencionales estas etapas se desarrollan de manera separada. Esta propiedad lo posiciona como la base tecnológica de los Modelos de Lenguaje de Gran Escala, los cuales constituyen el eje central de la presente investigación.
+Este enfoque se inspira en el funcionamiento biológico del cerebro humano, particularmente en la forma en que las neuronas procesan y transmiten información. A partir de esta arquitectura, los modelos de Aprendizaje Profundo son capaces de resolver tareas altamente complejas relacionadas con reconocimiento de imágenes, procesamiento de voz, comprensión del lenguaje natural y generación automática de contenido.
+
+Una de las principales diferencias respecto a los métodos tradicionales de Aprendizaje Automático radica en que el Aprendizaje Profundo realiza simultáneamente la extracción automática de características y el proceso de clasificación. En los enfoques convencionales, la selección de características suele requerir intervención manual y conocimiento especializado del dominio; sin embargo, las arquitecturas profundas aprenden directamente representaciones jerárquicas desde los datos originales.
+
+Gracias a esta capacidad de aprendizaje automático de representaciones semánticas complejas, el Aprendizaje Profundo se ha convertido en la base tecnológica de los Modelos de Lenguaje de Gran Escala (LLMs), los cuales constituyen el núcleo del sistema de análisis multi-fuente del discurso mediático digital propuesto en esta investigación.
 
 % ──────────────────────────────────────────────────────────────
 \subsection{Procesamiento del Lenguaje Natural}
 % ──────────────────────────────────────────────────────────────
 
-El Procesamiento del Lenguaje Natural (\textit{Natural Language Processing}, NLP) es un área interdisciplinaria que integra la lingüística computacional, las ciencias de la computación, la ciencia cognitiva y la inteligencia artificial. Su propósito es estudiar cómo las computadoras pueden comprender y procesar el lenguaje humano para llevar a cabo diversas tareas, como el reconocimiento de voz, el análisis léxico, la generación automática de resúmenes, el análisis de sentimientos y la identificación de temas \parencite{bk_deng2018deeplearningnlp}.
+El Procesamiento del Lenguaje Natural (\textit{Natural Language Processing}, NLP) es una disciplina interdisciplinaria orientada al estudio de métodos computacionales capaces de analizar, interpretar y generar lenguaje humano. Esta área combina conocimientos provenientes de lingüística computacional, inteligencia artificial, ciencias cognitivas y ciencias de la computación, con el propósito de facilitar la interacción entre personas y sistemas informáticos \parencite{bk_deng2018deeplearningnlp}.
 
-Desde una perspectiva histórica, el NLP ha evolucionado a través de tres olas. El \textbf{Racionalismo} (décadas de 1960 a 1980) se fundamentó en reglas gramaticales diseñadas por expertos, basándose en la concepción del lenguaje como una facultad innata propuesta por Noam Chomsky. El \textbf{Empirismo} se caracterizó por la explotación de grandes corpus de texto mediante Aprendizaje Automático, con modelos como el Modelo Oculto de Markov (HMM). El \textbf{Aprendizaje Profundo}, como tercera y actual ola, emplea redes neuronales de múltiples capas entrenadas sobre volúmenes masivos de texto, permitiendo capturar dependencias semánticas complejas que los enfoques anteriores no podían modelar \parencite{bk_deng2018deeplearningnlp}.
+El NLP permite desarrollar aplicaciones capaces de comprender información textual y verbal mediante técnicas de análisis semántico, sintáctico y contextual. Entre sus principales aplicaciones destacan el reconocimiento automático de voz, traducción automática, clasificación de textos, análisis de sentimientos, extracción de entidades, resumen automático y detección temática.
 
-Para el presente trabajo, el NLP constituye la disciplina madre que sustenta todas las técnicas aplicadas al análisis del discurso mediático en ecosistemas digitales: la minería de sentimientos, la detección de temas, la transcripción automática de contenido audiovisual y los modelos de lenguaje de gran escala.
+Desde una perspectiva evolutiva, el Procesamiento del Lenguaje Natural ha atravesado distintas etapas de desarrollo. La primera etapa, conocida como \textbf{Racionalismo}, predominó entre las décadas de 1960 y 1980 y se basó principalmente en reglas lingüísticas diseñadas manualmente por especialistas. Este enfoque consideraba que la estructura del lenguaje podía representarse mediante reglas gramaticales formales inspiradas en las teorías lingüísticas de Noam Chomsky.
+
+Posteriormente surgió el \textbf{Empirismo}, etapa caracterizada por el uso de grandes corpus textuales y modelos estadísticos para aprender patrones lingüísticos a partir de datos reales. Durante este período se popularizaron técnicas basadas en probabilidades y modelos como los Hidden Markov Models (HMM), ampliamente utilizados en tareas de etiquetado y reconocimiento de secuencias.
+
+La etapa actual corresponde al paradigma de \textbf{Aprendizaje Profundo}, el cual utiliza redes neuronales multicapa entrenadas sobre enormes volúmenes de información textual. Gracias a este enfoque, los sistemas modernos de NLP pueden capturar relaciones semánticas complejas, dependencias contextuales y variaciones lingüísticas que resultaban difíciles de modelar mediante técnicas tradicionales \parencite{bk_deng2018deeplearningnlp}.
+
+En la presente investigación, el Procesamiento del Lenguaje Natural constituye el fundamento tecnológico para el análisis automatizado del discurso mediático en las cuatro fuentes digitales del corpus. A partir de esta disciplina se implementan técnicas relacionadas con minería de sentimientos, detección dinámica de temas, análisis semántico del discurso político, transcripción automática de material audiovisual y procesamiento contextual mediante Modelos de Lenguaje de Gran Escala para el caso de las Elecciones Presidenciales Perú 2026.
 
 \subsubsection{Representación Vectorial del Texto}
 
-Antes de aplicar cualquier modelo de NLP, el texto debe ser transformado en representaciones numéricas. Entre las modalidades más usadas se encuentran las siguientes.
+Para que los algoritmos de Procesamiento del Lenguaje Natural puedan analizar información textual, es necesario transformar previamente las palabras y documentos en representaciones numéricas procesables por sistemas computacionales. Este proceso, conocido como representación vectorial del texto, constituye una etapa fundamental dentro de los modelos modernos de NLP, ya que permite convertir información lingüística en estructuras matemáticas capaces de ser interpretadas por algoritmos de aprendizaje automático.
 
-La \textbf{Bolsa de Palabras} (\textit{Bag-of-Words} o BoW) es una técnica de extracción de características que representa los textos a partir de un vocabulario predefinido, contabilizando la frecuencia de aparición de cada término, sin tomar en cuenta el orden ni la estructura de las palabras dentro del documento \parencite{bk_brownlee2017deeplearning_nlp}. La \textbf{Frecuencia del Término - Frecuencia Inversa del Documento} (\textit{TF-IDF}) resalta las palabras más significativas en el corpus al combinar la frecuencia de aparición de un término en un documento con la penalización de términos que aparecen en demasiados documentos, calculada mediante la Ecuación \ref{eq:tfidf_llm}:
+Entre las técnicas tradicionales más utilizadas se encuentra la \textbf{Bolsa de Palabras} (\textit{Bag-of-Words} o BoW). Este método representa cada documento mediante un vector basado en la frecuencia de aparición de los términos pertenecientes a un vocabulario previamente definido. Bajo este enfoque, el texto es tratado como un conjunto desordenado de palabras, ignorando la secuencia, la gramática y las relaciones contextuales entre términos \parencite{bk_brownlee2017deeplearning_nlp}. A pesar de su simplicidad, esta técnica fue ampliamente utilizada en tareas iniciales de clasificación y análisis textual debido a su facilidad de implementación y bajo costo computacional.
+
+Otra técnica relevante corresponde a la \textbf{Frecuencia del Término - Frecuencia Inversa del Documento} (\textit{Term Frequency - Inverse Document Frequency}, TF-IDF). Este método busca identificar qué palabras poseen mayor relevancia dentro de un documento en comparación con el resto del corpus. Para ello, combina la frecuencia de aparición de un término con un factor de penalización asociado a qué tan frecuente es dicho término en todos los documentos analizados. De esta manera, las palabras comunes reciben menor peso, mientras que los términos más representativos adquieren mayor importancia semántica. Su cálculo se expresa mediante la Ecuación \ref{eq:tfidf_llm}:
 
 \begin{equation}\label{eq:tfidf_llm}
 \phantomsection
@@ -57,9 +85,13 @@ TF\text{-}IDF_{(t,d)} = TF_{(t,d)} \times \log\frac{N}{df_{(t)}}
 \end{equation}
 \myequations{Fórmula de TF-IDF para ponderación de términos}
 
-Donde $TF_{(t,d)}$ es la frecuencia del término $t$ en el documento $d$, $N$ es el número total de documentos y $df_{(t)}$ es el número de documentos que contienen el término $t$.
+Donde $TF_{(t,d)}$ representa la frecuencia del término $t$ dentro del documento $d$, $N$ corresponde al número total de documentos del corpus y $df_{(t)}$ indica la cantidad de documentos en los que aparece el término $t$.
 
-La \textbf{Incrustación de Palabras} (\textit{Word Embedding}) representa las palabras como vectores densos de baja dimensionalidad en un espacio vectorial continuo, donde palabras con significados similares tienen representaciones cercanas. Algoritmos como Word2Vec \parencite{tec_mikolov2013word2vec} y GloVe \parencite{gl_pennington2014glove} popularizaron este enfoque. Sin embargo, estas representaciones son estáticas, es decir, una misma palabra tiene siempre el mismo vector independientemente del contexto en que aparezca. Los modelos de transformers, descritos más adelante, resuelven esta limitación al generar representaciones contextuales dinámicas.
+Posteriormente surgieron técnicas más avanzadas conocidas como \textbf{Incrustaciones de Palabras} (\textit{Word Embeddings}), las cuales representan palabras mediante vectores densos distribuidos dentro de espacios vectoriales continuos. A diferencia de los enfoques tradicionales basados únicamente en frecuencia, estas representaciones permiten capturar relaciones semánticas y sintácticas entre términos, posicionando palabras con significados similares en regiones cercanas del espacio vectorial.
+
+Modelos como Word2Vec \parencite{tec_mikolov2013word2vec} y GloVe \parencite{gl_pennington2014glove} popularizaron este tipo de representación al demostrar que las relaciones lingüísticas podían modelarse matemáticamente mediante operaciones vectoriales. Sin embargo, estos embeddings presentan una limitación importante: generan representaciones estáticas, lo que implica que una palabra conserva siempre el mismo vector independientemente del contexto donde aparezca.
+
+Frente a esta limitación, las arquitecturas basadas en Transformers introdujeron representaciones contextuales dinámicas capaces de modificar el significado vectorial de una palabra según las demás palabras presentes en la secuencia textual. Gracias a ello, los modelos modernos de lenguaje logran interpretar relaciones semánticas complejas, ambigüedades lingüísticas y dependencias contextuales de manera significativamente más precisa; capacidad especialmente valiosa al analizar el discurso mediático político peruano en fuentes tan heterogéneas como artículos periodísticos, tweets, transcripciones de YouTube y publicaciones de TikTok.
 
 % ──────────────────────────────────────────────────────────────
 \subsection{La Arquitectura Transformer}
@@ -91,7 +123,7 @@ El producto $QK^T$ mide la similitud entre cada par de tokens; dividir entre $\s
 
 El Transformer original sigue una arquitectura codificador-decodificador (\textit{encoder-decoder}), ilustrada en la Figura \ref{fig:transformer_arch}. El \textbf{codificador} (\textit{encoder}) procesa la secuencia de entrada y genera representaciones contextuales de alta dimensión. El \textbf{decodificador} (\textit{decoder}) toma estas representaciones junto con la secuencia generada hasta el momento para producir el siguiente token de salida, de manera autoregresiva.
 
-\begin{figure}[!ht]
+\begin{figure}[H]
     \begin{center}
         \includegraphics[width=0.70\textwidth]{2/figures/transformer_architecture.jpg}
         \caption[Arquitectura original del Transformer con codificador y decodificador]{Arquitectura original del modelo Transformer, compuesta por un codificador (izquierda) y un decodificador (derecha), cada uno formado por capas de atención multi-cabeza y redes de retroalimentación.\\
@@ -100,7 +132,7 @@ El Transformer original sigue una arquitectura codificador-decodificador (\texti
     \end{center}
 \end{figure}
 
-Existen variantes especializadas: los modelos \textbf{solo-encoder} (como BERT) son óptimos para tareas de comprensión y clasificación de texto, los modelos \textbf{solo-decoder} (como GPT) son óptimos para generación de texto, y los modelos \textbf{encoder-decoder} (como T5) son ideales para tareas de transformación de secuencias como la traducción automática o el resumen. Esta distinción es fundamental para comprender la familia de LLMs utilizados en la presente investigación.
+Existen variantes especializadas: los modelos \textbf{solo-encoder} (como BERT) son óptimos para tareas de comprensión y clasificación de texto, los modelos \textbf{solo-decoder} (como GPT) son óptimos para generación de texto, y los modelos \textbf{encoder-decoder} (como T5) son ideales para tareas de transformación de secuencias como la traducción automática o el resumen. Esta distinción es fundamental para comprender la familia de LLMs utilizados en el sistema de inteligencia electoral de la presente investigación.
 
 % ──────────────────────────────────────────────────────────────
 \subsection{Modelos de Lenguaje de Gran Escala (LLMs)}
@@ -118,7 +150,7 @@ En la etapa de \textbf{ajuste fino} (\textit{fine-tuning}), el modelo pre-entren
 
 Una capacidad emergente de los LLMs de gran escala es el \textbf{aprendizaje por contexto} (\textit{in-context learning}), que permite al modelo realizar nuevas tareas sin actualizar sus parámetros, simplemente incluyendo ejemplos o instrucciones en el \textit{prompt} (texto de entrada). Se distinguen dos modalidades principales, representadas en la Figura \ref{fig:zeroshot_fewshot}:
 
-\begin{figure}[!ht]
+\begin{figure}[H]
     \begin{center}
         \includegraphics[width=0.88\textwidth]{2/figures/zeroshot_fewshot.jpg}
         \caption[Comparación entre los enfoques zero-shot, one-shot y few-shot en LLMs]{Comparación entre los paradigmas zero-shot, one-shot y few-shot para el aprendizaje por contexto en modelos de lenguaje de gran escala.\\
@@ -132,7 +164,7 @@ Una capacidad emergente de los LLMs de gran escala es el \textbf{aprendizaje por
     \item \textbf{Few-shot}: El modelo recibe un pequeño número de ejemplos etiquetados en el \textit{prompt} antes de procesar la consulta real. Esta modalidad mejora significativamente el desempeño en tareas especializadas sin necesidad de re-entrenamiento.
 \end{itemize}
 
-Ambas modalidades son fundamentales en la presente investigación, ya que permiten aplicar LLMs al análisis del discurso mediático electoral en español sin requerir grandes conjuntos de datos etiquetados.
+Ambas modalidades son fundamentales en la presente investigación, ya que permiten aplicar LLMs al análisis del discurso mediático electoral en español peruano sin requerir grandes conjuntos de datos etiquetados, aspecto crítico dado que no existen corpus anotados de cobertura mediática de las Elecciones Presidenciales Perú 2026.
 
 \subsubsection{Modelos LLM Relevantes para la Investigación}
 
@@ -150,7 +182,7 @@ Varios LLMs son directamente relevantes para los objetivos de esta tesis:
 
 La Figura \ref{fig:llm_timeline} ilustra la evolución cronológica de los principales LLMs desde 2018 hasta la actualidad, evidenciando la aceleración en el desarrollo de estos modelos y el exponencial crecimiento en su número de parámetros.
 
-\begin{figure}[!ht]
+\begin{figure}[H]
     \begin{center}
         \includegraphics[width=0.92\textwidth]{2/figures/llm_timeline.jpg}
         \caption[Evolución cronológica de los principales modelos de lenguaje de gran escala]{Línea de tiempo de los principales LLMs, mostrando el crecimiento exponencial en número de parámetros y capacidades.\\
@@ -160,16 +192,58 @@ La Figura \ref{fig:llm_timeline} ilustra la evolución cronológica de los princ
 \end{figure}
 
 % ──────────────────────────────────────────────────────────────
+\subsection{Grafos de Conocimiento}
+% ──────────────────────────────────────────────────────────────
+
+Un \textbf{grafo de conocimiento} (\textit{Knowledge Graph}, KG) es una representación estructurada del conocimiento en forma de grafo dirigido, donde los nodos representan entidades del mundo real —personas, organizaciones, lugares, conceptos, eventos— y las aristas representan relaciones semánticas tipadas entre dichas entidades \parencite{bk_hogan2021knowledge}. Formalmente, un grafo de conocimiento puede definirse como un conjunto de tripletas $\langle s, p, o \rangle$, donde $s$ es el sujeto (entidad origen), $p$ es el predicado (tipo de relación) y $o$ es el objeto (entidad destino o valor literal). Por ejemplo: $\langle \text{Candidato\_X},\ \textit{propone},\ \text{Reforma\_Económica\_Y} \rangle$.
+
+Esta estructura permite razonar sobre las relaciones entre entidades de manera explícita y auditable, a diferencia de los LLMs que almacenan el conocimiento de forma distribuida e implícita en sus parámetros. En el contexto de la inteligencia electoral, un grafo de conocimiento permite representar de forma estructurada las entidades del ecosistema político peruano —candidatos, partidos, propuestas programáticas, medios de comunicación, eventos de campaña— y las relaciones que los medios construyen entre ellas a través de su discurso digital.
+
+\subsubsection{Integración LLM–Grafo de Conocimiento}
+
+La integración entre LLMs y grafos de conocimiento es un área de investigación activa que combina las fortalezas complementarias de ambos paradigmas \parencite{bk_pan2024unifying}. Los LLMs aportan capacidades de comprensión y generación de lenguaje natural no estructurado, mientras que los grafos de conocimiento proveen razonamiento simbólico, trazabilidad y representación explícita de relaciones semánticas entre entidades. Esta sinergia se manifiesta principalmente en dos direcciones:
+
+\begin{itemize}
+    \item \textbf{LLM enriquecido por grafo} (\textit{Graph-Augmented LLM}): el contenido del grafo de conocimiento es recuperado e inyectado en el \textit{prompt} del LLM mediante técnicas RAG, permitiendo al modelo razonar sobre hechos estructurados actualizados que pueden no estar en sus datos de entrenamiento —como las posiciones programáticas de los candidatos a las Elecciones Presidenciales Perú 2026 o el historial de cobertura mediática de cada medio analizado.
+    \item \textbf{Grafo construido por LLM} (\textit{LLM-Generated Knowledge Graph}): el LLM extrae automáticamente entidades y relaciones del corpus de texto —artículos de prensa, tweets, transcripciones de YouTube y TikTok— para poblar y actualizar el grafo de conocimiento de forma continua, sin intervención manual.
+\end{itemize}
+
+En el sistema de inteligencia electoral propuesto, ambas direcciones operan en conjunto: el LLM extrae entidades y relaciones del discurso mediático digital para poblar el grafo de conocimiento electoral, y al mismo tiempo consulta el grafo para enriquecer su contexto al responder consultas analíticas sobre la cobertura de las Elecciones Presidenciales Perú 2026.
+
+\subsubsection{Tecnologías de Grafos de Conocimiento}
+
+La implementación práctica de grafos de conocimiento puede realizarse mediante diferentes tecnologías. Las \textbf{bases de datos de grafos} como Neo4j \parencite{tec_neo4j2023} ofrecen el lenguaje de consulta Cypher, optimizado para recorrer relaciones entre nodos mediante patrones de grafos. Las \textbf{triplestores RDF} como Apache Jena o Virtuoso implementan el estándar W3C RDF y el lenguaje de consulta SPARQL, adecuados para grafos que requieren interoperabilidad semántica. En el contexto del sistema propuesto, se opta por una base de datos de grafos relacional que combina la expresividad de las consultas de grafos con la integración nativa con PostgreSQL y pgvector para búsqueda semántica híbrida.
+
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[width=0.88\textwidth]{2/figures/knowledge_graph_electoral.png}
+        \caption[Fragmento del grafo de conocimiento electoral construido para las Elecciones Presidenciales Perú 2026]{Ejemplo de subgrafo del grafo de conocimiento electoral: nodos representando candidatos, partidos, temas programáticos y medios de comunicación, con aristas tipadas que codifican las relaciones extraídas del discurso mediático digital por el sistema LLM.\\
+            Fuente: Elaboración propia basada en \cite{bk_hogan2021knowledge}.}
+        \label{fig:knowledge_graph_electoral}
+    \end{center}
+\end{figure}
+
+% ──────────────────────────────────────────────────────────────
+\subsection{Análisis del Discurso Mediático Digital}
+% ──────────────────────────────────────────────────────────────
+
+El \textbf{análisis del discurso} es una disciplina que estudia el uso del lenguaje como práctica social, examinando no solo el contenido literal de los textos sino también las estructuras ideológicas, las relaciones de poder y los marcos interpretativos que subyacen en su producción y recepción \parencite{bk_fairclough2003analysing}. Aplicado al ámbito mediático electoral, el análisis del discurso permite comprender cómo los medios de comunicación construyen narrativas sobre los candidatos y el proceso electoral a través de sus elecciones léxicas, encuadres temáticos y posicionamientos evaluativos.
+
+El \textbf{discurso mediático digital} se distingue del discurso mediático tradicional por su naturaleza multi-plataforma, su velocidad de producción y circulación, y la convergencia entre el discurso institucional de los medios y el discurso ciudadano generado en las mismas plataformas \parencite{mc_chadwick2013hybrid}. En el ecosistema digital electoral peruano de 2026, este discurso se manifiesta de manera diferenciada en cada fuente analizada: el lenguaje formal y estructurado de los artículos periodísticos, la brevedad y reactividad de los tweets, la oralidad transcrita de los videos de YouTube, y el registro coloquial e hipertextual de las publicaciones de TikTok.
+
+El análisis automatizado del discurso mediático digital mediante LLMs y grafos de conocimiento —enfoque central del sistema propuesto— permite escalar este tipo de análisis a corpus de miles de documentos, identificando patrones discursivos sistemáticos que serían imposibles de detectar mediante revisión manual. La integración del grafo de conocimiento aporta una capa de representación estructurada que hace explícitas las relaciones entre actores, temas y medios que el discurso construye implícitamente.
+
+% ──────────────────────────────────────────────────────────────
 \subsection{Análisis de Sentimientos}
 % ──────────────────────────────────────────────────────────────
 
-El análisis de sentimientos, también denominado minería de opiniones (\textit{opinion mining}), es la tarea de NLP orientada a identificar y extraer información subjetiva de textos, determinando si el contenido expresa una actitud positiva, negativa o neutral hacia una entidad, persona, evento o tema \parencite{tec_liu2012sentiment}. En el contexto de la inteligencia electoral, esta tarea permite medir la percepción proyectada por los medios de comunicación hacia candidatos, partidos políticos y propuestas programáticas a partir de los contenidos que estos producen en ecosistemas digitales —artículos de prensa, videos de YouTube, publicaciones en X/Twitter y contenido en TikTok.
+El análisis de sentimientos, también denominado minería de opiniones (\textit{opinion mining}), es la tarea de NLP orientada a identificar y extraer información subjetiva de textos, determinando si el contenido expresa una actitud positiva, negativa o neutral hacia una entidad, persona, evento o tema \parencite{tec_liu2012sentiment}. En el contexto del sistema de inteligencia electoral, esta tarea permite medir las valoraciones que el discurso mediático digital expresa hacia candidatos, partidos políticos y propuestas programáticas a partir de los contenidos producidos en el ecosistema digital —artículos de prensa, videos de YouTube, publicaciones en X/Twitter y contenido en TikTok— durante las Elecciones Presidenciales Perú 2026.
 
 \subsubsection{Niveles de Análisis}
 
 El análisis de sentimientos puede realizarse en distintos niveles de granularidad, como podemos ver en la Figura \ref{fig:sentiment_levels}:
 
-\begin{figure}[!ht]
+\begin{figure}[H]
     \begin{center}
         \includegraphics[width=0.85\textwidth]{2/figures/sentiment_levels.jpg}
         \caption[Niveles de granularidad del análisis de sentimientos]{Niveles de análisis de sentimientos: a nivel de documento, a nivel de oración y a nivel de aspecto, con sus respectivos ejemplos de aplicación en cobertura mediática electoral.\\
@@ -181,7 +255,7 @@ El análisis de sentimientos puede realizarse en distintos niveles de granularid
 \begin{itemize}
     \item \textbf{Nivel de documento}: Se asigna una polaridad global al documento completo. Es el nivel más simple pero pierde información sobre aspectos específicos mencionados en el texto.
     \item \textbf{Nivel de oración}: Se analiza el sentimiento de cada oración de forma independiente, permitiendo una granularidad mayor.
-    \item \textbf{Nivel de aspecto} (\textit{Aspect-Based Sentiment Analysis}, ABSA): Se identifica el sentimiento expresado hacia entidades o aspectos específicos mencionados en el texto. Por ejemplo, en una noticia sobre una campaña electoral, se puede detectar sentimiento positivo hacia la propuesta económica de un candidato y negativo hacia su gestión en seguridad.
+    \item \textbf{Nivel de aspecto} (\textit{Aspect-Based Sentiment Analysis}, ABSA): Se identifica el sentimiento expresado hacia entidades o aspectos específicos mencionados en el texto. Por ejemplo, en una noticia sobre la campaña presidencial, se puede detectar sentimiento positivo hacia la propuesta económica de un candidato y negativo hacia su gestión en seguridad.
 \end{itemize}
 
 \subsubsection{Enfoques Metodológicos}
@@ -194,7 +268,7 @@ El \textbf{enfoque basado en aprendizaje automático supervisado} entrena clasif
 
 El \textbf{enfoque basado en Aprendizaje Profundo y LLMs} utiliza modelos como BERT, RoBERTa o GPT para generar representaciones contextuales del texto, logrando los mejores resultados en la actualidad. La Figura \ref{fig:sentiment_comparison} ilustra la comparación de rendimiento entre estos enfoques en tareas de análisis de sentimientos en cobertura mediática política.
 
-\begin{figure}[!ht]
+\begin{figure}[H]
     \begin{center}
         \includegraphics[width=0.82\textwidth]{2/figures/sentiment_comparison.jpg}
         \caption[Comparación de rendimiento entre enfoques de análisis de sentimientos en texto político]{Comparación de exactitud entre los enfoques léxico, aprendizaje automático clásico y modelos basados en LLMs para análisis de sentimientos en cobertura mediática electoral.\\
@@ -203,21 +277,21 @@ El \textbf{enfoque basado en Aprendizaje Profundo y LLMs} utiliza modelos como B
     \end{center}
 \end{figure}
 
-\subsubsection{Desafíos en el Análisis de Sentimientos en Cobertura Mediática Electoral}
+\subsubsection{Desafíos en el Análisis de Sentimientos en el Discurso Mediático Electoral}
 
-El análisis de sentimientos aplicado a la cobertura mediática electoral en ecosistemas digitales presenta desafíos específicos que los métodos convencionales no resuelven satisfactoriamente. En primer lugar, el \textbf{lenguaje figurado}: la ironía, el sarcasmo y el humor político son formas frecuentes de expresión tanto en redes sociales como en el periodismo de opinión y en el contenido audiovisual de canales de YouTube y TikTok. En segundo lugar, la \textbf{multimodalidad de las fuentes}: el sistema analiza simultáneamente texto escrito (noticias, tweets), transcripciones de audio (YouTube) y contenido de formato corto (TikTok), cada uno con convenciones lingüísticas y estilísticas distintas que afectan la calibración del análisis de sentimientos. En tercer lugar, la \textbf{ambigüedad de entidades}: un mismo artículo o video puede expresar sentimientos diferenciados hacia múltiples actores políticos simultáneamente. En cuarto lugar, la \textbf{diversidad lingüística}: en contextos latinoamericanos, el español presenta variaciones léxicas y expresivas significativas entre países. Los LLMs multilingües como XLM-RoBERTa han mostrado ventajas sustanciales para este tipo de escenarios.
+El análisis de sentimientos aplicado al discurso mediático electoral en ecosistemas digitales presenta desafíos específicos que los métodos convencionales no resuelven satisfactoriamente. En primer lugar, el \textbf{lenguaje figurado}: la ironía, el sarcasmo y el humor político son formas frecuentes de expresión tanto en redes sociales como en el periodismo de opinión y en el contenido audiovisual de canales de YouTube y TikTok. En segundo lugar, la \textbf{multimodalidad de las fuentes}: el sistema analiza simultáneamente texto escrito (noticias, tweets), transcripciones de audio (YouTube) y contenido de formato corto (TikTok), cada uno con convenciones lingüísticas y estilísticas distintas. En tercer lugar, la \textbf{ambigüedad de entidades}: un mismo artículo o video puede expresar sentimientos diferenciados hacia múltiples actores políticos simultáneamente. En cuarto lugar, la \textbf{diversidad lingüística}: en contextos latinoamericanos, el español presenta variaciones léxicas y expresivas significativas; el discurso mediático peruano incorpora términos propios del contexto político nacional que los modelos entrenados en otros corpus pueden no reconocer adecuadamente. Los LLMs multilingües como XLM-RoBERTa han mostrado ventajas sustanciales para este tipo de escenarios \parencite{tec_conneau2020xlmr}.
 
 % ──────────────────────────────────────────────────────────────
 \subsection{Detección Dinámica de Temas}
 % ──────────────────────────────────────────────────────────────
 
-La detección de temas (\textit{topic modeling} o \textit{topic detection}) es una familia de técnicas de NLP no supervisadas cuyo objetivo es descubrir automáticamente los temas o asuntos latentes que subyacen en un corpus de documentos, sin necesidad de etiquetas previas \parencite{mc_blei2012lda}. En el contexto de la inteligencia electoral, permite identificar qué temas están siendo abordados por los medios de comunicación en el ecosistema digital político, con qué intensidad y cómo evolucionan a lo largo del tiempo.
+La detección de temas (\textit{topic modeling} o \textit{topic detection}) es una familia de técnicas de NLP no supervisadas cuyo objetivo es descubrir automáticamente los temas o asuntos latentes que subyacen en un corpus de documentos, sin necesidad de etiquetas previas \parencite{mc_blei2012lda}. En el contexto del sistema de inteligencia electoral, permite identificar qué temas están siendo abordados por los medios de comunicación en el ecosistema digital político durante las Elecciones Presidenciales Perú 2026, con qué intensidad y cómo evolucionan a lo largo del tiempo.
 
 \subsubsection{Modelos Probabilísticos: LDA}
 
 La \textbf{Asignación Latente de Dirichlet} (\textit{Latent Dirichlet Allocation}, LDA), propuesta por \cite{mc_blei2012lda}, es el modelo de detección de temas más influyente de la era pre-transformers. LDA asume que cada documento es una mezcla de temas, y que cada tema es una distribución de probabilidad sobre palabras. El proceso generativo de LDA se representa en la Figura \ref{fig:lda_plate}.
 
-\begin{figure}[!ht]
+\begin{figure}[H]
     \begin{center}
         \includegraphics[width=0.70\textwidth]{2/figures/lda_plate.jpg}
         \caption[Notación de plato del modelo LDA]{Notación de plato del modelo de Asignación Latente de Dirichlet (LDA), mostrando las distribuciones de temas por documento ($\theta$) y de palabras por tema ($\phi$), controladas por los hiperparámetros Dirichlet $\alpha$ y $\beta$.\\
@@ -232,7 +306,7 @@ Sin embargo, LDA presenta limitaciones importantes para el análisis del corpus 
 
 \textbf{BERTopic}, propuesto por \cite{tec_grootendorst2022bertopic}, es un framework moderno de modelado de temas que aprovecha embeddings de transformers y clustering basado en densidad. Su pipeline se compone de cuatro etapas principales, representadas en la Figura \ref{fig:bertopic_pipeline}:
 
-\begin{figure}[!ht]
+\begin{figure}[H]
     \begin{center}
         \includegraphics[width=0.90\textwidth]{2/figures/bertopic_pipeline.jpg}
         \caption[Pipeline completo del framework BERTopic para detección de temas neurales]{Pipeline del framework BERTopic: generación de embeddings con transformers, reducción de dimensionalidad con UMAP, clustering con HDBSCAN y representación de temas con c-TF-IDF.\\
@@ -252,9 +326,9 @@ BERTopic supera a LDA en coherencia semántica, manejo de textos cortos y capaci
 
 \subsubsection{Detección Dinámica de Temas}
 
-La \textbf{detección dinámica de temas} (\textit{dynamic topic modeling}) extiende los modelos estáticos para rastrear cómo los temas evolucionan a través del tiempo. BERTopic implementa esta capacidad mediante la segmentación temporal del corpus: los documentos se agrupan en ventanas de tiempo y se re-calculan las representaciones de topics para cada período, permitiendo visualizar la evolución de la agenda temática en los medios de comunicación durante el proceso electoral, como se muestra en la Figura \ref{fig:dynamic_topics}.
+La \textbf{detección dinámica de temas} (\textit{dynamic topic modeling}) extiende los modelos estáticos para rastrear cómo los temas evolucionan a través del tiempo. BERTopic implementa esta capacidad mediante la segmentación temporal del corpus: los documentos se agrupan en ventanas de tiempo y se re-calculan las representaciones de topics para cada período, permitiendo visualizar la evolución de la agenda temática en los medios de comunicación durante el proceso electoral peruano 2026, como se muestra en la Figura \ref{fig:dynamic_topics}.
 
-\begin{figure}[!ht]
+\begin{figure}[H]
     \begin{center}
         \includegraphics[width=0.88\textwidth]{2/figures/dynamic_topics.jpg}
         \caption[Evolución temporal de temas detectados mediante BERTopic dinámico en cobertura mediática]{Ejemplo de evolución temporal de temas detectados mediante el módulo de topic modeling dinámico de BERTopic, mostrando la frecuencia relativa de cada tema por período de tiempo en la cobertura mediática electoral entre enero y mayo de 2026.\\
@@ -263,7 +337,7 @@ La \textbf{detección dinámica de temas} (\textit{dynamic topic modeling}) exti
     \end{center}
 \end{figure}
 
-Esta capacidad es fundamental para los objetivos de la presente investigación, ya que la agenda mediática durante un proceso electoral es altamente dinámica: los temas de cobertura emergen, se intensifican y decaen en función de eventos como debates, escándalos o anuncios de política pública, y su seguimiento automático permite comprender cómo los medios construyen y transforman la percepción pública de los candidatos a lo largo del tiempo.
+Esta capacidad es fundamental para los objetivos de la presente investigación, ya que la agenda mediática durante un proceso electoral es altamente dinámica: los temas de cobertura emergen, se intensifican y decaen en función de eventos como debates, escándalos o anuncios de política pública. Su seguimiento automático y su representación estructurada en el grafo de conocimiento electoral permiten comprender cómo los medios construyen y transforman las narrativas sobre los candidatos a lo largo del tiempo.
 
 % ──────────────────────────────────────────────────────────────
 \subsection{Framing Mediático y Agenda Setting}
@@ -273,13 +347,13 @@ El concepto de \textbf{framing} o encuadre mediático, desarrollado por \cite{bk
 
 La \textbf{teoría de la agenda-setting}, propuesta originalmente por \cite{bk_mccombs2004agenda}, postula que los medios de comunicación no determinan qué piensan los ciudadanos, pero sí influyen significativamente en \textit{sobre qué} piensan: los temas que reciben mayor cobertura mediática tienden a ser percibidos por la ciudadanía como los más importantes. En el ecosistema digital actual, esta dinámica se extiende a plataformas como X/Twitter, YouTube y TikTok, donde los medios tradicionales compiten con creadores de contenido independientes en la construcción de la agenda pública.
 
-Para la presente investigación, el análisis del framing mediático se operacionaliza mediante la detección automática de la polaridad del sentimiento (positivo, negativo, neutral) y la identificación de los temas predominantes en los contenidos producidos por cada medio en las cuatro fuentes analizadas —noticias digitales, tweets, videos de YouTube y publicaciones de TikTok— durante el período enero–mayo de 2026. Este enfoque permite cuantificar y comparar la percepción que cada medio proyecta sobre los actores del proceso electoral peruano.
+Para la presente investigación, el análisis del framing mediático se operacionaliza mediante la detección automática de la polaridad del sentimiento (positivo, negativo, neutral) y la identificación de los temas predominantes en los contenidos producidos por cada medio en las cuatro fuentes analizadas —noticias digitales, tweets, videos de YouTube y publicaciones de TikTok— durante el período enero–mayo de 2026. Las relaciones de framing identificadas son además codificadas como aristas tipadas en el grafo de conocimiento electoral, lo que permite consultas estructuradas sobre los encuadres predominantes de cada medio hacia cada actor político.
 
 % ──────────────────────────────────────────────────────────────
 \subsection{Ingeniería de Prompts}
 % ──────────────────────────────────────────────────────────────
 
-La \textbf{ingeniería de \textit{prompts}} (\textit{prompt engineering}) es la disciplina que estudia el diseño y optimización de las instrucciones textuales (\textit{prompts}) que se proporcionan a los LLMs para obtener de ellos respuestas de mayor calidad, precisión y relevancia sin modificar los parámetros del modelo \parencite{tec_white2023prompt}. En el contexto de la inteligencia electoral, el diseño adecuado de prompts determina en gran medida la calidad del análisis de sentimientos y la detección de temas que produce el LLM sobre el corpus multimodal.
+La \textbf{ingeniería de \textit{prompts}} (\textit{prompt engineering}) es la disciplina que estudia el diseño y optimización de las instrucciones textuales (\textit{prompts}) que se proporcionan a los LLMs para obtener de ellos respuestas de mayor calidad, precisión y relevancia sin modificar los parámetros del modelo \parencite{tec_white2023prompt}. En el contexto del sistema de inteligencia electoral, el diseño adecuado de prompts determina en gran medida la calidad del análisis del discurso mediático y la extracción de entidades y relaciones para el grafo de conocimiento.
 
 \subsubsection{Principales Técnicas}
 
@@ -289,12 +363,12 @@ El \textbf{Chain-of-Thought prompting} (CoT) consiste en incluir en el \textit{p
 
 El \textbf{Role prompting} asigna al LLM un rol específico al inicio del \textit{prompt} («Eres un analista de medios experto en cobertura electoral latinoamericana...»), orientando sus respuestas hacia el dominio de interés. Esta técnica ha demostrado ser efectiva para mejorar la precisión en tareas de análisis político \parencite{pr_alvarez2023llm_political}.
 
-La \textbf{Generación Aumentada por Recuperación} (\textit{Retrieval-Augmented Generation}, RAG) complementa el \textit{prompt} con información recuperada de una base de conocimiento externa (documentos de prensa, bases de datos electorales, programas de gobierno), permitiendo al LLM razonar sobre información actualizada y específica del dominio que puede no estar en sus datos de entrenamiento \parencite{tec_lewis2020rag}. La Figura \ref{fig:rag_architecture} ilustra la arquitectura general de un sistema RAG.
+La \textbf{Generación Aumentada por Recuperación} (\textit{Retrieval-Augmented Generation}, RAG) complementa el \textit{prompt} con información recuperada de una base de conocimiento externa —documentos de prensa, bases de datos electorales, el propio grafo de conocimiento, programas de gobierno— permitiendo al LLM razonar sobre información actualizada y específica del dominio \parencite{tec_lewis2020rag}. La Figura \ref{fig:rag_architecture} ilustra la arquitectura general de un sistema RAG aplicado al análisis electoral.
 
-\begin{figure}[!ht]
+\begin{figure}[H]
     \begin{center}
         \includegraphics[width=0.88\textwidth]{2/figures/rag_architecture.jpg}
-        \caption[Arquitectura de un sistema de Generación Aumentada por Recuperación (RAG)]{Arquitectura de un sistema RAG aplicado al análisis de cobertura mediática electoral: el módulo de recuperación obtiene documentos relevantes de una base de conocimiento externa, que son incluidos en el \textit{prompt} junto a la consulta del usuario para que el LLM genere una respuesta fundamentada.\\
+        \caption[Arquitectura de un sistema de Generación Aumentada por Recuperación (RAG)]{Arquitectura de un sistema RAG aplicado al análisis de cobertura mediática electoral: el módulo de recuperación obtiene documentos relevantes de una base de conocimiento externa (incluyendo el grafo de conocimiento electoral), que son incluidos en el \textit{prompt} junto a la consulta del usuario para que el LLM genere una respuesta fundamentada.\\
             Fuente: \cite{tec_lewis2020rag}. \textit{Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks}. (p. 3)}
         \label{fig:rag_architecture}
     \end{center}
@@ -302,9 +376,9 @@ La \textbf{Generación Aumentada por Recuperación} (\textit{Retrieval-Augmented
 
 \subsubsection{Salida Estructurada mediante JSON}
 
-La producción de salida estructurada (\textit{structured output}) mediante prompts es una técnica que solicita al LLM devolver respuestas exclusivamente en formato JSON válido, validable mediante esquemas Pydantic. Esta modalidad elimina la necesidad de parseo frágil y permite la integración directa del output del LLM en bases de datos relacionales \parencite{tec_white2023prompt}.
+La producción de salida estructurada (\textit{structured output}) mediante prompts es una técnica que solicita al LLM devolver respuestas exclusivamente en formato JSON válido, validable mediante esquemas Pydantic. Esta modalidad elimina la necesidad de parseo frágil y permite la integración directa del output del LLM en bases de datos relacionales y en el grafo de conocimiento electoral \parencite{tec_white2023prompt}.
 
-En el sistema desarrollado, cada documento —independientemente de su fuente (noticia, tweet, transcripción de YouTube o TikTok)— es analizado con un único prompt que extrae simultáneamente: candidato protagonista, actores secundarios, fuente y tipo de medio, tema emergente, categoría, sentimiento por candidato y nivel de confianza. Este enfoque reduce el número de llamadas al modelo, mejora la consistencia estructural de los datos y facilita el procesamiento automatizado dentro del pipeline analítico.
+En el sistema desarrollado, cada documento —independientemente de su fuente (noticia, tweet, transcripción de YouTube o TikTok)— es analizado con un único prompt que extrae simultáneamente: candidato protagonista, actores secundarios, fuente y tipo de medio, tema emergente, categoría, sentimiento por candidato, relaciones para el grafo de conocimiento y nivel de confianza. Este enfoque reduce el número de llamadas al modelo, mejora la consistencia estructural de los datos y facilita el procesamiento automatizado dentro del pipeline analítico.
 
 % ──────────────────────────────────────────────────────────────
 \subsection{Ecosistemas Digitales y Medios de Comunicación como Fuente de Datos}
@@ -319,48 +393,42 @@ Para la presente investigación se recolectaron datos de cuatro fuentes digitale
 
     \item \textbf{X/Twitter}: Tweets, retweets y menciones recolectados mediante la API de tercero TwitterAPI.io. Permiten capturar tanto el discurso de las cuentas oficiales de los medios de comunicación como la reacción ciudadana ante su cobertura.
 
-    \item \textbf{YouTube}: Transcripciones automáticas de videos obtenidas mediante \textit{yt-dlp}. Esta fuente es especialmente valiosa para el análisis de programas periodísticos, debates, entrevistas y comentarios políticos en formato audiovisual, que representan una dimensión de la cobertura mediática no capturada por el texto escrito.
+    \item \textbf{YouTube}: Transcripciones automáticas de videos obtenidas mediante \textit{yt-dlp}. Esta fuente es especialmente valiosa para el análisis de programas periodísticos, debates, entrevistas y comentarios políticos en formato audiovisual, que representan una dimensión del discurso mediático no capturada por el texto escrito.
 
-    \item \textbf{TikTok}: Publicaciones y metadata extraídos mediante \textit{yt-dlp}. Esta plataforma ha cobrado relevancia creciente en la comunicación política peruana, especialmente entre audiencias jóvenes, y constituye un canal emergente de difusión de cobertura mediática y de contenido político generado tanto por medios como por ciudadanos.
+    \item \textbf{TikTok}: Publicaciones y metadata extraídos mediante \textit{yt-dlp}. Esta plataforma ha cobrado relevancia creciente en la comunicación política peruana, especialmente entre audiencias jóvenes, y constituye un canal emergente de difusión de discurso mediático y político generado tanto por medios como por ciudadanos.
 \end{enumerate}
 
 \subsubsection{Recolección y Procesamiento de Datos Multimodales}
 
 La recolección de datos multimodales para análisis electoral generalmente sigue el proceso ilustrado en la Figura \ref{fig:data_collection_pipeline}:
 
-\begin{figure}[!ht]
+\begin{figure}[H]
     \begin{center}
         \includegraphics[width=0.85\textwidth]{2/figures/data_collection_pipeline.png}
-        % ► NOTA PARA EL AUTOR: actualiza esta figura para mostrar
-        %   las 4 fuentes reales: noticias web, X/Twitter, YouTube y TikTok,
-        %   en lugar de una fuente genérica. Ver notas_figuras.tex.
-        \caption[Pipeline de recolección y preprocesamiento de datos multimodales para análisis mediático electoral]{Pipeline de recolección y preprocesamiento de datos multimodales para el análisis de percepción proyectada por medios de comunicación en ecosistemas digitales (enero–mayo 2026): definición de criterios de búsqueda, recolección vía scrapers y APIs, transcripción de contenido audiovisual, filtrado, limpieza y normalización del texto.\\
+        \caption[Pipeline de recolección y preprocesamiento de datos multimodales para análisis del discurso mediático electoral]{Pipeline de recolección y preprocesamiento de datos multimodales para el análisis multi-fuente del discurso mediático digital (enero–mayo 2026): definición de criterios de búsqueda, recolección vía scrapers y APIs, transcripción de contenido audiovisual, filtrado, limpieza, normalización y extracción de entidades para el grafo de conocimiento.\\
             Fuente: Elaboración propia basada en \cite{pr_alvi2023twitter_election_review}.}
         \label{fig:data_collection_pipeline}
     \end{center}
 \end{figure}
 
-El proceso comprende las siguientes etapas: (1) \textbf{Definición de criterios de búsqueda}: selección de palabras clave, hashtags y cuentas relacionadas con el proceso electoral y los medios de comunicación a monitorear. (2) \textbf{Recolección multimodal}: extracción de artículos mediante scraping web, tweets vía API, transcripciones de YouTube y metadata de TikTok mediante \textit{yt-dlp}. (3) \textbf{Transcripción de contenido audiovisual}: conversión de audio a texto mediante modelos de reconocimiento de voz para los videos de YouTube y TikTok. (4) \textbf{Filtrado}: eliminación de publicaciones irrelevantes, spam y bots. (5) \textbf{Limpieza y normalización}: eliminación de caracteres especiales, URLs, emojis no relevantes y normalización ortográfica.
+El proceso comprende las siguientes etapas: (1) \textbf{Definición de criterios de búsqueda}: selección de palabras clave, hashtags y cuentas relacionadas con el proceso electoral y los medios de comunicación a monitorear. (2) \textbf{Recolección multimodal}: extracción de artículos mediante scraping web, tweets vía API, transcripciones de YouTube y metadata de TikTok mediante \textit{yt-dlp}. (3) \textbf{Transcripción de contenido audiovisual}: conversión de audio a texto mediante modelos de reconocimiento de voz para los videos de YouTube y TikTok. (4) \textbf{Filtrado}: eliminación de publicaciones irrelevantes, spam y bots. (5) \textbf{Limpieza y normalización}: eliminación de caracteres especiales, URLs, emojis no relevantes y normalización ortográfica. (6) \textbf{Extracción de entidades y relaciones}: identificación de actores políticos, temas y relaciones discursivas para poblar el grafo de conocimiento electoral.
 
 \subsubsection{Detección de Desinformación en Ecosistemas Digitales}
 
-Un desafío crítico en el análisis de cobertura mediática en ecosistemas digitales es la presencia de \textbf{desinformación} (\textit{misinformation} y \textit{disinformation}): contenido falso o engañoso que circula masivamente en redes sociales y plataformas de video con el potencial de distorsionar la percepción ciudadana y los resultados electorales \parencite{pr_chen2024combating_misinformation}. Los LLMs representan un arma de doble filo en este contexto: por un lado, son capaces de generar contenido falso de alta calidad y difícil detección; por otro, ofrecen capacidades avanzadas de verificación automática de hechos y detección de narrativas engañosas que superan los métodos tradicionales.
+Un desafío crítico en el análisis del discurso mediático en ecosistemas digitales es la presencia de \textbf{desinformación} (\textit{misinformation} y \textit{disinformation}): contenido falso o engañoso que circula masivamente en redes sociales y plataformas de video con el potencial de distorsionar la percepción ciudadana y los resultados electorales \parencite{pr_chen2024combating_misinformation}. Los LLMs representan un arma de doble filo en este contexto: por un lado, son capaces de generar contenido falso de alta calidad y difícil detección; por otro, ofrecen capacidades avanzadas de verificación automática de hechos y detección de narrativas engañosas que superan los métodos tradicionales.
 
 % ──────────────────────────────────────────────────────────────
 \subsection{Inteligencia Electoral}
 % ──────────────────────────────────────────────────────────────
 
-La \textbf{inteligencia electoral} es un campo emergente que integra técnicas de ciencia de datos, NLP e inteligencia artificial para analizar, interpretar y anticipar dinámicas del comportamiento político ciudadano a partir de múltiples fuentes de información \parencite{mc_ceron2017social}. Va más allá del simple monitoreo de redes sociales al incorporar capacidades de análisis semántico profundo, detección de patrones, seguimiento de narrativas en el tiempo y correlación con indicadores externos como encuestas de opinión y resultados electorales históricos.
+La \textbf{inteligencia electoral} es un campo emergente que integra técnicas de ciencia de datos, NLP e inteligencia artificial para analizar, interpretar y anticipar dinámicas del comportamiento político ciudadano a partir de múltiples fuentes de información \parencite{mc_ceron2017social}. Va más allá del simple monitoreo de redes sociales al incorporar capacidades de análisis semántico profundo, detección de patrones discursivos, seguimiento de narrativas en el tiempo y correlación con indicadores externos como encuestas de opinión y resultados electorales históricos.
 
-Un sistema de inteligencia electoral integrado, como el propuesto en la presente investigación, articula los siguientes componentes, cuya interacción se ilustra en la Figura \ref{fig:electoral_intelligence_system}:
+El sistema de inteligencia electoral propuesto en la presente investigación articula los siguientes componentes, cuya interacción se ilustra en la Figura \ref{fig:electoral_intelligence_system}:
 
-\begin{figure}[!ht]
+\begin{figure}[H]
     \begin{center}
         \includegraphics[width=0.90\textwidth]{2/figures/electoral_intelligence_system.png}
-        % ► NOTA PARA EL AUTOR: actualiza esta figura para incluir
-        %   el componente de "Análisis de framing mediático por fuente"
-        %   y las 4 fuentes (noticias, X, YouTube, TikTok). Ver notas_figuras.tex.
-        \caption[Arquitectura de un sistema integrado de inteligencia electoral basado en LLMs]{Arquitectura del sistema de inteligencia electoral: recolección multimodal de cuatro fuentes digitales, preprocesamiento, análisis de sentimientos con LLMs, detección dinámica de temas, análisis de framing mediático, detección de desinformación y visualización en tiempo real.\\
+        \caption[Arquitectura del sistema de inteligencia electoral basado en LLMs y grafos de conocimiento]{Arquitectura del sistema de inteligencia electoral: recolección multimodal de cuatro fuentes digitales, preprocesamiento, análisis de sentimientos y extracción de entidades con LLMs, construcción del grafo de conocimiento electoral, detección dinámica de temas, análisis de framing mediático multi-fuente y visualización mediante MCP.\\
             Fuente: Elaboración propia.}
         \label{fig:electoral_intelligence_system}
     \end{center}
@@ -368,27 +436,28 @@ Un sistema de inteligencia electoral integrado, como el propuesto en la presente
 
 \begin{itemize}
     \item \textbf{Recolección de datos multimodal}: ingesta en tiempo real de noticias digitales (scraping web), publicaciones de X/Twitter (API), transcripciones de YouTube y contenido de TikTok (yt-dlp).
-    \item \textbf{Análisis de sentimientos con LLMs}: clasificación de la polaridad (positivo, negativo, neutral) y la emoción asociada a cada documento, desagregada por actores políticos, temas y fuente mediática.
-    \item \textbf{Detección dinámica de temas}: identificación automática y seguimiento temporal de los temas relevantes en la cobertura mediática del proceso electoral.
-    \item \textbf{Análisis de framing mediático}: comparación de la percepción proyectada por cada medio y plataforma sobre los actores políticos, identificando sesgos de cobertura y encuadres predominantes.
-    \item \textbf{Detección de desinformación}: identificación de contenido potencialmente falso o engañoso mediante técnicas de verificación basadas en LLMs y RAG.
-    \item \textbf{Visualización y reporting}: dashboards interactivos que permiten a analistas políticos, periodistas e investigadores explorar los resultados del sistema en tiempo real.
+    \item \textbf{Análisis del discurso con LLMs}: clasificación de la polaridad (positivo, negativo, neutral) y la emoción asociada a cada documento, desagregada por actores políticos, temas y fuente mediática; extracción de entidades y relaciones para el grafo de conocimiento.
+    \item \textbf{Grafo de conocimiento electoral}: representación estructurada de las entidades del ecosistema político peruano y las relaciones discursivas que los medios construyen entre ellas a través de su cobertura multi-fuente.
+    \item \textbf{Detección dinámica de temas}: identificación automática y seguimiento temporal de los temas relevantes en el discurso mediático electoral.
+    \item \textbf{Análisis de framing multi-fuente}: comparación del tratamiento discursivo de cada medio y plataforma sobre los actores políticos, identificando sesgos de cobertura y encuadres predominantes entre fuentes.
+    \item \textbf{Detección de desinformación}: identificación de contenido potencialmente falso o engañoso mediante técnicas de verificación basadas en LLMs y consultas al grafo de conocimiento.
+    \item \textbf{Visualización y reporting}: dashboards interactivos y consultas en lenguaje natural sobre el grafo de conocimiento a través del protocolo MCP.
 \end{itemize}
 
-\begin{figure}[!ht]
+\begin{figure}[H]
     \begin{center}
         \includegraphics[width=0.95\textwidth]{2/figures/pipeline_8_pasos.png}
-        \caption[Pipeline completo del sistema de inteligencia electoral]{Pipeline completo del sistema de inteligencia electoral implementado: recolección multi-fuente (noticias, X/Twitter, YouTube, TikTok), almacenamiento Bronze, normalización Silver, análisis LLM, deduplicación semántica, embeddings vectoriales, vistas Gold y exposición mediante MCP.\\
+        \caption[Pipeline completo del sistema de inteligencia electoral basado en LLMs y grafos de conocimiento]{Pipeline completo del sistema de inteligencia electoral implementado: recolección multi-fuente (noticias, X/Twitter, YouTube, TikTok), almacenamiento Bronze, normalización Silver, análisis LLM, construcción del grafo de conocimiento, deduplicación semántica, embeddings vectoriales, vistas Gold y exposición mediante MCP.\\
         Fuente: Elaboración propia.}
         \label{fig:real_pipeline_8steps}
     \end{center}
 \end{figure}
 
-\subsubsection{Medición de la Percepción Proyectada por los Medios de Comunicación}
+\subsubsection{Medición del Discurso Mediático Digital en Contexto Electoral}
 
-La \textbf{percepción proyectada por los medios de comunicación} en el contexto electoral se refiere al conjunto de actitudes, valoraciones y encuadres que los medios de comunicación expresan —de manera explícita o implícita— a través de sus contenidos en ecosistemas digitales hacia candidatos, partidos políticos, propuestas programáticas e instituciones democráticas. A diferencia de la percepción ciudadana directa, este constructo captura específicamente el rol mediador de los medios en la construcción de la opinión pública electoral.
+El \textbf{análisis multi-fuente del discurso mediático digital} en el contexto electoral se refiere a la caracterización sistemática de las valoraciones, encuadres narrativos y relaciones entre actores que los medios de comunicación expresan —de manera explícita o implícita— a través de sus contenidos en múltiples plataformas digitales hacia candidatos, partidos políticos, propuestas programáticas e instituciones democráticas. A diferencia del análisis de una única plataforma, el enfoque multi-fuente permite identificar convergencias y divergencias en la construcción del discurso político entre la prensa digital, Twitter, YouTube y TikTok.
 
-Su medición mediante LLMs ofrece ventajas sustanciales respecto al análisis de contenido mediático tradicional: es continua (no puntual), de bajo costo, capaz de procesar miles de piezas de contenido simultáneamente y de detectar cambios en el tono de la cobertura asociados a eventos específicos de la campaña \parencite{pr_gujral2024llm_elections}. En la presente investigación, esta medición se realiza sobre un corpus recolectado entre enero y mayo de 2026, abarcando las cuatro fuentes digitales descritas anteriormente.
+Su medición mediante LLMs y grafos de conocimiento ofrece ventajas sustanciales respecto al análisis de contenido mediático tradicional: es continua (no puntual), de bajo costo, capaz de procesar miles de piezas de contenido simultáneamente, de detectar cambios en el tono de la cobertura asociados a eventos específicos de la campaña, y de representar de forma estructurada y auditable las relaciones discursivas identificadas \parencite{pr_gujral2024llm_elections}. En la presente investigación, este análisis se realiza sobre un corpus recolectado entre enero y mayo de 2026, abarcando las cuatro fuentes digitales descritas.
 
 Sin embargo, es importante reconocer sus limitaciones metodológicas: los LLMs multilingües entrenados principalmente en inglés pueden introducir distorsiones sistemáticas al analizar el español político peruano, y la representatividad de las fuentes digitales seleccionadas no abarca la totalidad del ecosistema mediático nacional. La triangulación con otras fuentes y la interpretación crítica de los resultados son, por tanto, componentes indispensables del sistema \parencite{pr_gujral2024llm_elections}.
 
@@ -398,16 +467,16 @@ Sin embargo, es importante reconocer sus limitaciones metodológicas: los LLMs m
 
 La arquitectura Medallion es un patrón de diseño para pipelines de procesamiento de datos que organiza la información en tres capas semánticas progresivas \parencite{bk_databricks2023medallion}.
 
-La capa \textbf{Bronze} almacena los datos crudos tal como son ingeridos de las fuentes externas —artículos scrapeados, tweets, transcripciones de YouTube y metadata de TikTok— sin transformación alguna. La capa \textbf{Silver} contiene datos limpios, normalizados y enriquecidos con el análisis LLM, validados mediante esquemas formales. Finalmente, la capa \textbf{Gold} expone vistas analíticas materializadas, pre-agregadas para consultas de alto rendimiento sobre indicadores de percepción por medio, candidato y período temporal.
+La capa \textbf{Bronze} almacena los datos crudos tal como son ingeridos de las fuentes externas —artículos scrapeados, tweets, transcripciones de YouTube y metadata de TikTok— sin transformación alguna. La capa \textbf{Silver} contiene datos limpios, normalizados y enriquecidos con el análisis LLM, validados mediante esquemas formales; incluye además las entidades y relaciones extraídas para el grafo de conocimiento electoral. Finalmente, la capa \textbf{Gold} expone vistas analíticas materializadas, pre-agregadas para consultas de alto rendimiento sobre indicadores del discurso mediático por medio, candidato y período temporal.
 
 Este patrón garantiza la reproducibilidad de cada etapa del pipeline: si un paso falla, puede reejecutarse desde el parquet de su capa de entrada sin re-invocar servicios externos costosos como las APIs de LLM.
 
 La Figura \ref{fig:medallion_architecture} muestra la arquitectura Medallion aplicada al sistema de inteligencia electoral propuesto.
 
-\begin{figure}[!ht]
+\begin{figure}[H]
     \begin{center}
         \includegraphics[width=0.92\textwidth]{2/figures/medallion_architecture.png}
-        \caption[Arquitectura Medallion del pipeline electoral multimodal]{Arquitectura Medallion del pipeline electoral: capa Bronze (datos crudos de 4 fuentes: noticias web, X/Twitter, YouTube y TikTok), capa Silver (documentos normalizados, análisis LLM, temas canónicos, actores y fuente mediática) y capa Gold (vistas materializadas para análisis: sentimiento diario por fuente, temas diarios, cobertura mediática comparada).\\
+        \caption[Arquitectura Medallion del pipeline electoral multimodal con soporte para grafo de conocimiento]{Arquitectura Medallion del pipeline electoral: capa Bronze (datos crudos de 4 fuentes: noticias web, X/Twitter, YouTube y TikTok), capa Silver (documentos normalizados, análisis LLM, entidades y relaciones para el grafo de conocimiento, temas canónicos, actores y fuente mediática) y capa Gold (vistas materializadas para análisis: sentimiento diario por fuente, temas diarios, cobertura mediática comparada, consultas al grafo).\\
         Fuente: Elaboración propia.}
         \label{fig:medallion_architecture}
     \end{center}
@@ -421,7 +490,7 @@ Una base de datos vectorial es un sistema de almacenamiento especializado en la 
 
 La extensión \textbf{pgvector} integra estas capacidades directamente en PostgreSQL, permitiendo la creación de índices HNSW (\textit{Hierarchical Navigable Small World}) sobre columnas de tipo \texttt{vector(N)} y la ejecución de búsquedas de vecinos más cercanos mediante el operador \texttt{<=>} \parencite{tec_pgvector2024}.
 
-Esta integración elimina la necesidad de mantener una base de datos vectorial dedicada (Pinecone, Weaviate, Qdrant), reduciendo la complejidad operacional y permitiendo combinar en una única query SQL la búsqueda semántica con filtros relacionales clásicos por fecha, fuente mediática o candidato.
+Esta integración elimina la necesidad de mantener una base de datos vectorial dedicada (Pinecone, Weaviate, Qdrant), reduciendo la complejidad operacional y permitiendo combinar en una única query SQL la búsqueda semántica con filtros relacionales clásicos por fecha, fuente mediática o candidato. En el sistema de inteligencia electoral propuesto, pgvector es utilizado conjuntamente con el grafo de conocimiento: la búsqueda semántica recupera documentos del corpus relevantes para una consulta, y el grafo proporciona el contexto estructurado de las entidades y relaciones involucradas.
 
 % ──────────────────────────────────────────────────────────────
 \subsection{Model Context Protocol (MCP)}
@@ -431,7 +500,7 @@ El Model Context Protocol (MCP) es un protocolo abierto propuesto por Anthropic 
 
 El protocolo define un mecanismo de descubrimiento de herramientas (\textit{tools/list}), invocación tipada (\textit{tools/call}) y respuesta estructurada con validación de esquema JSON, permitiendo que un LLM consulte bases de datos, APIs y sistemas externos de forma estandarizada.
 
-En el contexto de la inteligencia electoral, MCP permite exponer el grafo de conocimiento y las vistas analíticas Gold como herramientas invocables directamente desde una conversación con el LLM, habilitando consultas en lenguaje natural sobre la cobertura mediática del proceso electoral sin necesidad de un dashboard separado.
+En el contexto del sistema de inteligencia electoral, MCP permite exponer tanto el grafo de conocimiento como las vistas analíticas Gold como herramientas invocables directamente desde una conversación con el LLM, habilitando consultas en lenguaje natural sobre el discurso mediático del proceso electoral peruano sin necesidad de un dashboard separado. Esto constituye una de las interfaces principales del sistema para analistas políticos, periodistas e investigadores.
 
 % ──────────────────────────────────────────────────────────────
 \subsection{Deduplicación Semántica de Entidades}
@@ -439,7 +508,7 @@ En el contexto de la inteligencia electoral, MCP permite exponer el grafo de con
 
 La deduplicación semántica es el proceso de identificar y consolidar entidades que refieren al mismo concepto pero son expresadas con variaciones léxicas, ortográficas o de nivel de abstracción \parencite{tec_mudgal2018deepmatcher}.
 
-En sistemas de análisis de discurso mediático electoral, este problema se manifiesta con especial intensidad cuando el corpus proviene de fuentes heterogéneas: el LLM puede etiquetar el mismo suceso con denominaciones ligeramente distintas al procesar en paralelo noticias, tweets, transcripciones de YouTube y contenidos de TikTok (por ejemplo, \textit{propuesta\_economica\_candidato\_x} en un artículo y \textit{plan\_economico\_x} en un tweet).
+En sistemas de análisis del discurso mediático electoral multi-fuente, este problema se manifiesta con especial intensidad cuando el corpus proviene de fuentes heterogéneas: el LLM puede etiquetar el mismo suceso con denominaciones ligeramente distintas al procesar en paralelo noticias, tweets, transcripciones de YouTube y contenidos de TikTok (por ejemplo, \textit{propuesta\_economica\_candidato\_x} en un artículo y \textit{plan\_economico\_x} en un tweet). Este problema se amplifica al poblar el grafo de conocimiento, donde la duplicación de nodos afecta la integridad de las consultas relacionales.
 
 La deduplicación puede realizarse mediante:
 \begin{enumerate}
@@ -448,4 +517,4 @@ La deduplicación puede realizarse mediante:
     \item Juicio semántico de un LLM como árbitro final sobre pares sospechosos.
 \end{enumerate}
 
-La combinación de estos tres niveles, en un pipeline de tres etapas (dedup intra-batch, consolidación threshold-based y dedup LLM-judge), reduce la fragmentación del catálogo de temas sin introducir falsos positivos, garantizando la consistencia del análisis comparado entre fuentes.
+La combinación de estos tres niveles, en un pipeline de tres etapas (dedup intra-batch, consolidación threshold-based y dedup LLM-judge), reduce la fragmentación del catálogo de temas y del grafo de conocimiento sin introducir falsos positivos, garantizando la consistencia del análisis multi-fuente.

@@ -1,8 +1,8 @@
 \chapter{Desarrollo de la Solución}
 
-En este capítulo se detalla el proceso explicado en el capítulo anterior para cada
-actividad de la metodología CRISP-DM aplicada, así como los entregables comprometidos
-en cada fase.
+Este capítulo presenta, fase por fase, la ejecución concreta de la metodología
+CRISP-DM descrita previamente, especificando las actividades realizadas y los
+entregables producidos en cada una de ellas.
 
 % ──────────────────────────────────────────────────────────────
 \section{Comprensión del negocio}
@@ -10,47 +10,49 @@ en cada fase.
 
 \textbf{Actividad 1: Definir problema, objetivos e hipótesis}
 \\
-El inicio de la implementación de la primera fase de la metodología CRISP-DM fue la
-identificación del problema general a partir del estudio de la realidad problemática
-abordada en los primeros capítulos de la investigación. En el contexto electoral peruano,
-la ausencia de un sistema automatizado capaz de medir en tiempo real la percepción
-proyectada por los medios de comunicación hacia los candidatos presidenciales a
-través del ecosistema digital constituye el problema central de la investigación. El objetivo, por lo tanto, busca resolver este
-problema y se encuentra alineado con el título del trabajo. La hipótesis resulta la
-proposición planteada para explicar el logro del objetivo: que un sistema basado en LLMs
-es capaz de analizar el sentimiento y detectar dinámicamente los temas relevantes en
-el ecosistema digital electoral con una exactitud estadísticamente superior a los enfoques
-clásicos de NLP. Los objetivos específicos del trabajo, que responden a cada problema
-específico, se definieron a partir de una lluvia de ideas basada en la asociación de
-los objetivos de los antecedentes revisados con la presente investigación.
+La fase inicial de CRISP-DM partió del diagnóstico de la realidad problemática
+expuesta en los capítulos previos, lo que permitió formular el problema general que
+orienta el estudio. En el escenario electoral peruano, no existe una herramienta
+automatizada que mida —en tiempo real— cómo los medios de comunicación retratan a
+los candidatos presidenciales dentro del ecosistema digital, y esa ausencia configura
+el eje principal del trabajo. El objetivo general fue trazado en correspondencia
+directa con el título de la tesis y apunta precisamente a resolver dicha brecha. La
+hipótesis general, por su parte, propone que un sistema apoyado en LLMs puede
+clasificar sentimientos y descubrir temas emergentes con una precisión
+estadísticamente mayor a la obtenida por los métodos tradicionales de NLP. Los
+objetivos específicos se derivaron de cada problema específico mediante una sesión
+de generación de ideas que cruzó los hallazgos de los antecedentes revisados con
+las preguntas particulares de esta investigación.
 
 \textbf{Actividad 2: Desarrollar la literatura de la investigación}
 \\
-Se buscaron desde libros, artículos académicos y recursos en línea para la comprensión
-teórica del análisis de sentimientos, los LLMs y la detección de temas, hasta papers
-publicados en conferencias, revistas internacionales y científicas, preprints de arXiv
-y reportes técnicos acerca de propuestas para resolver el problema estudiado en la
-investigación.
+La revisión bibliográfica abarcó un espectro amplio de fuentes: por un lado, libros
+y artículos académicos que sustentan los fundamentos teóricos del análisis de
+sentimientos, los LLMs y la detección de temas; por otro, ponencias en congresos,
+publicaciones en revistas científicas internacionales, preprints de arXiv y reportes
+técnicos que documentan soluciones afines al problema planteado.
 
-Para ello, como se describió en la sección 4.2, a través de la búsqueda de palabras
-clave como \textit{LLM}, \textit{sentiment analysis}, \textit{electoral intelligence},
-\textit{topic modeling}, \textit{BERTopic}, \textit{political discourse},
-\textit{misinformation detection} y \textit{social media}, y el uso de buscadores como
-Google Académico, Semantic Scholar y el repositorio arXiv, se identificaron los
-antecedentes publicados entre los años 2022 y 2025.
+Conforme al procedimiento descrito en la sección 4.2, la búsqueda se ejecutó
+combinando términos clave —entre ellos \textit{LLM}, \textit{sentiment analysis},
+\textit{electoral intelligence}, \textit{topic modeling}, \textit{BERTopic},
+\textit{political discourse}, \textit{misinformation detection} y
+\textit{social media}— sobre los buscadores Google Académico, Semantic Scholar y el
+repositorio arXiv, lo que permitió delimitar los antecedentes publicados entre 2022
+y 2025.
 
-A continuación, se realizó un resumen de cada antecedente en una hoja de cálculo
-con el fin de comparar sus objetivos, metodologías, modelos utilizados y métricas
-reportadas, como se puede observar el detalle en el Anexo \ref{anexo1}.
+Posteriormente, cada antecedente se sintetizó en una hoja de cálculo donde se
+contrastaron sus objetivos, metodologías, modelos empleados y métricas reportadas;
+el detalle de esta comparación se consigna en el Anexo \ref{anexo1}.
 
 \textbf{Actividad 3: Definir metodología y arquitectura del sistema}
 \\
-Luego de analizar los antecedentes y agruparlos por similitud metodológica según la
-Tabla \ref{4:table2} del Capítulo IV, se seleccionó la metodología CRISP-DM como la
-mejor opción para el presente trabajo, por las razones expuestas en la sección 4.3.1.
-Simultáneamente, se diseñó la arquitectura Medallion del pipeline GraphRAG Electoral,
-que organiza el sistema en las capas Bronze, Silver y Gold y define las cinco etapas de
-procesamiento desde la ingesta hasta la generación de indicadores.
+Tras agrupar los antecedentes por afinidad metodológica —según la clasificación
+recogida en la Tabla \ref{4:table2} del Capítulo IV—, se optó por adoptar CRISP-DM
+como marco de trabajo, sustentado en los argumentos detallados en la sección 4.3.1.
+En paralelo, se diseñó la arquitectura Medallion sobre la que opera el pipeline
+GraphRAG Electoral: ésta estructura el sistema en tres capas (Bronze, Silver y
+Gold) y articula las cinco etapas de procesamiento que van desde la ingesta de
+datos hasta la producción de los indicadores.
 
 % ──────────────────────────────────────────────────────────────
 \section{Comprensión de los datos}
@@ -58,15 +60,17 @@ procesamiento desde la ingesta hasta la generación de indicadores.
 
 \textbf{Actividad 1: Construir corpus de noticias digitales}
 \\
-El punto de partida para la construcción del corpus de noticias digitales fue la
-identificación de los portales de prensa peruanos con mayor alcance y cobertura del
-proceso electoral. Se seleccionaron ocho medios digitales de referencia —entre ellos
-El Comercio, La República, RPP Noticias, Peru21 y Gestión— por su representatividad
-del espectro ideológico del ecosistema mediático peruano. Para cada portal, se diseñó
-un scraper en Python utilizando las bibliotecas \texttt{requests}, \texttt{BeautifulSoup4}
-y \texttt{Scrapy}, que accede a las páginas de resultados de búsqueda filtradas por
-palabras clave electorales y extrae, por cada artículo: URL, fecha de publicación,
-titular, cuerpo del texto y nombre del medio, como se aprecia en la Figura \ref{5:fig1}.
+La construcción del corpus de noticias digitales comenzó con la selección de los
+medios de prensa peruanos de mayor alcance durante la cobertura electoral. En
+total, se eligieron ocho portales de referencia —El Comercio, La República, RPP
+Noticias, Peru21 y Gestión, entre otros— con el criterio de cubrir
+representativamente el espectro ideológico del ecosistema mediático del país. Para
+cada uno de ellos se programó un scraper en Python apoyado en las librerías
+\texttt{requests}, \texttt{BeautifulSoup4} y \texttt{Scrapy}, que recorre las
+páginas de resultados filtradas por términos electorales y extrae, artículo por
+artículo, los siguientes campos: URL, fecha de publicación, titular, cuerpo del
+texto y nombre del medio. La Figura \ref{5:fig1} muestra el detalle de la
+implementación.
 
 \begin{figure}[!ht]
     \begin{center}
@@ -76,23 +80,25 @@ titular, cuerpo del texto y nombre del medio, como se aprecia en la Figura \ref{
     \end{center}
 \end{figure}
 
-Para garantizar la robustez del scraper ante cambios en la estructura HTML de los
-portales, se implementó un sistema de reintentos con \textit{backoff} exponencial y
-un agente de usuario (\textit{user-agent}) rotativo para evitar bloqueos. Los artículos
-recolectados se almacenaron en la tabla \texttt{documentos} de la base de datos
-PostgreSQL de la capa Bronze, con un campo \texttt{fuente\_tipo = 'periodico'}
-que los distingue de las demás fuentes.
+Con el fin de blindar al scraper frente a cambios en la estructura HTML de los
+portales, se incorporó una lógica de reintentos con \textit{backoff} exponencial y
+la rotación del agente de usuario (\textit{user-agent}) para mitigar bloqueos. Los
+artículos extraídos quedaron registrados en la tabla \texttt{documentos} —dentro
+de PostgreSQL en la capa Bronze— marcados con el campo
+\texttt{fuente\_tipo = 'periodico'} para diferenciarlos del resto de fuentes.
+
 \textbf{Actividad 2: Construir corpus de X/Twitter}
 \\
-La recolección de tweets se realizó mediante TwitterAPI.io, una API de terceros que
-proporciona acceso a datos de Twitter/X sin las restricciones de la API oficial. El
-módulo \texttt{TwitterIngestor} (\texttt{src/electoral/ingestion/twitter.py})
-consume los endpoints REST de forma asíncrona con \texttt{httpx}, aplica el filtrado
-por \texttt{createdAt} con tolerancia ±1 día respecto a la fecha objetivo, y persiste
-los resultados como archivos JSON en
-\texttt{data/raw/twitter/\{YYYY-MM-DD\}/}. El schema raw de validación
-(\codepath{src/electoral/schemas/raw/twitter.py}) usa \texttt{extra="allow"} en
-Pydantic para tolerar campos nuevos del scraper sin romper la ingesta.
+La extracción de tweets se apoyó en TwitterAPI.io, un proveedor de terceros que
+expone los datos de Twitter/X sin los topes de la API oficial. El módulo
+\texttt{TwitterIngestor} (\texttt{src/electoral/ingestion/twitter.py}) invoca los
+endpoints REST de forma asíncrona con \texttt{httpx}, depura los resultados por el
+campo \texttt{createdAt} con un margen de ±1 día respecto a la fecha objetivo y
+vuelca cada lote en archivos JSON ubicados en
+\texttt{data/raw/twitter/\{YYYY-MM-DD\}/}. La validación de la entrada se realiza
+mediante el schema raw definido en \codepath{src/electoral/schemas/raw/twitter.py},
+que utiliza la opción \texttt{extra="allow"} de Pydantic para incorporar campos
+emergentes del scraper sin interrumpir la ingesta.
 
 \begin{figure}[!ht]
     \begin{center}
@@ -102,11 +108,10 @@ Pydantic para tolerar campos nuevos del scraper sin romper la ingesta.
     \end{center}
 \end{figure}
 
-Para optimizar la recolección durante las horas de mayor actividad del ecosistema
-digital electoral —especialmente durante debates y eventos de campaña—, el proceso
-de ingesta fue ejecutado de manera distribuida mediante tareas programadas y
-procesamiento concurrente, garantizando la captura continua de publicaciones sin
-interrupciones.
+Con el objetivo de cubrir las ventanas de mayor tráfico —en particular debates y
+eventos de campaña electoral—, la ingesta se desplegó de forma distribuida
+combinando tareas programadas con procesamiento concurrente, lo que asegura una
+recolección sostenida y sin pérdidas de continuidad.
 
 \textbf{Actividad 3: Construir corpus de YouTube}
 \\
@@ -566,7 +571,7 @@ El módulo GraphRAG se implementó como un \textbf{servidor MCP}
 (\texttt{electoral-mcp}), bajo una arquitectura basada en \textbf{herramientas
 tipadas} (\textit{typed tools}) en lugar del paradigma clásico de generación
 dinámica de Cypher mediante \textit{few-shot}. El servidor expone un total de
-\textbf{13 herramientas} agrupadas en seis dominios (candidatos, temas, actores,
+\textbf{14 herramientas} agrupadas en seis dominios (candidatos, temas, actores,
 evidencia, panorama, encuestas y macroeconómico), cada una con esquemas Pydantic
 v2 de entrada y salida que viajan al cliente vía el protocolo MCP en el campo
 \texttt{outputSchema}.
@@ -578,7 +583,7 @@ ejecutan vía \texttt{load\_sql}/\texttt{load\_cypher} con \texttt{lru\_cache}, 
 concatenación de \textit{strings}: todos los valores viajan como parámetros
 (\texttt{\$1, \$2, ...} en \texttt{asyncpg}, \texttt{\$param} en el \textit{driver}
 de Neo4j). El cliente LLM (Claude Desktop, Claude.ai web o Cursor) recibe en
-\texttt{tools/list} las descripciones semánticas de las 13 herramientas y
+\texttt{tools/list} las descripciones semánticas de las 14 herramientas y
 determina automáticamente cuál invocar y con qué parámetros a partir de la
 pregunta del usuario en lenguaje natural. La Figura \ref{5:fig22} muestra el
 flujo del sistema.
@@ -586,7 +591,7 @@ flujo del sistema.
 \begin{figure}[!ht]
     \begin{center}
         \resizebox{0.85\textwidth}{!}{\input{4/figures/fig22_graphrag_mcp}}
-        \caption[Sistema GraphRAG basado en herramientas tipadas sobre protocolo MCP]{Sistema GraphRAG implementado como servidor MCP con 13 herramientas tipadas: el cliente LLM (Claude Desktop, Claude.ai, Cursor) recibe las descripciones semánticas y los esquemas Pydantic de las herramientas, selecciona la apropiada y la invoca con parámetros validados. La consulta SQL/Cypher subyacente es \textit{pre-loaded} y parametrizada, garantizando ejecución correcta por construcción.\\
+        \caption[Sistema GraphRAG basado en herramientas tipadas sobre protocolo MCP]{Sistema GraphRAG implementado como servidor MCP con 14 herramientas tipadas: el cliente LLM (Claude Desktop, Claude.ai, Cursor) recibe las descripciones semánticas y los esquemas Pydantic de las herramientas, selecciona la apropiada y la invoca con parámetros validados. La consulta SQL/Cypher subyacente es \textit{pre-loaded} y parametrizada, garantizando ejecución correcta por construcción.\\
             Fuente: Elaboración propia.}
         \label{5:fig22}
     \end{center}
@@ -605,14 +610,23 @@ típicos de un sistema GraphRAG basado en generación de \textit{queries}.
 \section{Evaluación}
 % ──────────────────────────────────────────────────────────────
 
-La evaluación de esta investigación se enfoca en las \textbf{métricas
-operacionales} medidas durante las corridas reales del pipeline (validez de
+La evaluación del sistema \textbf{Electoral-Peru-2026} se organizó en dos
+planos complementarios. El primer plano corresponde a las \textbf{métricas
+operacionales} medidas durante las corridas reales del pipeline —validez de
 schema, idempotencia, latencia, costo, cobertura del catálogo y tasa de
-\textit{reuso} de temas). La evaluación de la calidad de salida del LLM
-contra \textit{ground truth} (F1 macro, exactitud frente a etiquetas humanas,
-coherencia semántica $C_v$, correlación con encuestas) requiere un corpus
-etiquetado de validación que excede el alcance temporal de esta tesis y queda
-como trabajo futuro.
+\textit{reuso} de temas—, las cuales capturan el comportamiento del sistema
+en producción. El segundo plano corresponde a las \textbf{métricas de
+calidad de salida frente a \textit{ground truth}}, construido específicamente
+para esta tesis sobre dos \textit{gold datasets} independientes: (i) un
+dataset de etiquetado con 100 documentos anotados por un anotador humano
+más 15 pares de temas marcados como mismo/distinto tema, que habilita el
+cálculo de exactitud, F1 macro/micro, MAE/RMSE para el sentimiento continuo
+y precision/recall sobre la deduplicación de temas; y (ii) un dataset de
+consulta con 30 preguntas en lenguaje natural anotadas con su
+\textit{ground truth} de herramientas esperadas y respuesta de referencia,
+que permite contrastar el sistema GraphRAG contra un \textit{baseline} RAG
+por similitud semántica, conforme al marco de métricas declarado en la
+sección \ref{4:metricas-resultados} del capítulo de metodología.
 
 \textbf{Actividad 1: Evaluar módulo de análisis de sentimientos}
 \\
@@ -642,7 +656,7 @@ Tabla \ref{5:table1}.
         \specialrule{.1em}{.05em}{.05em}
     \end{tabular}
     \begin{flushleft}
-        \small Fuente: Elaboración propia, datos extraídos de los \textit{run manifests} del pipeline.
+        \small Fuente: Elaboración propia.
     \end{flushleft}
 \end{table}
 
@@ -662,6 +676,58 @@ ambigüedad del campo \texttt{es\_relevante\_peru} (originalmente confundido
 con ``relevante a la política peruana''), se verificó manualmente que 10/10
 documentos de la corrida piloto recibieron el valor geográficamente correcto
 (antes del fix: 9/10).
+
+\textbf{Evaluación contra ground truth humano.} Para complementar las
+mediciones operacionales se construyó un \textit{gold dataset} de 100
+documentos anotados por un anotador humano sobre la totalidad de los campos
+del schema \texttt{AnalisisLLM}: categoría temática, relevancia geográfica al
+Perú, candidato protagonista, actores principales y sentimiento hacia el
+tema. La construcción del dataset incluyó 2 correcciones manuales sobre las
+predicciones del LLM (tasa de corrección del 2\%). Los resultados de comparar
+las predicciones de DeepSeek-Chat contra estas etiquetas humanas se reportan
+en la Tabla \ref{5:table_label_quality}.
+
+\begin{table}[h!]
+    \caption[Métricas de calidad del módulo de etiquetado LLM frente a ground truth humano]{Métricas de calidad del módulo de etiquetado LLM (DeepSeek-Chat \textit{few-shot} con 4 ejemplos) contra etiquetas humanas sobre un \textit{gold dataset} de 100 documentos.}
+    \label{5:table_label_quality}
+    \centering
+    \footnotesize
+    \begin{tabular}{ m{4.2cm}M{1.5cm}M{1.8cm}M{2.0cm}M{2.5cm} }
+        \specialrule{.1em}{.05em}{.05em}
+        \Centering{Dimensión} & \Centering{Exactitud} & \Centering{F1 macro} & \Centering{F1 micro} & \Centering{Notas} \\
+        \specialrule{.1em}{.05em}{.05em}
+        Categoría temática (17 clases)      & 0.830 & 0.856 & --     & --                       \\
+        Relevancia al Perú (\textit{bin.})  & 0.960 & --    & 0.974  & P 1.000 / R 0.950        \\
+        Candidato protagonista              & 0.970 & 0.916 & --     & --                       \\
+        Actores principales (\textit{multi}) & --   & 0.444 & 0.295  & P 0.218 / R 0.457        \\
+        Sentimiento continuo $[-1,1]$       & --    & --    & --     & MAE 0.107 / RMSE 0.160; Pearson $r=0.892$; sesgo $+0.051$ \\
+        \specialrule{.1em}{.05em}{.05em}
+    \end{tabular}
+    \begin{flushleft}
+        \small Fuente: Elaboración propia.
+    \end{flushleft}
+\end{table}
+
+Las dimensiones con desempeño más alto fueron \textbf{relevancia al Perú}
+(F1 0.974) y \textbf{candidato protagonista} (F1 macro 0.916), confirmando
+que el \textit{prompt} v3 con la regla \texttt{otros\_no\_politico} ampliada
+distingue correctamente noticias políticas peruanas de noticias políticas
+internacionales o de actores no electorales. La \textbf{categoría temática}
+mostró F1 macro de 0.856, con clases pequeñas como \texttt{deportes},
+\texttt{salud}, \texttt{seguridad} y \texttt{humor\_satira} alcanzando F1
+$\geq$ 0.95 y dificultades focalizadas en \texttt{otros\_no\_politico}
+(F1 0.421) y \texttt{regional} (F1 0.571), categorías que el modelo tiende a
+confundir entre sí cuando aparece infraestructura o gestión local. El módulo
+de \textbf{sentimiento continuo} presentó un MAE de 0.107 sobre el rango
+$[-1, 1]$ y una correlación Pearson de 0.892 con el etiquetado humano, con
+un sesgo positivo marginal de $+0.051$ que sugiere una ligera tendencia del
+LLM a moderar el sentimiento negativo. El punto débil identificado fue la
+extracción de \textbf{actores principales} (F1 micro 0.295), donde el LLM
+recupera aproximadamente un tercio de los actores que el anotador humano
+marca como tales; este resultado se interpreta como un sub-objetivo del
+\textit{prompt} antes que un fallo del modelo, dado que el LLM tiende a
+listar solo los actores nombrados explícitamente en el texto mientras que el
+anotador humano incorpora actores implícitos por contexto.
 
 \textbf{Actividad 2: Evaluar módulo de detección de temas}
 \\
@@ -694,7 +760,7 @@ las corridas progresivas.
     \end{flushleft}
 \end{table}
 
-El sistema detectó \textbf{27 temas únicos} en el corpus de 744 documentos
+El sistema detectó \textbf{27 temas únicos} en el corpus de 655 documentos
 del 22 de marzo de 2026. El \textit{override} semántico post-LLM (\textit{cosine}
 $\geq 0.85$ + misma categoría) capturó 88 \textit{near-duplicates} que el
 menú de cinco \textit{tiers} no había incluido, evitando inflar
@@ -723,20 +789,69 @@ mayor cobertura en el día se reporta en la Tabla \ref{5:table5}.
         \specialrule{.1em}{.05em}{.05em}
     \end{tabular}
     \begin{flushleft}
-        \small Fuente: Elaboración propia, vista \texttt{gold\_temas\_diarios} de Postgres tras corrida del 22-mar-2026.
+        \small Fuente: Elaboración propia.
     \end{flushleft}
 \end{table}
 
+\textbf{Evaluación contra ground truth humano.} Para complementar las
+mediciones operacionales del módulo de detección de temas se evaluó el
+gold dataset descrito en la actividad anterior en dos dimensiones
+adicionales: (i) la calidad de asignación documento $\rightarrow$
+\texttt{tema\_emergente} comparada contra el nombre de tema asignado por el
+anotador humano, y (ii) la calidad de la deduplicación de temas mediante un
+subconjunto de 15 pares marcados como mismo o distinto tema. Los resultados
+se reportan en la Tabla \ref{5:table_topic_quality}.
+
+\begin{table}[h!]
+    \caption[Métricas de calidad del módulo de detección y deduplicación de temas]{Métricas de calidad del módulo de detección dinámica de temas y de la fase de \textit{consolidate} + \texttt{llm\_dedup} contra anotaciones humanas. La \textit{exact match} compara el slug exacto del tema; la \textit{lenient} acepta coincidencias por substring; la semántica mide solapamiento de \textit{tokens} normalizados.}
+    \label{5:table_topic_quality}
+    \centering
+    \footnotesize
+    \begin{tabular}{ m{4.8cm}M{2.2cm}M{2.2cm}M{2.2cm} }
+        \specialrule{.1em}{.05em}{.05em}
+        \multirow{2}{*}{\centering Sub-módulo} & \multicolumn{3}{c}{Métricas} \\
+        \cline{2-4}
+         & \textit{Exact} & \textit{Lenient} & Semántica \\
+        \specialrule{.1em}{.05em}{.05em}
+        Asignación \texttt{tema\_emergente} (n=100) & 0.380 & 0.410 & \textbf{0.700} \\
+        \specialrule{.05em}{.05em}{.05em}
+         & Precisión & Sensibilidad & F1 \\
+        \specialrule{.05em}{.05em}{.05em}
+        Deduplicación de temas (n=15)               & 0.500 & 0.500          & 0.500 \\
+        \specialrule{.1em}{.05em}{.05em}
+    \end{tabular}
+    \begin{flushleft}
+        \small Fuente: Elaboración propia.
+    \end{flushleft}
+\end{table}
+
+La asignación \texttt{tema\_emergente} muestra una brecha esperable entre la
+exactitud \textit{exact match} (0.380) y la \textbf{exactitud semántica}
+(0.700), debido a que el LLM tiende a proponer slugs ligeramente distintos
+para el mismo evento subyacente —por ejemplo, \texttt{crisis\_combustibles\_transporte}
+vs \texttt{crisis\_combustibles\_peru}, o \texttt{desastre\_natural\_vraem} vs
+\texttt{desborde\_rio\_sankiruato\_ayna}—. Esta brecha justifica
+operacionalmente el diseño del \textit{override} semántico post-LLM y de las
+fases de \texttt{consolidate\_day} + \texttt{llm\_dedup}, cuyo papel es
+precisamente fusionar slugs distintos que comparten significado.
+
+Las métricas de deduplicación se reportan sobre una muestra pequeña: 2 pares
+marcados como mismo tema por el sistema (de los cuales 1 es correcto y 1 es
+incorrecto) más 13 pares sospechosos no fusionados por el sistema (de los
+cuales 1 era un falso negativo). Esta limitación de tamaño muestral —cada
+caso pesa $\sim 50$ puntos porcentuales sobre los indicadores— se reconoce
+explícitamente y se documenta como restricción de la evaluación.
+
 \textbf{Actividad 3: Evaluar sistema GraphRAG}
 \\
-El sistema GraphRAG, implementado como servidor MCP con 13 herramientas
+El sistema GraphRAG, implementado como servidor MCP con 14 herramientas
 tipadas, se evaluó por su \textbf{integridad operacional}: latencia mediana
 por herramienta, validez del \textit{structuredContent} retornado al cliente
 y comportamiento del caché TTL en herramientas de baja varianza. Los
 resultados se muestran en la Tabla \ref{5:table6}.
 
 \begin{table}[h!]
-    \caption[Latencia y comportamiento de cada herramienta MCP]{Latencia mediana medida en la BD real y comportamiento de caché TTL para las trece herramientas registradas en el servidor \texttt{electoral\_mcp}.}
+    \caption[Latencia y comportamiento de cada herramienta MCP]{Latencia mediana medida en la BD real y comportamiento de caché TTL para las catorce herramientas registradas en el servidor \texttt{electoral\_mcp}. La herramienta \texttt{cobertura\_por\_medio} no fue invocada durante las pruebas, por lo que se reporta sin medición.}
     \label{5:table6}
     \centering
     \footnotesize
@@ -752,6 +867,7 @@ resultados se muestran en la Tabla \ref{5:table6}.
         buscar\_actor\_por\_descripcion      & actores    & 1100 & no \\
         noticias\_por\_actor                 & actores    & 10   & no \\
         citar\_evidencia                     & evidencia  & 60   & no \\
+        cobertura\_por\_medio                & cobertura  & ---  & --- \\
         panorama\_diario                     & panorama   & 48   & sí \\
         intencion\_voto\_candidato           & encuestas  & 8    & no \\
         encuestas\_disponibles               & encuestas  & 12   & no \\
@@ -760,11 +876,11 @@ resultados se muestran en la Tabla \ref{5:table6}.
         \specialrule{.1em}{.05em}{.05em}
     \end{tabular}
     \begin{flushleft}
-        \small Fuente: Elaboración propia, mediciones del repositorio \texttt{electoral-mcp} (\texttt{docs/04-catalogo-de-tools.md}). Las dos herramientas con latencia $\sim 1100$ ms están dominadas por la generación local del \textit{embedding} de la consulta sobre CPU; el \texttt{pgvector} HNSW resuelve la búsqueda en $\sim 5$ ms.
+        \small Fuente: Elaboración propia.
     \end{flushleft}
 \end{table}
 
-Las trece herramientas retornaron \texttt{structuredContent} válido contra
+Las catorce herramientas retornaron \texttt{structuredContent} válido contra
 sus esquemas Pydantic v2 en el 100\% de las llamadas de validación
 \textit{end-to-end} reportadas en la bitácora de construcción del repositorio
 \texttt{electoral-mcp}. Las cuatro herramientas con caché TTL de 300\,s
@@ -773,10 +889,167 @@ sus esquemas Pydantic v2 en el 100\% de las llamadas de validación
 latencia de \textit{cache hit} de 0.1--0.2\,ms, frente a 5--48\,ms en
 \textit{cache miss}.
 
-La evaluación de la \textbf{tasa de selección correcta} de la herramienta
-adecuada por parte del LLM cliente —para una batería diseñada de preguntas
-en lenguaje natural— queda como trabajo futuro, dado que requiere un set de
-preguntas anotadas con su \textit{ground truth} de tool esperada.
+\textbf{Comparación cuantitativa GraphRAG vs. RAG \textit{baseline} sobre
+\textit{golden set} anotado.} Para evaluar la calidad de respuesta del
+sistema más allá de su integridad operacional, se diseñó un experimento
+controlado siguiendo el \textbf{Diseño Experimental Puro} declarado en el
+capítulo de metodología: se manipuló la variable independiente
+\textit{arquitectura de recuperación} entre dos configuraciones —MCP
+Electoral con herramientas tipadas frente a RAG \textit{baseline} por
+similitud semántica— manteniendo constante el modelo cliente y la batería
+de preguntas. El \textit{golden set} consta de \textbf{30 preguntas} en
+lenguaje natural sobre las elecciones presidenciales del Perú 2026,
+distribuidas en cuatro tipos diseñados para cubrir las 14 herramientas del
+servidor MCP: 10 preguntas \texttt{factual} sobre datos precisos
+(porcentajes de encuestas, valores macroeconómicos), 10 preguntas
+\texttt{exploratorio} sobre tendencias mediáticas, 5 preguntas
+\texttt{causal} sobre relaciones evento-encuesta y 5 preguntas
+\texttt{edge\_case} sobre datos inexistentes o ambiguos. Cada pregunta
+incluye una respuesta de referencia y un conjunto de
+\texttt{tools\_esperadas} validados contra la base de datos real
+(\textit{graph version} 2026-03-13, cobertura mediática del 10 al 12 de
+marzo de 2026, encuestas Datum de enero a abril de 2026).
+
+\textit{Asignación de modelos.} Para evitar el sesgo de auto-evaluación, el
+experimento separa explícitamente las fases de \textbf{etiquetado de
+respuestas} y \textbf{evaluación de calidad}. La fase de etiquetado consiste
+en que el LLM cliente —\textbf{Claude Sonnet} vía Claude Code CLI 2.1.150
+con \texttt{--print --output-format stream-json}— recibe la pregunta y
+genera la respuesta utilizando la arquitectura asignada: en la condición MCP
+puede invocar libremente las 14 herramientas del servidor, encadenando
+llamadas en múltiples turnos; en la condición RAG \textit{baseline} recibe
+los 5 fragmentos más similares por coseno desde \texttt{pgvector} (modelo
+\texttt{paraphrase-multilingual-mpnet-base-v2} sobre 1\,893 \textit{chunks}
+indexados) y las herramientas MCP están bloqueadas mediante el flag
+\texttt{--strict-mcp-config}. La fase de evaluación se ejecuta sobre las
+respuestas generadas con un modelo juez independiente —\textbf{DeepSeek-Chat}
+a temperatura 0.2 con respuesta forzada a JSON— que computa la tríada de
+métricas Ragas adaptada: fidelidad, corrección y relevancia. La
+\textit{embedding similarity} y la \textbf{tool selection accuracy} se
+calculan de forma determinística sin intervención del juez. Esta separación
+agente-juez aísla la calidad de la respuesta de cualquier preferencia
+estilística que el propio Claude pudiera tener al evaluarse a sí mismo.
+
+Las métricas globales agregadas sobre las 30 preguntas se reportan en la
+Tabla \ref{5:table_mcp_vs_rag_global}.
+
+\begin{table}[h!]
+    \caption[Comparación cuantitativa MCP vs. RAG baseline sobre el golden set de 30 preguntas]{Métricas globales agregadas sobre las 30 preguntas del \textit{golden set}: tríada Ragas vía LLM-as-judge (DeepSeek-Chat, temperatura 0.2) y similitud determinística de \textit{embeddings} (\texttt{paraphrase-multilingual-mpnet-base-v2}).}
+    \label{5:table_mcp_vs_rag_global}
+    \centering
+    \small
+    \begin{tabular}{ m{5.5cm}M{2.2cm}M{2.2cm}M{1.7cm} }
+        \specialrule{.1em}{.05em}{.05em}
+        \Centering{Métrica} & \Centering{MCP} & \Centering{RAG \textit{baseline}} & \Centering{$\Delta$} \\
+        \specialrule{.1em}{.05em}{.05em}
+        Fidelidad (\textit{faithfulness})        & 0.854 & 0.868 & $-0.014$ \\
+        \textbf{Corrección} (\textit{answer correctness}) & \textbf{0.792} & \textbf{0.196} & \textbf{$+0.596$} \\
+        \textbf{Relevancia} (\textit{answer relevancy})   & \textbf{0.842} & \textbf{0.388} & \textbf{$+0.454$} \\
+        Similitud de \textit{embeddings} (coseno) & 0.721 & 0.579 & $+0.142$ \\
+        Latencia promedio (s)                     & 30.2 & 11.5 & --- \\
+        Llamadas a herramientas / pregunta        & 2.9  & 0    & --- \\
+        Costo total (30 preguntas, USD)           & 2.80 & 1.63 & --- \\
+        \specialrule{.1em}{.05em}{.05em}
+    \end{tabular}
+    \begin{flushleft}
+        \small Fuente: Elaboración propia.
+    \end{flushleft}
+\end{table}
+
+La diferencia más relevante se observa en la métrica de \textbf{corrección de
+respuesta}: el sistema MCP alcanza 0.792 frente a 0.196 del RAG
+\textit{baseline}, una ventaja de $+0.596$ puntos. La interpretación es
+directa: el RAG presenta una fidelidad ligeramente superior (0.868 vs 0.854)
+porque es ``fiel'' a los \textit{chunks} que recupera, pero esos
+\textit{chunks} con frecuencia no contienen el dato preciso o lo contienen
+en una versión desactualizada; el MCP, en cambio, accede a la base de datos
+estructurada y devuelve los datos correctos. La relevancia (+0.454) y la
+similitud de \textit{embeddings} (+0.142) confirman esta lectura. El costo
+de esta ganancia es una latencia 2.6$\times$ mayor y un costo monetario
+1.7$\times$ mayor, debido a que el MCP encadena múltiples llamadas a
+herramientas mientras que el RAG ejecuta una sola recuperación semántica.
+
+\textit{Desglose por tipo de pregunta.} La Tabla
+\ref{5:table_mcp_vs_rag_por_tipo} desglosa las métricas por los cuatro tipos
+del \textit{golden set} para identificar dónde se concentra la ventaja
+estructural de cada arquitectura.
+
+\begin{table}[h!]
+    \caption[Métricas por tipo de pregunta en el golden set MCP vs RAG]{Métricas de corrección, relevancia y similitud de \textit{embeddings} desglosadas por los cuatro tipos de pregunta del \textit{golden set}, expresadas como MCP / RAG / $\Delta$. La relevancia baja en \texttt{edge\_case} en ambos sistemas se explica por el comportamiento de rechazo informativo ante preguntas sobre datos inexistentes, que el juez interpreta como poco relevante.}
+    \label{5:table_mcp_vs_rag_por_tipo}
+    \centering
+    \footnotesize
+    \begin{tabular}{ m{2.6cm}M{3.3cm}M{3.3cm}M{3.3cm} }
+        \specialrule{.1em}{.05em}{.05em}
+        \Centering{Tipo} & \Centering{Corrección} & \Centering{Relevancia} & \Centering{Similitud \textit{embed.}} \\
+         & \scriptsize{(MCP / RAG / $\Delta$)} & \scriptsize{(MCP / RAG / $\Delta$)} & \scriptsize{(MCP / RAG / $\Delta$)} \\
+        \specialrule{.1em}{.05em}{.05em}
+        factual (n=10)      & 0.980 / 0.078 / $+0.902$ & 0.985 / 0.460 / $+0.525$ & 0.706 / 0.567 / $+0.139$ \\
+        exploratorio (n=10) & 0.613 / 0.115 / $+0.498$ & 0.895 / 0.385 / $+0.510$ & 0.735 / 0.606 / $+0.129$ \\
+        causal (n=5)        & 0.830 / 0.350 / $+0.480$ & 0.950 / 0.480 / $+0.470$ & 0.704 / 0.538 / $+0.166$ \\
+        edge\_case (n=5)    & 0.733 / 0.438 / $+0.295$ & 0.340 / 0.160 / $+0.180$ & 0.738 / 0.588 / $+0.150$ \\
+        \specialrule{.1em}{.05em}{.05em}
+    \end{tabular}
+    \begin{flushleft}
+        \small Fuente: Elaboración propia.
+    \end{flushleft}
+\end{table}
+
+La ventaja del MCP es más dramática en preguntas \texttt{factual}
+($\Delta=+0.902$ en corrección), donde el RAG casi nunca recupera el dato
+exacto actualizado —la encuesta más reciente, el valor IGBVL del día
+preciso—. En preguntas \texttt{causal} la ventaja se mantiene alta
+($+0.480$) porque requieren encadenar múltiples consultas que el RAG no
+puede sintetizar a partir de \textit{chunks} fragmentados. En
+\texttt{edge\_case} la ventaja se reduce ($+0.295$ en corrección) porque
+ambos sistemas correctamente declaran ``no sé'' ante datos inexistentes,
+aunque el MCP entrega rechazos más informativos al exponer los metadatos del
+sistema (``Ipsos no está integrada, solo Datum'' frente a ``no encontré
+\textit{chunks} relevantes'').
+
+\textit{Tool Selection Accuracy.} La Tabla
+\ref{5:table_tool_selection} reporta la precisión con que Claude Sonnet
+seleccionó las herramientas esperadas en el \textit{ground truth} de cada
+pregunta, ignorando la meta-herramienta \texttt{ToolSearch} que el CLI usa
+para descubrir el \textit{schema} de las herramientas del MCP.
+
+\begin{table}[h!]
+    \caption[Tool Selection Accuracy del LLM cliente sobre el golden set]{Distribución de aciertos en la selección de herramientas por parte del LLM cliente sobre las 30 preguntas del \textit{golden set}.}
+    \label{5:table_tool_selection}
+    \centering
+    \small
+    \begin{tabular}{ m{6.8cm}M{1.6cm}M{1.6cm} }
+        \specialrule{.1em}{.05em}{.05em}
+        \Centering{Resultado de selección} & \Centering{$n$} & \Centering{\%} \\
+        \specialrule{.1em}{.05em}{.05em}
+        \textbf{Match completo} (todas las esperadas presentes, admite extras) & \textbf{25} & \textbf{83.3\%} \\
+        Match parcial (al menos una esperada presente) & 5 & 16.7\% \\
+        Sin match                                       & 0 & 0.0\% \\
+        \specialrule{.1em}{.05em}{.05em}
+        \textbf{Al menos match parcial}                 & \textbf{30} & \textbf{100\%} \\
+        \specialrule{.1em}{.05em}{.05em}
+    \end{tabular}
+    \begin{flushleft}
+        \small Fuente: Elaboración propia.
+    \end{flushleft}
+\end{table}
+
+El modelo cliente \textbf{seleccionó al menos una herramienta esperada en el
+100\%} de las preguntas y \textbf{el conjunto completo de herramientas
+esperadas en el 83.3\%}. En los 5 casos de \textit{match parcial}, la
+sustitución fue semánticamente razonable —por ejemplo, el modelo utilizó
+\texttt{buscar\_tema\_por\_descripcion} en lugar de
+\texttt{temas\_top\_periodo} para localizar un tema antes de listarlo—, lo
+que sugiere que las \textit{docstrings} y los esquemas Pydantic de las
+herramientas son suficientemente descriptivos para que el LLM infiera el uso
+correcto sin instrucciones adicionales en el \textit{prompt} del sistema.
+Las cinco preguntas en las que el RAG superó al MCP en similitud de
+\textit{embeddings} (F01, F03, E03, E05, C02) se analizan al detalle en el
+reporte \texttt{full-final/README.md}: en cuatro de las cinco, el MCP obtiene
+mayor \textit{answer correctness} a pesar de perder en similitud, lo que
+ilustra cómo el RAG puede ``sonar'' a la referencia incluso cuando entrega
+datos incorrectos —argumento que justifica la incorporación de la tríada
+Ragas como complemento obligatorio a la similitud coseno.
 
 \textbf{Actividad 4: Evaluar el sistema integrado}
 \\
@@ -786,7 +1059,7 @@ re-ejecuciones (idempotencia). La Tabla \ref{5:table7} resume las
 mediciones obtenidas en el corpus del 22 de marzo de 2026.
 
 \begin{table}[h!]
-    \caption[Métricas operacionales del sistema PeruVox integrado]{Métricas operacionales medidas en la corrida \textit{end-to-end} del pipeline sobre el corpus electoral del 22 de marzo de 2026.}
+    \caption[Métricas operacionales del sistema Electoral-Peru-2026 integrado]{Métricas operacionales medidas en la corrida \textit{end-to-end} del pipeline sobre el corpus electoral del 22 de marzo de 2026.}
     \label{5:table7}
     \centering
     \small
@@ -810,7 +1083,7 @@ mediciones obtenidas en el corpus del 22 de marzo de 2026.
         \specialrule{.1em}{.05em}{.05em}
     \end{tabular}
     \begin{flushleft}
-        \small Fuente: Elaboración propia, datos extraídos de \texttt{docs/fase-7-hallazgos.md}, \texttt{docs/fase-8-hallazgos.md} y \texttt{docs/notas-tecnicas.md} del repositorio \texttt{electoral-intelligence}.
+        \small Fuente: Elaboración propia.
     \end{flushleft}
 \end{table}
 
@@ -824,12 +1097,6 @@ entidad. La diferencia entre 744 documentos en Postgres y 723 en Neo4j
 corresponde a 21 documentos cuya fecha de publicación cae fuera del día UTC
 del \textit{query} del subgrafo (algunos del 21-mar, otros del 23-mar) y
 quedan filtrados, comportamiento esperado por el diseño.
-
-La validación cuantitativa de los \textbf{indicadores ISN frente a las
-encuestas Datum disponibles} (9 encuestas Ene-Abr 2026 ya cargadas en el
-sistema) requiere un cálculo de correlación de Pearson sobre series alineadas
-candidato-fecha que excede el alcance temporal de esta tesis y queda como
-trabajo futuro.
 
 % ──────────────────────────────────────────────────────────────
 \section{Despliegue}
@@ -847,7 +1114,7 @@ sobre \texttt{Starlette} y \texttt{uvicorn}, autenticación \textit{Bearer token
 y \textit{lifespan} combinado que conecta los \textit{pools} \texttt{asyncpg} y
 \texttt{neo4j async} antes del primer \textit{request}. La interacción con el
 sistema se realiza desde clientes MCP estándar (Claude Desktop, Claude.ai web o
-Cursor) que descubren las 13 herramientas tipadas y las invocan en lenguaje
+Cursor) que descubren las 14 herramientas tipadas y las invocan en lenguaje
 natural; para presentaciones remotas se expone vía \texttt{cloudflared tunnel} o
 \texttt{ngrok} sobre HTTPS efímero. La arquitectura del prototipo integrado se
 muestra en la Figura \ref{5:fig24}.
@@ -855,7 +1122,7 @@ muestra en la Figura \ref{5:fig24}.
 \begin{figure}[!ht]
     \begin{center}
         \resizebox{0.85\textwidth}{!}{\input{4/figures/fig24_demo_flux}}
-        \caption[Proceso de operación del prototipo del sistema de inteligencia electoral]{Proceso de operación del prototipo: ingesta diaria del corpus multifuente, etiquetado LLM, sincronización del grafo y consultas en lenguaje natural desde un cliente MCP que invoca las 13 herramientas tipadas del servidor \texttt{electoral\_mcp}.\\
+        \caption[Proceso de operación del prototipo del sistema de inteligencia electoral]{Proceso de operación del prototipo: ingesta diaria del corpus multifuente, etiquetado LLM, sincronización del grafo y consultas en lenguaje natural desde un cliente MCP que invoca las 14 herramientas tipadas del servidor \texttt{electoral\_mcp}.\\
             Fuente: Elaboración propia.}
         \label{5:fig24}
     \end{center}
@@ -863,16 +1130,17 @@ muestra en la Figura \ref{5:fig24}.
 
 \textbf{Actividad 2: Ejecutar prototipo con datos electorales en vivo}
 \\
-En esta actividad se ejecutaron las acciones de la arquitectura del prototipo
-descritas en la figura anterior. La prueba piloto consistió en operar el sistema
-durante una semana de campaña electoral activa, incluyendo un debate presidencial.
-El pipeline diario (\texttt{run-day}/\texttt{run-range}) procesó las cuatro
-fuentes de datos día por día con concurrencia intra-batch
-(\texttt{BATCH\_SIZE=5}), generando los indicadores ISN, IRT e IVE para los
-candidatos en liza y poblando las vistas Gold materializadas
-(\texttt{gold\_sentimiento\_diario}, \texttt{gold\_temas\_diarios},
-\texttt{gold\_cobertura\_medios}) que alimentan al servidor MCP. Los principales
-hallazgos de la prueba piloto se presentan en la Figura \ref{5:fig25}.
+Durante esta actividad se materializaron los flujos de la arquitectura del
+prototipo presentados en la figura previa. La prueba piloto se llevó a cabo
+poniendo el sistema en operación durante una semana de campaña electoral en pleno
+desarrollo —que incluyó un debate presidencial—. El orquestador diario
+(\texttt{run-day}/\texttt{run-range}) procesó día tras día las cuatro fuentes de
+datos con concurrencia intra-batch (\texttt{BATCH\_SIZE=5}), produciendo los
+indicadores ISN, IRT e IVE de los candidatos en contienda y refrescando las
+vistas Gold materializadas (\texttt{gold\_sentimiento\_diario},
+\texttt{gold\_temas\_diarios}, \texttt{gold\_cobertura\_medios}) que sirven de
+fuente al servidor MCP. Los principales hallazgos de la prueba piloto se exponen
+en la Figura \ref{5:fig25}.
 
 \begin{figure}[!ht]
     \begin{center}
