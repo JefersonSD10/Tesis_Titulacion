@@ -5,54 +5,59 @@
 \renewcommand{\thesection}{\Alph{section}}% Adjust section printing (from here onward)
 \renewcommand{\thesubsection}{\Alph{section}.\arabic{subsection}}% Subsections of appendix: H.1, H.2 (not 0.8.1)
 \renewcommand{\thesubsubsection}{\Alph{section}.\arabic{subsection}.\arabic{subsubsection}}
-\begin{landscape}
+
+% Bloque unificado de anexos en orientacion horizontal (Arbol de Problemas,
+% Arbol de Objetivos y Matriz de Consistencia). Se usa un solo entorno
+% \begin{landscape} para evitar paginas en blanco entre cada anexo y se
+% aplica el pagestyle 'horizontal' que oculta el encabezado largo (que no
+% entra correctamente al rotar la pagina) dejando unicamente el numero de
+% pagina al pie.
+
+\begin{landscape} 
 % ──────────────────────────────────────────────────────────────
 \section{Árbol de Problemas}
 % ──────────────────────────────────────────────────────────────
 
 \label{anexo1}
 
-\begin{figure}[h]
-	\begin{center}
-		\includegraphics[width=1.05\textwidth]{anexos/arbol_problemas.png}
-		\caption[Árbol de problemas de la investigación]{Árbol de problemas identificados en la investigación sobre análisis de la percepción actual proyectada por los medios de comunicación en contextos electorales mediante inteligencia electoral.\\
-		Fuente: Elaboración propia.}
-		\label{fig:arbol_problemas}
-	\end{center}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1.15\textwidth]{anexos/arbol_problemas.png}
+	\caption[Árbol de problemas de la investigación]{Árbol de problemas identificados en la investigación sobre análisis de la percepción actual proyectada por los medios de comunicación en contextos electorales mediante inteligencia electoral.\\
+	Fuente: Elaboración propia.}
+	\label{fig:arbol_problemas}
 \end{figure}
-\end{landscape}
-\clearpage
-\begin{landscape}
+
+\newpage
+
 % ──────────────────────────────────────────────────────────────
 \section{Árbol de Objetivos}
 % ──────────────────────────────────────────────────────────────
 
 \label{anexo2}
 
-\begin{figure}[h]
-	\begin{center}
-		\includegraphics[width=1.05\textwidth]{anexos/arbol_objetivos.png}
-		\caption[Árbol de objetivos de la investigación]{Árbol de objetivos que estructuran la investigación sobre análisis de percepciones con LLMs y detección dinámica de temas en ecosistemas digitales.\\
-		Fuente: Elaboración propia.}
-		\label{fig:arbol_objetivos}
-	\end{center}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1.15\textwidth]{anexos/arbol_objetivos.png}
+	\caption[Árbol de objetivos de la investigación]{Árbol de objetivos que estructuran la investigación sobre análisis de percepciones con LLMs y detección dinámica de temas en ecosistemas digitales.\\
+	Fuente: Elaboración propia.}
+	\label{fig:arbol_objetivos}
 \end{figure}
-\end{landscape}
-\clearpage
-\begin{landscape}
+
+\newpage
+
 % ──────────────────────────────────────────────────────────────
 \section{Matriz de Consistencia}
 % ──────────────────────────────────────────────────────────────
 
 \label{anexo3}
 
-\begin{figure}[h]
-	\begin{center}
-		\includegraphics[width=1\textwidth]{anexos/matriz_consistencia.png}
-		\caption[Matriz de consistencia]{Matriz que muestra la consistencia entre los objetivos, hipótesis y metodología de la investigación.\\
-		Fuente: Elaboración propia.}
-		\label{fig:matriz_consistencia}
-	\end{center}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1.15\textwidth]{anexos/matriz_consistencia.png}
+	\caption[Matriz de consistencia]{Matriz que muestra la consistencia entre los objetivos, hipótesis y metodología de la investigación.\\
+	Fuente: Elaboración propia.}
+	\label{fig:matriz_consistencia}
 \end{figure}
 \end{landscape}
 \clearpage
@@ -141,9 +146,6 @@
 		\hline
 
 		\texttt{llm\_dedup\_day} & Máx. 200 pares/día & Deduplicación con LLM Juez sobre pares sospechosos, acotada por costo \\
-		\hline
-
-		Coherencia Semántica & $C_v$ & Métrica de validación de la calidad temática del catálogo \\
 
 		\specialrule{.1em}{.05em}{.05em}
 	\end{tabular}
@@ -268,21 +270,6 @@ Para la evaluación del módulo de análisis de sentimientos a nivel de aspecto,
 \end{equation}
 
 Donde TP (Verdaderos Positivos), TN (Verdaderos Negativos), FP (Falsos Positivos), FN (Falsos Negativos) representan los conteos de clasificación por clase.
-
-\subsection{Métricas de Coherencia Temática del Catálogo Incremental}
-
-Para la validación de la detección dinámica de temas mediante el enfoque híbrido LLM con catálogo incremental, se utilizó la métrica $C_v$ de coherencia semántica:
-
-\begin{equation}
-C_v = \frac{1}{|\text{Temas}|}\sum_{t}\text{cohere}_V(W_t)
-\end{equation}
-
-Donde $W_t$ es el conjunto de palabras clave del tema $t$, y $\text{cohere}_V$ es la función de coherencia vectorial. Rangos de interpretación:
-\begin{itemize}
-	\item $C_v < 0.4$: Coherencia baja
-	\item $0.4 \leq C_v < 0.6$: Coherencia media
-	\item $C_v \geq 0.6$: Coherencia alta
-\end{itemize}
 
 \clearpage
 

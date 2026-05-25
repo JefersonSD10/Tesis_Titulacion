@@ -152,6 +152,15 @@ pdfauthor={Axel Denis Cuadros Huachua, Victor Manuel Ormeño Salazar, Piero Luis
 \fancypagestyle{special}{%
 	\fancyhead[L]{\changefont Sistema de Inteligencia Electoral basado en LLMs y Grafos de Conocimiento para el Análisis Multi-fuente del Discurso Mediático Digital: Caso Elecciones Presidenciales Perú 2026}
 	\fancyhead[R]{\thepage}}
+%%Encabezado para paginas en orientacion horizontal (landscape): solo numero
+%%de pagina; el titulo largo queda oculto porque no entra correctamente al
+%%rotar la pagina.
+\fancypagestyle{horizontal}{%
+	\fancyhf{}%
+	\fancyfoot[R]{\thepage}%
+	\renewcommand{\headrulewidth}{0pt}%
+	\renewcommand{\footrulewidth}{0pt}%
+}
 
 
 %\fancyhf{} %% delete default configuration of page
