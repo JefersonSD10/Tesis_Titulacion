@@ -6,7 +6,7 @@ En esta sección se describe el diseño, el tipo y el enfoque del trabajo de inv
  
 \subsection{Tipo de la investigación}
  
-El presente estudio se define como una \textbf{investigación de tipo cuantitativo}, siguiendo la taxonomía propuesta por \cite{bk_hernandez2014metodologia} en \citetitle{bk_hernandez2014metodologia}, dado que la validación del sistema se sustenta en la recolección sistemática de mediciones numéricas y en el contraste empírico de las hipótesis mediante indicadores objetivos: precisión en la clasificación del sentimiento, coherencia semántica en la detección de temas, y corrección, fidelidad y relevancia de las respuestas generadas por el componente GraphRAG sobre el ecosistema digital electoral peruano. La configuración de la arquitectura computacional —que integra un enfoque \textbf{GraphRAG Híbrido} (bases de datos vectoriales con \textit{pgvector} y de grafos con \textit{Neo4j}), la orquestación de múltiples Modelos Fundacionales como DeepSeek y la exposición de herramientas analíticas vía el \textbf{Model Context Protocol (MCP)}— se evalúa frente a un sistema de referencia (\textit{baseline} RAG por similitud vectorial) sobre un mismo corpus y un mismo \textit{golden set} de preguntas, con el propósito de cuantificar diferencias de desempeño y verificar el cumplimiento de los umbrales declarados en las hipótesis.
+Se define el presente estudio como \textbf{Diseño Experimental}, dado que este enfoque busca identificar el posible efecto de una causa que es manipulada,este enfoque es principalmente utilizado por la obra \citetitle{bk_hernandez2014metodologia} creada por \cite{bk_hernandez2014metodologia}. Asimismo, en esta categoría, se categoriza como un \textbf{Diseño Experimental Puro}, debido a que se intervinieron deliberadamente una o más variables independientes —en este caso, la configuración de la arquitectura computacional, que integra un enfoque \textbf{GraphRAG Híbrido} (bases de datos vectoriales con \textit{pgvector} y de grafos con \textit{Neo4j}), la orquestación de múltiples Modelos Fundacionales como  DeepSeek y la exposición de herramientas analíticas vía el \textbf{Model Context Protocol (MCP)}— con el propósito de evaluar su impacto sobre la variable dependiente. Dicho impacto se mide a través de la precisión en la clasificación del sentimiento, la coherencia semántica en la detección de temas, y la eficiencia y relevancia en la recuperación de información del ecosistema digital electoral peruano.
 
 
 \subsection{Enfoque de la investigación}
@@ -18,8 +18,16 @@ El estudio propuesto adopta un \textbf{enfoque cuantitativo}, esto porque de acu
 La población fue el conjunto de todas las publicaciones digitales en español relacionadas con el proceso electoral peruano, generadas en plataformas de redes sociales (X/Twitter), plataformas de videos cortos (TikTok), canales de contenido audiovisual (YouTube) y portales de noticias digitales durante el período de campaña presidencial analizado.
  
 \subsection{Muestra}
- 
+
 La muestra estuvo conformada por publicaciones recolectadas de cuatro fuentes de datos independientes durante el período electoral analizado: (1) artículos y noticias digitales de los principales portales de prensa peruanos (El Comercio, La República, RPP, Diario Correo); (2) videos YouTube correspondientes a los candidatos y programas periodísticos de cobertura electoral; (3) tweets de la plataforma X/Twitter; y (4) videos y transcripciones de la red social TikTok. La extracción se delimitó mediante palabras clave electorales, \textit{hashtags} de campaña y menciones a cuentas oficiales. El criterio de delimitación temporal obedeció a la necesidad de capturar el período de mayor actividad del ecosistema digital electoral, excluyendo etapas de baja intensidad que distorsionarían los patrones de sentimiento y emergencia de temas.
+
+\textbf{Tamaño muestral y técnica de muestreo.} En la corrida de validación principal se procesaron \textbf{655 documentos} (extraídos de un total de 818 documentos crudos, tras la aplicación de los filtros pre-LLM de la arquitectura Medallion), correspondientes al 22 de marzo de 2026. Dado que el universo de publicaciones digitales es dinámico, continuo y no tiene un marco muestral cerrado ni un tamaño poblacional finito y conocido, se adoptó un \textbf{muestreo no probabilístico por conveniencia} \parencite{bk_hernandez2014metodologia}: la muestra quedó definida por los documentos accesibles a través de los scrapers y las APIs disponibles en el período delimitado, filtrados por los criterios de relevancia electoral descritos.
+
+\textbf{Criterios de inclusión}: (a) publicación en español; (b) fecha de publicación dentro del período de campaña presidencial analizado; (c) contenido textual que mencione al menos un candidato presidencial o un término del diccionario electoral; (d) fuente perteneciente a los cuatro canales definidos (noticias digitales, X/Twitter, YouTube, TikTok).
+
+\textbf{Criterios de exclusión}: (a) publicaciones duplicadas o reediciones sin contenido nuevo; (b) documentos con menos de 30 tokens útiles tras el preprocesamiento; (c) contenido en idioma distinto al español; (d) publicaciones fuera del período temporal delimitado.
+
+\textbf{Representatividad.} Dada la técnica de muestreo no probabilístico utilizada, la muestra \textbf{no es estadísticamente representativa} del universo completo de publicaciones digitales sobre las elecciones peruanas 2026. Los resultados tienen validez interna para los canales, medios y período analizados, pero no permiten generalizar estadísticamente al conjunto de toda la conversación digital electoral. Esta limitación se reconoce explícitamente y deberá considerarse al interpretar los indicadores producidos por el sistema.
 
 \subsection{Operacionalización de variables}
  
@@ -123,9 +131,9 @@ educación, salud, corrupción y gobernabilidad.
  
 \subsection{Metodología de implementación de la solución}
  
-Según lo explicado en el Capítulo II del presente trabajo, en el ámbito de los sistemas
-de analítica de negocio, la Minería de Datos y Big Data, las tres metodologías de
-referencia más difundidas en la literatura son SEMMA, CRISP-DM y KDD. Para elegir la
+Según lo explicado en el Capítulo II del presente trabajo, internamente en los sistemas de
+analítica de negocio, la Minería de Datos y Big Data, las tres principales metodologías más usadas son
+SEMMA, CRISP-DM y KDD \parencite{tec_braulio2015metodologiasdm}. Para elegir la
 metodología de implementación, se creó la Tabla \ref{4:table2} con el propósito de  realizar una comparativa de las variables empleadas por los distintos antecedentes presentados para el estudio propuesto.
  
 \vspace{2ex}
@@ -209,14 +217,14 @@ Grupo D
     \small Fuente: Elaboración propia.
 \end{flushleft}
  
-De las tres metodologías señaladas (SEMMA, CRISP-DM y KDD), la mayor parte de los antecedentes analizados siguen secuencias de actividades enmarcadas en CRISP-DM, abarcando etapas como en entendimiento del negocio, la recuperación de la información y el procesamiento los datos, la creación del modelo y la evaluación de los resultados. Asimismo, las siguientes características identificadas en los antecedentes influyeron en la selección de la metodología CRISP-DM para el presente estudio:
+De las tres metodologías señaladas por \citeauthor{tec_braulio2015metodologiasdm}, la mayor parte de los antecedentes analizados siguen secuencias de actividades enmarcadas en CRISP-DM, abarcando etapas como en entendimiento del negocio, la recuperación de la información y el procesamiento los datos, la creación del modelo y la evaluación de los resultados. Asimismo, las siguientes características identificadas en los antecedentes influyeron en la selección de la metodología CRISP-DM para el presente estudio:
 
  
 \begin{itemize}
     \item La metodología contempla entre sus fases la comprensión del negocio además
     de la parte técnica. Esta fase es crucial ya que en ella se define el problema a resolver
     —la falta de un sistema de análisis automatizado de percepción pública electoral en
-    tiempo real— y se establecen los objetivos del sistema.
+    —la falta de un sistema de análisis automatizado de percepción pública electoral con procesamiento por lotes diario (near-real-time)— y se establecen los objetivos del sistema.
  
     \item Ayuda a los responsables del proyecto en la planificación y toma de decisiones
     (fase de Despliegue) a partir de los resultados obtenidos, convirtiendo los indicadores
@@ -782,7 +790,7 @@ En la fase final de la metodología, el sistema de inteligencia electoral se imp
     \small Fuente: Elaboración propia.
 \end{flushleft}
  
-Tras evaluar el desempeño de cada módulo del sistema, se procedió a tomar los resultados y realizar una comparativa respecto a los antecedentes analizados, llevando a cabo una prueba de demostración, en la cual el sistema completo operó en tiempo real durante una semana de campaña electoral. Los especificaciones de esta prueba y sus resultados se presentan en el Capítulo V.
+Tras evaluar el desempeño de cada módulo del sistema, se procedió a tomar los resultados y realizar una comparativa respecto a los antecedentes analizados, llevando a cabo una prueba de demostración, en la cual el sistema completo operó en modalidad de procesamiento por lotes diario (near-real-time) durante una semana de campaña electoral. Los especificaciones de esta prueba y sus resultados se presentan en el Capítulo V.
  
 \subsection{Metodología para la medición de resultados}
 \label{4:metricas-resultados}
@@ -986,19 +994,19 @@ Equipo de cómputo para desarrollo (GPU integrada) & & S/.4,800.00 & S/.4,800.00
 Matrícula en cursos de actualización y TSP & & S/.8,500.00 & S/.8,500.00 \\
 \hline
 \multicolumn{4}{l}{\textbf{Recursos humanos}} \\
-Desarrollo del avance de tesis (\textit{valorización académica}) & 900 & S/.30,00 & S/.27\,000,00 \\
+Desarrollo del avance de tesis & 900 & No cuantificable & -- \\
 \hline
 \multicolumn{4}{l}{\textbf{Servicios generales}} \\
-Internet y electricidad (5 meses) & 120 & S/.85,00 & S/.680,00 \\
+Internet y electricidad (5 meses) & 120 & S/.85.00 & S/.680.00 \\
 \specialrule{.1em}{.05em}{.05em}
-\textbf{Total (incluye valorización académica)} & & & \textbf{S/.41\,880,00} \\
+\textbf{Total} & & & \textbf{S/.14,880.00} \\
 \specialrule{.1em}{.05em}{.05em}
 \end{tabular}
 \begin{flushleft}
-\small Fuente: Elaboración propia. \emph{Nota:} la valorización académica de los recursos humanos es una estimación referencial calculada a una tarifa de S/.\,30,00 por hora (equivalente al salario promedio de un analista \textit{junior} en Lima) sobre las 900 horas dedicadas por el equipo; no constituye un desembolso monetario directo de los autores, sino una valoración del esfuerzo académico empleado.
+\small Fuente: Elaboración propia.
 \end{flushleft}
 \end{table}
-
+ 
 Los gastos asociados al uso de servicios en la nube, necesarios para el procesamiento del corpus y el entrenamiento de los modelos, se detallan en la Tabla \ref{4:table10}.
 
 \begin{table}[h!]

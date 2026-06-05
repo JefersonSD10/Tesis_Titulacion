@@ -1,5 +1,5 @@
 % ══════════════════════════════════════════════════════════════
-% CAPÍTULO III — ENTORNO ORGANIZACIONAL
+% CAPÍTULO III — ENTORNO EMPRESARIAL
 % Título de tesis: INTELIGENCIA ELECTORAL CON LLM: MINERÍA DE
 % SENTIMIENTOS Y DETECCIÓN DINÁMICA DE TEMAS RELEVANTES PARA
 % ANALIZAR LA PERCEPCIÓN ACTUAL PROYECTADA POR LOS MEDIOS DE
@@ -9,15 +9,13 @@
 %           portales de noticias (scraping web), TikTok
 % ══════════════════════════════════════════════════════════════
 
-\chapter{Entorno Organizacional}
-
-\noindent\textit{Nota metodológica.} El presente capítulo describe el entorno institucional en el que se inscribe el sistema de inteligencia electoral propuesto. Dado que la entidad de aplicación es el Jurado Nacional de Elecciones (JNE) —organismo constitucional autónomo del Estado peruano, de naturaleza pública y no lucrativa—, las herramientas de análisis estratégico (Modelo Canvas, matrices EFI/EFE y FODA cuantitativo) se utilizan de manera adaptada: las dimensiones de mercado, costos y propuesta de valor se reinterpretan en clave de servicio público, sostenibilidad institucional y valor analítico para el ecosistema electoral. Esta adaptación permite preservar el rigor del análisis estratégico sin asumir una lógica empresarial-lucrativa ajena a la naturaleza del JNE.
+\chapter{Entorno Empresarial}
 
 % ─────────────────────────────────────────────────────────────
-\section{Descripción de la organización}
+\section{Descripción de la empresa}
 % ─────────────────────────────────────────────────────────────
 
-\subsection{Reseña histórica y actividad institucional}
+\subsection{Reseña histórica y actividad económica}
 
 El Jurado Nacional de Elecciones (JNE) es el organismo constitucional autónomo del Estado peruano encargado de administrar justicia en materia electoral, fiscalizar la legalidad del ejercicio del sufragio y de la realización de los procesos electorales, de referéndum y de otras consultas populares \parencite{ent_jne2023institucional}. Fue creado mediante la Constitución Política de 1933 y reafirmado como organismo autónomo por la Constitución vigente de 1993, siendo hoy uno de los tres organismos electorales del sistema democrático peruano, junto a la Oficina Nacional de Procesos Electorales (ONPE) y el Registro Nacional de Identificación y Estado Civil (RENIEC).
 
@@ -40,11 +38,11 @@ El equipo de trabajo vinculado al desarrollo e implementación del sistema de in
 
     \item \textbf{Líder de Ciencia de Datos / NLP}: Diseña la arquitectura del pipeline de procesamiento de lenguaje natural, selecciona y ajusta los modelos LLM utilizados, y supervisa la calidad de los análisis de sentimientos y detección de temas sobre el corpus multimodal.
 
-    \item \textbf{Ingeniero de Datos}: Responsable de la ingesta, almacenamiento y preprocesamiento de los datos multimodales en tiempo real. Gestiona los scrapers de noticias, las conexiones con las APIs de plataformas digitales (TwitterAPI.io), las herramientas de descarga y transcripción de contenido audiovisual (yt-dlp) y los sistemas de base de datos.
+    \item \textbf{Ingeniero de Datos}: Responsable de la ingesta, almacenamiento y preprocesamiento de los datos multimodales en el pipeline por lotes diario. Gestiona los scrapers de noticias, las conexiones con las APIs de plataformas digitales (TwitterAPI.io), las herramientas de descarga y transcripción de contenido audiovisual (yt-dlp) y los sistemas de base de datos.
 
     \item \textbf{Analista Político Electoral}: Experto en el contexto político peruano y en la cobertura mediática electoral que valida cualitativamente los resultados del sistema, define los criterios de relevancia temática y asegura que los indicadores generados sean interpretables y útiles para la toma de decisiones.
 
-    \item \textbf{Desarrollador de Visualización}: Diseña e implementa los dashboards interactivos que permiten explorar los resultados del sistema en tiempo real, así como los reportes automáticos generados al cierre de cada jornada electoral, incluyendo vistas comparadas por fuente mediática.
+    \item \textbf{Desarrollador de Visualización}: Diseña e implementa los dashboards interactivos que permiten explorar los resultados del sistema actualizados diariamente (near-real-time), así como los reportes automáticos generados al cierre de cada jornada electoral, incluyendo vistas comparadas por fuente mediática.
 
     \item \textbf{Especialista en Ética e Integridad Electoral}: Supervisa que el sistema opere dentro de los marcos legales y éticos aplicables, previene el uso indebido de los resultados y asegura la privacidad y anonimización de los datos ciudadanos procesados.
 \end{itemize}
@@ -70,7 +68,7 @@ La cadena se estructura en tres eslabones principales, tal como se ilustra en la
 
 \textbf{Eslabón 2 — Sistema de procesamiento}: El núcleo del sistema transforma los datos crudos en inteligencia estructurada mediante tres etapas secuenciales: (i) ingesta y preprocesamiento en la arquitectura Medallion (capas Bronze y Silver), con limpieza, deduplicación y normalización; (ii) análisis LLM para clasificación de sentimientos, detección dinámica de temas y análisis de framing mediático; y (iii) generación de la capa Gold con los indicadores consolidados (ISN, IRT, IVE, ICMC) y el sistema de alertas automáticas.
 
-\textbf{Eslabón 3 — Clientes y usuarios finales}: Los productos del sistema —reportes, dashboards interactivos y alertas en tiempo real— están dirigidos a cuatro segmentos de usuarios: organismos electorales (JNE, ONPE), medios de comunicación y periodistas especializados en política, investigadores académicos en ciencia política y NLP, y equipos de campaña o consultoras de comunicación estratégica.
+\textbf{Eslabón 3 — Clientes y usuarios finales}: Los productos del sistema —reportes, dashboards interactivos y alertas con actualización diaria (near-real-time)— están dirigidos a cuatro segmentos de usuarios: organismos electorales (JNE, ONPE), medios de comunicación y periodistas especializados en política, investigadores académicos en ciencia política y NLP, y equipos de campaña o consultoras de comunicación estratégica.
 
 \begin{figure}[!ht]
     \begin{center}
@@ -131,7 +129,7 @@ El ecosistema de datos y fuentes de información que alimenta esta cadena se det
 
         BCRP &
         Tipo de cambio, IGBVL, EMBI &
-        XLSX descargados desde el portal estadístico del BCRP (\url{https://estadisticas.bcrp.gob.pe/estadisticas/series/}) &
+        XLSX descargados (BCRP) &
         Contexto macroeconómico correlacional \\
 
         \specialrule{.1em}{.05em}{.05em}
@@ -143,22 +141,20 @@ El ecosistema de datos y fuentes de información que alimenta esta cadena se det
 \end{table}
 
 % ─────────────────────────────────────────────────────────────
-\section{Datos generales estratégicos del sistema propuesto}
+\section{Datos generales estratégicos de la empresa}
 % ─────────────────────────────────────────────────────────────
 
 \subsection{Visión, misión y valores o principios}
 
-\noindent Dado que el sistema de inteligencia electoral propuesto está concebido para incorporarse en el contexto institucional del Jurado Nacional de Elecciones (JNE) —entidad descrita en la sección~3.1—, la visión y la misión que se adoptan como referentes estratégicos son las que la propia institución declara en sus documentos de gestión vigentes \parencite{ent_jne2023institucional}. El sistema se diseña, por tanto, como un instrumento orientado a apoyar dicha visión y misión institucional.
+\subsubsection*{Visión del sistema}
 
-\subsubsection*{Visión institucional del JNE}
+«Ser el sistema de referencia en inteligencia electoral para el Perú, reconocido por la precisión, transparencia y utilidad de sus análisis de la percepción proyectada por los medios de comunicación en ecosistemas digitales durante procesos electorales.»
 
-«Personas que viven, ejercen y defienden la democracia, en una sociedad solidaria, sin exclusión y con desarrollo sostenible.» \parencite{ent_jne2023institucional}
+\subsubsection*{Misión del sistema}
 
-\subsubsection*{Misión institucional del JNE}
+«Proveer a analistas políticos, periodistas, organismos electorales e investigadores académicos una plataforma automatizada de minería de sentimientos y detección dinámica de temas, basada en Modelos de Lenguaje de Gran Escala, que permita comprender mediante procesamiento por lotes diario (near-real-time) la percepción que los medios de comunicación proyectan sobre los actores del proceso electoral peruano a través de sus contenidos en ecosistemas digitales.»
 
-«Impartir justicia y formar liderazgos políticos al servicio del fortalecimiento de la democracia.» \parencite{ent_jne2023institucional}
-
-\subsubsection*{Valores y principios de diseño del sistema}
+\subsubsection*{Valores y principios de diseño}
 
 El sistema se rige por los siguientes principios fundamentales:
 
@@ -186,7 +182,7 @@ En segundo lugar, \textbf{implementar un sistema de detección dinámica de tema
 
 En tercer lugar, \textbf{construir un módulo de análisis de framing mediático comparado} que permita identificar y cuantificar las diferencias en la percepción proyectada sobre los actores políticos por parte de distintos medios y plataformas digitales, habilitando el análisis de sesgos editoriales y divergencias de cobertura.
 
-Finalmente, \textbf{diseñar y desplegar un dashboard de visualización en tiempo real} que permita a los usuarios explorar los indicadores de percepción mediática —Índice de Sentimiento Neto (ISN) por fuente, Índice de Relevancia Temática (IRT), Índice de Velocidad de Emergencia (IVE) e Índice de Cobertura Mediática Comparada (ICMC)— de manera interactiva y actualizada.
+Finalmente, \textbf{diseñar y desplegar un dashboard de visualización actualizado diariamente (near-real-time)} que permita a los usuarios explorar los indicadores de percepción mediática —Índice de Sentimiento Neto (ISN) por fuente, Índice de Relevancia Temática (IRT), Índice de Velocidad de Emergencia (IVE) e Índice de Cobertura Mediática Comparada (ICMC)— de manera interactiva y actualizada.
 
 % ─────────────────────────────────────────────────────────────
 \subsection{Evaluación interna y externa: FODA cuantitativo}
@@ -212,7 +208,7 @@ Cada factor recibe un peso relativo (entre 0.0 y 1.0, con suma total igual a 1.0
         \hline
         F1: Uso de LLMs de última generación (DeepSeek, BERT multilingüe) & 0.15 & 4 & 0.60 \\
         F2: Pipeline multimodal completamente automatizado (4 fuentes) & 0.18 & 4 & 0.72 \\
-        F3: Análisis en tiempo real con bajo costo operativo (\$4–8/mes) & 0.14 & 4 & 0.56 \\
+        F3: Procesamiento por lotes diario (near-real-time) con bajo costo operativo (\$ \textasciitilde 4/mes) & 0.14 & 4 & 0.56 \\
         F4: Cobertura del español político regional peruano & 0.10 & 3 & 0.30 \\
         \hline
         \multicolumn{4}{l}{\textit{Debilidades}} \\
@@ -280,7 +276,7 @@ El análisis cruzado de factores se presenta a continuación en la Tabla~\ref{ta
           D1: Alta demanda computacional \\
         & F2: Pipeline multimodal completamente automatizado &
           D2: Dependencia de APIs y scrapers de terceros \\
-        & F3: Análisis en tiempo real de 4 fuentes simultáneas &
+        & F3: Procesamiento por lotes diario (near-real-time) de 4 fuentes simultáneas &
           D3: Sesgo potencial en datos de plataformas individuales \\
         & F4: Multilingüismo (español regional peruano) &
           D4: Escasez de datos etiquetados en cobertura mediática electoral en español \\
@@ -330,7 +326,7 @@ El análisis cruzado de factores se presenta a continuación en la Tabla~\ref{ta
     \end{flushleft}
 \end{table}
 
-En resumen, el sistema de inteligencia electoral propuesto se encuentra bien posicionado para abordar una necesidad real e insatisfecha en el contexto electoral peruano: el análisis automatizado y comparado de la percepción proyectada por los medios de comunicación en el ecosistema digital. Sus principales fortalezas —el pipeline multimodal que integra cuatro fuentes simultáneas, el uso de LLMs de última generación y la capacidad de análisis en tiempo real— lo diferencian de los enfoques convencionales de monitoreo mediático.
+En resumen, el sistema de inteligencia electoral propuesto se encuentra bien posicionado para abordar una necesidad real e insatisfecha en el contexto electoral peruano: el análisis automatizado y comparado de la percepción proyectada por los medios de comunicación en el ecosistema digital. Sus principales fortalezas —el pipeline multimodal que integra cuatro fuentes simultáneas, el uso de LLMs de última generación y la capacidad de procesamiento por lotes diario (near-real-time)— lo diferencian de los enfoques convencionales de monitoreo mediático.
 
 % ─────────────────────────────────────────────────────────────
 \section{Modelo de negocio actual (CANVAS)}
@@ -338,11 +334,11 @@ En resumen, el sistema de inteligencia electoral propuesto se encuentra bien pos
 
 El modelo de negocio del sistema de inteligencia electoral se estructura bajo el marco Canvas, cuyos componentes clave se describen a continuación y se ilustran en la Figura~\ref{fig:canvas_sistema}.
 
-\textbf{Propuesta de Valor}: Análisis automatizado de la percepción proyectada por los medios de comunicación en ecosistemas digitales (noticias, X/Twitter, YouTube, TikTok) en tiempo real; detección dinámica de temas emergentes en la agenda mediática; análisis comparado de framing editorial entre distintos medios y plataformas; monitoreo de desinformación electoral; reportes de inteligencia mediática accionables para la toma de decisiones.
+\textbf{Propuesta de Valor}: Análisis automatizado de la percepción proyectada por los medios de comunicación en ecosistemas digitales (noticias, X/Twitter, YouTube, TikTok) mediante procesamiento por lotes diario (near-real-time); detección dinámica de temas emergentes en la agenda mediática; análisis comparado de framing editorial entre distintos medios y plataformas; monitoreo de desinformación electoral; reportes de inteligencia mediática accionables para la toma de decisiones.
 
 \textbf{Segmentos de Clientes}: Equipos de campaña y partidos políticos; periodistas y medios de comunicación digitales especializados en política; organismos electorales (JNE, ONPE); investigadores académicos en ciencia política, comunicación y estudios mediáticos; consultoras de comunicación estratégica.
 
-\textbf{Canales}: Plataforma web con dashboard interactivo en tiempo real con vistas por fuente mediática; API de resultados para integración con sistemas externos; reportes automatizados en PDF enviados por correo electrónico; presentaciones de resultados en reuniones con clientes.
+\textbf{Canales}: Plataforma web con dashboard interactivo actualizado diariamente (near-real-time) con vistas por fuente mediática; API de resultados para integración con sistemas externos; reportes automatizados en PDF enviados por correo electrónico; presentaciones de resultados en reuniones con clientes.
 
 \textbf{Relaciones con Clientes}: Acceso a la plataforma mediante suscripción; soporte técnico y capacitación en interpretación de indicadores de cobertura mediática; reuniones periódicas de análisis con los equipos usuarios; documentación técnica y metodológica detallada.
 
@@ -354,7 +350,7 @@ El modelo de negocio del sistema de inteligencia electoral se estructura bajo el
 
 \textbf{Socios Clave}: Plataformas de redes sociales y video (proveedoras de datos); organismos electorales (JNE, ONPE) para datos de validación; universidades e instituciones académicas para investigación colaborativa; medios de comunicación interesados en el análisis de su propia cobertura.
 
-\textbf{Estructura de Costos}: Los costos operacionales del sistema son significativamente menores a los proyectados inicialmente. La infraestructura corre completamente en local mediante Docker Compose, eliminando los costos de servicios cloud dedicados. El único costo variable principal corresponde al uso de la API de DeepSeek para el etiquetado LLM, que a una tasa aproximada de \$0.13 por día procesado (\$0.0008/documento con 85.5\% de \textit{cache hit}) resulta en aproximadamente \$4--8 USD por mes completo de campaña electoral. El acceso a datos de Twitter se realiza mediante TwitterAPI.io en lugar de la API oficial de X/Twitter, y las transcripciones de YouTube y TikTok se obtienen mediante yt-dlp sin costo adicional. El uso de Neo4j Community Edition, PostgreSQL con pgvector y procesamiento local elimina la necesidad de servicios cloud especializados de alto costo.
+\textbf{Estructura de Costos}: Los costos operacionales del sistema son significativamente menores a los proyectados inicialmente. La infraestructura corre completamente en local mediante Docker Compose, eliminando los costos de servicios cloud dedicados. El único costo variable principal corresponde al uso de la API de DeepSeek para el etiquetado LLM, que a una tasa de \$0.13 por día procesado (655~docs/día, con 85.5\% de \textit{cache hit}) resulta en aproximadamente \textbf{\$3.9~USD por mes completo de campaña electoral} ($\sim$655~docs/día~$\times$~30~días~$\approx$~20k~docs/mes, costo efectivo con caché). A modo de referencia, el costo nominal sin caché sería de $\sim$\$0.0008/doc, equivalente a $\sim$\$16~USD/mes para el mismo volumen; la caché de prefijo de DeepSeek (85.5\,\% medido) reduce ese importe en $\approx$75\,\%, dando el costo efectivo de \$3.9~USD/mes. El acceso a datos de Twitter se realiza mediante TwitterAPI.io en lugar de la API oficial de X/Twitter, y las transcripciones de YouTube y TikTok se obtienen mediante yt-dlp sin costo adicional. El uso de Neo4j Community Edition, PostgreSQL con pgvector y procesamiento local elimina la necesidad de servicios cloud especializados de alto costo.
 
 \begin{figure}[!ht]
     \begin{center}
