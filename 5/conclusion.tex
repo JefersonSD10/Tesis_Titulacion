@@ -152,9 +152,10 @@ estructural y relacional del discurso mediático digital con calidad
 verificable contra ground truth humano y evaluaciones LLM-as-judge sobre
 conjuntos de referencia anotados}— \textbf{se valida}. El sistema integrado
 Electoral-Peru-2026 articula los tres componentes (LLMs para ABSA y detección
-de temas, grafo Neo4j con 723 fragmentos y 27 temas, e integración de cuatro
-fuentes digitales) y produce indicadores de percepción mediática consultables
-en lenguaje natural con evidencia trazable al corpus original. La validación
+de temas, grafo Neo4j con 40\,974 fragmentos y 4\,193 temas materializados
+sobre el corpus completo, e integración de cuatro fuentes digitales) y
+produce indicadores de percepción mediática consultables en lenguaje natural
+con evidencia trazable al corpus original. La validación
 contra \textit{ground truth} humano sobre el dataset de etiquetado (n=100)
 respalda la calidad del módulo de análisis con F1 macro de 0.856 en
 categoría temática y MAE de 0.107 en sentimiento continuo, mientras que la
@@ -185,18 +186,30 @@ ajustados al contexto político peruano alcanzan métricas de calidad
 satisfactorias (F1 macro $\geq 0.80$ en clasificación, MAE $\leq 0.15$ en
 sentimiento continuo) tanto en el análisis de sentimiento dirigido como en
 la detección contextual de tópicos emergentes del discurso mediático
-electoral}— \textbf{se valida}. DeepSeek-Chat en modalidad \textit{few-shot}
-con 4 ejemplos calibrados, evaluado contra el \textit{gold dataset} de 100
-documentos anotados por humano, obtuvo \textbf{F1 macro 0.856} en categoría
-temática (exactitud 0.830 sobre 17 clases), \textbf{F1 0.974} en relevancia
-geográfica al Perú, \textbf{F1 macro 0.916} en identificación de candidato
-protagonista y \textbf{MAE 0.107} con correlación Pearson de 0.892 en el
-sentimiento continuo, superando ambos umbrales declarados. En la tarea de
-detección dinámica de temas, el enfoque híbrido LLM + \textit{retrieval}
-multinivel alcanzó una exactitud semántica de 0.700 en la asignación
-documento$\rightarrow$tema sobre el mismo dataset humano. El único
-componente con desempeño limitado fue la extracción multi-etiqueta de
-actores principales (F1 micro 0.295).
+electoral}— \textbf{se valida parcialmente}. La hipótesis se cumple en el eje
+de \textbf{análisis de sentimiento y clasificación dirigida}, pero no alcanza
+el umbral exigido en el eje de \textbf{detección de tópicos emergentes}.
+DeepSeek-Chat en modalidad \textit{few-shot} con 4 ejemplos calibrados,
+evaluado contra el \textit{gold dataset} de 100 documentos anotados por
+humano, obtuvo \textbf{F1 macro 0.856} en categoría temática (exactitud
+0.830 sobre 17 clases), \textbf{F1 0.974} en relevancia geográfica al Perú,
+\textbf{F1 macro 0.916} en identificación de candidato protagonista y
+\textbf{MAE 0.107} con correlación Pearson de 0.892 en el sentimiento
+continuo, superando los umbrales declarados ($F1 \geq 0.80$ y
+$\text{MAE} \leq 0.15$) en todas las dimensiones de clasificación y de
+sentimiento. Sin embargo, en la tarea de \textbf{detección dinámica de
+tópicos}, la asignación documento$\rightarrow$tema alcanzó una exactitud
+semántica de \textbf{0.700} sobre el mismo dataset humano —por debajo del
+umbral de 0.80—, debido a que el LLM tiende a proponer \textit{slugs}
+ligeramente distintos para el mismo evento subyacente; la exactitud por
+coincidencia exacta de \textit{slug} desciende a 0.380. Por tanto, HE2 se
+considera \textbf{cumplida en clasificación de sentimiento pero no en
+detección de tópicos emergentes}: el segundo eje, aunque operacionalmente
+funcional (el \textit{override} semántico y las fases de consolidación
+mitigan la dispersión de \textit{slugs}), no satisface el criterio
+cuantitativo de validación. Adicionalmente, el componente con desempeño más
+limitado fue la extracción multi-etiqueta de actores principales
+(F1 micro 0.295).
 
 \textbf{HE3} —\textit{El grafo de conocimiento electoral construido mediante
 extracción semántica basada en LLMs permite expresar y consultar relaciones
