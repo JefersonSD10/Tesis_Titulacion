@@ -179,227 +179,19 @@ del formato audiovisual corto.
 
 \textbf{Actividad 5: Realizar análisis exploratorio del corpus}
 \\
-El corpus electoral procesado por el pipeline completo abarca el período del
-\textbf{1 de enero al 6 de abril de 2026} (96 días consecutivos, sin errores de
-ejecución) y comprende un total de \textbf{40\,974 documentos} provenientes de
-siete canales agrupados en las cuatro fuentes del sistema: noticias digitales
-(El Comercio, La República, RPP Noticias y Diario Correo), X/Twitter, YouTube y
-TikTok. La distribución temporal del corpus se concentra fuertemente en el mes de
-marzo, que reúne el 53\% del volumen total como reflejo del pico de campaña
-pre-electoral, según se detalla en la Tabla \ref{5:table_vol_mes}.
-
-\begin{table}[h!]
-    \caption[Distribución temporal del corpus completo por mes]{Volumen de documentos del corpus completo (40\,974 documentos) por mes de recolección, 1 de enero al 6 de abril de 2026.}
-    \label{5:table_vol_mes}
-    \centering
-    \small
-    \begin{tabular}{ m{4.5cm}M{3cm}M{2.5cm} }
-        \specialrule{.1em}{.05em}{.05em}
-        \Centering{Mes} & \Centering{Documentos} & \Centering{\%} \\
-        \specialrule{.1em}{.05em}{.05em}
-        Enero          & 6\,676  & 16.3\% \\
-        Febrero        & 7\,165  & 17.5\% \\
-        Marzo          & 21\,823 & 53.3\% \\
-        Abril (1--6)   & 5\,310  & 13.0\% \\
-        \hline
-        \textbf{Total} & \textbf{40\,974} & \textbf{100\%} \\
-        \specialrule{.1em}{.05em}{.05em}
-    \end{tabular}
-    \begin{flushleft}
-        \small Fuente: Elaboración propia.
-    \end{flushleft}
-\end{table}
-
-La distribución por fuente de datos del corpus completo se ilustra en la
-Figura \ref{5:fig7} y se detalla por canal en la Tabla \ref{5:table_fuente_gen}.
-X/Twitter es el canal de mayor volumen (37.8\%), seguido por TikTok (16.3\%) y los
-portales de noticias, que en conjunto aportan el 36.1\% del corpus.
-
-\begin{figure}[!ht]
-    \begin{center}
-        \resizebox{0.85\textwidth}{!}{\input{4/figures/fig7_distribucion_fuentes}}
-        \caption[Distribución del corpus electoral total por fuente de datos]{Distribución del corpus electoral completo por las cuatro fuentes de datos (noticias digitales, X/Twitter, YouTube y TikTok), mostrando el volumen relativo de cada canal.\\Fuente: Elaboración propia.}
-        \label{5:fig7}
-    \end{center}
-\end{figure}
-
-\begin{table}[h!]
-    \caption[Cobertura del corpus completo por canal de origen]{Distribución de los 40\,974 documentos del corpus completo por canal de origen.}
-    \label{5:table_fuente_gen}
-    \centering
-    \small
-    \begin{tabular}{ m{5cm}M{2.5cm}M{2cm} }
-        \specialrule{.1em}{.05em}{.05em}
-        \Centering{Canal} & \Centering{Documentos} & \Centering{\%} \\
-        \specialrule{.1em}{.05em}{.05em}
-        X/Twitter      & 15\,495 & 37.8\% \\
-        TikTok         & 6\,670  & 16.3\% \\
-        RPP Noticias   & 5\,787  & 14.1\% \\
-        Diario Correo  & 5\,568  & 13.6\% \\
-        YouTube        & 4\,011  & 9.8\%  \\
-        El Comercio    & 2\,424  & 5.9\%  \\
-        La República   & 1\,019  & 2.5\%  \\
-        \specialrule{.1em}{.05em}{.05em}
-    \end{tabular}
-    \begin{flushleft}
-        \small Fuente: Elaboración propia.
-    \end{flushleft}
-\end{table}
-
-\textbf{Universo filtrado por candidato.} Dado que el objeto de estudio es la
-percepción mediática hacia los candidatos presidenciales, se aisló el subconjunto
-de documentos que mencionan al menos a un candidato: \textbf{6\,293 documentos}
-(15.4\% del corpus total), que contienen 1\,282 temas distintos. Este subconjunto
-constituye el universo analítico más relevante de la investigación, dado que
-presenta un \textit{bleed} no político casi nulo: la categoría
-\texttt{otros\_no\_politico} representa apenas el 0.4\% y deportes el 0\%,
-resultando un corpus 94\% político-relevante. La proporción candidato/total crece
-de forma sostenida hacia el cierre de campaña (de 6\% en enero a 25\% en abril),
-confirmando la intensificación de la cobertura electoral. La distribución por
-fuente de este subconjunto se reporta en la Tabla \ref{5:table_fuente_cand}.
-
-\begin{table}[h!]
-    \caption[Cobertura del corpus filtrado por candidato]{Distribución de los 6\,293 documentos que mencionan al menos un candidato presidencial, por canal de origen.}
-    \label{5:table_fuente_cand}
-    \centering
-    \small
-    \begin{tabular}{ m{5cm}M{2.5cm}M{2cm} }
-        \specialrule{.1em}{.05em}{.05em}
-        \Centering{Canal} & \Centering{Documentos} & \Centering{\%} \\
-        \specialrule{.1em}{.05em}{.05em}
-        X/Twitter      & 3\,086 & 49.0\% \\
-        TikTok         & 1\,401 & 22.3\% \\
-        YouTube        & 760    & 12.1\% \\
-        RPP Noticias   & 459    & 7.3\%  \\
-        Diario Correo  & 411    & 6.5\%  \\
-        El Comercio    & 140    & 2.2\%  \\
-        La República   & 36     & 0.6\%  \\
-        \specialrule{.1em}{.05em}{.05em}
-    \end{tabular}
-    \begin{flushleft}
-        \small Fuente: Elaboración propia.
-    \end{flushleft}
-\end{table}
-
-En el universo filtrado por candidato, las redes sociales (X/Twitter, TikTok y
-YouTube) concentran el 83\% de la cobertura, una dominancia mucho más marcada que
-en el corpus general, lo que evidencia que la conversación electoral en torno a
-los candidatos se desarrolla principalmente en plataformas sociales. La
-distribución temática de este subconjunto, reportada en la Tabla
-\ref{5:table_cat_cand}, está dominada por la categoría \texttt{institucional}
-(42.9\%, principalmente debates y cobertura electoral), seguida por
-\texttt{seguridad} (12.9\%) y \texttt{justicia\_legalidad} (11.4\%).
-
-\begin{table}[h!]
-    \caption[Distribución temática del corpus filtrado por candidato]{Distribución de los documentos que mencionan candidatos por categoría temática (top siete categorías).}
-    \label{5:table_cat_cand}
-    \centering
-    \small
-    \begin{tabular}{ m{5cm}M{2.5cm}M{2cm} }
-        \specialrule{.1em}{.05em}{.05em}
-        \Centering{Categoría} & \Centering{Documentos} & \Centering{\%} \\
-        \specialrule{.1em}{.05em}{.05em}
-        institucional        & 2\,701 & 42.9\% \\
-        seguridad            & 809    & 12.9\% \\
-        justicia\_legalidad  & 715    & 11.4\% \\
-        corrupcion           & 535    & 8.5\%  \\
-        social\_genero (encuestas) & 531 & 8.4\% \\
-        economia             & 283    & 4.5\%  \\
-        educacion            & 265    & 4.2\%  \\
-        \specialrule{.1em}{.05em}{.05em}
-    \end{tabular}
-    \begin{flushleft}
-        \small Fuente: Elaboración propia.
-    \end{flushleft}
-\end{table}
-
-Finalmente, la variable dependiente del estudio —la percepción mediática hacia
-cada candidato— se sintetiza en la Tabla \ref{5:table_cand_full} para los 40
-candidatos presidenciales registrados. Por cada candidato se reportan cinco
-indicadores: el número de menciones en el corpus, la cantidad de temas distintos
-que lo contienen, el número de medios (canales) que lo cubren, el ratio
-menciones/tema y el sentimiento mediático promedio en escala $[-1,1]$.
-
-\begin{table}[h!]
-    \caption[Indicadores mediáticos de los 40 candidatos presidenciales]{Menciones, temas distintos, medios de cobertura, ratio menciones/tema y sentimiento mediático promedio (escala $[-1,1]$) de los 40 candidatos presidenciales en el corpus completo (1 ene -- 6 abr 2026).}
-    \label{5:table_cand_full}
-    \centering
-    \scriptsize
-    \begin{longtable}{ m{0.5cm}m{3.6cm}M{1.2cm}M{1.1cm}M{1.2cm}M{1.3cm}M{1.4cm} }
-        \specialrule{.1em}{.05em}{.05em}
-        \Centering{\#} & \Centering{Candidato} & \Centering{Menc.} & \Centering{Temas} & \Centering{Medios} & \Centering{Ratio M/T} & \Centering{Sent.} \\
-        \specialrule{.1em}{.05em}{.05em}
-        \endfirsthead
-        \specialrule{.1em}{.05em}{.05em}
-        \Centering{\#} & \Centering{Candidato} & \Centering{Menc.} & \Centering{Temas} & \Centering{Medios} & \Centering{Ratio M/T} & \Centering{Sent.} \\
-        \specialrule{.1em}{.05em}{.05em}
-        \endhead
-        1  & Keiko Fujimori         & 1\,262 & 353 & 7 & 3.58 & $-0.193$ \\
-        2  & Rafael López Aliaga    & 1\,025 & 321 & 7 & 3.19 & $-0.219$ \\
-        3  & César Acuña            & 829 & 290 & 7 & 2.86 & $-0.335$ \\
-        4  & Carlos Álvarez         & 515 & 168 & 7 & 3.07 & $+0.062$ \\
-        5  & Alfonso López Chau     & 479 & 179 & 7 & 2.68 & $-0.162$ \\
-        6  & Jorge Nieto Montesinos & 455 & 156 & 7 & 2.92 & $-0.046$ \\
-        7  & Vladimir Cerrón        & 448 & 178 & 7 & 2.52 & $-0.406$ \\
-        8  & Roberto Sánchez        & 369 & 159 & 7 & 2.32 & $-0.207$ \\
-        9  & Fernando Olivera       & 349 & 97  & 7 & 3.60 & $-0.206$ \\
-        10 & Marisol Pérez Tello    & 339 & 127 & 7 & 2.67 & $+0.106$ \\
-        11 & José Luna Gálvez       & 317 & 151 & 7 & 2.10 & $-0.157$ \\
-        12 & Enrique Valderrama     & 305 & 116 & 7 & 2.63 & $+0.015$ \\
-        13 & Mario Vizcarra         & 267 & 102 & 7 & 2.62 & $-0.068$ \\
-        14 & Wolfgang Grozo         & 245 & 98  & 7 & 2.50 & $-0.060$ \\
-        15 & Mesías Guevara         & 242 & 102 & 7 & 2.37 & $+0.099$ \\
-        16 & Yonhy Lescano          & 220 & 88  & 7 & 2.50 & $-0.083$ \\
-        17 & José Williams Zapata   & 206 & 91  & 7 & 2.26 & $+0.092$ \\
-        18 & George Forsyth         & 202 & 86  & 7 & 2.35 & $+0.111$ \\
-        19 & Fiorella Molinelli     & 198 & 83  & 7 & 2.39 & $+0.059$ \\
-        20 & Álvaro Paz de la Barra & 196 & 63  & 6 & 3.11 & $-0.054$ \\
-        21 & Ronald Atencio         & 188 & 97  & 7 & 1.94 & $-0.077$ \\
-        22 & Carlos Espá            & 168 & 76  & 7 & 2.21 & $+0.085$ \\
-        23 & Rafael Belaúnde        & 142 & 81  & 6 & 1.75 & $+0.203$ \\
-        24 & Roberto Chiabra        & 137 & 70  & 7 & 1.96 & $+0.154$ \\
-        25 & Ricardo Belmont        & 133 & 59  & 6 & 2.25 & $+0.122$ \\
-        26 & Alex Gonzáles          & 115 & 43  & 6 & 2.67 & $-0.001$ \\
-        27 & Martín Vizcarra        & 115 & 65  & 7 & 1.77 & $-0.207$ \\
-        28 & Herbert Caller         & 114 & 60  & 6 & 1.90 & $+0.113$ \\
-        29 & Hernando de Soto       & 112 & 43  & 7 & 2.60 & $-0.034$ \\
-        30 & Paul Jaimes            & 110 & 57  & 6 & 1.93 & $+0.047$ \\
-        31 & Francisco Diez Canseco & 103 & 58  & 6 & 1.78 & $+0.035$ \\
-        32 & Walter Chirinos        & 101 & 45  & 6 & 2.24 & $+0.045$ \\
-        33 & Carlos Jaico           & 101 & 46  & 6 & 2.20 & $+0.239$ \\
-        34 & Daniel Urresti         & 92  & 39  & 6 & 2.36 & $-0.135$ \\
-        35 & Armando Massé          & 92  & 50  & 6 & 1.84 & $+0.227$ \\
-        36 & Rosario Fernández Bazán & 88 & 51  & 6 & 1.73 & $+0.056$ \\
-        37 & Charlie Carrasco       & 80  & 40  & 6 & 2.00 & $+0.086$ \\
-        38 & Antonio Ortíz          & 78  & 39  & 6 & 2.00 & $+0.188$ \\
-        39 & Antauro Humala         & 22  & 13  & 5 & 1.69 & $-0.433$ \\
-        40 & Verónika Mendoza       & 10  & 9   & 5 & 1.11 & $-0.133$ \\
-        \specialrule{.1em}{.05em}{.05em}
-    \end{longtable}
-    \begin{flushleft}
-        \small Fuente: Elaboración propia.
-    \end{flushleft}
-\end{table}
-
-De la Tabla \ref{5:table_cand_full} se desprenden tres lecturas relevantes para
-caracterizar la cobertura mediática del proceso. En primer lugar, el
-\textbf{sentimiento} es predominantemente negativo en los candidatos más
-cubiertos —César Acuña ($-0.335$), Vladimir Cerrón ($-0.406$) y Antauro Humala
-($-0.433$) son los más negativos—, mientras que solo un grupo de candidatos
-de cobertura media presenta sentimiento neto positivo (Carlos Jaico $+0.239$,
-Armando Massé $+0.227$, Rafael Belaúnde $+0.203$). En segundo lugar, el
-\textbf{número de medios} funciona como indicador de alcance editorial: los 18
-candidatos con mayor cobertura llegan a las 7 fuentes (cobertura universal),
-mientras que los candidatos marginales descienden a 6 o 5 medios (Antauro
-Humala y Verónika Mendoza), evidenciando un menor alcance mediático. En tercer
-lugar, el \textbf{ratio menciones/tema} distingue entre candidatos con narrativa
-mediática construida y candidatos de aparición incidental: valores altos
-($>3.0$, como Fernando Olivera 3.60, Keiko Fujimori 3.58 o Rafael López Aliaga
-3.19) indican cobertura insistente y repetida sobre la agenda propia del
-candidato, mientras que valores bajos ($<1.9$, como Verónika Mendoza 1.11 o
-Antauro Humala 1.69) reflejan menciones dispersas y esporádicas donde cada
-aparición corresponde a un tema casi distinto, propio de candidatos mencionados
-de pasada y no como protagonistas.
+El análisis exploratorio inicial se realizó sobre los datos crudos de la capa
+Bronze, antes del etiquetado semántico, y se centró en verificar la integridad
+de la ingesta y las distribuciones básicas del corpus: el volumen de
+documentos recolectados por fuente y por día, la detección de idioma para
+conservar únicamente publicaciones en español y la longitud de los textos por
+canal. Este examen preliminar permitió confirmar la cobertura temporal completa
+del período electoral y la representatividad de las cuatro fuentes antes de
+proceder con la fase de preparación. La caracterización analítica detallada del
+corpus —distribución temática, indicadores mediáticos por candidato y
+sentimiento por actor—, al derivarse del etiquetado con LLM y de las consultas
+sobre el grafo de conocimiento construido, no constituye un análisis
+exploratorio sino un resultado del sistema, y se reporta en la sección de
+Evaluación (Actividad 5: Caracterización del corpus procesado).
 
 % ──────────────────────────────────────────────────────────────
 \section{Preparación de los datos}
@@ -1360,6 +1152,233 @@ de los 12\,222 actores del catálogo Postgres, el grafo materializa 10\,949 nodo
 mención), y de los 4\,378 temas detectados, el grafo materializa 4\,193 nodos
 \texttt{Tema}. Esta materialización selectiva es una decisión de diseño que
 mantiene el grafo acotado a las entidades con evidencia textual real.
+
+\textbf{Actividad 5: Caracterización del corpus procesado}
+\\
+Una vez ejecutado el pipeline completo y construido el grafo de conocimiento,
+se consultó la base de datos resultante para caracterizar el corpus
+procesado. A diferencia del análisis exploratorio de la fase de comprensión
+de los datos —que opera sobre los datos crudos de ingesta—, los indicadores
+de esta sección (distribución temática, sentimiento por candidato e
+indicadores mediáticos por actor) constituyen \textbf{salidas del sistema}
+derivadas del etiquetado con LLM y de las consultas estructuradas sobre el
+grafo Neo4j. El corpus procesado comprende 40\,974 documentos del período
+del 1 de enero al 6 de abril de 2026, concentrados en marzo (53\% del
+volumen, pico de campaña), según la Tabla \ref{5:table_vol_mes}.
+
+\begin{table}[h!]
+    \caption[Distribución temporal del corpus procesado por mes]{Volumen de documentos del corpus procesado (40\,974 documentos) por mes, 1 de enero al 6 de abril de 2026.}
+    \label{5:table_vol_mes}
+    \centering
+    \small
+    \begin{tabular}{ m{4.5cm}M{3cm}M{2.5cm} }
+        \specialrule{.1em}{.05em}{.05em}
+        \Centering{Mes} & \Centering{Documentos} & \Centering{\%} \\
+        \specialrule{.1em}{.05em}{.05em}
+        Enero          & 6\,676  & 16.3\% \\
+        Febrero        & 7\,165  & 17.5\% \\
+        Marzo          & 21\,823 & 53.3\% \\
+        Abril (1--6)   & 5\,310  & 13.0\% \\
+        \hline
+        \textbf{Total} & \textbf{40\,974} & \textbf{100\%} \\
+        \specialrule{.1em}{.05em}{.05em}
+    \end{tabular}
+    \begin{flushleft}
+        \small Fuente: Elaboración propia, consulta al grafo de conocimiento.
+    \end{flushleft}
+\end{table}
+
+La distribución por canal de origen se ilustra en la Figura \ref{5:fig7} y se
+detalla en la Tabla \ref{5:table_fuente_gen}. X/Twitter es el canal de mayor
+volumen (37.8\%), seguido por TikTok (16.3\%) y los portales de noticias, que
+en conjunto aportan el 36.1\% del corpus.
+
+\begin{figure}[!ht]
+    \begin{center}
+        \resizebox{0.85\textwidth}{!}{\input{4/figures/fig7_distribucion_fuentes}}
+        \caption[Distribución del corpus procesado por fuente de datos]{Distribución del corpus procesado por las cuatro fuentes de datos (noticias digitales, X/Twitter, YouTube y TikTok), mostrando el volumen relativo de cada canal.\\Fuente: Elaboración propia.}
+        \label{5:fig7}
+    \end{center}
+\end{figure}
+
+\begin{table}[h!]
+    \caption[Cobertura del corpus procesado por canal de origen]{Distribución de los 40\,974 documentos del corpus procesado por canal de origen.}
+    \label{5:table_fuente_gen}
+    \centering
+    \small
+    \begin{tabular}{ m{5cm}M{2.5cm}M{2cm} }
+        \specialrule{.1em}{.05em}{.05em}
+        \Centering{Canal} & \Centering{Documentos} & \Centering{\%} \\
+        \specialrule{.1em}{.05em}{.05em}
+        X/Twitter      & 15\,495 & 37.8\% \\
+        TikTok         & 6\,670  & 16.3\% \\
+        RPP Noticias   & 5\,787  & 14.1\% \\
+        Diario Correo  & 5\,568  & 13.6\% \\
+        YouTube        & 4\,011  & 9.8\%  \\
+        El Comercio    & 2\,424  & 5.9\%  \\
+        La República   & 1\,019  & 2.5\%  \\
+        \specialrule{.1em}{.05em}{.05em}
+    \end{tabular}
+    \begin{flushleft}
+        \small Fuente: Elaboración propia, consulta al grafo de conocimiento.
+    \end{flushleft}
+\end{table}
+
+\textbf{Universo filtrado por candidato.} Dado que el objeto de estudio es la
+percepción mediática hacia los candidatos presidenciales, se aisló el subconjunto
+de documentos que mencionan al menos a un candidato: 6\,293 documentos
+(15.4\% del corpus total), que contienen 1\,282 temas distintos. Este subconjunto
+constituye el universo analítico más relevante de la investigación, dado que
+presenta un \textit{bleed} no político casi nulo: la categoría
+\texttt{otros\_no\_politico} representa apenas el 0.4\% y deportes el 0\%,
+resultando un corpus 94\% político-relevante. La proporción candidato/total crece
+de forma sostenida hacia el cierre de campaña (de 6\% en enero a 25\% en abril),
+confirmando la intensificación de la cobertura electoral. La distribución por
+fuente de este subconjunto se reporta en la Tabla \ref{5:table_fuente_cand}.
+
+\begin{table}[h!]
+    \caption[Cobertura del corpus filtrado por candidato]{Distribución de los 6\,293 documentos que mencionan al menos un candidato presidencial, por canal de origen.}
+    \label{5:table_fuente_cand}
+    \centering
+    \small
+    \begin{tabular}{ m{5cm}M{2.5cm}M{2cm} }
+        \specialrule{.1em}{.05em}{.05em}
+        \Centering{Canal} & \Centering{Documentos} & \Centering{\%} \\
+        \specialrule{.1em}{.05em}{.05em}
+        X/Twitter      & 3\,086 & 49.0\% \\
+        TikTok         & 1\,401 & 22.3\% \\
+        YouTube        & 760    & 12.1\% \\
+        RPP Noticias   & 459    & 7.3\%  \\
+        Diario Correo  & 411    & 6.5\%  \\
+        El Comercio    & 140    & 2.2\%  \\
+        La República   & 36     & 0.6\%  \\
+        \specialrule{.1em}{.05em}{.05em}
+    \end{tabular}
+    \begin{flushleft}
+        \small Fuente: Elaboración propia, consulta al grafo de conocimiento.
+    \end{flushleft}
+\end{table}
+
+En el universo filtrado por candidato, las redes sociales (X/Twitter, TikTok y
+YouTube) concentran el 83\% de la cobertura, una dominancia mucho más marcada que
+en el corpus general, lo que evidencia que la conversación electoral en torno a
+los candidatos se desarrolla principalmente en plataformas sociales. La
+distribución temática de este subconjunto, reportada en la Tabla
+\ref{5:table_cat_cand}, está dominada por la categoría \texttt{institucional}
+(42.9\%, principalmente debates y cobertura electoral), seguida por
+\texttt{seguridad} (12.9\%) y \texttt{justicia\_legalidad} (11.4\%).
+
+\begin{table}[h!]
+    \caption[Distribución temática del corpus filtrado por candidato]{Distribución de los documentos que mencionan candidatos por categoría temática (top siete categorías).}
+    \label{5:table_cat_cand}
+    \centering
+    \small
+    \begin{tabular}{ m{5cm}M{2.5cm}M{2cm} }
+        \specialrule{.1em}{.05em}{.05em}
+        \Centering{Categoría} & \Centering{Documentos} & \Centering{\%} \\
+        \specialrule{.1em}{.05em}{.05em}
+        institucional        & 2\,701 & 42.9\% \\
+        seguridad            & 809    & 12.9\% \\
+        justicia\_legalidad  & 715    & 11.4\% \\
+        corrupcion           & 535    & 8.5\%  \\
+        social\_genero (encuestas) & 531 & 8.4\% \\
+        economia             & 283    & 4.5\%  \\
+        educacion            & 265    & 4.2\%  \\
+        \specialrule{.1em}{.05em}{.05em}
+    \end{tabular}
+    \begin{flushleft}
+        \small Fuente: Elaboración propia, consulta al grafo de conocimiento.
+    \end{flushleft}
+\end{table}
+
+La variable dependiente del estudio —la percepción mediática hacia
+cada candidato— se sintetiza en la Tabla \ref{5:table_cand_full} para los 40
+candidatos presidenciales registrados. Por cada candidato se reportan cinco
+indicadores obtenidos del grafo: el número de menciones en el corpus, la
+cantidad de temas distintos que lo contienen, el número de medios (canales)
+que lo cubren, el ratio menciones/tema y el sentimiento mediático promedio en
+escala $[-1,1]$.
+
+\begin{table}[h!]
+    \caption[Indicadores mediáticos de los 40 candidatos presidenciales]{Menciones, temas distintos, medios de cobertura, ratio menciones/tema y sentimiento mediático promedio (escala $[-1,1]$) de los 40 candidatos presidenciales en el corpus procesado (1 ene -- 6 abr 2026).}
+    \label{5:table_cand_full}
+    \centering
+    \scriptsize
+    \begin{longtable}{ m{0.5cm}m{3.6cm}M{1.2cm}M{1.1cm}M{1.2cm}M{1.3cm}M{1.4cm} }
+        \specialrule{.1em}{.05em}{.05em}
+        \Centering{\#} & \Centering{Candidato} & \Centering{Menc.} & \Centering{Temas} & \Centering{Medios} & \Centering{Ratio M/T} & \Centering{Sent.} \\
+        \specialrule{.1em}{.05em}{.05em}
+        \endfirsthead
+        \specialrule{.1em}{.05em}{.05em}
+        \Centering{\#} & \Centering{Candidato} & \Centering{Menc.} & \Centering{Temas} & \Centering{Medios} & \Centering{Ratio M/T} & \Centering{Sent.} \\
+        \specialrule{.1em}{.05em}{.05em}
+        \endhead
+        1  & Keiko Fujimori         & 1\,262 & 353 & 7 & 3.58 & $-0.193$ \\
+        2  & Rafael López Aliaga    & 1\,025 & 321 & 7 & 3.19 & $-0.219$ \\
+        3  & César Acuña            & 829 & 290 & 7 & 2.86 & $-0.335$ \\
+        4  & Carlos Álvarez         & 515 & 168 & 7 & 3.07 & $+0.062$ \\
+        5  & Alfonso López Chau     & 479 & 179 & 7 & 2.68 & $-0.162$ \\
+        6  & Jorge Nieto Montesinos & 455 & 156 & 7 & 2.92 & $-0.046$ \\
+        7  & Vladimir Cerrón        & 448 & 178 & 7 & 2.52 & $-0.406$ \\
+        8  & Roberto Sánchez        & 369 & 159 & 7 & 2.32 & $-0.207$ \\
+        9  & Fernando Olivera       & 349 & 97  & 7 & 3.60 & $-0.206$ \\
+        10 & Marisol Pérez Tello    & 339 & 127 & 7 & 2.67 & $+0.106$ \\
+        11 & José Luna Gálvez       & 317 & 151 & 7 & 2.10 & $-0.157$ \\
+        12 & Enrique Valderrama     & 305 & 116 & 7 & 2.63 & $+0.015$ \\
+        13 & Mario Vizcarra         & 267 & 102 & 7 & 2.62 & $-0.068$ \\
+        14 & Wolfgang Grozo         & 245 & 98  & 7 & 2.50 & $-0.060$ \\
+        15 & Mesías Guevara         & 242 & 102 & 7 & 2.37 & $+0.099$ \\
+        16 & Yonhy Lescano          & 220 & 88  & 7 & 2.50 & $-0.083$ \\
+        17 & José Williams Zapata   & 206 & 91  & 7 & 2.26 & $+0.092$ \\
+        18 & George Forsyth         & 202 & 86  & 7 & 2.35 & $+0.111$ \\
+        19 & Fiorella Molinelli     & 198 & 83  & 7 & 2.39 & $+0.059$ \\
+        20 & Álvaro Paz de la Barra & 196 & 63  & 6 & 3.11 & $-0.054$ \\
+        21 & Ronald Atencio         & 188 & 97  & 7 & 1.94 & $-0.077$ \\
+        22 & Carlos Espá            & 168 & 76  & 7 & 2.21 & $+0.085$ \\
+        23 & Rafael Belaúnde        & 142 & 81  & 6 & 1.75 & $+0.203$ \\
+        24 & Roberto Chiabra        & 137 & 70  & 7 & 1.96 & $+0.154$ \\
+        25 & Ricardo Belmont        & 133 & 59  & 6 & 2.25 & $+0.122$ \\
+        26 & Alex Gonzáles          & 115 & 43  & 6 & 2.67 & $-0.001$ \\
+        27 & Martín Vizcarra        & 115 & 65  & 7 & 1.77 & $-0.207$ \\
+        28 & Herbert Caller         & 114 & 60  & 6 & 1.90 & $+0.113$ \\
+        29 & Hernando de Soto       & 112 & 43  & 7 & 2.60 & $-0.034$ \\
+        30 & Paul Jaimes            & 110 & 57  & 6 & 1.93 & $+0.047$ \\
+        31 & Francisco Diez Canseco & 103 & 58  & 6 & 1.78 & $+0.035$ \\
+        32 & Walter Chirinos        & 101 & 45  & 6 & 2.24 & $+0.045$ \\
+        33 & Carlos Jaico           & 101 & 46  & 6 & 2.20 & $+0.239$ \\
+        34 & Daniel Urresti         & 92  & 39  & 6 & 2.36 & $-0.135$ \\
+        35 & Armando Massé          & 92  & 50  & 6 & 1.84 & $+0.227$ \\
+        36 & Rosario Fernández Bazán & 88 & 51  & 6 & 1.73 & $+0.056$ \\
+        37 & Charlie Carrasco       & 80  & 40  & 6 & 2.00 & $+0.086$ \\
+        38 & Antonio Ortíz          & 78  & 39  & 6 & 2.00 & $+0.188$ \\
+        39 & Antauro Humala         & 22  & 13  & 5 & 1.69 & $-0.433$ \\
+        40 & Verónika Mendoza       & 10  & 9   & 5 & 1.11 & $-0.133$ \\
+        \specialrule{.1em}{.05em}{.05em}
+    \end{longtable}
+    \begin{flushleft}
+        \small Fuente: Elaboración propia, consulta al grafo de conocimiento.
+    \end{flushleft}
+\end{table}
+
+De la Tabla \ref{5:table_cand_full} se desprenden tres lecturas relevantes para
+caracterizar la cobertura mediática del proceso. En primer lugar, el
+sentimiento es predominantemente negativo en los candidatos más
+cubiertos —César Acuña ($-0.335$), Vladimir Cerrón ($-0.406$) y Antauro Humala
+($-0.433$) son los más negativos—, mientras que solo un grupo de candidatos
+de cobertura media presenta sentimiento neto positivo (Carlos Jaico $+0.239$,
+Armando Massé $+0.227$, Rafael Belaúnde $+0.203$). En segundo lugar, el
+número de medios funciona como indicador de alcance editorial: los 18
+candidatos con mayor cobertura llegan a las 7 fuentes (cobertura universal),
+mientras que los candidatos marginales descienden a 6 o 5 medios (Antauro
+Humala y Verónika Mendoza), evidenciando un menor alcance mediático. En tercer
+lugar, el ratio menciones/tema distingue entre candidatos con narrativa
+mediática construida y candidatos de aparición incidental: valores altos
+($>3.0$, como Fernando Olivera 3.60, Keiko Fujimori 3.58 o Rafael López Aliaga
+3.19) indican cobertura insistente y repetida sobre la agenda propia del
+candidato, mientras que valores bajos ($<1.9$, como Verónika Mendoza 1.11 o
+Antauro Humala 1.69) reflejan menciones dispersas y esporádicas donde cada
+aparición corresponde a un tema casi distinto, propio de candidatos mencionados
+de pasada y no como protagonistas.
 
 % ──────────────────────────────────────────────────────────────
 \section{Despliegue}
