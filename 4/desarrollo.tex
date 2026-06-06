@@ -817,15 +817,24 @@ schema, idempotencia, latencia, costo, cobertura del catálogo y tasa de
 en producción. El segundo plano corresponde a las \textbf{métricas de
 calidad de salida frente a \textit{ground truth}}, construido específicamente
 para esta tesis sobre dos \textit{gold datasets} independientes: (i) un
-dataset de etiquetado con 100 documentos anotados por un anotador humano
-más 15 pares de temas marcados como mismo/distinto tema, que habilita el
-cálculo de exactitud, F1 macro/micro, MAE/RMSE para el sentimiento continuo
-y precision/recall sobre la deduplicación de temas; y (ii) un dataset de
-consulta con 30 preguntas en lenguaje natural anotadas con su
-\textit{ground truth} de herramientas esperadas y respuesta de referencia,
-que permite contrastar el sistema GraphRAG contra un \textit{baseline} RAG
-por similitud semántica, conforme al marco de métricas declarado en la
-sección \ref{4:metricas-resultados} del capítulo de metodología.
+dataset de etiquetado con 100 documentos cuyo \textit{ground truth} fue
+establecido por un anotador humano especialista —que seleccionó la muestra y
+definió los valores de referencia de cada campo de forma independiente—, y
+posteriormente, tras ejecutar el pipeline sobre esos mismos documentos,
+\textbf{validó visualmente} la concordancia entre la salida del sistema y el
+\textit{ground truth} humano; más 15 pares de temas marcados como
+mismo/distinto tema, que habilitan el cálculo de exactitud, F1 macro/micro,
+MAE/RMSE para el sentimiento continuo y precision/recall sobre la
+deduplicación de temas; y (ii) un dataset de consulta con 30 preguntas en
+lenguaje natural anotadas con su \textit{ground truth} de herramientas
+esperadas y respuesta de referencia, que permite contrastar el sistema
+GraphRAG contra un \textit{baseline} RAG por similitud semántica, conforme al
+marco de métricas declarado en la sección \ref{4:metricas-resultados} del
+capítulo de metodología. En ambos \textit{gold datasets} se utilizaron
+herramientas de inteligencia artificial únicamente como \textbf{asistencia de
+redacción y lectura} de los documentos; la definición del \textit{ground
+truth} y su validación fueron realizadas por el especialista humano, no por
+el modelo evaluado.
 
 \textbf{Actividad 1: Evaluar módulo de análisis de sentimientos}
 \\
@@ -878,13 +887,18 @@ documentos de la corrida piloto recibieron el valor geográficamente correcto
 
 \textbf{Evaluación contra ground truth humano.} Para complementar las
 mediciones operacionales se construyó un \textit{gold dataset} de 100
-documentos anotados por un anotador humano sobre la totalidad de los campos
-del schema \texttt{AnalisisLLM}: categoría temática, relevancia geográfica al
-Perú, candidato protagonista, actores principales y sentimiento hacia el
-tema. La construcción del dataset incluyó 2 correcciones manuales sobre las
-predicciones del LLM (tasa de corrección del 2\%). Los resultados de comparar
-las predicciones de DeepSeek-Chat contra estas etiquetas humanas se reportan
-en la Tabla \ref{5:table_label_quality}.
+documentos cuyo \textit{ground truth} fue establecido por un anotador humano
+especialista sobre la totalidad de los campos del schema \texttt{AnalisisLLM}:
+categoría temática, relevancia geográfica al Perú, candidato protagonista,
+actores principales y sentimiento hacia el tema. El procedimiento siguió tres
+etapas: (1) el especialista seleccionó la muestra de documentos; (2) definió
+el valor de referencia de cada campo de forma independiente, constituyendo el
+\textit{ground truth}; y (3) tras ejecutar el pipeline sobre esos mismos
+documentos, validó visualmente la concordancia entre la salida del sistema y
+el \textit{ground truth}, detectando discrepancias en apenas 2 de los 100
+documentos. Los resultados de comparar las predicciones de DeepSeek-Chat
+contra estas etiquetas humanas se reportan en la Tabla
+\ref{5:table_label_quality}.
 
 \begin{table}[h!]
     \caption[Métricas de calidad del módulo de etiquetado LLM frente a ground truth humano]{Métricas de calidad del módulo de etiquetado LLM (DeepSeek-Chat \textit{few-shot} con 4 ejemplos) contra etiquetas humanas sobre un \textit{gold dataset} de 100 documentos.}

@@ -280,16 +280,26 @@ no es accesible mediante \textit{scraping} público.
 
 En cuarto lugar, los \textit{gold datasets} construidos para la evaluación
 contra \textit{ground truth} tienen restricciones de tamaño y diseño que
-deben considerarse al interpretar los resultados: (i) el dataset de
-etiquetado fue anotado por un único anotador (n=100 documentos), por lo que
-no se reporta el coeficiente $\kappa$ de Cohen inter-anotador; (ii) el
-dataset de deduplicación de temas (n=15 pares) tiene una muestra
-insuficiente para extraer conclusiones robustas sobre precision/recall de
-la fase de \texttt{llm\_dedup}, donde cada caso pesa cerca de 50 puntos
-porcentuales; (iii) el \textit{golden set} de consulta (n=30 preguntas)
-cubre un período mediático acotado al 10--12 de marzo de 2026, lo que
-coloca al RAG \textit{baseline} en desventaja estructural para preguntas
-sobre encuestas posteriores a esa fecha.
+deben considerarse al interpretar los resultados: (i) el \textit{ground
+truth} del dataset de etiquetado (n=100 documentos) fue establecido de forma
+independiente por un único especialista humano —sin partir de las
+predicciones del modelo evaluado—, por lo que, al contar con un solo
+anotador, no se reporta el coeficiente $\kappa$ de Cohen inter-anotador; la
+incorporación de un segundo anotador para cuantificar el acuerdo
+inter-anotador queda como trabajo futuro; (ii) el dataset de deduplicación
+de temas (n=15 pares) tiene una muestra insuficiente para extraer
+conclusiones robustas sobre precision/recall de la fase de
+\texttt{llm\_dedup}, donde cada caso pesa cerca de 50 puntos porcentuales;
+(iii) el \textit{golden set} de consulta (n=30 preguntas) se ancló a un
+\textit{snapshot} controlado del grafo (\textit{graph version} 2026-03-13,
+cobertura mediática del 10 al 12 de marzo de 2026) para garantizar la
+reproducibilidad del experimento. Esta acotación expone una diferencia
+inherente de paradigma —no un sesgo del test—: el RAG \textit{baseline}, al
+operar por recuperación vectorial sobre \textit{chunks} de texto, es
+incapaz por diseño de filtrar temporalmente o consultar datos estructurados
+(encuestas, indicadores macroeconómicos), mientras que el MCP accede a la
+base de datos relacional completa. Precisamente esa diferencia de
+capacidades es la que el experimento busca medir.
 \section{Recomendaciones}
 A partir de los resultados obtenidos y las limitaciones identificadas, se formulan
 las siguientes recomendaciones para trabajos de investigación futuros:
