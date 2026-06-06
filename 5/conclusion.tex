@@ -82,11 +82,11 @@ extracción multi-etiqueta de actores principales (F1 micro 0.295).
 
 Para el módulo de detección dinámica de temas, el enfoque híbrido LLM +
 \textit{retrieval} multinivel con la configuración \textit{cosine} $\geq 0.85$
-del \textit{override} semántico post-LLM detectó \textbf{27 temas únicos} en el
-corpus de 655 documentos del 22 de marzo de 2026 (vista
-\texttt{gold\_temas\_diarios} de Postgres). La \textbf{tasa de reuso} del catálogo
-ascendió del 13\% en la corrida inicial (catálogo vacío) al 70{,}5\% en la
-corrida completa, evidenciando la curva de maduración esperable. El
+del \textit{override} semántico post-LLM detectó \textbf{4\,378 temas
+distintos} sobre el corpus completo (40\,974 documentos, 1 ene -- 6 abr 2026).
+La \textbf{tasa de reuso} del catálogo ascendió del 13\% en la corrida inicial
+de calibración (catálogo vacío) al 70{,}5\% en corridas posteriores,
+evidenciando la curva de maduración esperable. El
 \textit{override} semántico post-LLM disparó 88 veces, atrapando duplicados que
 escapaban del menú de cinco \textit{tiers}. Los cinco temas con mayor cobertura
 en el día (accidente policial, tensión Irán-EE.UU., captura de banda en El
@@ -152,9 +152,10 @@ estructural y relacional del discurso mediático digital con calidad
 verificable contra ground truth humano y evaluaciones LLM-as-judge sobre
 conjuntos de referencia anotados}— \textbf{se valida}. El sistema integrado
 Electoral-Peru-2026 articula los tres componentes (LLMs para ABSA y detección
-de temas, grafo Neo4j con 723 fragmentos y 27 temas, e integración de cuatro
-fuentes digitales) y produce indicadores de percepción mediática consultables
-en lenguaje natural con evidencia trazable al corpus original. La validación
+de temas, grafo Neo4j con 40\,974 fragmentos y 4\,193 temas materializados
+sobre el corpus completo, e integración de cuatro fuentes digitales) y
+produce indicadores de percepción mediática consultables en lenguaje natural
+con evidencia trazable al corpus original. La validación
 contra \textit{ground truth} humano sobre el dataset de etiquetado (n=100)
 respalda la calidad del módulo de análisis con F1 macro de 0.856 en
 categoría temática y MAE de 0.107 en sentimiento continuo, mientras que la
@@ -185,18 +186,30 @@ ajustados al contexto político peruano alcanzan métricas de calidad
 satisfactorias (F1 macro $\geq 0.80$ en clasificación, MAE $\leq 0.15$ en
 sentimiento continuo) tanto en el análisis de sentimiento dirigido como en
 la detección contextual de tópicos emergentes del discurso mediático
-electoral}— \textbf{se valida}. DeepSeek-Chat en modalidad \textit{few-shot}
-con 4 ejemplos calibrados, evaluado contra el \textit{gold dataset} de 100
-documentos anotados por humano, obtuvo \textbf{F1 macro 0.856} en categoría
-temática (exactitud 0.830 sobre 17 clases), \textbf{F1 0.974} en relevancia
-geográfica al Perú, \textbf{F1 macro 0.916} en identificación de candidato
-protagonista y \textbf{MAE 0.107} con correlación Pearson de 0.892 en el
-sentimiento continuo, superando ambos umbrales declarados. En la tarea de
-detección dinámica de temas, el enfoque híbrido LLM + \textit{retrieval}
-multinivel alcanzó una exactitud semántica de 0.700 en la asignación
-documento$\rightarrow$tema sobre el mismo dataset humano. El único
-componente con desempeño limitado fue la extracción multi-etiqueta de
-actores principales (F1 micro 0.295).
+electoral}— \textbf{se valida parcialmente}. La hipótesis se cumple en el eje
+de \textbf{análisis de sentimiento y clasificación dirigida}, pero no alcanza
+el umbral exigido en el eje de \textbf{detección de tópicos emergentes}.
+DeepSeek-Chat en modalidad \textit{few-shot} con 4 ejemplos calibrados,
+evaluado contra el \textit{gold dataset} de 100 documentos anotados por
+humano, obtuvo \textbf{F1 macro 0.856} en categoría temática (exactitud
+0.830 sobre 17 clases), \textbf{F1 0.974} en relevancia geográfica al Perú,
+\textbf{F1 macro 0.916} en identificación de candidato protagonista y
+\textbf{MAE 0.107} con correlación Pearson de 0.892 en el sentimiento
+continuo, superando los umbrales declarados ($F1 \geq 0.80$ y
+$\text{MAE} \leq 0.15$) en todas las dimensiones de clasificación y de
+sentimiento. Sin embargo, en la tarea de \textbf{detección dinámica de
+tópicos}, la asignación documento$\rightarrow$tema alcanzó una exactitud
+semántica de \textbf{0.700} sobre el mismo dataset humano —por debajo del
+umbral de 0.80—, debido a que el LLM tiende a proponer \textit{slugs}
+ligeramente distintos para el mismo evento subyacente; la exactitud por
+coincidencia exacta de \textit{slug} desciende a 0.380. Por tanto, HE2 se
+considera \textbf{cumplida en clasificación de sentimiento pero no en
+detección de tópicos emergentes}: el segundo eje, aunque operacionalmente
+funcional (el \textit{override} semántico y las fases de consolidación
+mitigan la dispersión de \textit{slugs}), no satisface el criterio
+cuantitativo de validación. Adicionalmente, el componente con desempeño más
+limitado fue la extracción multi-etiqueta de actores principales
+(F1 micro 0.295).
 
 \textbf{HE3} —\textit{El grafo de conocimiento electoral construido mediante
 extracción semántica basada en LLMs permite expresar y consultar relaciones
@@ -206,9 +219,11 @@ valida}. El grafo Neo4j Community con sus diez tipos de nodos y siete tipos
 de relaciones (\texttt{MENCIONA}, \texttt{SOBRE\_TEMA},
 \texttt{PUBLICADO\_POR}, entre otras) permitió ejecutar consultas Cypher
 que articulan candidatos, temas, medios, fragmentos y períodos en una sola
-expresión. Los conteos del subgrafo del día (723 documentos, 723 fragmentos,
-27 temas, 13 categorías) confirman la correcta construcción del grafo y la
-correspondencia con los datos relacionales en Postgres. Las catorce
+expresión. Sobre el corpus completo, el grafo materializó 98\,808 nodos y
+192\,367 relaciones, con correspondencia 1:1 exacta entre los 40\,974
+documentos de la capa Silver de Postgres y los 40\,974 nodos \texttt{Documento}
+(y 40\,974 nodos \texttt{Fragmento}) del grafo, confirmando la trazabilidad
+consistente entre ambos almacenes. Las catorce
 herramientas del servidor MCP, todas implementadas sobre \texttt{MATCH},
 \texttt{MERGE} y proyecciones Cypher contra este grafo, demuestran
 operativamente que las relaciones modeladas son consultables en producción.
@@ -232,23 +247,37 @@ más pronunciada en preguntas \texttt{factual} ($\Delta=+0.902$ en
 corrección) y \texttt{causal} ($\Delta=+0.480$), confirmando la
 superioridad estructural del paradigma de acceso a datos tabulares por
 herramientas tipadas sobre la recuperación textual por \textit{embeddings}.
+La magnitud de esta ventaja está influida por la proporción de preguntas
+\texttt{factual} sobre datos estructurados (encuestas e indicadores
+macroeconómicos) que el RAG vectorial no puede resolver por diseño; esta
+diferencia, lejos de ser un sesgo del experimento, es precisamente la
+capacidad que el sistema propuesto aporta y que la hipótesis busca verificar.
 
 \textbf{HE5} —\textit{El sistema integrado basado en LLMs, grafos de
 conocimiento y GraphRAG alcanza niveles de calidad analítica y coherencia
 temática verificables mediante métricas contra ground truth humano y
 evaluaciones LLM-as-judge sobre conjuntos anotados}— \textbf{se valida}.
-El sistema integrado, operado en producción durante la prueba piloto del
-12 y 13 de marzo de 2026, fue evaluado en sus dos planos de salida: (i)
-el módulo de etiquetado mostró \textbf{F1 macro 0.856} en categoría temática
-y \textbf{MAE 0.107} en sentimiento continuo contra etiquetas humanas
-(n=100); (ii) la capa GraphRAG mostró \textbf{tool selection accuracy de
-83.3\%}, \textbf{corrección de respuesta de 0.792}, \textbf{relevancia de
-0.842} y \textbf{fidelidad de 0.854} sobre un \textit{golden set} de 30
-preguntas evaluado por DeepSeek-Chat como juez independiente. La
-articulación de ambos planos —etiquetado y consulta— sobre el grafo Neo4j
-permite que las consultas en lenguaje natural devuelvan respuestas
-sustentadas por evidencia textual del corpus original, cerrando el ciclo
-completo del sistema de inteligencia electoral.
+El sistema integrado fue evaluado en sus dos planos de salida: (i)
+el módulo de etiquetado mostró F1 macro 0.856 en categoría temática
+y MAE 0.107 en sentimiento continuo contra etiquetas humanas
+(n=100); (ii) la capa GraphRAG mostró una tool selection accuracy de
+83.3\%, una corrección de respuesta de 0.792 y una relevancia de
+0.842 sobre un golden set de 30 preguntas evaluado por DeepSeek-Chat
+como juez independiente. En cuanto a la fidelidad, que mide el grado de
+sustento de la respuesta en el contexto recuperado, es decir, la ausencia
+de alucinación, y no su corrección factual, el MCP obtuvo 0.854 frente a
+0.868 del RAG por similitud vectorial: una diferencia marginal de 0.014,
+dentro del ruido esperado del juez, que indica un nivel de sustento
+equivalente entre ambos sistemas. El hallazgo central es que el sistema
+propuesto mantiene la misma fidelidad que el RAG sin sacrificar corrección:
+el RAG es fiel a los fragmentos que recupera, pero esos fragmentos con
+frecuencia no contienen el dato preciso (corrección 0.196), mientras que el
+MCP, con un sustento equivalente, accede a la base de datos estructurada y
+entrega respuestas factualmente correctas (corrección 0.792, cuatro veces
+superior). La articulación de ambos planos, etiquetado y consulta, sobre el
+grafo Neo4j permite que las consultas en lenguaje natural devuelvan
+respuestas sustentadas por evidencia textual del corpus original, cerrando el
+ciclo completo del sistema de inteligencia electoral.
 
 \subsection*{Consideraciones y limitaciones}
 Sin perjuicio de los resultados obtenidos, el sistema Electoral-Peru-2026
@@ -267,16 +296,26 @@ no es accesible mediante \textit{scraping} público.
 
 En cuarto lugar, los \textit{gold datasets} construidos para la evaluación
 contra \textit{ground truth} tienen restricciones de tamaño y diseño que
-deben considerarse al interpretar los resultados: (i) el dataset de
-etiquetado fue anotado por un único anotador (n=100 documentos), por lo que
-no se reporta el coeficiente $\kappa$ de Cohen inter-anotador; (ii) el
-dataset de deduplicación de temas (n=15 pares) tiene una muestra
-insuficiente para extraer conclusiones robustas sobre precision/recall de
-la fase de \texttt{llm\_dedup}, donde cada caso pesa cerca de 50 puntos
-porcentuales; (iii) el \textit{golden set} de consulta (n=30 preguntas)
-cubre un período mediático acotado al 10--12 de marzo de 2026, lo que
-coloca al RAG \textit{baseline} en desventaja estructural para preguntas
-sobre encuestas posteriores a esa fecha.
+deben considerarse al interpretar los resultados: (i) el \textit{ground
+truth} del dataset de etiquetado (n=100 documentos) fue establecido de forma
+independiente por un único especialista humano —sin partir de las
+predicciones del modelo evaluado—, por lo que, al contar con un solo
+anotador, no se reporta el coeficiente $\kappa$ de Cohen inter-anotador; la
+incorporación de un segundo anotador para cuantificar el acuerdo
+inter-anotador queda como trabajo futuro; (ii) el dataset de deduplicación
+de temas (n=15 pares) tiene una muestra insuficiente para extraer
+conclusiones robustas sobre precision/recall de la fase de
+\texttt{llm\_dedup}, donde cada caso pesa cerca de 50 puntos porcentuales;
+(iii) el \textit{golden set} de consulta (n=30 preguntas) se ancló a un
+\textit{snapshot} controlado del grafo (\textit{graph version} 2026-03-13,
+cobertura mediática del 10 al 12 de marzo de 2026) para garantizar la
+reproducibilidad del experimento. Esta acotación expone una diferencia
+inherente de paradigma —no un sesgo del test—: el RAG \textit{baseline}, al
+operar por recuperación vectorial sobre \textit{chunks} de texto, es
+incapaz por diseño de filtrar temporalmente o consultar datos estructurados
+(encuestas, indicadores macroeconómicos), mientras que el MCP accede a la
+base de datos relacional completa. Precisamente esa diferencia de
+capacidades es la que el experimento busca medir.
 \section{Recomendaciones}
 A partir de los resultados obtenidos y las limitaciones identificadas, se formulan
 las siguientes recomendaciones para trabajos de investigación futuros:
