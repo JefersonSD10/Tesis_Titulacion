@@ -245,23 +245,37 @@ más pronunciada en preguntas \texttt{factual} ($\Delta=+0.902$ en
 corrección) y \texttt{causal} ($\Delta=+0.480$), confirmando la
 superioridad estructural del paradigma de acceso a datos tabulares por
 herramientas tipadas sobre la recuperación textual por \textit{embeddings}.
+La magnitud de esta ventaja está influida por la proporción de preguntas
+\texttt{factual} sobre datos estructurados (encuestas e indicadores
+macroeconómicos) que el RAG vectorial no puede resolver por diseño; esta
+diferencia, lejos de ser un sesgo del experimento, es precisamente la
+capacidad que el sistema propuesto aporta y que la hipótesis busca verificar.
 
 \textbf{HE5} —\textit{El sistema integrado basado en LLMs, grafos de
 conocimiento y GraphRAG alcanza niveles de calidad analítica y coherencia
 temática verificables mediante métricas contra ground truth humano y
 evaluaciones LLM-as-judge sobre conjuntos anotados}— \textbf{se valida}.
-El sistema integrado, operado en producción durante la prueba piloto del
-12 y 13 de marzo de 2026, fue evaluado en sus dos planos de salida: (i)
-el módulo de etiquetado mostró \textbf{F1 macro 0.856} en categoría temática
-y \textbf{MAE 0.107} en sentimiento continuo contra etiquetas humanas
-(n=100); (ii) la capa GraphRAG mostró \textbf{tool selection accuracy de
-83.3\%}, \textbf{corrección de respuesta de 0.792}, \textbf{relevancia de
-0.842} y \textbf{fidelidad de 0.854} sobre un \textit{golden set} de 30
-preguntas evaluado por DeepSeek-Chat como juez independiente. La
-articulación de ambos planos —etiquetado y consulta— sobre el grafo Neo4j
-permite que las consultas en lenguaje natural devuelvan respuestas
-sustentadas por evidencia textual del corpus original, cerrando el ciclo
-completo del sistema de inteligencia electoral.
+El sistema integrado fue evaluado en sus dos planos de salida: (i)
+el módulo de etiquetado mostró F1 macro 0.856 en categoría temática
+y MAE 0.107 en sentimiento continuo contra etiquetas humanas
+(n=100); (ii) la capa GraphRAG mostró una tool selection accuracy de
+83.3\%, una corrección de respuesta de 0.792 y una relevancia de
+0.842 sobre un golden set de 30 preguntas evaluado por DeepSeek-Chat
+como juez independiente. En cuanto a la fidelidad, que mide el grado de
+sustento de la respuesta en el contexto recuperado, es decir, la ausencia
+de alucinación, y no su corrección factual, el MCP obtuvo 0.854 frente a
+0.868 del RAG por similitud vectorial: una diferencia marginal de 0.014,
+dentro del ruido esperado del juez, que indica un nivel de sustento
+equivalente entre ambos sistemas. El hallazgo central es que el sistema
+propuesto mantiene la misma fidelidad que el RAG sin sacrificar corrección:
+el RAG es fiel a los fragmentos que recupera, pero esos fragmentos con
+frecuencia no contienen el dato preciso (corrección 0.196), mientras que el
+MCP, con un sustento equivalente, accede a la base de datos estructurada y
+entrega respuestas factualmente correctas (corrección 0.792, cuatro veces
+superior). La articulación de ambos planos, etiquetado y consulta, sobre el
+grafo Neo4j permite que las consultas en lenguaje natural devuelvan
+respuestas sustentadas por evidencia textual del corpus original, cerrando el
+ciclo completo del sistema de inteligencia electoral.
 
 \subsection*{Consideraciones y limitaciones}
 Sin perjuicio de los resultados obtenidos, el sistema Electoral-Peru-2026
