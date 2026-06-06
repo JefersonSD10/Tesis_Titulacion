@@ -82,11 +82,11 @@ extracción multi-etiqueta de actores principales (F1 micro 0.295).
 
 Para el módulo de detección dinámica de temas, el enfoque híbrido LLM +
 \textit{retrieval} multinivel con la configuración \textit{cosine} $\geq 0.85$
-del \textit{override} semántico post-LLM detectó \textbf{27 temas únicos} en el
-corpus de 655 documentos del 22 de marzo de 2026 (vista
-\texttt{gold\_temas\_diarios} de Postgres). La \textbf{tasa de reuso} del catálogo
-ascendió del 13\% en la corrida inicial (catálogo vacío) al 70{,}5\% en la
-corrida completa, evidenciando la curva de maduración esperable. El
+del \textit{override} semántico post-LLM detectó \textbf{4\,378 temas
+distintos} sobre el corpus completo (40\,974 documentos, 1 ene -- 6 abr 2026).
+La \textbf{tasa de reuso} del catálogo ascendió del 13\% en la corrida inicial
+de calibración (catálogo vacío) al 70{,}5\% en corridas posteriores,
+evidenciando la curva de maduración esperable. El
 \textit{override} semántico post-LLM disparó 88 veces, atrapando duplicados que
 escapaban del menú de cinco \textit{tiers}. Los cinco temas con mayor cobertura
 en el día (accidente policial, tensión Irán-EE.UU., captura de banda en El
@@ -219,9 +219,11 @@ valida}. El grafo Neo4j Community con sus diez tipos de nodos y siete tipos
 de relaciones (\texttt{MENCIONA}, \texttt{SOBRE\_TEMA},
 \texttt{PUBLICADO\_POR}, entre otras) permitió ejecutar consultas Cypher
 que articulan candidatos, temas, medios, fragmentos y períodos en una sola
-expresión. Los conteos del subgrafo del día (723 documentos, 723 fragmentos,
-27 temas, 13 categorías) confirman la correcta construcción del grafo y la
-correspondencia con los datos relacionales en Postgres. Las catorce
+expresión. Sobre el corpus completo, el grafo materializó 98\,808 nodos y
+192\,367 relaciones, con correspondencia 1:1 exacta entre los 40\,974
+documentos de la capa Silver de Postgres y los 40\,974 nodos \texttt{Documento}
+(y 40\,974 nodos \texttt{Fragmento}) del grafo, confirmando la trazabilidad
+consistente entre ambos almacenes. Las catorce
 herramientas del servidor MCP, todas implementadas sobre \texttt{MATCH},
 \texttt{MERGE} y proyecciones Cypher contra este grafo, demuestran
 operativamente que las relaciones modeladas son consultables en producción.
