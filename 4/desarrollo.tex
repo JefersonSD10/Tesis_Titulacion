@@ -313,36 +313,93 @@ distribución temática de este subconjunto, reportada en la Tabla
     \end{flushleft}
 \end{table}
 
-Finalmente, la variable dependiente del estudio —el sentimiento mediático hacia
-cada candidato— se sintetiza en la Tabla \ref{5:table_sent_cand} para los
-candidatos con mayor cobertura. El sentimiento promedio es predominantemente
-negativo, coherente con el tono crítico de la cobertura electoral peruana
-\parencite{pr_alvi2023twitter_election_review}: César Acuña ($-0.335$) y Vladimir
-Cerrón ($-0.406$) presentan los valores más negativos, mientras que Marisol Pérez
-Tello ($+0.106$) y Carlos Álvarez ($+0.062$) son los únicos con sentimiento
-mediático neto positivo.
+Finalmente, la variable dependiente del estudio —la percepción mediática hacia
+cada candidato— se sintetiza en la Tabla \ref{5:table_cand_full} para los 40
+candidatos presidenciales registrados. Por cada candidato se reportan cinco
+indicadores: el número de menciones en el corpus, la cantidad de temas distintos
+que lo contienen, el número de medios (canales) que lo cubren, el ratio
+menciones/tema y el sentimiento mediático promedio en escala $[-1,1]$.
 
 \begin{table}[h!]
-    \caption[Sentimiento mediático promedio por candidato]{Sentimiento mediático promedio (escala $[-1,1]$) y número de menciones de los candidatos con mayor cobertura en el corpus completo.}
-    \label{5:table_sent_cand}
+    \caption[Indicadores mediáticos de los 40 candidatos presidenciales]{Menciones, temas distintos, medios de cobertura, ratio menciones/tema y sentimiento mediático promedio (escala $[-1,1]$) de los 40 candidatos presidenciales en el corpus completo (1 ene -- 6 abr 2026).}
+    \label{5:table_cand_full}
     \centering
-    \small
-    \begin{tabular}{ m{4.8cm}M{2.5cm}M{2.5cm} }
+    \scriptsize
+    \begin{longtable}{ m{0.5cm}m{3.6cm}M{1.2cm}M{1.1cm}M{1.2cm}M{1.3cm}M{1.4cm} }
         \specialrule{.1em}{.05em}{.05em}
-        \Centering{Candidato} & \Centering{Menciones} & \Centering{Sentimiento} \\
+        \Centering{\#} & \Centering{Candidato} & \Centering{Menc.} & \Centering{Temas} & \Centering{Medios} & \Centering{Ratio M/T} & \Centering{Sent.} \\
         \specialrule{.1em}{.05em}{.05em}
-        Keiko Fujimori        & 1\,071 & $-0.193$ \\
-        Rafael López Aliaga   & 813    & $-0.219$ \\
-        César Acuña           & 670    & $-0.335$ \\
-        Carlos Álvarez        & 384    & $+0.062$ \\
-        Vladimir Cerrón       & 376    & $-0.406$ \\
-        Marisol Pérez Tello   & 268    & $+0.106$ \\
+        \endfirsthead
         \specialrule{.1em}{.05em}{.05em}
-    \end{tabular}
+        \Centering{\#} & \Centering{Candidato} & \Centering{Menc.} & \Centering{Temas} & \Centering{Medios} & \Centering{Ratio M/T} & \Centering{Sent.} \\
+        \specialrule{.1em}{.05em}{.05em}
+        \endhead
+        1  & Keiko Fujimori         & 1\,262 & 353 & 7 & 3.58 & $-0.193$ \\
+        2  & Rafael López Aliaga    & 1\,025 & 321 & 7 & 3.19 & $-0.219$ \\
+        3  & César Acuña            & 829 & 290 & 7 & 2.86 & $-0.335$ \\
+        4  & Carlos Álvarez         & 515 & 168 & 7 & 3.07 & $+0.062$ \\
+        5  & Alfonso López Chau     & 479 & 179 & 7 & 2.68 & $-0.162$ \\
+        6  & Jorge Nieto Montesinos & 455 & 156 & 7 & 2.92 & $-0.046$ \\
+        7  & Vladimir Cerrón        & 448 & 178 & 7 & 2.52 & $-0.406$ \\
+        8  & Roberto Sánchez        & 369 & 159 & 7 & 2.32 & $-0.207$ \\
+        9  & Fernando Olivera       & 349 & 97  & 7 & 3.60 & $-0.206$ \\
+        10 & Marisol Pérez Tello    & 339 & 127 & 7 & 2.67 & $+0.106$ \\
+        11 & José Luna Gálvez       & 317 & 151 & 7 & 2.10 & $-0.157$ \\
+        12 & Enrique Valderrama     & 305 & 116 & 7 & 2.63 & $+0.015$ \\
+        13 & Mario Vizcarra         & 267 & 102 & 7 & 2.62 & $-0.068$ \\
+        14 & Wolfgang Grozo         & 245 & 98  & 7 & 2.50 & $-0.060$ \\
+        15 & Mesías Guevara         & 242 & 102 & 7 & 2.37 & $+0.099$ \\
+        16 & Yonhy Lescano          & 220 & 88  & 7 & 2.50 & $-0.083$ \\
+        17 & José Williams Zapata   & 206 & 91  & 7 & 2.26 & $+0.092$ \\
+        18 & George Forsyth         & 202 & 86  & 7 & 2.35 & $+0.111$ \\
+        19 & Fiorella Molinelli     & 198 & 83  & 7 & 2.39 & $+0.059$ \\
+        20 & Álvaro Paz de la Barra & 196 & 63  & 6 & 3.11 & $-0.054$ \\
+        21 & Ronald Atencio         & 188 & 97  & 7 & 1.94 & $-0.077$ \\
+        22 & Carlos Espá            & 168 & 76  & 7 & 2.21 & $+0.085$ \\
+        23 & Rafael Belaúnde        & 142 & 81  & 6 & 1.75 & $+0.203$ \\
+        24 & Roberto Chiabra        & 137 & 70  & 7 & 1.96 & $+0.154$ \\
+        25 & Ricardo Belmont        & 133 & 59  & 6 & 2.25 & $+0.122$ \\
+        26 & Alex Gonzáles          & 115 & 43  & 6 & 2.67 & $-0.001$ \\
+        27 & Martín Vizcarra        & 115 & 65  & 7 & 1.77 & $-0.207$ \\
+        28 & Herbert Caller         & 114 & 60  & 6 & 1.90 & $+0.113$ \\
+        29 & Hernando de Soto       & 112 & 43  & 7 & 2.60 & $-0.034$ \\
+        30 & Paul Jaimes            & 110 & 57  & 6 & 1.93 & $+0.047$ \\
+        31 & Francisco Diez Canseco & 103 & 58  & 6 & 1.78 & $+0.035$ \\
+        32 & Walter Chirinos        & 101 & 45  & 6 & 2.24 & $+0.045$ \\
+        33 & Carlos Jaico           & 101 & 46  & 6 & 2.20 & $+0.239$ \\
+        34 & Daniel Urresti         & 92  & 39  & 6 & 2.36 & $-0.135$ \\
+        35 & Armando Massé          & 92  & 50  & 6 & 1.84 & $+0.227$ \\
+        36 & Rosario Fernández Bazán & 88 & 51  & 6 & 1.73 & $+0.056$ \\
+        37 & Charlie Carrasco       & 80  & 40  & 6 & 2.00 & $+0.086$ \\
+        38 & Antonio Ortíz          & 78  & 39  & 6 & 2.00 & $+0.188$ \\
+        39 & Antauro Humala         & 22  & 13  & 5 & 1.69 & $-0.433$ \\
+        40 & Verónika Mendoza       & 10  & 9   & 5 & 1.11 & $-0.133$ \\
+        \specialrule{.1em}{.05em}{.05em}
+    \end{longtable}
     \begin{flushleft}
         \small Fuente: Elaboración propia.
     \end{flushleft}
 \end{table}
+
+De la Tabla \ref{5:table_cand_full} se desprenden tres lecturas relevantes para
+caracterizar la cobertura mediática del proceso. En primer lugar, el
+\textbf{sentimiento} es predominantemente negativo en los candidatos más
+cubiertos —César Acuña ($-0.335$), Vladimir Cerrón ($-0.406$) y Antauro Humala
+($-0.433$) son los más negativos—, mientras que solo un grupo de candidatos
+de cobertura media presenta sentimiento neto positivo (Carlos Jaico $+0.239$,
+Armando Massé $+0.227$, Rafael Belaúnde $+0.203$). En segundo lugar, el
+\textbf{número de medios} funciona como indicador de alcance editorial: los 18
+candidatos con mayor cobertura llegan a las 7 fuentes (cobertura universal),
+mientras que los candidatos marginales descienden a 6 o 5 medios (Antauro
+Humala y Verónika Mendoza), evidenciando un menor alcance mediático. En tercer
+lugar, el \textbf{ratio menciones/tema} distingue entre candidatos con narrativa
+mediática construida y candidatos de aparición incidental: valores altos
+($>3.0$, como Fernando Olivera 3.60, Keiko Fujimori 3.58 o Rafael López Aliaga
+3.19) indican cobertura insistente y repetida sobre la agenda propia del
+candidato, mientras que valores bajos ($<1.9$, como Verónika Mendoza 1.11 o
+Antauro Humala 1.69) reflejan menciones dispersas y esporádicas donde cada
+aparición corresponde a un tema casi distinto, propio de candidatos mencionados
+de pasada y no como protagonistas.
 
 % ──────────────────────────────────────────────────────────────
 \section{Preparación de los datos}
@@ -902,32 +959,68 @@ las corridas progresivas.
     \end{flushleft}
 \end{table}
 
-El sistema detectó \textbf{27 temas únicos} en el corpus de 655 documentos
-del 22 de marzo de 2026. El \textit{override} semántico post-LLM (\textit{cosine}
+En la corrida de calibración de 655 documentos de un día, el sistema detectó
+27 temas únicos, y el \textit{override} semántico post-LLM (\textit{cosine}
 $\geq 0.85$ + misma categoría) capturó 88 \textit{near-duplicates} que el
 menú de cinco \textit{tiers} no había incluido, evitando inflar
 artificialmente el catálogo. Las pasadas de \texttt{consolidate\_day} y
-\texttt{llm\_dedup} se ejecutaron sobre los 27 temas y 6 eventos del día sin
-producir merges en este corpus específico —los thresholds de doble criterio
+\texttt{llm\_dedup} se ejecutaron sin producir merges marginales —los
+thresholds de doble criterio
 (2 de 3: nombre, \textit{embedding}, actores) están calibrados para evitar
 falsos positivos a costa de tolerar duplicados marginales que se pueden
-fusionar en pasadas posteriores—. La distribución de los cinco temas con
-mayor cobertura en el día se reporta en la Tabla \ref{5:table5}.
+fusionar en pasadas posteriores—. Sobre el corpus completo (96 días), el
+módulo detectó \textbf{4\,378 temas} distintos; la distribución de los diez
+temas con mayor cobertura se reporta en la Tabla \ref{5:table5}.
 
 \begin{table}[h!]
-    \caption[Top cinco temas detectados el 22 de marzo de 2026]{Cinco temas con mayor número de noticias detectadas el 22 de marzo de 2026 por el módulo de detección dinámica, extraídos de la vista materializada \texttt{gold\_temas\_diarios}.}
+    \caption[Top diez temas del corpus completo]{Diez temas con mayor número de documentos detectados por el módulo de detección dinámica sobre el corpus completo (1 ene -- 6 abr 2026).}
     \label{5:table5}
     \centering
     \footnotesize
-    \begin{tabular}{ m{6.5cm}m{2.6cm}M{1.4cm}M{2cm} }
+    \begin{tabular}{ m{7cm}m{2.8cm}M{2cm} }
         \specialrule{.1em}{.05em}{.05em}
-        \Centering{Tema} & \Centering{Categoría} & \Centering{N} & \Centering{Sentimiento} \\
+        \Centering{Tema} & \Centering{Categoría} & \Centering{Documentos} \\
         \specialrule{.1em}{.05em}{.05em}
-        accidente\_patrullero\_pnp\_lima\_marzo2026          & seguridad       & 2 & $-0.30$ \\
-        tension\_iran\_eeuu\_medio\_oriente\_marzo2026       & internacional   & 2 & $-0.80$ \\
-        captura\_banda\_mexicanos\_el\_agustino\_marzo2026   & seguridad       & 2 & $-0.50$ \\
-        majes\_siguas\_ii\_arequipa\_marzo2026               & infraestructura & 1 & $-0.30$ \\
-        propuesta\_educacion\_ppp\_marzo2026                 & educacion       & 1 & $+0.20$ \\
+        tension\_eeuu\_venezuela                  & internacional   & 4\,484 \\
+        homicidios\_piura\_2025                   & seguridad       & 1\,285 \\
+        cobertura\_electoral\_rpp\_2026           & institucional   & 584 \\
+        tension\_eeuu\_iran\_ataque\_2026         & internacional   & 391 \\
+        sucesion\_presidencial\_jeri\_balcazar    & institucional   & 351 \\
+        trata\_personas\_ucayali                  & justicia        & 334 \\
+        corte\_agua\_sedacusco\_cusco             & infraestructura & 249 \\
+        tipo\_cambio\_dolar\_peru                 & economia        & 248 \\
+        debate\_presidencial\_jne                 & institucional   & 229 \\
+        gasto\_locadores\_procuraduria\_lambayeque & corrupcion     & 224 \\
+        \specialrule{.1em}{.05em}{.05em}
+    \end{tabular}
+    \begin{flushleft}
+        \small Fuente: Elaboración propia.
+    \end{flushleft}
+\end{table}
+
+Al restringir el análisis al universo filtrado por candidato (Tabla
+\ref{5:table5_cand}), los temas más cubiertos resultan considerablemente más
+coherentes con el objetivo electoral: dominan los debates presidenciales y las
+encuestas, frente al corpus general donde la agenda internacional y de
+seguridad ocupa los primeros lugares. Esto confirma que el filtrado por
+candidato concentra eficazmente la cobertura político-electoral.
+
+\begin{table}[h!]
+    \caption[Top temas del corpus filtrado por candidato]{Temas con mayor número de documentos en el subconjunto que menciona al menos un candidato presidencial.}
+    \label{5:table5_cand}
+    \centering
+    \footnotesize
+    \begin{tabular}{ m{7cm}m{2.8cm}M{2cm} }
+        \specialrule{.1em}{.05em}{.05em}
+        \Centering{Tema} & \Centering{Categoría} & \Centering{Documentos} \\
+        \specialrule{.1em}{.05em}{.05em}
+        debate\_presidencial\_jne (31-mar)       & institucional & 184 \\
+        debate\_presidencial\_seguridad (24-mar) & seguridad     & 153 \\
+        debate\_presidencial\_indecisos          & institucional & 115 \\
+        cobertura\_electoral\_rpp\_2026          & institucional & 113 \\
+        encuesta\_ipsos\_simulacro\_voto         & social\_genero & 67 \\
+        gasto\_locadores\_procuraduria\_lambayeque & corrupcion  & 63 \\
+        tardanza\_debate\_nieto (2-abr)          & institucional & 63 \\
         \specialrule{.1em}{.05em}{.05em}
     \end{tabular}
     \begin{flushleft}
@@ -1198,48 +1291,58 @@ Ragas como complemento obligatorio a la similitud coseno.
 La evaluación del sistema integrado se centra en la medición \textit{end-to-end}
 del pipeline de ocho pasos diarios y de su comportamiento bajo
 re-ejecuciones (idempotencia). La Tabla \ref{5:table7} resume las
-mediciones obtenidas en el corpus del 22 de marzo de 2026.
+mediciones obtenidas en la corrida completa del corpus electoral
+(1 de enero al 6 de abril de 2026).
 
 \begin{table}[h!]
-    \caption[Métricas operacionales del sistema Electoral-Peru-2026 integrado]{Métricas operacionales medidas en la corrida \textit{end-to-end} del pipeline sobre el corpus electoral del 22 de marzo de 2026.}
+    \caption[Métricas operacionales del sistema Electoral-Peru-2026 integrado]{Métricas operacionales medidas en la corrida \textit{end-to-end} del pipeline sobre el corpus electoral completo (96 días, 1 de enero al 6 de abril de 2026).}
     \label{5:table7}
     \centering
     \small
-    \begin{tabular}{ m{6.5cm}m{6cm} }
+    \begin{tabular}{ m{6.8cm}m{5.7cm} }
         \specialrule{.1em}{.05em}{.05em}
         \Centering{Métrica} & \Centering{Valor medido} \\
         \specialrule{.1em}{.05em}{.05em}
-        Documentos crudos ingestados                & 818 \\
-        Documentos pasados los filtros pre-LLM      & 655 (reducción 20\%) \\
-        Latencia promedio del LLM por documento     & 5.2 s (DeepSeek-Chat) \\
-        Cache hit rate del \textit{prompt}          & 85.5\% \\
-        Tasa de \textit{reuso} de temas             & 70.5\% \\
-        Costo operacional del día                   & \$0.13 USD (655 docs) \\
-        Costo proyectado mensual ($\sim$20k docs, $\sim$655 docs/día $\times$ 30 días)   & \$3.9 USD$^{a}$ \\
-        Tiempo de \texttt{embed-day} (744 docs, CPU) & 2.0 s ($\sim$368 docs/s) \\
-        Tiempo de \texttt{load-silver} (2da corrida) & 0.2 s \\
-        Tiempo de \texttt{build-graph} (2da corrida) & 0.7 s \\
-        \textit{Refresh} de las cuatro vistas Gold  & $<$0.05 s c/u \\
+        Período procesado                           & 96 días (1 ene -- 6 abr 2026) \\
+        Documentos en la capa Silver (Postgres)     & 40\,974 \\
+        Temas detectados (catálogo \texttt{temas\_conocidos}) & 4\,378 \\
+        Actores detectados (candidatos + instituciones + ad-hoc) & 12\,222 \\
+        Nodos totales del grafo Neo4j               & 98\,808 \\
+        Relaciones totales del grafo Neo4j          & 192\,367 \\
+        Errores en el run completo                  & 0 \\
+        Cache hit rate del \textit{prompt} (DeepSeek) & 82--85\% \\
+        Tiempo total de la corrida                  & $\sim$21 h 30 min \\
+        Costo total DeepSeek (40\,974 docs)         & $\sim$\$10--15 USD \\
         Idempotencia (3 corridas consecutivas)      & Counts Postgres y Neo4j constantes \\
         Cobertura de tests automatizados            & 94/94 pasando \\
         \specialrule{.1em}{.05em}{.05em}
     \end{tabular}
     \begin{flushleft}
-        \small Fuente: Elaboración propia.\\[2pt]
-        \small $^{a}$\textbf{Nota de costeo}: El costo proyectado mensual de \$3.9~USD se obtiene del costo efectivo medido: \$0.13/día $\times$ 30~días $\approx$ \$3.9~USD, equivalente a $\sim$655~docs/día $\times$ 30~días $\approx$ \textbf{20k~docs/mes}. Este es el \textit{costo efectivo con caché} (85.5\,\% de \textit{cache hit} sobre el \textit{prompt} de extracción DeepSeek). El \textit{costo nominal sin caché}, a la tasa base de \$0.0008/doc, ascendería a $\sim$\$16~USD/mes para el mismo volumen; la caché de prefijo reduce ese valor en $\approx$75\,\%, dando el costo efectivo de \$3.9~USD/mes. Ambas cifras deben distinguirse al comparar con benchmarks externos que reporten costos sin descuento de caché.
+        \small Fuente: Elaboración propia, datos del run completo (snapshot \texttt{c4cf107}, 2026-05-24).
     \end{flushleft}
 \end{table}
 
 La idempotencia del pipeline se validó ejecutando \texttt{load-silver} +
-\texttt{build-graph} tres veces consecutivas sobre el mismo día: los conteos
-en Postgres (\texttt{documentos=744, segmentos=744, analisis\_llm=30}) y en
-Neo4j (\texttt{Documento=723, Fragmento=723, Tema=27}) se mantuvieron
-constantes, confirmando el correcto funcionamiento de los \texttt{ON
-CONFLICT} y \texttt{MERGE} sobre las propiedades \texttt{UNIQUE} de cada
-entidad. La diferencia entre 744 documentos en Postgres y 723 en Neo4j
-corresponde a 21 documentos cuya fecha de publicación cae fuera del día UTC
-del \textit{query} del subgrafo (algunos del 21-mar, otros del 23-mar) y
-quedan filtrados, comportamiento esperado por el diseño.
+\texttt{build-graph} tres veces consecutivas sobre el mismo rango: los conteos
+en Postgres y en Neo4j se mantuvieron constantes, confirmando el correcto
+funcionamiento de los \texttt{ON CONFLICT} y \texttt{MERGE} sobre las
+propiedades \texttt{UNIQUE} de cada entidad. Sobre el corpus completo existe
+\textbf{correspondencia 1:1 exacta} entre los documentos de la capa Silver de
+Postgres y los nodos del grafo: 40\,974 documentos en Postgres y 40\,974 nodos
+\texttt{Documento} (y 40\,974 nodos \texttt{Fragmento}) en Neo4j. Esta paridad
+exacta —que en una corrida de un solo día no se alcanzaba por el filtrado de
+documentos de borde fuera de la ventana UTC— se cumple en el run completo porque
+las 96 ventanas diarias consecutivas cubren la totalidad del rango sin dejar
+documentos huérfanos.
+
+Conviene precisar que la correspondencia 1:1 aplica a documentos y fragmentos,
+no a actores ni temas: el grafo materializa \textbf{selectivamente} solo los
+actores y temas efectivamente referenciados por algún fragmento del rango. Así,
+de los 12\,222 actores del catálogo Postgres, el grafo materializa 10\,949 nodos
+\texttt{Actor} (los demás existen en el catálogo pero no aparecen en ninguna
+mención), y de los 4\,378 temas detectados, el grafo materializa 4\,193 nodos
+\texttt{Tema}. Esta materialización selectiva es una decisión de diseño que
+mantiene el grafo acotado a las entidades con evidencia textual real.
 
 % ──────────────────────────────────────────────────────────────
 \section{Despliegue}
