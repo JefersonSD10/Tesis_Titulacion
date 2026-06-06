@@ -831,22 +831,25 @@ esperadas y respuesta de referencia, que permite contrastar el sistema
 GraphRAG contra un \textit{baseline} RAG por similitud semántica, conforme al
 marco de métricas declarado en la sección \ref{4:metricas-resultados} del
 capítulo de metodología. En ambos \textit{gold datasets} se utilizaron
-herramientas de inteligencia artificial únicamente como \textbf{asistencia de
-redacción y lectura} de los documentos; la definición del \textit{ground
+herramientas de inteligencia artificial únicamente como asistencia de
+redacción y lectura de los documentos; la definición del \textit{ground
 truth} y su validación fueron realizadas por el especialista humano, no por
 el modelo evaluado.
 
 \textbf{Actividad 1: Evaluar módulo de análisis de sentimientos}
 \\
-Se ejecutaron tres corridas progresivas con DeepSeek-Chat para validar el
-módulo de extracción de sentimientos a nivel de aspecto: una corrida piloto
-con 12 documentos (3 por fuente), una corrida intermedia con 30 documentos y
-la corrida final completa con 655 documentos del 22 de marzo de 2026 (tras
-los filtros pre-LLM). Los resultados operacionales se muestran en la
-Tabla \ref{5:table1}.
+Durante la fase de calibración del \textit{prompt} se ejecutaron tres
+corridas progresivas con DeepSeek-Chat para validar el módulo de extracción
+de sentimientos a nivel de aspecto: una corrida piloto con 12 documentos
+(3 por fuente), una corrida intermedia con 30 documentos y una corrida de
+calibración con 655 documentos de un día (tras los filtros pre-LLM). Estas
+corridas, previas a la ejecución del run completo de 96 días, permitieron
+ajustar el \textit{prompt} y observar la maduración del caché y del catálogo
+de temas. Los resultados operacionales se muestran en la Tabla
+\ref{5:table1}.
 
 \begin{table}[h!]
-    \caption[Resultados operacionales del módulo de sentimientos en corridas reales]{Resultados operacionales del módulo de análisis de sentimientos en tres corridas progresivas sobre el corpus electoral del 22 de marzo de 2026.}
+    \caption[Resultados operacionales del módulo de sentimientos en corridas de calibración]{Resultados operacionales del módulo de análisis de sentimientos en tres corridas progresivas de calibración, previas al run completo.}
     \label{5:table1}
     \centering
     \small
