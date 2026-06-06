@@ -3,23 +3,32 @@
 \appendix
 \setcounter{section}{0}% Reset numbering for sections
 \renewcommand{\thesection}{\Alph{section}}% Adjust section printing (from here onward)
+\renewcommand{\thesubsection}{\Alph{section}.\arabic{subsection}}% Subsections of appendix: H.1, H.2 (not 0.8.1)
+\renewcommand{\thesubsubsection}{\Alph{section}.\arabic{subsection}.\arabic{subsubsection}}
 
+% Bloque unificado de anexos en orientacion horizontal (Arbol de Problemas,
+% Arbol de Objetivos y Matriz de Consistencia). Se usa un solo entorno
+% \begin{landscape} para evitar paginas en blanco entre cada anexo y se
+% aplica el pagestyle 'horizontal' que oculta el encabezado largo (que no
+% entra correctamente al rotar la pagina) dejando unicamente el numero de
+% pagina al pie.
+
+\begin{landscape} 
 % ──────────────────────────────────────────────────────────────
 \section{Árbol de Problemas}
 % ──────────────────────────────────────────────────────────────
 
 \label{anexo1}
 
-\begin{figure}[h]
-	\begin{center}
-		\includegraphics[width=1.05\textwidth]{anexos/arbol_problemas.png}
-		\caption[Árbol de problemas de la investigación]{Árbol de problemas identificados en la investigación sobre análisis de la percepción actual proyectada por los medios de comunicación en contextos electorales mediante inteligencia electoral.\\
-		Fuente: Elaboración propia.}
-		\label{fig:arbol_problemas}
-	\end{center}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1.15\textwidth]{anexos/arbol_problemas.png}
+	\caption[Árbol de problemas de la investigación]{Árbol de problemas identificados en la investigación sobre análisis de la percepción actual proyectada por los medios de comunicación en contextos electorales mediante inteligencia electoral.\\
+	Fuente: Elaboración propia.}
+	\label{fig:arbol_problemas}
 \end{figure}
 
-\clearpage
+\newpage
 
 % ──────────────────────────────────────────────────────────────
 \section{Árbol de Objetivos}
@@ -27,91 +36,30 @@
 
 \label{anexo2}
 
-\begin{figure}[h]
-	\begin{center}
-		\includegraphics[width=1.05\textwidth]{anexos/arbol_objetivos.png}
-		\caption[Árbol de objetivos de la investigación]{Árbol de objetivos que estructuran la investigación sobre análisis de percepciones con LLMs y detección dinámica de temas en ecosistemas digitales.\\
-		Fuente: Elaboración propia.}
-		\label{fig:arbol_objetivos}
-	\end{center}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1.15\textwidth]{anexos/arbol_objetivos.png}
+	\caption[Árbol de objetivos de la investigación]{Árbol de objetivos que estructuran la investigación sobre análisis de percepciones con LLMs y detección dinámica de temas en ecosistemas digitales.\\
+	Fuente: Elaboración propia.}
+	\label{fig:arbol_objetivos}
 \end{figure}
 
-\clearpage
+\newpage
 
 % ──────────────────────────────────────────────────────────────
-\begin{landscape}
-    \section{Matriz de Consistencia}
-    \label{anexo3}
-    
-    \begingroup
-    \renewcommand\arraystretch{1.3}
-    \small
-    \begin{longtable}{p{2.8cm} p{3.2cm} p{3.2cm} p{2.8cm} p{2.8cm} p{2.8cm} p{2.8cm}}
-        
-        \caption[Matriz de consistencia de la investigación]{Matriz de consistencia que articula problema general, objetivo general, hipótesis general, variables, dimensiones e indicadores de la investigación.}\\
-        \label{tbl:matriz_consistencia} \\
-        
-        \specialrule{.1em}{.05em}{.05em}
-        \centering\textbf{TÍTULO} & \centering\textbf{PROBLEMA} & \centering\textbf{OBJETIVO} & \centering\textbf{HIPÓTESIS} & \centering\textbf{VARIABLE} & \centering\textbf{DIMENSIÓN} & \centering\arraybackslash\textbf{INDICADOR} \\
-        \specialrule{.1em}{.05em}{.05em}
-        \endfirsthead
+\section{Matriz de Consistencia}
+% ──────────────────────────────────────────────────────────────
 
-        \caption[]{Matriz de consistencia (continuación).}\\
-        \specialrule{.1em}{.05em}{.05em}
-        \centering\textbf{TÍTULO} & \centering\textbf{PROBLEMA} & \centering\textbf{OBJETIVO} & \centering\textbf{HIPÓTESIS} & \centering\textbf{VARIABLE} & \centering\textbf{DIMENSIÓN} & \centering\arraybackslash\textbf{INDICADOR} \\
-        \specialrule{.1em}{.05em}{.05em}
-        \endhead
-        
-        % Variable Independiente - Usamos {=} para que respete el ancho y no se sobreescriba
-        \multirow{8}{=}{Inteligencia Electoral con LLM: Minería de Sentimientos y Detección Dinámica de Temas Relevantes para analizar la Percepción Actual Proyectada por los Medios de Comunicación en Ecosistemas Digitales}
-        & \multirow{5}{=}{PG: ¿De qué manera un sistema de inteligencia electoral basado en LLMs, grafos de conocimiento y enfoque multi-fuente permite analizar la percepción actual proyectada por los medios de comunicación hacia los candidatos presidenciales en ecosistemas digitales electorales?}
-        & \multirow{5}{=}{OG: Desarrollar un sistema de inteligencia electoral basado en LLMs, grafos de conocimiento y enfoque multi-fuente que permita analizar la percepción actual proyectada por los medios de comunicación hacia los candidatos presidenciales en ecosistemas digitales electorales.}
-        & \multirow{5}{=}{HG: El uso de LLMs, grafos de conocimiento y enfoque multi-fuente permite analizar con mayor precisión y contextualización la percepción actual proyectada por los medios de comunicación hacia los candidatos presidenciales en ecosistemas digitales electorales.}
-        & \multirow{5}{=}{Independiente: Sistema de Inteligencia Electoral con LLM}
-        & \multirow{5}{=}{Arquitectura del pipeline}
-        & \multirow{5}{=}{Integración de módulos ABSA, detección híbrida LLM, Neo4j y GraphRAG} \\
-        & & & & & & \\
-        & & & & & & \\
-        & & & & & & \\
-        \hline
-        
-        % Variable Dependiente
-        & PE1: ¿El uso de LLMs mejora la precisión del análisis de sentimientos en comparación con modelos tradicionales?
-        & OE1: Evaluar la precisión del análisis de sentimientos utilizando LLMs frente a modelos tradicionales de procesamiento de lenguaje natural.
-        & HE1: Los LLMs mejoran significativamente la precisión del análisis de sentimientos respecto a modelos tradicionales.
-        & \multirow{10}{=}{Dependiente: Percepción actual proyectada por los medios de comunicación en ecosistemas digitales}
-        & Sentimiento mediático por candidato
-        & Score continuo $[-1, 1]$ por candidato \\
-        \cline{2-4} \cline{6-7}
+\label{anexo3}
 
-        & PE2: ¿El enfoque multi-fuente mejora la cobertura y representatividad del análisis de la percepción proyectada por los medios de comunicación en ecosistemas digitales?
-        & OE2: Analizar el impacto de integrar múltiples fuentes digitales en la cobertura del análisis de la percepción proyectada por los medios de comunicación.
-        & HE2: La integración multi-fuente incrementa la cobertura y diversidad temática del análisis de la percepción proyectada por los medios de comunicación en ecosistemas digitales.
-        &
-        & Metainformación del corpus
-        & Volumen por fuente y período \\
-        \cline{2-4} \cline{6-7}
-
-        & PE3: ¿El uso de grafos de conocimiento permite modelar mejor las relaciones entre actores, temas y medios?
-        & OE3: Construir un grafo de conocimiento para representar las relaciones entre actores, medios y temas dentro del ecosistema electoral digital.
-        & HE3: Los grafos de conocimiento permiten identificar relaciones complejas no detectables mediante métodos tradicionales.
-        &
-        & Temas relevantes
-        & Coherencia semántica $C_v$ y cobertura \\
-        \cline{2-4} \cline{6-7}
-
-        & PE4: ¿El uso de GraphRAG mejora la generación de insights frente a sistemas RAG tradicionales?
-        & OE4: Evaluar la calidad de los insights generados mediante GraphRAG frente a sistemas RAG tradicionales.
-        & HE4: GraphRAG mejora la relevancia, coherencia y contextualización de los insights generados.
-        &
-        & Evolución temporal
-        & Indicadores de evolución temporal \\
-        
-        \specialrule{.1em}{.05em}{.05em}
-    \end{longtable}
-    \endgroup
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1.15\textwidth]{anexos/matriz_consistencia.png}
+	\caption[Matriz de consistencia]{Matriz que muestra la consistencia entre los objetivos, hipótesis y metodología de la investigación.\\
+	Fuente: Elaboración propia.}
+	\label{fig:matriz_consistencia}
+\end{figure}
 \end{landscape}
-
 \clearpage
 
 % ──────────────────────────────────────────────────────────────
@@ -198,9 +146,6 @@
 		\hline
 
 		\texttt{llm\_dedup\_day} & Máx. 200 pares/día & Deduplicación con LLM Juez sobre pares sospechosos, acotada por costo \\
-		\hline
-
-		Coherencia Semántica & $C_v$ & Métrica de validación de la calidad temática del catálogo \\
 
 		\specialrule{.1em}{.05em}{.05em}
 	\end{tabular}
@@ -268,39 +213,33 @@
 
 \label{anexo7}
 
-\begin{table}[h]
-	\centering
-	\small
-	\setlength{\LTpost}{0pt}
-	\begin{longtable}{p{3cm} p{7cm} p{3cm}}
-		\specialrule{.1em}{.05em}{.05em}
-		\centering\textbf{CATEGORÍA} & \centering\textbf{TÉRMINOS} & \centering\arraybackslash\textbf{CANTIDAD} \\
-		\specialrule{.1em}{.05em}{.05em}
-		\endhead
-		
-		Procesos Electorales & elección, voto, votación, candidato, campaña, debate, mitin, encuesta, sondeo & 9 \\
-		\hline
-		
-		Términos Políticos & gobierno, política, legislatura, congreso, república, democracia, parlamento & 7 \\
-		\hline
-		
-		Instituciones & ONPE, JNE, RENIEC, INE, INEI, MINDEF & 6 \\
-		\hline
-		
-		Temas de Campaña & economía, seguridad, educación, salud, corrupción, gobernabilidad, infraestructura & 7 \\
-		\hline
-		
-		Hashtags Electorales & \#EleccionesPerú2026, \#Voto2026, \#DebatePresidencial, \#CuéntaTuVoto & 4+ \\
-		\hline
-		
-		Candidatos & Nombres completos, apodos, siglas de partidos & Dinámico según proceso \\
-		
-		\specialrule{.1em}{.05em}{.05em}
-		
-	\end{longtable}
-	\caption[Diccionario de palabras clave electorales]{Vocabulario controlado utilizado para filtrar publicaciones relevantes en el corpus multi-fuente durante el período de análisis electoral.}
-	\label{tbl:diccionario_palabras_clave}
-\end{table}
+\begingroup
+\renewcommand\arraystretch{1.3}
+\small
+\setlength{\LTpost}{0pt}
+
+\begin{longtable}{p{3cm} p{7cm} p{3cm}}
+	\caption[Diccionario de palabras clave electorales]{Vocabulario controlado utilizado para filtrar publicaciones relevantes en el corpus multi-fuente durante el período de análisis electoral.} \label{tbl:diccionario_palabras_clave} \\
+
+	\specialrule{.1em}{.05em}{.05em}
+	\centering\textbf{CATEGORÍA} & \centering\textbf{TÉRMINOS} & \centering\arraybackslash\textbf{CANTIDAD} \\
+	\specialrule{.1em}{.05em}{.05em}
+	\endfirsthead
+
+	\specialrule{.1em}{.05em}{.05em}
+	\centering\textbf{CATEGORÍA} & \centering\textbf{TÉRMINOS} & \centering\arraybackslash\textbf{CANTIDAD} \\
+	\specialrule{.1em}{.05em}{.05em}
+	\endhead
+
+	Procesos Electorales & elección, voto, votación, candidato, campaña, debate, mitin, encuesta, sondeo & 9 \\ \hline
+	Términos Políticos & gobierno, política, legislatura, congreso, república, democracia, parlamento & 7 \\ \hline
+	Instituciones & ONPE, JNE, RENIEC, INE, INEI, MINDEF & 6 \\ \hline
+	Temas de Campaña & economía, seguridad, educación, salud, corrupción, gobernabilidad, infraestructura & 7 \\ \hline
+	Hashtags Electorales & \#EleccionesPerú2026, \#Voto2026, \#DebatePresidencial, \#CuéntaTuVoto & 4+ \\ \hline
+	Candidatos & Nombres completos, apodos, siglas de partidos & Dinámico según proceso \\
+	\specialrule{.1em}{.05em}{.05em}
+\end{longtable}
+\endgroup
 
 \clearpage
 
@@ -331,21 +270,6 @@ Para la evaluación del módulo de análisis de sentimientos a nivel de aspecto,
 \end{equation}
 
 Donde TP (Verdaderos Positivos), TN (Verdaderos Negativos), FP (Falsos Positivos), FN (Falsos Negativos) representan los conteos de clasificación por clase.
-
-\subsection{Métricas de Coherencia Temática del Catálogo Incremental}
-
-Para la validación de la detección dinámica de temas mediante el enfoque híbrido LLM con catálogo incremental, se utilizó la métrica $C_v$ de coherencia semántica:
-
-\begin{equation}
-C_v = \frac{1}{|\text{Temas}|}\sum_{t}\text{cohere}_V(W_t)
-\end{equation}
-
-Donde $W_t$ es el conjunto de palabras clave del tema $t$, y $\text{cohere}_V$ es la función de coherencia vectorial. Rangos de interpretación:
-\begin{itemize}
-	\item $C_v < 0.4$: Coherencia baja
-	\item $0.4 \leq C_v < 0.6$: Coherencia media
-	\item $C_v \geq 0.6$: Coherencia alta
-\end{itemize}
 
 \clearpage
 

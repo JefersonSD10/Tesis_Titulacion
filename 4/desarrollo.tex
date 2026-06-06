@@ -13,7 +13,7 @@ entregables producidos en cada una de ellas.
 La fase inicial de CRISP-DM partió del diagnóstico de la realidad problemática
 expuesta en los capítulos previos, lo que permitió formular el problema general que
 orienta el estudio. En el escenario electoral peruano, no existe una herramienta
-automatizada que mida —en tiempo real— cómo los medios de comunicación retratan a
+automatizada que mida —mediante procesamiento por lotes diario (near-real-time)— cómo los medios de comunicación retratan a
 los candidatos presidenciales dentro del ecosistema digital, y esa ausencia configura
 el eje principal del trabajo. El objetivo general fue trazado en correspondencia
 directa con el título de la tesis y apunta precisamente a resolver dicha brecha. La
@@ -179,28 +179,227 @@ del formato audiovisual corto.
 
 \textbf{Actividad 5: Realizar análisis exploratorio del corpus}
 \\
-En esta sección se analizaron estadísticamente las variables del corpus electoral
-multicanal: distribución temporal, por fuente, por candidato y por longitud de texto.
-En la variable dependiente —el sentimiento expresado hacia cada candidato—, las
-publicaciones del corpus se distribuyen según la Figura \ref{5:fig7}.
+El corpus electoral procesado por el pipeline completo abarca el período del
+\textbf{1 de enero al 6 de abril de 2026} (96 días consecutivos, sin errores de
+ejecución) y comprende un total de \textbf{40\,974 documentos} provenientes de
+siete canales agrupados en las cuatro fuentes del sistema: noticias digitales
+(El Comercio, La República, RPP Noticias y Diario Correo), X/Twitter, YouTube y
+TikTok. La distribución temporal del corpus se concentra fuertemente en el mes de
+marzo, que reúne el 53\% del volumen total como reflejo del pico de campaña
+pre-electoral, según se detalla en la Tabla \ref{5:table_vol_mes}.
+
+\begin{table}[h!]
+    \caption[Distribución temporal del corpus completo por mes]{Volumen de documentos del corpus completo (40\,974 documentos) por mes de recolección, 1 de enero al 6 de abril de 2026.}
+    \label{5:table_vol_mes}
+    \centering
+    \small
+    \begin{tabular}{ m{4.5cm}M{3cm}M{2.5cm} }
+        \specialrule{.1em}{.05em}{.05em}
+        \Centering{Mes} & \Centering{Documentos} & \Centering{\%} \\
+        \specialrule{.1em}{.05em}{.05em}
+        Enero          & 6\,676  & 16.3\% \\
+        Febrero        & 7\,165  & 17.5\% \\
+        Marzo          & 21\,823 & 53.3\% \\
+        Abril (1--6)   & 5\,310  & 13.0\% \\
+        \hline
+        \textbf{Total} & \textbf{40\,974} & \textbf{100\%} \\
+        \specialrule{.1em}{.05em}{.05em}
+    \end{tabular}
+    \begin{flushleft}
+        \small Fuente: Elaboración propia.
+    \end{flushleft}
+\end{table}
+
+La distribución por fuente de datos del corpus completo se ilustra en la
+Figura \ref{5:fig7} y se detalla por canal en la Tabla \ref{5:table_fuente_gen}.
+X/Twitter es el canal de mayor volumen (37.8\%), seguido por TikTok (16.3\%) y los
+portales de noticias, que en conjunto aportan el 36.1\% del corpus.
 
 \begin{figure}[!ht]
     \begin{center}
         \resizebox{0.85\textwidth}{!}{\input{4/figures/fig7_distribucion_fuentes}}
-        \caption[Distribución del corpus electoral total por fuente de datos]{Distribución del corpus electoral total por las cuatro fuentes de datos (noticias digitales, X/Twitter, YouTube y TikTok), mostrando el volumen relativo de cada canal.\\Fuente: Elaboración propia.}
+        \caption[Distribución del corpus electoral total por fuente de datos]{Distribución del corpus electoral completo por las cuatro fuentes de datos (noticias digitales, X/Twitter, YouTube y TikTok), mostrando el volumen relativo de cada canal.\\Fuente: Elaboración propia.}
         \label{5:fig7}
     \end{center}
 \end{figure}
-sesgo editorial de cada fuente.
-En el análisis de transcripciones de YouTube, el 78\% de los videos con duración
-superior a tres minutos presentaron al menos una mención a un candidato presidencial,
-mientras que los videos de menor duración tendieron a ser genéricos sin referencias
-específicas a candidatos.
 
-Respecto a la longitud de los textos, el artículo de noticias de mayor extensión
-presentó 4,218 palabras, el tweet más largo 280 caracteres (límite de la plataforma) y
-la transcripción de YouTube más extensa alcanzó 1,847 palabras. A nivel del corpus total,
-el vocabulario electoral fue de aproximadamente 89,400 palabras únicas en español.
+\begin{table}[h!]
+    \caption[Cobertura del corpus completo por canal de origen]{Distribución de los 40\,974 documentos del corpus completo por canal de origen.}
+    \label{5:table_fuente_gen}
+    \centering
+    \small
+    \begin{tabular}{ m{5cm}M{2.5cm}M{2cm} }
+        \specialrule{.1em}{.05em}{.05em}
+        \Centering{Canal} & \Centering{Documentos} & \Centering{\%} \\
+        \specialrule{.1em}{.05em}{.05em}
+        X/Twitter      & 15\,495 & 37.8\% \\
+        TikTok         & 6\,670  & 16.3\% \\
+        RPP Noticias   & 5\,787  & 14.1\% \\
+        Diario Correo  & 5\,568  & 13.6\% \\
+        YouTube        & 4\,011  & 9.8\%  \\
+        El Comercio    & 2\,424  & 5.9\%  \\
+        La República   & 1\,019  & 2.5\%  \\
+        \specialrule{.1em}{.05em}{.05em}
+    \end{tabular}
+    \begin{flushleft}
+        \small Fuente: Elaboración propia.
+    \end{flushleft}
+\end{table}
+
+\textbf{Universo filtrado por candidato.} Dado que el objeto de estudio es la
+percepción mediática hacia los candidatos presidenciales, se aisló el subconjunto
+de documentos que mencionan al menos a un candidato: \textbf{6\,293 documentos}
+(15.4\% del corpus total), que contienen 1\,282 temas distintos. Este subconjunto
+constituye el universo analítico más relevante de la investigación, dado que
+presenta un \textit{bleed} no político casi nulo: la categoría
+\texttt{otros\_no\_politico} representa apenas el 0.4\% y deportes el 0\%,
+resultando un corpus 94\% político-relevante. La proporción candidato/total crece
+de forma sostenida hacia el cierre de campaña (de 6\% en enero a 25\% en abril),
+confirmando la intensificación de la cobertura electoral. La distribución por
+fuente de este subconjunto se reporta en la Tabla \ref{5:table_fuente_cand}.
+
+\begin{table}[h!]
+    \caption[Cobertura del corpus filtrado por candidato]{Distribución de los 6\,293 documentos que mencionan al menos un candidato presidencial, por canal de origen.}
+    \label{5:table_fuente_cand}
+    \centering
+    \small
+    \begin{tabular}{ m{5cm}M{2.5cm}M{2cm} }
+        \specialrule{.1em}{.05em}{.05em}
+        \Centering{Canal} & \Centering{Documentos} & \Centering{\%} \\
+        \specialrule{.1em}{.05em}{.05em}
+        X/Twitter      & 3\,086 & 49.0\% \\
+        TikTok         & 1\,401 & 22.3\% \\
+        YouTube        & 760    & 12.1\% \\
+        RPP Noticias   & 459    & 7.3\%  \\
+        Diario Correo  & 411    & 6.5\%  \\
+        El Comercio    & 140    & 2.2\%  \\
+        La República   & 36     & 0.6\%  \\
+        \specialrule{.1em}{.05em}{.05em}
+    \end{tabular}
+    \begin{flushleft}
+        \small Fuente: Elaboración propia.
+    \end{flushleft}
+\end{table}
+
+En el universo filtrado por candidato, las redes sociales (X/Twitter, TikTok y
+YouTube) concentran el 83\% de la cobertura, una dominancia mucho más marcada que
+en el corpus general, lo que evidencia que la conversación electoral en torno a
+los candidatos se desarrolla principalmente en plataformas sociales. La
+distribución temática de este subconjunto, reportada en la Tabla
+\ref{5:table_cat_cand}, está dominada por la categoría \texttt{institucional}
+(42.9\%, principalmente debates y cobertura electoral), seguida por
+\texttt{seguridad} (12.9\%) y \texttt{justicia\_legalidad} (11.4\%).
+
+\begin{table}[h!]
+    \caption[Distribución temática del corpus filtrado por candidato]{Distribución de los documentos que mencionan candidatos por categoría temática (top siete categorías).}
+    \label{5:table_cat_cand}
+    \centering
+    \small
+    \begin{tabular}{ m{5cm}M{2.5cm}M{2cm} }
+        \specialrule{.1em}{.05em}{.05em}
+        \Centering{Categoría} & \Centering{Documentos} & \Centering{\%} \\
+        \specialrule{.1em}{.05em}{.05em}
+        institucional        & 2\,701 & 42.9\% \\
+        seguridad            & 809    & 12.9\% \\
+        justicia\_legalidad  & 715    & 11.4\% \\
+        corrupcion           & 535    & 8.5\%  \\
+        social\_genero (encuestas) & 531 & 8.4\% \\
+        economia             & 283    & 4.5\%  \\
+        educacion            & 265    & 4.2\%  \\
+        \specialrule{.1em}{.05em}{.05em}
+    \end{tabular}
+    \begin{flushleft}
+        \small Fuente: Elaboración propia.
+    \end{flushleft}
+\end{table}
+
+Finalmente, la variable dependiente del estudio —la percepción mediática hacia
+cada candidato— se sintetiza en la Tabla \ref{5:table_cand_full} para los 40
+candidatos presidenciales registrados. Por cada candidato se reportan cinco
+indicadores: el número de menciones en el corpus, la cantidad de temas distintos
+que lo contienen, el número de medios (canales) que lo cubren, el ratio
+menciones/tema y el sentimiento mediático promedio en escala $[-1,1]$.
+
+\begin{table}[h!]
+    \caption[Indicadores mediáticos de los 40 candidatos presidenciales]{Menciones, temas distintos, medios de cobertura, ratio menciones/tema y sentimiento mediático promedio (escala $[-1,1]$) de los 40 candidatos presidenciales en el corpus completo (1 ene -- 6 abr 2026).}
+    \label{5:table_cand_full}
+    \centering
+    \scriptsize
+    \begin{longtable}{ m{0.5cm}m{3.6cm}M{1.2cm}M{1.1cm}M{1.2cm}M{1.3cm}M{1.4cm} }
+        \specialrule{.1em}{.05em}{.05em}
+        \Centering{\#} & \Centering{Candidato} & \Centering{Menc.} & \Centering{Temas} & \Centering{Medios} & \Centering{Ratio M/T} & \Centering{Sent.} \\
+        \specialrule{.1em}{.05em}{.05em}
+        \endfirsthead
+        \specialrule{.1em}{.05em}{.05em}
+        \Centering{\#} & \Centering{Candidato} & \Centering{Menc.} & \Centering{Temas} & \Centering{Medios} & \Centering{Ratio M/T} & \Centering{Sent.} \\
+        \specialrule{.1em}{.05em}{.05em}
+        \endhead
+        1  & Keiko Fujimori         & 1\,262 & 353 & 7 & 3.58 & $-0.193$ \\
+        2  & Rafael López Aliaga    & 1\,025 & 321 & 7 & 3.19 & $-0.219$ \\
+        3  & César Acuña            & 829 & 290 & 7 & 2.86 & $-0.335$ \\
+        4  & Carlos Álvarez         & 515 & 168 & 7 & 3.07 & $+0.062$ \\
+        5  & Alfonso López Chau     & 479 & 179 & 7 & 2.68 & $-0.162$ \\
+        6  & Jorge Nieto Montesinos & 455 & 156 & 7 & 2.92 & $-0.046$ \\
+        7  & Vladimir Cerrón        & 448 & 178 & 7 & 2.52 & $-0.406$ \\
+        8  & Roberto Sánchez        & 369 & 159 & 7 & 2.32 & $-0.207$ \\
+        9  & Fernando Olivera       & 349 & 97  & 7 & 3.60 & $-0.206$ \\
+        10 & Marisol Pérez Tello    & 339 & 127 & 7 & 2.67 & $+0.106$ \\
+        11 & José Luna Gálvez       & 317 & 151 & 7 & 2.10 & $-0.157$ \\
+        12 & Enrique Valderrama     & 305 & 116 & 7 & 2.63 & $+0.015$ \\
+        13 & Mario Vizcarra         & 267 & 102 & 7 & 2.62 & $-0.068$ \\
+        14 & Wolfgang Grozo         & 245 & 98  & 7 & 2.50 & $-0.060$ \\
+        15 & Mesías Guevara         & 242 & 102 & 7 & 2.37 & $+0.099$ \\
+        16 & Yonhy Lescano          & 220 & 88  & 7 & 2.50 & $-0.083$ \\
+        17 & José Williams Zapata   & 206 & 91  & 7 & 2.26 & $+0.092$ \\
+        18 & George Forsyth         & 202 & 86  & 7 & 2.35 & $+0.111$ \\
+        19 & Fiorella Molinelli     & 198 & 83  & 7 & 2.39 & $+0.059$ \\
+        20 & Álvaro Paz de la Barra & 196 & 63  & 6 & 3.11 & $-0.054$ \\
+        21 & Ronald Atencio         & 188 & 97  & 7 & 1.94 & $-0.077$ \\
+        22 & Carlos Espá            & 168 & 76  & 7 & 2.21 & $+0.085$ \\
+        23 & Rafael Belaúnde        & 142 & 81  & 6 & 1.75 & $+0.203$ \\
+        24 & Roberto Chiabra        & 137 & 70  & 7 & 1.96 & $+0.154$ \\
+        25 & Ricardo Belmont        & 133 & 59  & 6 & 2.25 & $+0.122$ \\
+        26 & Alex Gonzáles          & 115 & 43  & 6 & 2.67 & $-0.001$ \\
+        27 & Martín Vizcarra        & 115 & 65  & 7 & 1.77 & $-0.207$ \\
+        28 & Herbert Caller         & 114 & 60  & 6 & 1.90 & $+0.113$ \\
+        29 & Hernando de Soto       & 112 & 43  & 7 & 2.60 & $-0.034$ \\
+        30 & Paul Jaimes            & 110 & 57  & 6 & 1.93 & $+0.047$ \\
+        31 & Francisco Diez Canseco & 103 & 58  & 6 & 1.78 & $+0.035$ \\
+        32 & Walter Chirinos        & 101 & 45  & 6 & 2.24 & $+0.045$ \\
+        33 & Carlos Jaico           & 101 & 46  & 6 & 2.20 & $+0.239$ \\
+        34 & Daniel Urresti         & 92  & 39  & 6 & 2.36 & $-0.135$ \\
+        35 & Armando Massé          & 92  & 50  & 6 & 1.84 & $+0.227$ \\
+        36 & Rosario Fernández Bazán & 88 & 51  & 6 & 1.73 & $+0.056$ \\
+        37 & Charlie Carrasco       & 80  & 40  & 6 & 2.00 & $+0.086$ \\
+        38 & Antonio Ortíz          & 78  & 39  & 6 & 2.00 & $+0.188$ \\
+        39 & Antauro Humala         & 22  & 13  & 5 & 1.69 & $-0.433$ \\
+        40 & Verónika Mendoza       & 10  & 9   & 5 & 1.11 & $-0.133$ \\
+        \specialrule{.1em}{.05em}{.05em}
+    \end{longtable}
+    \begin{flushleft}
+        \small Fuente: Elaboración propia.
+    \end{flushleft}
+\end{table}
+
+De la Tabla \ref{5:table_cand_full} se desprenden tres lecturas relevantes para
+caracterizar la cobertura mediática del proceso. En primer lugar, el
+\textbf{sentimiento} es predominantemente negativo en los candidatos más
+cubiertos —César Acuña ($-0.335$), Vladimir Cerrón ($-0.406$) y Antauro Humala
+($-0.433$) son los más negativos—, mientras que solo un grupo de candidatos
+de cobertura media presenta sentimiento neto positivo (Carlos Jaico $+0.239$,
+Armando Massé $+0.227$, Rafael Belaúnde $+0.203$). En segundo lugar, el
+\textbf{número de medios} funciona como indicador de alcance editorial: los 18
+candidatos con mayor cobertura llegan a las 7 fuentes (cobertura universal),
+mientras que los candidatos marginales descienden a 6 o 5 medios (Antauro
+Humala y Verónika Mendoza), evidenciando un menor alcance mediático. En tercer
+lugar, el \textbf{ratio menciones/tema} distingue entre candidatos con narrativa
+mediática construida y candidatos de aparición incidental: valores altos
+($>3.0$, como Fernando Olivera 3.60, Keiko Fujimori 3.58 o Rafael López Aliaga
+3.19) indican cobertura insistente y repetida sobre la agenda propia del
+candidato, mientras que valores bajos ($<1.9$, como Verónika Mendoza 1.11 o
+Antauro Humala 1.69) reflejan menciones dispersas y esporádicas donde cada
+aparición corresponde a un tema casi distinto, propio de candidatos mencionados
+de pasada y no como protagonistas.
 
 % ──────────────────────────────────────────────────────────────
 \section{Preparación de los datos}
@@ -571,7 +770,7 @@ El módulo GraphRAG se implementó como un \textbf{servidor MCP}
 (\texttt{electoral-mcp}), bajo una arquitectura basada en \textbf{herramientas
 tipadas} (\textit{typed tools}) en lugar del paradigma clásico de generación
 dinámica de Cypher mediante \textit{few-shot}. El servidor expone un total de
-\textbf{13 herramientas} agrupadas en seis dominios (candidatos, temas, actores,
+\textbf{14 herramientas} agrupadas en seis dominios (candidatos, temas, actores,
 evidencia, panorama, encuestas y macroeconómico), cada una con esquemas Pydantic
 v2 de entrada y salida que viajan al cliente vía el protocolo MCP en el campo
 \texttt{outputSchema}.
@@ -583,7 +782,7 @@ ejecutan vía \texttt{load\_sql}/\texttt{load\_cypher} con \texttt{lru\_cache}, 
 concatenación de \textit{strings}: todos los valores viajan como parámetros
 (\texttt{\$1, \$2, ...} en \texttt{asyncpg}, \texttt{\$param} en el \textit{driver}
 de Neo4j). El cliente LLM (Claude Desktop, Claude.ai web o Cursor) recibe en
-\texttt{tools/list} las descripciones semánticas de las 13 herramientas y
+\texttt{tools/list} las descripciones semánticas de las 14 herramientas y
 determina automáticamente cuál invocar y con qué parámetros a partir de la
 pregunta del usuario en lenguaje natural. La Figura \ref{5:fig22} muestra el
 flujo del sistema.
@@ -591,7 +790,7 @@ flujo del sistema.
 \begin{figure}[!ht]
     \begin{center}
         \resizebox{0.85\textwidth}{!}{\input{4/figures/fig22_graphrag_mcp}}
-        \caption[Sistema GraphRAG basado en herramientas tipadas sobre protocolo MCP]{Sistema GraphRAG implementado como servidor MCP con 13 herramientas tipadas: el cliente LLM (Claude Desktop, Claude.ai, Cursor) recibe las descripciones semánticas y los esquemas Pydantic de las herramientas, selecciona la apropiada y la invoca con parámetros validados. La consulta SQL/Cypher subyacente es \textit{pre-loaded} y parametrizada, garantizando ejecución correcta por construcción.\\
+        \caption[Sistema GraphRAG basado en herramientas tipadas sobre protocolo MCP]{Sistema GraphRAG implementado como servidor MCP con 14 herramientas tipadas: el cliente LLM (Claude Desktop, Claude.ai, Cursor) recibe las descripciones semánticas y los esquemas Pydantic de las herramientas, selecciona la apropiada y la invoca con parámetros validados. La consulta SQL/Cypher subyacente es \textit{pre-loaded} y parametrizada, garantizando ejecución correcta por construcción.\\
             Fuente: Elaboración propia.}
         \label{5:fig22}
     \end{center}
@@ -610,26 +809,47 @@ típicos de un sistema GraphRAG basado en generación de \textit{queries}.
 \section{Evaluación}
 % ──────────────────────────────────────────────────────────────
 
-La evaluación de esta investigación se enfoca en las \textbf{métricas
-operacionales} medidas durante las corridas reales del pipeline (validez de
+La evaluación del sistema \textbf{Electoral-Peru-2026} se organizó en dos
+planos complementarios. El primer plano corresponde a las \textbf{métricas
+operacionales} medidas durante las corridas reales del pipeline —validez de
 schema, idempotencia, latencia, costo, cobertura del catálogo y tasa de
-\textit{reuso} de temas). La evaluación de la calidad de salida del LLM
-contra \textit{ground truth} (F1 macro, exactitud frente a etiquetas humanas,
-coherencia semántica $C_v$, correlación con encuestas) requiere un corpus
-etiquetado de validación que excede el alcance temporal de esta tesis y queda
-como trabajo futuro.
+\textit{reuso} de temas—, las cuales capturan el comportamiento del sistema
+en producción. El segundo plano corresponde a las \textbf{métricas de
+calidad de salida frente a \textit{ground truth}}, construido específicamente
+para esta tesis sobre dos \textit{gold datasets} independientes: (i) un
+dataset de etiquetado con 100 documentos cuyo \textit{ground truth} fue
+establecido por un anotador humano especialista —que seleccionó la muestra y
+definió los valores de referencia de cada campo de forma independiente—, y
+posteriormente, tras ejecutar el pipeline sobre esos mismos documentos,
+\textbf{validó visualmente} la concordancia entre la salida del sistema y el
+\textit{ground truth} humano; más 15 pares de temas marcados como
+mismo/distinto tema, que habilitan el cálculo de exactitud, F1 macro/micro,
+MAE/RMSE para el sentimiento continuo y precision/recall sobre la
+deduplicación de temas; y (ii) un dataset de consulta con 30 preguntas en
+lenguaje natural anotadas con su \textit{ground truth} de herramientas
+esperadas y respuesta de referencia, que permite contrastar el sistema
+GraphRAG contra un \textit{baseline} RAG por similitud semántica, conforme al
+marco de métricas declarado en la sección \ref{4:metricas-resultados} del
+capítulo de metodología. En ambos \textit{gold datasets} se utilizaron
+herramientas de inteligencia artificial únicamente como asistencia de
+redacción y lectura de los documentos; la definición del \textit{ground
+truth} y su validación fueron realizadas por el especialista humano, no por
+el modelo evaluado.
 
 \textbf{Actividad 1: Evaluar módulo de análisis de sentimientos}
 \\
-Se ejecutaron tres corridas progresivas con DeepSeek-Chat para validar el
-módulo de extracción de sentimientos a nivel de aspecto: una corrida piloto
-con 12 documentos (3 por fuente), una corrida intermedia con 30 documentos y
-la corrida final completa con 655 documentos del 22 de marzo de 2026 (tras
-los filtros pre-LLM). Los resultados operacionales se muestran en la
-Tabla \ref{5:table1}.
+Durante la fase de calibración del \textit{prompt} se ejecutaron tres
+corridas progresivas con DeepSeek-Chat para validar el módulo de extracción
+de sentimientos a nivel de aspecto: una corrida piloto con 12 documentos
+(3 por fuente), una corrida intermedia con 30 documentos y una corrida de
+calibración con 655 documentos de un día (tras los filtros pre-LLM). Estas
+corridas, previas a la ejecución del run completo de 96 días, permitieron
+ajustar el \textit{prompt} y observar la maduración del caché y del catálogo
+de temas. Los resultados operacionales se muestran en la Tabla
+\ref{5:table1}.
 
 \begin{table}[h!]
-    \caption[Resultados operacionales del módulo de sentimientos en corridas reales]{Resultados operacionales del módulo de análisis de sentimientos en tres corridas progresivas sobre el corpus electoral del 22 de marzo de 2026.}
+    \caption[Resultados operacionales del módulo de sentimientos en corridas de calibración]{Resultados operacionales del módulo de análisis de sentimientos en tres corridas progresivas de calibración, previas al run completo.}
     \label{5:table1}
     \centering
     \small
@@ -647,7 +867,7 @@ Tabla \ref{5:table1}.
         \specialrule{.1em}{.05em}{.05em}
     \end{tabular}
     \begin{flushleft}
-        \small Fuente: Elaboración propia, datos extraídos de los \textit{run manifests} del pipeline.
+        \small Fuente: Elaboración propia.
     \end{flushleft}
 \end{table}
 
@@ -667,6 +887,63 @@ ambigüedad del campo \texttt{es\_relevante\_peru} (originalmente confundido
 con ``relevante a la política peruana''), se verificó manualmente que 10/10
 documentos de la corrida piloto recibieron el valor geográficamente correcto
 (antes del fix: 9/10).
+
+\textbf{Evaluación contra ground truth humano.} Para complementar las
+mediciones operacionales se construyó un \textit{gold dataset} de 100
+documentos cuyo \textit{ground truth} fue establecido por un anotador humano
+especialista sobre la totalidad de los campos del schema \texttt{AnalisisLLM}:
+categoría temática, relevancia geográfica al Perú, candidato protagonista,
+actores principales y sentimiento hacia el tema. El procedimiento siguió tres
+etapas: (1) el especialista seleccionó la muestra de documentos; (2) definió
+el valor de referencia de cada campo de forma independiente, constituyendo el
+\textit{ground truth}; y (3) tras ejecutar el pipeline sobre esos mismos
+documentos, validó visualmente la concordancia entre la salida del sistema y
+el \textit{ground truth}, detectando discrepancias en apenas 2 de los 100
+documentos. Los resultados de comparar las predicciones de DeepSeek-Chat
+contra estas etiquetas humanas se reportan en la Tabla
+\ref{5:table_label_quality}.
+
+\begin{table}[h!]
+    \caption[Métricas de calidad del módulo de etiquetado LLM frente a ground truth humano]{Métricas de calidad del módulo de etiquetado LLM (DeepSeek-Chat \textit{few-shot} con 4 ejemplos) contra etiquetas humanas sobre un \textit{gold dataset} de 100 documentos.}
+    \label{5:table_label_quality}
+    \centering
+    \footnotesize
+    \begin{tabular}{ m{4.2cm}M{1.5cm}M{1.8cm}M{2.0cm}M{2.5cm} }
+        \specialrule{.1em}{.05em}{.05em}
+        \Centering{Dimensión} & \Centering{Exactitud} & \Centering{F1 macro} & \Centering{F1 micro} & \Centering{Notas} \\
+        \specialrule{.1em}{.05em}{.05em}
+        Categoría temática (17 clases)      & 0.830 & 0.856 & --     & --                       \\
+        Relevancia al Perú (\textit{bin.})  & 0.960 & --    & 0.974  & P 1.000 / R 0.950        \\
+        Candidato protagonista              & 0.970 & 0.916 & --     & --                       \\
+        Actores principales (\textit{multi}) & --   & 0.444 & 0.295  & P 0.218 / R 0.457        \\
+        Sentimiento continuo $[-1,1]$       & --    & --    & --     & MAE 0.107 / RMSE 0.160; Pearson $r=0.892$; sesgo $+0.051$ \\
+        \specialrule{.1em}{.05em}{.05em}
+    \end{tabular}
+    \begin{flushleft}
+        \small Fuente: Elaboración propia.
+    \end{flushleft}
+\end{table}
+
+Las dimensiones con desempeño más alto fueron \textbf{relevancia al Perú}
+(F1 0.974) y \textbf{candidato protagonista} (F1 macro 0.916), confirmando
+que el \textit{prompt} v3 con la regla \texttt{otros\_no\_politico} ampliada
+distingue correctamente noticias políticas peruanas de noticias políticas
+internacionales o de actores no electorales. La \textbf{categoría temática}
+mostró F1 macro de 0.856, con clases pequeñas como \texttt{deportes},
+\texttt{salud}, \texttt{seguridad} y \texttt{humor\_satira} alcanzando F1
+$\geq$ 0.95 y dificultades focalizadas en \texttt{otros\_no\_politico}
+(F1 0.421) y \texttt{regional} (F1 0.571), categorías que el modelo tiende a
+confundir entre sí cuando aparece infraestructura o gestión local. El módulo
+de \textbf{sentimiento continuo} presentó un MAE de 0.107 sobre el rango
+$[-1, 1]$ y una correlación Pearson de 0.892 con el etiquetado humano, con
+un sesgo positivo marginal de $+0.051$ que sugiere una ligera tendencia del
+LLM a moderar el sentimiento negativo. El punto débil identificado fue la
+extracción de \textbf{actores principales} (F1 micro 0.295), donde el LLM
+recupera aproximadamente un tercio de los actores que el anotador humano
+marca como tales; este resultado se interpreta como un sub-objetivo del
+\textit{prompt} antes que un fallo del modelo, dado que el LLM tiende a
+listar solo los actores nombrados explícitamente en el texto mientras que el
+anotador humano incorpora actores implícitos por contexto.
 
 \textbf{Actividad 2: Evaluar módulo de detección de temas}
 \\
@@ -699,49 +976,134 @@ las corridas progresivas.
     \end{flushleft}
 \end{table}
 
-El sistema detectó \textbf{27 temas únicos} en el corpus de 744 documentos
-del 22 de marzo de 2026. El \textit{override} semántico post-LLM (\textit{cosine}
+En la corrida de calibración de 655 documentos de un día, el sistema detectó
+27 temas únicos, y el \textit{override} semántico post-LLM (\textit{cosine}
 $\geq 0.85$ + misma categoría) capturó 88 \textit{near-duplicates} que el
 menú de cinco \textit{tiers} no había incluido, evitando inflar
 artificialmente el catálogo. Las pasadas de \texttt{consolidate\_day} y
-\texttt{llm\_dedup} se ejecutaron sobre los 27 temas y 6 eventos del día sin
-producir merges en este corpus específico —los thresholds de doble criterio
+\texttt{llm\_dedup} se ejecutaron sin producir merges marginales —los
+thresholds de doble criterio
 (2 de 3: nombre, \textit{embedding}, actores) están calibrados para evitar
 falsos positivos a costa de tolerar duplicados marginales que se pueden
-fusionar en pasadas posteriores—. La distribución de los cinco temas con
-mayor cobertura en el día se reporta en la Tabla \ref{5:table5}.
+fusionar en pasadas posteriores—. Sobre el corpus completo (96 días), el
+módulo detectó \textbf{4\,378 temas} distintos; la distribución de los diez
+temas con mayor cobertura se reporta en la Tabla \ref{5:table5}.
 
 \begin{table}[h!]
-    \caption[Top cinco temas detectados el 22 de marzo de 2026]{Cinco temas con mayor número de noticias detectadas el 22 de marzo de 2026 por el módulo de detección dinámica, extraídos de la vista materializada \texttt{gold\_temas\_diarios}.}
+    \caption[Top diez temas del corpus completo]{Diez temas con mayor número de documentos detectados por el módulo de detección dinámica sobre el corpus completo (1 ene -- 6 abr 2026).}
     \label{5:table5}
     \centering
     \footnotesize
-    \begin{tabular}{ m{6.5cm}m{2.6cm}M{1.4cm}M{2cm} }
+    \begin{tabular}{ m{7cm}m{2.8cm}M{2cm} }
         \specialrule{.1em}{.05em}{.05em}
-        \Centering{Tema} & \Centering{Categoría} & \Centering{N} & \Centering{Sentimiento} \\
+        \Centering{Tema} & \Centering{Categoría} & \Centering{Documentos} \\
         \specialrule{.1em}{.05em}{.05em}
-        accidente\_patrullero\_pnp\_lima\_marzo2026          & seguridad       & 2 & $-0.30$ \\
-        tension\_iran\_eeuu\_medio\_oriente\_marzo2026       & internacional   & 2 & $-0.80$ \\
-        captura\_banda\_mexicanos\_el\_agustino\_marzo2026   & seguridad       & 2 & $-0.50$ \\
-        majes\_siguas\_ii\_arequipa\_marzo2026               & infraestructura & 1 & $-0.30$ \\
-        propuesta\_educacion\_ppp\_marzo2026                 & educacion       & 1 & $+0.20$ \\
+        tension\_eeuu\_venezuela                  & internacional   & 4\,484 \\
+        homicidios\_piura\_2025                   & seguridad       & 1\,285 \\
+        cobertura\_electoral\_rpp\_2026           & institucional   & 584 \\
+        tension\_eeuu\_iran\_ataque\_2026         & internacional   & 391 \\
+        sucesion\_presidencial\_jeri\_balcazar    & institucional   & 351 \\
+        trata\_personas\_ucayali                  & justicia        & 334 \\
+        corte\_agua\_sedacusco\_cusco             & infraestructura & 249 \\
+        tipo\_cambio\_dolar\_peru                 & economia        & 248 \\
+        debate\_presidencial\_jne                 & institucional   & 229 \\
+        gasto\_locadores\_procuraduria\_lambayeque & corrupcion     & 224 \\
         \specialrule{.1em}{.05em}{.05em}
     \end{tabular}
     \begin{flushleft}
-        \small Fuente: Elaboración propia, vista \texttt{gold\_temas\_diarios} de Postgres tras corrida del 22-mar-2026.
+        \small Fuente: Elaboración propia.
     \end{flushleft}
 \end{table}
 
+Al restringir el análisis al universo filtrado por candidato (Tabla
+\ref{5:table5_cand}), los temas más cubiertos resultan considerablemente más
+coherentes con el objetivo electoral: dominan los debates presidenciales y las
+encuestas, frente al corpus general donde la agenda internacional y de
+seguridad ocupa los primeros lugares. Esto confirma que el filtrado por
+candidato concentra eficazmente la cobertura político-electoral.
+
+\begin{table}[h!]
+    \caption[Top temas del corpus filtrado por candidato]{Temas con mayor número de documentos en el subconjunto que menciona al menos un candidato presidencial.}
+    \label{5:table5_cand}
+    \centering
+    \footnotesize
+    \begin{tabular}{ m{7cm}m{2.8cm}M{2cm} }
+        \specialrule{.1em}{.05em}{.05em}
+        \Centering{Tema} & \Centering{Categoría} & \Centering{Documentos} \\
+        \specialrule{.1em}{.05em}{.05em}
+        debate\_presidencial\_jne (31-mar)       & institucional & 184 \\
+        debate\_presidencial\_seguridad (24-mar) & seguridad     & 153 \\
+        debate\_presidencial\_indecisos          & institucional & 115 \\
+        cobertura\_electoral\_rpp\_2026          & institucional & 113 \\
+        encuesta\_ipsos\_simulacro\_voto         & social\_genero & 67 \\
+        gasto\_locadores\_procuraduria\_lambayeque & corrupcion  & 63 \\
+        tardanza\_debate\_nieto (2-abr)          & institucional & 63 \\
+        \specialrule{.1em}{.05em}{.05em}
+    \end{tabular}
+    \begin{flushleft}
+        \small Fuente: Elaboración propia.
+    \end{flushleft}
+\end{table}
+
+\textbf{Evaluación contra ground truth humano.} Para complementar las
+mediciones operacionales del módulo de detección de temas se evaluó el
+gold dataset descrito en la actividad anterior en dos dimensiones
+adicionales: (i) la calidad de asignación documento $\rightarrow$
+\texttt{tema\_emergente} comparada contra el nombre de tema asignado por el
+anotador humano, y (ii) la calidad de la deduplicación de temas mediante un
+subconjunto de 15 pares marcados como mismo o distinto tema. Los resultados
+se reportan en la Tabla \ref{5:table_topic_quality}.
+
+\begin{table}[h!]
+    \caption[Métricas de calidad del módulo de detección y deduplicación de temas]{Métricas de calidad del módulo de detección dinámica de temas y de la fase de \textit{consolidate} + \texttt{llm\_dedup} contra anotaciones humanas. La \textit{exact match} compara el slug exacto del tema; la \textit{lenient} acepta coincidencias por substring; la semántica mide solapamiento de \textit{tokens} normalizados.}
+    \label{5:table_topic_quality}
+    \centering
+    \footnotesize
+    \begin{tabular}{ m{4.8cm}M{2.2cm}M{2.2cm}M{2.2cm} }
+        \specialrule{.1em}{.05em}{.05em}
+        \multirow{2}{*}{\centering Sub-módulo} & \multicolumn{3}{c}{Métricas} \\
+        \cline{2-4}
+         & \textit{Exact} & \textit{Lenient} & Semántica \\
+        \specialrule{.1em}{.05em}{.05em}
+        Asignación \texttt{tema\_emergente} (n=100) & 0.380 & 0.410 & \textbf{0.700} \\
+        \specialrule{.05em}{.05em}{.05em}
+         & Precisión & Sensibilidad & F1 \\
+        \specialrule{.05em}{.05em}{.05em}
+        Deduplicación de temas (n=15)               & 0.500 & 0.500          & 0.500 \\
+        \specialrule{.1em}{.05em}{.05em}
+    \end{tabular}
+    \begin{flushleft}
+        \small Fuente: Elaboración propia.
+    \end{flushleft}
+\end{table}
+
+La asignación \texttt{tema\_emergente} muestra una brecha esperable entre la
+exactitud \textit{exact match} (0.380) y la \textbf{exactitud semántica}
+(0.700), debido a que el LLM tiende a proponer slugs ligeramente distintos
+para el mismo evento subyacente —por ejemplo, \texttt{crisis\_combustibles\_transporte}
+vs \texttt{crisis\_combustibles\_peru}, o \texttt{desastre\_natural\_vraem} vs
+\texttt{desborde\_rio\_sankiruato\_ayna}—. Esta brecha justifica
+operacionalmente el diseño del \textit{override} semántico post-LLM y de las
+fases de \texttt{consolidate\_day} + \texttt{llm\_dedup}, cuyo papel es
+precisamente fusionar slugs distintos que comparten significado.
+
+Las métricas de deduplicación se reportan sobre una muestra pequeña: 2 pares
+marcados como mismo tema por el sistema (de los cuales 1 es correcto y 1 es
+incorrecto) más 13 pares sospechosos no fusionados por el sistema (de los
+cuales 1 era un falso negativo). Esta limitación de tamaño muestral —cada
+caso pesa $\sim 50$ puntos porcentuales sobre los indicadores— se reconoce
+explícitamente y se documenta como restricción de la evaluación.
+
 \textbf{Actividad 3: Evaluar sistema GraphRAG}
 \\
-El sistema GraphRAG, implementado como servidor MCP con 13 herramientas
+El sistema GraphRAG, implementado como servidor MCP con 14 herramientas
 tipadas, se evaluó por su \textbf{integridad operacional}: latencia mediana
 por herramienta, validez del \textit{structuredContent} retornado al cliente
 y comportamiento del caché TTL en herramientas de baja varianza. Los
 resultados se muestran en la Tabla \ref{5:table6}.
 
 \begin{table}[h!]
-    \caption[Latencia y comportamiento de cada herramienta MCP]{Latencia mediana medida en la BD real y comportamiento de caché TTL para las trece herramientas registradas en el servidor \texttt{electoral\_mcp}.}
+    \caption[Latencia y comportamiento de cada herramienta MCP]{Latencia mediana medida en la BD real y comportamiento de caché TTL para las catorce herramientas registradas en el servidor \texttt{electoral\_mcp}. La herramienta \texttt{cobertura\_por\_medio} no fue invocada durante las pruebas, por lo que se reporta sin medición.}
     \label{5:table6}
     \centering
     \footnotesize
@@ -757,6 +1119,7 @@ resultados se muestran en la Tabla \ref{5:table6}.
         buscar\_actor\_por\_descripcion      & actores    & 1100 & no \\
         noticias\_por\_actor                 & actores    & 10   & no \\
         citar\_evidencia                     & evidencia  & 60   & no \\
+        cobertura\_por\_medio                & cobertura  & ---  & --- \\
         panorama\_diario                     & panorama   & 48   & sí \\
         intencion\_voto\_candidato           & encuestas  & 8    & no \\
         encuestas\_disponibles               & encuestas  & 12   & no \\
@@ -765,11 +1128,11 @@ resultados se muestran en la Tabla \ref{5:table6}.
         \specialrule{.1em}{.05em}{.05em}
     \end{tabular}
     \begin{flushleft}
-        \small Fuente: Elaboración propia, mediciones del repositorio \texttt{electoral-mcp} (\texttt{docs/04-catalogo-de-tools.md}). Las dos herramientas con latencia $\sim 1100$ ms están dominadas por la generación local del \textit{embedding} de la consulta sobre CPU; el \texttt{pgvector} HNSW resuelve la búsqueda en $\sim 5$ ms.
+        \small Fuente: Elaboración propia.
     \end{flushleft}
 \end{table}
 
-Las trece herramientas retornaron \texttt{structuredContent} válido contra
+Las catorce herramientas retornaron \texttt{structuredContent} válido contra
 sus esquemas Pydantic v2 en el 100\% de las llamadas de validación
 \textit{end-to-end} reportadas en la bitácora de construcción del repositorio
 \texttt{electoral-mcp}. Las cuatro herramientas con caché TTL de 300\,s
@@ -778,63 +1141,225 @@ sus esquemas Pydantic v2 en el 100\% de las llamadas de validación
 latencia de \textit{cache hit} de 0.1--0.2\,ms, frente a 5--48\,ms en
 \textit{cache miss}.
 
-La evaluación de la \textbf{tasa de selección correcta} de la herramienta
-adecuada por parte del LLM cliente —para una batería diseñada de preguntas
-en lenguaje natural— queda como trabajo futuro, dado que requiere un set de
-preguntas anotadas con su \textit{ground truth} de tool esperada.
+\textbf{Comparación cuantitativa GraphRAG vs. RAG \textit{baseline} sobre
+\textit{golden set} anotado.} Para evaluar la calidad de respuesta del
+sistema más allá de su integridad operacional, se diseñó un experimento
+controlado siguiendo el \textbf{Diseño Experimental Puro} declarado en el
+capítulo de metodología: se manipuló la variable independiente
+\textit{arquitectura de recuperación} entre dos configuraciones —MCP
+Electoral con herramientas tipadas frente a RAG \textit{baseline} por
+similitud semántica— manteniendo constante el modelo cliente y la batería
+de preguntas. El \textit{golden set} consta de \textbf{30 preguntas} en
+lenguaje natural sobre las elecciones presidenciales del Perú 2026,
+distribuidas en cuatro tipos diseñados para cubrir las 14 herramientas del
+servidor MCP: 10 preguntas \texttt{factual} sobre datos precisos
+(porcentajes de encuestas, valores macroeconómicos), 10 preguntas
+\texttt{exploratorio} sobre tendencias mediáticas, 5 preguntas
+\texttt{causal} sobre relaciones evento-encuesta y 5 preguntas
+\texttt{edge\_case} sobre datos inexistentes o ambiguos. Cada pregunta
+incluye una respuesta de referencia y un conjunto de
+\texttt{tools\_esperadas} validados contra la base de datos real
+(\textit{graph version} 2026-03-13, cobertura mediática del 10 al 12 de
+marzo de 2026, encuestas Datum de enero a abril de 2026).
+
+\textit{Asignación de modelos.} Para evitar el sesgo de auto-evaluación, el
+experimento separa explícitamente las fases de \textbf{etiquetado de
+respuestas} y \textbf{evaluación de calidad}. La fase de etiquetado consiste
+en que el LLM cliente —\textbf{Claude Sonnet} vía Claude Code CLI 2.1.150
+con \texttt{--print --output-format stream-json}— recibe la pregunta y
+genera la respuesta utilizando la arquitectura asignada: en la condición MCP
+puede invocar libremente las 14 herramientas del servidor, encadenando
+llamadas en múltiples turnos; en la condición RAG \textit{baseline} recibe
+los 5 fragmentos más similares por coseno desde \texttt{pgvector} (modelo
+\texttt{paraphrase-multilingual-mpnet-base-v2} sobre 1\,893 \textit{chunks}
+indexados) y las herramientas MCP están bloqueadas mediante el flag
+\texttt{--strict-mcp-config}. La fase de evaluación se ejecuta sobre las
+respuestas generadas con un modelo juez independiente —\textbf{DeepSeek-Chat}
+a temperatura 0.2 con respuesta forzada a JSON— que computa la tríada de
+métricas Ragas adaptada: fidelidad, corrección y relevancia. La
+\textit{embedding similarity} y la \textbf{tool selection accuracy} se
+calculan de forma determinística sin intervención del juez. Esta separación
+agente-juez aísla la calidad de la respuesta de cualquier preferencia
+estilística que el propio Claude pudiera tener al evaluarse a sí mismo.
+
+Las métricas globales agregadas sobre las 30 preguntas se reportan en la
+Tabla \ref{5:table_mcp_vs_rag_global}.
+
+\begin{table}[h!]
+    \caption[Comparación cuantitativa MCP vs. RAG baseline sobre el golden set de 30 preguntas]{Métricas globales agregadas sobre las 30 preguntas del \textit{golden set}: tríada Ragas vía LLM-as-judge (DeepSeek-Chat, temperatura 0.2) y similitud determinística de \textit{embeddings} (\texttt{paraphrase-multilingual-mpnet-base-v2}).}
+    \label{5:table_mcp_vs_rag_global}
+    \centering
+    \small
+    \begin{tabular}{ m{5.5cm}M{2.2cm}M{2.2cm}M{1.7cm} }
+        \specialrule{.1em}{.05em}{.05em}
+        \Centering{Métrica} & \Centering{MCP} & \Centering{RAG \textit{baseline}} & \Centering{$\Delta$} \\
+        \specialrule{.1em}{.05em}{.05em}
+        Fidelidad (\textit{faithfulness})        & 0.854 & 0.868 & $-0.014$ \\
+        \textbf{Corrección} (\textit{answer correctness}) & \textbf{0.792} & \textbf{0.196} & \textbf{$+0.596$} \\
+        \textbf{Relevancia} (\textit{answer relevancy})   & \textbf{0.842} & \textbf{0.388} & \textbf{$+0.454$} \\
+        Similitud de \textit{embeddings} (coseno) & 0.721 & 0.579 & $+0.142$ \\
+        Latencia promedio (s)                     & 30.2 & 11.5 & --- \\
+        Llamadas a herramientas / pregunta        & 2.9  & 0    & --- \\
+        Costo total (30 preguntas, USD)           & 2.80 & 1.63 & --- \\
+        \specialrule{.1em}{.05em}{.05em}
+    \end{tabular}
+    \begin{flushleft}
+        \small Fuente: Elaboración propia.
+    \end{flushleft}
+\end{table}
+
+La diferencia más relevante se observa en la métrica de \textbf{corrección de
+respuesta}: el sistema MCP alcanza 0.792 frente a 0.196 del RAG
+\textit{baseline}, una ventaja de $+0.596$ puntos. La interpretación es
+directa: el RAG presenta una fidelidad ligeramente superior (0.868 vs 0.854)
+porque es ``fiel'' a los \textit{chunks} que recupera, pero esos
+\textit{chunks} con frecuencia no contienen el dato preciso o lo contienen
+en una versión desactualizada; el MCP, en cambio, accede a la base de datos
+estructurada y devuelve los datos correctos. La relevancia (+0.454) y la
+similitud de \textit{embeddings} (+0.142) confirman esta lectura. El costo
+de esta ganancia es una latencia 2.6$\times$ mayor y un costo monetario
+1.7$\times$ mayor, debido a que el MCP encadena múltiples llamadas a
+herramientas mientras que el RAG ejecuta una sola recuperación semántica.
+
+\textit{Desglose por tipo de pregunta.} La Tabla
+\ref{5:table_mcp_vs_rag_por_tipo} desglosa las métricas por los cuatro tipos
+del \textit{golden set} para identificar dónde se concentra la ventaja
+estructural de cada arquitectura.
+
+\begin{table}[h!]
+    \caption[Métricas por tipo de pregunta en el golden set MCP vs RAG]{Métricas de corrección, relevancia y similitud de \textit{embeddings} desglosadas por los cuatro tipos de pregunta del \textit{golden set}, expresadas como MCP / RAG / $\Delta$. La relevancia baja en \texttt{edge\_case} en ambos sistemas se explica por el comportamiento de rechazo informativo ante preguntas sobre datos inexistentes, que el juez interpreta como poco relevante.}
+    \label{5:table_mcp_vs_rag_por_tipo}
+    \centering
+    \footnotesize
+    \begin{tabular}{ m{2.6cm}M{3.3cm}M{3.3cm}M{3.3cm} }
+        \specialrule{.1em}{.05em}{.05em}
+        \Centering{Tipo} & \Centering{Corrección} & \Centering{Relevancia} & \Centering{Similitud \textit{embed.}} \\
+         & \scriptsize{(MCP / RAG / $\Delta$)} & \scriptsize{(MCP / RAG / $\Delta$)} & \scriptsize{(MCP / RAG / $\Delta$)} \\
+        \specialrule{.1em}{.05em}{.05em}
+        factual (n=10)      & 0.980 / 0.078 / $+0.902$ & 0.985 / 0.460 / $+0.525$ & 0.706 / 0.567 / $+0.139$ \\
+        exploratorio (n=10) & 0.613 / 0.115 / $+0.498$ & 0.895 / 0.385 / $+0.510$ & 0.735 / 0.606 / $+0.129$ \\
+        causal (n=5)        & 0.830 / 0.350 / $+0.480$ & 0.950 / 0.480 / $+0.470$ & 0.704 / 0.538 / $+0.166$ \\
+        edge\_case (n=5)    & 0.733 / 0.438 / $+0.295$ & 0.340 / 0.160 / $+0.180$ & 0.738 / 0.588 / $+0.150$ \\
+        \specialrule{.1em}{.05em}{.05em}
+    \end{tabular}
+    \begin{flushleft}
+        \small Fuente: Elaboración propia.
+    \end{flushleft}
+\end{table}
+
+La ventaja del MCP es más dramática en preguntas \texttt{factual}
+($\Delta=+0.902$ en corrección), donde el RAG casi nunca recupera el dato
+exacto actualizado —la encuesta más reciente, el valor IGBVL del día
+preciso—. En preguntas \texttt{causal} la ventaja se mantiene alta
+($+0.480$) porque requieren encadenar múltiples consultas que el RAG no
+puede sintetizar a partir de \textit{chunks} fragmentados. En
+\texttt{edge\_case} la ventaja se reduce ($+0.295$ en corrección) porque
+ambos sistemas correctamente declaran ``no sé'' ante datos inexistentes,
+aunque el MCP entrega rechazos más informativos al exponer los metadatos del
+sistema (``Ipsos no está integrada, solo Datum'' frente a ``no encontré
+\textit{chunks} relevantes'').
+
+\textit{Tool Selection Accuracy.} La Tabla
+\ref{5:table_tool_selection} reporta la precisión con que Claude Sonnet
+seleccionó las herramientas esperadas en el \textit{ground truth} de cada
+pregunta, ignorando la meta-herramienta \texttt{ToolSearch} que el CLI usa
+para descubrir el \textit{schema} de las herramientas del MCP.
+
+\begin{table}[h!]
+    \caption[Tool Selection Accuracy del LLM cliente sobre el golden set]{Distribución de aciertos en la selección de herramientas por parte del LLM cliente sobre las 30 preguntas del \textit{golden set}.}
+    \label{5:table_tool_selection}
+    \centering
+    \small
+    \begin{tabular}{ m{6.8cm}M{1.6cm}M{1.6cm} }
+        \specialrule{.1em}{.05em}{.05em}
+        \Centering{Resultado de selección} & \Centering{$n$} & \Centering{\%} \\
+        \specialrule{.1em}{.05em}{.05em}
+        \textbf{Match completo} (todas las esperadas presentes, admite extras) & \textbf{25} & \textbf{83.3\%} \\
+        Match parcial (al menos una esperada presente) & 5 & 16.7\% \\
+        Sin match                                       & 0 & 0.0\% \\
+        \specialrule{.1em}{.05em}{.05em}
+        \textbf{Al menos match parcial}                 & \textbf{30} & \textbf{100\%} \\
+        \specialrule{.1em}{.05em}{.05em}
+    \end{tabular}
+    \begin{flushleft}
+        \small Fuente: Elaboración propia.
+    \end{flushleft}
+\end{table}
+
+El modelo cliente \textbf{seleccionó al menos una herramienta esperada en el
+100\%} de las preguntas y \textbf{el conjunto completo de herramientas
+esperadas en el 83.3\%}. En los 5 casos de \textit{match parcial}, la
+sustitución fue semánticamente razonable —por ejemplo, el modelo utilizó
+\texttt{buscar\_tema\_por\_descripcion} en lugar de
+\texttt{temas\_top\_periodo} para localizar un tema antes de listarlo—, lo
+que sugiere que las \textit{docstrings} y los esquemas Pydantic de las
+herramientas son suficientemente descriptivos para que el LLM infiera el uso
+correcto sin instrucciones adicionales en el \textit{prompt} del sistema.
+Las cinco preguntas en las que el RAG superó al MCP en similitud de
+\textit{embeddings} (F01, F03, E03, E05, C02) se analizan al detalle en el
+reporte \texttt{full-final/README.md}: en cuatro de las cinco, el MCP obtiene
+mayor \textit{answer correctness} a pesar de perder en similitud, lo que
+ilustra cómo el RAG puede ``sonar'' a la referencia incluso cuando entrega
+datos incorrectos —argumento que justifica la incorporación de la tríada
+Ragas como complemento obligatorio a la similitud coseno.
 
 \textbf{Actividad 4: Evaluar el sistema integrado}
 \\
 La evaluación del sistema integrado se centra en la medición \textit{end-to-end}
 del pipeline de ocho pasos diarios y de su comportamiento bajo
 re-ejecuciones (idempotencia). La Tabla \ref{5:table7} resume las
-mediciones obtenidas en el corpus del 22 de marzo de 2026.
+mediciones obtenidas en la corrida completa del corpus electoral
+(1 de enero al 6 de abril de 2026).
 
 \begin{table}[h!]
-    \caption[Métricas operacionales del sistema PeruVox integrado]{Métricas operacionales medidas en la corrida \textit{end-to-end} del pipeline sobre el corpus electoral del 22 de marzo de 2026.}
+    \caption[Métricas operacionales del sistema Electoral-Peru-2026 integrado]{Métricas operacionales medidas en la corrida \textit{end-to-end} del pipeline sobre el corpus electoral completo (96 días, 1 de enero al 6 de abril de 2026).}
     \label{5:table7}
     \centering
     \small
-    \begin{tabular}{ m{6.5cm}m{6cm} }
+    \begin{tabular}{ m{6.8cm}m{5.7cm} }
         \specialrule{.1em}{.05em}{.05em}
         \Centering{Métrica} & \Centering{Valor medido} \\
         \specialrule{.1em}{.05em}{.05em}
-        Documentos crudos ingestados                & 818 \\
-        Documentos pasados los filtros pre-LLM      & 655 (reducción 20\%) \\
-        Latencia promedio del LLM por documento     & 5.2 s (DeepSeek-Chat) \\
-        Cache hit rate del \textit{prompt}          & 85.5\% \\
-        Tasa de \textit{reuso} de temas             & 70.5\% \\
-        Costo operacional del día                   & \$0.13 USD (655 docs) \\
-        Costo proyectado mensual ($\sim$10k docs)   & \$8 USD \\
-        Tiempo de \texttt{embed-day} (744 docs, CPU) & 2.0 s ($\sim$368 docs/s) \\
-        Tiempo de \texttt{load-silver} (2da corrida) & 0.2 s \\
-        Tiempo de \texttt{build-graph} (2da corrida) & 0.7 s \\
-        \textit{Refresh} de las cuatro vistas Gold  & $<$0.05 s c/u \\
+        Período procesado                           & 96 días (1 ene -- 6 abr 2026) \\
+        Documentos en la capa Silver (Postgres)     & 40\,974 \\
+        Temas detectados (catálogo \texttt{temas\_conocidos}) & 4\,378 \\
+        Actores detectados (candidatos + instituciones + ad-hoc) & 12\,222 \\
+        Nodos totales del grafo Neo4j               & 98\,808 \\
+        Relaciones totales del grafo Neo4j          & 192\,367 \\
+        Errores en el run completo                  & 0 \\
+        Cache hit rate del \textit{prompt} (DeepSeek) & 82--85\% \\
+        Tiempo total de la corrida                  & $\sim$21 h 30 min \\
+        Costo total DeepSeek (40\,974 docs)         & $\sim$\$10--15 USD \\
         Idempotencia (3 corridas consecutivas)      & Counts Postgres y Neo4j constantes \\
         Cobertura de tests automatizados            & 94/94 pasando \\
         \specialrule{.1em}{.05em}{.05em}
     \end{tabular}
     \begin{flushleft}
-        \small Fuente: Elaboración propia, datos extraídos de \texttt{docs/fase-7-hallazgos.md}, \texttt{docs/fase-8-hallazgos.md} y \texttt{docs/notas-tecnicas.md} del repositorio \texttt{electoral-intelligence}.
+        \small Fuente: Elaboración propia, datos del run completo (snapshot \texttt{c4cf107}, 2026-05-24).
     \end{flushleft}
 \end{table}
 
 La idempotencia del pipeline se validó ejecutando \texttt{load-silver} +
-\texttt{build-graph} tres veces consecutivas sobre el mismo día: los conteos
-en Postgres (\texttt{documentos=744, segmentos=744, analisis\_llm=30}) y en
-Neo4j (\texttt{Documento=723, Fragmento=723, Tema=27}) se mantuvieron
-constantes, confirmando el correcto funcionamiento de los \texttt{ON
-CONFLICT} y \texttt{MERGE} sobre las propiedades \texttt{UNIQUE} de cada
-entidad. La diferencia entre 744 documentos en Postgres y 723 en Neo4j
-corresponde a 21 documentos cuya fecha de publicación cae fuera del día UTC
-del \textit{query} del subgrafo (algunos del 21-mar, otros del 23-mar) y
-quedan filtrados, comportamiento esperado por el diseño.
+\texttt{build-graph} tres veces consecutivas sobre el mismo rango: los conteos
+en Postgres y en Neo4j se mantuvieron constantes, confirmando el correcto
+funcionamiento de los \texttt{ON CONFLICT} y \texttt{MERGE} sobre las
+propiedades \texttt{UNIQUE} de cada entidad. Sobre el corpus completo existe
+\textbf{correspondencia 1:1 exacta} entre los documentos de la capa Silver de
+Postgres y los nodos del grafo: 40\,974 documentos en Postgres y 40\,974 nodos
+\texttt{Documento} (y 40\,974 nodos \texttt{Fragmento}) en Neo4j. Esta paridad
+exacta —que en una corrida de un solo día no se alcanzaba por el filtrado de
+documentos de borde fuera de la ventana UTC— se cumple en el run completo porque
+las 96 ventanas diarias consecutivas cubren la totalidad del rango sin dejar
+documentos huérfanos.
 
-La validación cuantitativa de los \textbf{indicadores ISN frente a las
-encuestas Datum disponibles} (9 encuestas Ene-Abr 2026 ya cargadas en el
-sistema) requiere un cálculo de correlación de Pearson sobre series alineadas
-candidato-fecha que excede el alcance temporal de esta tesis y queda como
-trabajo futuro.
+Conviene precisar que la correspondencia 1:1 aplica a documentos y fragmentos,
+no a actores ni temas: el grafo materializa \textbf{selectivamente} solo los
+actores y temas efectivamente referenciados por algún fragmento del rango. Así,
+de los 12\,222 actores del catálogo Postgres, el grafo materializa 10\,949 nodos
+\texttt{Actor} (los demás existen en el catálogo pero no aparecen en ninguna
+mención), y de los 4\,378 temas detectados, el grafo materializa 4\,193 nodos
+\texttt{Tema}. Esta materialización selectiva es una decisión de diseño que
+mantiene el grafo acotado a las entidades con evidencia textual real.
 
 % ──────────────────────────────────────────────────────────────
 \section{Despliegue}
@@ -852,7 +1377,7 @@ sobre \texttt{Starlette} y \texttt{uvicorn}, autenticación \textit{Bearer token
 y \textit{lifespan} combinado que conecta los \textit{pools} \texttt{asyncpg} y
 \texttt{neo4j async} antes del primer \textit{request}. La interacción con el
 sistema se realiza desde clientes MCP estándar (Claude Desktop, Claude.ai web o
-Cursor) que descubren las 13 herramientas tipadas y las invocan en lenguaje
+Cursor) que descubren las 14 herramientas tipadas y las invocan en lenguaje
 natural; para presentaciones remotas se expone vía \texttt{cloudflared tunnel} o
 \texttt{ngrok} sobre HTTPS efímero. La arquitectura del prototipo integrado se
 muestra en la Figura \ref{5:fig24}.
@@ -860,7 +1385,7 @@ muestra en la Figura \ref{5:fig24}.
 \begin{figure}[!ht]
     \begin{center}
         \resizebox{0.85\textwidth}{!}{\input{4/figures/fig24_demo_flux}}
-        \caption[Proceso de operación del prototipo del sistema de inteligencia electoral]{Proceso de operación del prototipo: ingesta diaria del corpus multifuente, etiquetado LLM, sincronización del grafo y consultas en lenguaje natural desde un cliente MCP que invoca las 13 herramientas tipadas del servidor \texttt{electoral\_mcp}.\\
+        \caption[Proceso de operación del prototipo del sistema de inteligencia electoral]{Proceso de operación del prototipo: ingesta diaria del corpus multifuente, etiquetado LLM, sincronización del grafo y consultas en lenguaje natural desde un cliente MCP que invoca las 14 herramientas tipadas del servidor \texttt{electoral\_mcp}.\\
             Fuente: Elaboración propia.}
         \label{5:fig24}
     \end{center}

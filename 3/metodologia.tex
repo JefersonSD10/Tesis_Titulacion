@@ -18,8 +18,16 @@ El estudio propuesto adopta un \textbf{enfoque cuantitativo}, esto porque de acu
 La población fue el conjunto de todas las publicaciones digitales en español relacionadas con el proceso electoral peruano, generadas en plataformas de redes sociales (X/Twitter), plataformas de videos cortos (TikTok), canales de contenido audiovisual (YouTube) y portales de noticias digitales durante el período de campaña presidencial analizado.
  
 \subsection{Muestra}
- 
+
 La muestra estuvo conformada por publicaciones recolectadas de cuatro fuentes de datos independientes durante el período electoral analizado: (1) artículos y noticias digitales de los principales portales de prensa peruanos (El Comercio, La República, RPP, Diario Correo); (2) videos YouTube correspondientes a los candidatos y programas periodísticos de cobertura electoral; (3) tweets de la plataforma X/Twitter; y (4) videos y transcripciones de la red social TikTok. La extracción se delimitó mediante palabras clave electorales, \textit{hashtags} de campaña y menciones a cuentas oficiales. El criterio de delimitación temporal obedeció a la necesidad de capturar el período de mayor actividad del ecosistema digital electoral, excluyendo etapas de baja intensidad que distorsionarían los patrones de sentimiento y emergencia de temas.
+
+\textbf{Tamaño muestral y técnica de muestreo.} En la corrida de validación principal se procesaron \textbf{655 documentos} (extraídos de un total de 818 documentos crudos, tras la aplicación de los filtros pre-LLM de la arquitectura Medallion), correspondientes al 22 de marzo de 2026. Dado que el universo de publicaciones digitales es dinámico, continuo y no tiene un marco muestral cerrado ni un tamaño poblacional finito y conocido, se adoptó un \textbf{muestreo no probabilístico por conveniencia} \parencite{bk_hernandez2014metodologia}: la muestra quedó definida por los documentos accesibles a través de los scrapers y las APIs disponibles en el período delimitado, filtrados por los criterios de relevancia electoral descritos.
+
+\textbf{Criterios de inclusión}: (a) publicación en español; (b) fecha de publicación dentro del período de campaña presidencial analizado; (c) contenido textual que mencione al menos un candidato presidencial o un término del diccionario electoral; (d) fuente perteneciente a los cuatro canales definidos (noticias digitales, X/Twitter, YouTube, TikTok).
+
+\textbf{Criterios de exclusión}: (a) publicaciones duplicadas o reediciones sin contenido nuevo; (b) documentos con menos de 30 tokens útiles tras el preprocesamiento; (c) contenido en idioma distinto al español; (d) publicaciones fuera del período temporal delimitado.
+
+\textbf{Representatividad.} Dada la técnica de muestreo no probabilístico utilizada, la muestra \textbf{no es estadísticamente representativa} del universo completo de publicaciones digitales sobre las elecciones peruanas 2026. Los resultados tienen validez interna para los canales, medios y período analizados, pero no permiten generalizar estadísticamente al conjunto de toda la conversación digital electoral. Esta limitación se reconoce explícitamente y deberá considerarse al interpretar los indicadores producidos por el sistema.
 
 \subsection{Operacionalización de variables}
  
@@ -35,14 +43,14 @@ En la Tabla \ref{4:table1} se muestra la operación de las variables correspondi
     \specialrule{.1em}{.05em}{.05em}
 
     % Variable independiente
-    \multirow{10}{3cm}[-6ex]{\centering Independiente: Sistema de Inteligencia Electoral GraphRAG Híbrido}
+    \multirow{10}{3cm}[-6ex]{\centering Independiente: Arquitectura de recuperacion (MCP vs RAG)}
     & \multirow{5}{4.2cm}[-1ex]{\centering Arquitectura de Extracción y Análisis (LLMs)}
     & \multicolumn{2}{c}{\centering Configuración del pipeline de análisis} \\
     \cline{3-4}
     & & \multirow{4}{3.6cm}[0ex]{\centering Efectividad del análisis predictivo}
     & Exactitud en clasificación de sentimiento y detección de actores \\
     \cline{4-4}
-    & & & Coherencia semántica de temas (C\textsubscript{v}) \\
+    & & & Corrección de respuesta (Answer Correctness) (C\textsubscript{v}) \\
     \cline{4-4}
     & & & Latencia de procesamiento e ingesta (ms) \\
     \cline{2-4}
@@ -52,12 +60,12 @@ En la Tabla \ref{4:table1} se muestra la operación de las variables correspondi
     & & \multirow{4}{3.6cm}[0ex]{\centering Efectividad de recuperación (Retrieval)}
     & Latencia de consulta vía Model Context Protocol (ms) \\
     \cline{4-4}
-    & & & Exhaustividad de contexto en nodos (Recall R@k) \\
+    & & & Exactitud en selección de herramientas (Tool Selection Accuracy) \\
 
     \hline
 
 % Variable dependiente
-\multirow{10}{=}{Dependiente: Percepción actual proyectada por los medios de comunicación en ecosistemas digitales}
+\multirow{10}{=}{Dependiente: Calidad/eficacia del sistema de análisis}
 & \multirow{4}{=}{Sentimiento ciudadano}
 & \multirow{2}{=}{Polaridad de sentimiento}
 & Positivo: $S(d,e) > 0$ \\* \cline{4-4}
@@ -216,7 +224,7 @@ De las tres metodologías señaladas por \citeauthor{tec_braulio2015metodologias
     \item La metodología contempla entre sus fases la comprensión del negocio además
     de la parte técnica. Esta fase es crucial ya que en ella se define el problema a resolver
     —la falta de un sistema de análisis automatizado de percepción pública electoral en
-    tiempo real— y se establecen los objetivos del sistema.
+    —la falta de un sistema de análisis automatizado de percepción pública electoral con procesamiento por lotes diario (near-real-time)— y se establecen los objetivos del sistema.
  
     \item Ayuda a los responsables del proyecto en la planificación y toma de decisiones
     (fase de Despliegue) a partir de los resultados obtenidos, convirtiendo los indicadores
@@ -436,7 +444,7 @@ La recolección de tweets se realizó mediante TwitterAPI.io, un proveedor de ac
 
 \begin{figure}[!ht]
     \begin{center}
-        \resizebox{0.85\textwidth}{!}{\input{3/figures/flujo_api_twitter.tex}}
+        \resizebox{0.55\textwidth}{!}{\input{3/figures/flujo_api_twitter.tex}}
         \caption[Proceso de recolección del corpus de X/Twitter mediante API Filtered Stream]{Proceso de recolección del corpus de X/Twitter: configuración de reglas de filtrado, captura en streaming y almacenamiento con metadatos en capa Bronze.\\
             Fuente: Elaboración propia.}
         \label{4:fig5}
@@ -662,7 +670,7 @@ A diferencia del diseño conceptual inicial, el sistema implementado no utiliza 
  
 \textbf{Actividad 4: Implementar sistema GraphRAG para consultas}
  
-El módulo de consulta al grafo de conocimiento se implementó como un servidor MCP (\textit{Model Context Protocol}) mediante el framework FastMCP 3.2.4, utilizando transporte \texttt{streamable-http} sobre el puerto 8080. El servidor expone 13 herramientas tipadas que los clientes LLM —como Claude Desktop y Claude.ai— pueden invocar directamente durante una conversación:
+El módulo de consulta al grafo de conocimiento se implementó como un servidor MCP (\textit{Model Context Protocol}) mediante el framework FastMCP 3.2.4, utilizando transporte \texttt{streamable-http} sobre el puerto 8080. El servidor expone 14 herramientas tipadas que los clientes LLM —como Claude Desktop y Claude.ai— pueden invocar directamente durante una conversación:
 
 \begin{itemize}
     \item \texttt{contexto\_candidato}
@@ -712,32 +720,31 @@ Evaluar módulo de análisis de sentimientos.
 & \begin{itemize}[label={--},nosep,leftmargin=*]
 \item Construir conjunto de validación con etiquetas humanas.
 \item Calcular exactitud, precisión, sensibilidad y F1.
-\item Comparar resultados entre distintas configuraciones de prompt.
-\end{itemize} \\ 
+\end{itemize} \\
 \hline
 Evaluar módulo de detección de temas.
-& Evaluación de la coherencia semántica y diversidad de los temas detectados por el módulo híbrido LLM con catálogo incremental.
+& Evaluación de la calidad de asignación documento--tema y de la deduplicación de temas detectados por el módulo híbrido LLM con catálogo incremental.
 & \begin{itemize}[label={--},nosep,leftmargin=*]
-\item Calcular coherencia C\textsubscript{v} de los temas.
-\item Evaluar diversidad temática del corpus.
-\item Validar etiquetas de clusters con analistas políticos.
-\end{itemize} \\ 
+\item Medir exactitud (\textit{exact}, \textit{lenient} y semántica) de la asignación documento--tema frente a etiquetas humanas.
+\item Medir precisión, sensibilidad y F1 de la fase de \textit{consolidate} + \texttt{llm\_dedup} sobre pares anotados.
+\item Reportar el conteo de temas únicos detectados en el corpus diario.
+\end{itemize} \\
 \hline
 Evaluar sistema GraphRAG.
-& Evaluación de la precisión de las consultas Cypher generadas y la calidad de las respuestas en lenguaje natural.
+& Evaluación de la exactitud en la selección de herramientas y la calidad de las respuestas en lenguaje natural.
 & \begin{itemize}[label={--},nosep,leftmargin=*]
-\item Diseñar conjunto de preguntas de evaluación con respuesta esperada.
-\item Medir exactitud de las consultas Cypher generadas.
-\item Evaluar factualidad y trazabilidad de las respuestas.
-\end{itemize} \\ 
+\item Diseñar conjunto de preguntas de evaluación con \textit{ground truth} de herramientas esperadas y respuesta de referencia.
+\item Medir la \textit{Tool Selection Accuracy} del LLM cliente sobre el \textit{golden set}.
+\item Evaluar fidelidad, corrección y relevancia de las respuestas mediante un esquema \textit{LLM-as-judge} independiente.
+\end{itemize} \\
 \hline
 Evaluar el sistema integrado.
-& Evaluación del pipeline completo en términos de latencia, escalabilidad y correlación con encuestas de opinión.
+& Evaluación operacional del pipeline completo en términos de latencia, costo, idempotencia y cobertura.
 & \begin{itemize}[label={--},nosep,leftmargin=*]
 \item Medir latencia extremo a extremo del pipeline.
-\item Comparar indicadores ISN con encuestas electorales disponibles.
-\item Evaluar correlación de Pearson entre ambas fuentes.
-\end{itemize} \\ 
+\item Verificar idempotencia tras tres corridas consecutivas.
+\item Reportar costo operacional y cobertura del catálogo.
+\end{itemize} \\
 \specialrule{.1em}{.05em}{.05em}
 \end{longtable}
 \endgroup
@@ -783,90 +790,174 @@ En la fase final de la metodología, el sistema de inteligencia electoral se imp
     \small Fuente: Elaboración propia.
 \end{flushleft}
  
-Tras evaluar el desempeño de cada módulo del sistema, se procedió a tomar los resultados y realizar una comparativa respecto a los antecedentes analizados, llevando a cabo una prueba de demostración, en la cual el sistema completo operó en tiempo real durante una semana de campaña electoral. Los especificaciones de esta prueba y sus resultados se presentan en el Capítulo V.
+Tras evaluar el desempeño de cada módulo del sistema, se procedió a tomar los resultados y realizar una comparativa respecto a los antecedentes analizados, llevando a cabo una prueba de demostración, en la cual el sistema completo operó en modalidad de procesamiento por lotes diario (near-real-time) durante una semana de campaña electoral. Los especificaciones de esta prueba y sus resultados se presentan en el Capítulo V.
  
 \subsection{Metodología para la medición de resultados}
- 
-Con el fin de evaluar el desempeño de los módulos del sistema, correspondiente a la quinta fase de la metodología CRISP-DM, se emplearon varias medidas de medición como instrumentos para medir su rendimiento. A continuación, se describen su definición y fórmulas de cálculo.
- 
+\label{4:metricas-resultados}
+
+Con el fin de evaluar el desempeño de los módulos del sistema, correspondiente a la quinta fase de la metodología CRISP-DM, se emplearon distintos instrumentos de medición agrupados en tres bloques: (i) métricas de clasificación sobre etiquetas categóricas (matriz de confusión, exactitud, precisión, sensibilidad y F1 en sus variantes macro y micro), (ii) métricas de regresión sobre el sentimiento continuo (MAE y RMSE) y (iii) métricas de calidad de respuesta del sistema GraphRAG (exactitud en selección de herramientas, fidelidad, corrección y relevancia evaluadas mediante un modelo juez independiente). A continuación, se describen sus definiciones y fórmulas de cálculo.
+
+\subsubsection*{Métricas de clasificación}
+
 \begin{itemize}
-    \item \textbf{Matriz de confusión}: Es una tabla de $N \times N$ que resume el nivel de
-    éxito de las predicciones de un modelo de clasificación. Para el módulo de análisis de
-    sentimientos, $N=3$ (positivo, negativo, neutral), permitiendo identificar los errores más
-    frecuentes de clasificación (por ejemplo, confundir sentimiento neutro con negativo en
-    textos irónicos) \parencite{gl_kohavi1998ml_glossary}.
- 
-    \item \textbf{Exactitud} (\textit{accuracy}): Fracción de predicciones de sentimiento
-    realizadas correctamente sobre el total de publicaciones en el conjunto de validación.
-    Se calcula mediante la Ecuación \ref{eq:accuracy_llm}:
- 
+    \item \textbf{Matriz de confusión}: Tabla de $N \times N$ que resume el nivel de éxito
+    de las predicciones de un modelo de clasificación. Para la dimensión categórica del
+    etiquetado (categoría temática con $N=17$ valores, candidato protagonista con $N$ variable
+    según el ciclo electoral, sentimiento discreto con $N=3$), permite identificar los
+    errores más frecuentes de clasificación —por ejemplo, confundir noticias de
+    \texttt{regional} con \texttt{otros\_no\_politico} cuando el actor implicado no es un
+    candidato registrado— \parencite{gl_kohavi1998ml_glossary}.
+
+    \item \textbf{Exactitud} (\textit{accuracy}): Fracción de predicciones realizadas
+    correctamente sobre el total de publicaciones en el conjunto de validación. Se calcula
+    mediante la Ecuación \ref{eq:accuracy_llm}:
+
     \begin{equation}\label{eq:accuracy_llm}
     \phantomsection
     Exactitud = \frac{V.P. + V.N.}{V.P. + V.N. + F.P. + F.N.}
     \end{equation}
-    \myequations{Fórmula para calcular la exactitud del módulo de sentimientos}
- 
+    \myequations{Fórmula para calcular la exactitud del módulo de etiquetado}
+
     \item \textbf{Precisión} (\textit{precision}): Proporción de publicaciones clasificadas
-    correctamente como de sentimiento positivo sobre el total de publicaciones clasificadas
-    como positivas por el sistema. Se calcula mediante la Ecuación \ref{eq:precision_llm}:
- 
+    correctamente en una clase determinada sobre el total de publicaciones que el sistema
+    asignó a esa clase. Se calcula mediante la Ecuación \ref{eq:precision_llm}:
+
     \begin{equation}\label{eq:precision_llm}
     \phantomsection
     Precisi\acute{o}n = \frac{V.P.}{V.P. + F.P.}
     \end{equation}
-    \myequations{Fórmula para calcular la precisión del módulo de sentimientos}
- 
+    \myequations{Fórmula para calcular la precisión del módulo de etiquetado}
+
     \item \textbf{Sensibilidad} (\textit{recall}): Proporción de publicaciones realmente
-    positivas donde el sistema predice correctamente. Esta calcula con la siguiente Ecuación
-    \ref{eq:recall_llm}:
- 
+    pertenecientes a una clase que el sistema predice correctamente como tal. Se calcula
+    mediante la Ecuación \ref{eq:recall_llm}:
+
     \begin{equation}\label{eq:recall_llm}
     \phantomsection
     Sensibilidad = \frac{V.P.}{V.P. + F.N.}
     \end{equation}
-    \myequations{Fórmula para calcular la sensibilidad del módulo de sentimientos}
- 
-    \item \textbf{Puntaje F1}: Se define como la media armónica entre la sensibilidad y la precisión. Esta se emplea especialmente cuando las clases de sentimiento se encuentran desbalanceadas —situación común en corpus electorales, donde el sentimiento negativo suele predominar sobre el positivo— y no es adecuado basar las conclusiones únicamente en la exactitud. Su cálculo se realiza mediante la Ecuación \ref{eq:f1_llm}:
- 
+    \myequations{Fórmula para calcular la sensibilidad del módulo de etiquetado}
+
+    \item \textbf{Puntaje F1 (macro y micro)}: Media armónica entre la precisión y la
+    sensibilidad. Se emplea cuando las clases se encuentran desbalanceadas —situación común
+    en corpus electorales, donde categorías como \texttt{deportes} o \texttt{farandula}
+    aparecen con menor frecuencia que \texttt{economia} o \texttt{seguridad}— y no es adecuado
+    basar las conclusiones únicamente en la exactitud. El valor por clase se obtiene mediante
+    la Ecuación \ref{eq:f1_llm}:
+
     \begin{equation}\label{eq:f1_llm}
     \phantomsection
     Puntaje\ F1 = \frac{2 \times Precisi\acute{o}n \times Sensibilidad}{Precisi\acute{o}n + Sensibilidad}
     \end{equation}
-    \myequations{Fórmula para calcular el puntaje F1 del módulo de sentimientos}
- 
-    \item \textbf{Precisión de Recuperación (Hit Rate / Recall@k)}: Propia de las arquitecturas \textit{Retrieval-Augmented Generation} (RAG). Mide la capacidad del sistema de búsqueda híbrida (\textit{pgvector} + Neo4j) para devolver los fragmentos documentales más relevantes (evidencia) en el top $K$ de los resultados frente a una consulta electoral en lenguaje natural.
+    \myequations{Fórmula para calcular el puntaje F1 del módulo de etiquetado}
 
-    \item \textbf{Coherencia semántica $C_v$}: Métrica estándar utilizada para la evaluación de la calidad de
-    los temas generados por modelos de topic modeling. Mide la co-ocurrencia normalizada
-    de los términos más representativos de cada tema en el corpus. Un valor de $C_v$
-    cercano a 1 indica temas semánticamente coherentes. Se calcula mediante la Ecuación
-    \ref{eq:cv_coherence}:
- 
-    \begin{equation}\label{eq:cv_coherence}
-    \phantomsection
-    C_v(t) = \frac{1}{\binom{|W|}{2}} \sum_{i>j} \log \frac{P(w_i, w_j) + \epsilon}{P(w_i) \cdot P(w_j)}
-    \end{equation}
-    \myequations{Fórmula para calcular la coherencia semántica $C_v$ de los temas detectados}
- 
-    Donde $W$ es el conjunto de los términos más representativos del tema $t$, $P(w_i, w_j)$
-    es la probabilidad de co-ocurrencia de los términos $w_i$ y $w_j$ en el corpus, y
-    $\epsilon$ es un suavizador para evitar logaritmos de cero.
- 
-    \item \textbf{Correlación de Pearson con encuestas}: Permite medir el grado de correlación
-    lineal  existente entre el Índice de Sentimiento Neto (ISN) calculado por el sistema para cada
-    candidato y los distintos resultados obtenidos por parte de las encuestas sobre la intención de voto disponibles durante el
-    mismo período. Un coeficiente de Pearson alto ($r > 0.7$) indicaría que el sistema
-    captura adecuadamente la percepción electoral real.
+    Sobre la base de la Ecuación \ref{eq:f1_llm} se reportan dos agregaciones complementarias:
+    el \textbf{F1 macro} promedia el F1 entre clases asignando el mismo peso a cada una
+    (sensible al desempeño en clases minoritarias), mientras que el \textbf{F1 micro}
+    pondera por el número de instancias de cada clase (cercano a la exactitud global).
+    La diferencia entre ambos cuantifica el sesgo del modelo hacia clases mayoritarias y
+    resulta especialmente informativa en tareas multi-etiqueta como la extracción de actores
+    principales.
 \end{itemize}
- 
-La selección de las métricas mencionadas para evaluar cada módulo del sistema se llevó a cabo tras comparar aquellas empleadas por parte de los los autores en presentación de los antecedentes del estudio propuesto:
- 
+
+\subsubsection*{Métricas de regresión sobre sentimiento continuo}
+
+El módulo de análisis de sentimientos a nivel de aspecto (ABSA) produce, además de una
+clase discreta, una puntuación continua $\hat{s} \in [-1, 1]$ que representa la intensidad
+del sentimiento hacia el tema. Para evaluar la calidad de esta puntuación contra la
+referencia humana $s$ se emplean dos métricas estándar de regresión:
+
+\begin{itemize}
+    \item \textbf{Error absoluto medio} (\textit{Mean Absolute Error}, MAE): Promedio de las
+    distancias absolutas entre el sentimiento predicho y el sentimiento de referencia humano,
+    calculado mediante la Ecuación \ref{eq:mae_llm}:
+
+    \begin{equation}\label{eq:mae_llm}
+    \phantomsection
+    MAE = \frac{1}{n} \sum_{i=1}^{n} |\hat{s}_i - s_i|
+    \end{equation}
+    \myequations{Fórmula para calcular el error absoluto medio del sentimiento}
+
+    \item \textbf{Raíz del error cuadrático medio} (\textit{Root Mean Squared Error}, RMSE):
+    Penaliza con mayor severidad los desvíos grandes, lo que resulta útil para detectar
+    casos en que el modelo invierte el signo del sentimiento. Se calcula mediante la Ecuación
+    \ref{eq:rmse_llm}:
+
+    \begin{equation}\label{eq:rmse_llm}
+    \phantomsection
+    RMSE = \sqrt{\frac{1}{n} \sum_{i=1}^{n} (\hat{s}_i - s_i)^2}
+    \end{equation}
+    \myequations{Fórmula para calcular la raíz del error cuadrático medio del sentimiento}
+\end{itemize}
+
+\subsubsection*{Métricas de calidad de respuesta del sistema GraphRAG}
+
+Dado que el sistema GraphRAG se implementó bajo el paradigma de \textit{typed tools} sobre
+el protocolo MCP —en lugar de generación dinámica de Cypher mediante \textit{few-shot
+prompting}—, la evaluación clásica de exactitud sintáctica de consultas pierde sentido:
+las consultas SQL/Cypher están pre-cargadas y parametrizadas, por lo que son correctas por
+construcción. En su lugar, se mide la capacidad del LLM cliente para seleccionar la
+herramienta apropiada y la calidad de la respuesta final generada con base en los datos
+recuperados, evaluada por un modelo juez independiente:
+
+\begin{itemize}
+    \item \textbf{Exactitud en selección de herramientas} (\textit{Tool Selection Accuracy}):
+    Reemplaza el clásico Hit Rate / Recall@k del paradigma RAG. Mide la fracción de
+    preguntas en las que el LLM cliente seleccionó al menos una de las herramientas
+    esperadas en el \textit{ground truth} del conjunto de evaluación. Se reporta en dos
+    variantes: \textbf{match completo} (todas las herramientas esperadas están presentes en
+    la secuencia de llamadas, admitiendo extras) y \textbf{match parcial} (al menos una
+    herramienta esperada está presente). Se calcula mediante la Ecuación \ref{eq:tool_acc}:
+
+    \begin{equation}\label{eq:tool_acc}
+    \phantomsection
+    Tool\ Sel.\ Acc. = \frac{1}{n} \sum_{i=1}^{n} \mathbb{1}\!\left[\,T_{esperadas}^{(i)} \subseteq T_{invocadas}^{(i)}\,\right]
+    \end{equation}
+    \myequations{Fórmula para calcular la exactitud en selección de herramientas}
+
+    \item \textbf{Fidelidad} (\textit{Faithfulness}): Proporción de las afirmaciones
+    contenidas en la respuesta del sistema que están sustentadas por la evidencia recuperada
+    (resultados de las herramientas o fragmentos de contexto). Se calcula como en la Ecuación
+    \ref{eq:faithfulness}:
+
+    \begin{equation}\label{eq:faithfulness}
+    \phantomsection
+    Faithfulness = \frac{|\,claims\ sustentados\ por\ el\ contexto\,|}{|\,claims\ totales\ de\ la\ respuesta\,|}
+    \end{equation}
+    \myequations{Fórmula para calcular la fidelidad de la respuesta GraphRAG}
+
+    \item \textbf{Corrección de respuesta} (\textit{Answer Correctness}): Mide qué tan
+    completamente la respuesta del sistema cubre los elementos del \textit{ground truth}
+    diseñado para cada pregunta. Es la métrica directa de cumplimiento de la hipótesis HE4,
+    al cuantificar si el sistema entrega efectivamente la información correcta y no solo
+    texto fluido.
+
+    \item \textbf{Relevancia de respuesta} (\textit{Answer Relevancy}): Mide en qué medida
+    la respuesta atiende efectivamente la pregunta formulada, penalizando respuestas evasivas,
+    excesivamente verbosas o que cambian de tema.
+
+    \item \textbf{Similitud de embeddings} (coseno): Métrica determinística complementaria
+    que mide la distancia en el espacio vectorial entre la respuesta del sistema y la
+    respuesta de referencia, calculada con el modelo
+    \texttt{paraphrase-multilingual-mpnet-base-v2}. Se utiliza como verificación cruzada
+    de la tríada anterior y para detectar casos donde una respuesta incorrecta puede,
+    sin embargo, ``sonar'' a la referencia en el espacio semántico.
+\end{itemize}
+
+Las métricas de fidelidad, corrección y relevancia se computan mediante un esquema
+\textit{LLM-as-judge} con un modelo distinto al que genera las respuestas
+—DeepSeek-Chat como juez con temperatura $0.2$ y respuesta forzada a JSON— para evitar
+sesgos de auto-evaluación y asegurar trazabilidad de los puntajes.
+
+La selección de las métricas se realizó tras comparar aquellas empleadas por los autores
+de los antecedentes del estudio:
+
 \begin{itemize}
     \item \textbf{Exactitud}: \cite{pr_alvi2023twitter_election_review}, \cite{pr_gujral2024llm_elections}.
     \item \textbf{Precisión y Sensibilidad}: \cite{pr_alvarez2023llm_political}, \cite{pr_alvi2023twitter_election_review}.
-    \item \textbf{Puntaje F1}: \cite{pr_alvarez2023llm_political}, \cite{pr_chen2024combating_misinformation}.
-    \item \textbf{Coherencia semántica $C_v$}: \cite{pr_mendonca2025bertopic_political}, \cite{pr_janssens2025bertopic_llm}.
-    \item \textbf{Correlación con encuestas}: \cite{pr_gujral2024llm_elections}.
+    \item \textbf{Puntaje F1 (macro/micro)}: \cite{pr_alvarez2023llm_political}, \cite{pr_chen2024combating_misinformation}.
+    \item \textbf{MAE / RMSE para sentimiento continuo}: \cite{pr_alvarez2023llm_political}.
+    \item \textbf{Tool Selection Accuracy, Fidelidad, Corrección y Relevancia (LLM-as-judge)}: \cite{pr_chen2024combating_misinformation}, \cite{pr_gujral2024llm_elections}.
 \end{itemize}
  
 \begin{landscape}
