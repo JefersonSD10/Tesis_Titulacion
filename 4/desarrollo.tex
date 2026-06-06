@@ -179,28 +179,170 @@ del formato audiovisual corto.
 
 \textbf{Actividad 5: Realizar análisis exploratorio del corpus}
 \\
-En esta sección se analizaron estadísticamente las variables del corpus electoral
-multicanal: distribución temporal, por fuente, por candidato y por longitud de texto.
-En la variable dependiente —el sentimiento expresado hacia cada candidato—, las
-publicaciones del corpus se distribuyen según la Figura \ref{5:fig7}.
+El corpus electoral procesado por el pipeline completo abarca el período del
+\textbf{1 de enero al 6 de abril de 2026} (96 días consecutivos, sin errores de
+ejecución) y comprende un total de \textbf{40\,974 documentos} provenientes de
+siete canales agrupados en las cuatro fuentes del sistema: noticias digitales
+(El Comercio, La República, RPP Noticias y Diario Correo), X/Twitter, YouTube y
+TikTok. La distribución temporal del corpus se concentra fuertemente en el mes de
+marzo, que reúne el 53\% del volumen total como reflejo del pico de campaña
+pre-electoral, según se detalla en la Tabla \ref{5:table_vol_mes}.
+
+\begin{table}[h!]
+    \caption[Distribución temporal del corpus completo por mes]{Volumen de documentos del corpus completo (40\,974 documentos) por mes de recolección, 1 de enero al 6 de abril de 2026.}
+    \label{5:table_vol_mes}
+    \centering
+    \small
+    \begin{tabular}{ m{4.5cm}M{3cm}M{2.5cm} }
+        \specialrule{.1em}{.05em}{.05em}
+        \Centering{Mes} & \Centering{Documentos} & \Centering{\%} \\
+        \specialrule{.1em}{.05em}{.05em}
+        Enero          & 6\,676  & 16.3\% \\
+        Febrero        & 7\,165  & 17.5\% \\
+        Marzo          & 21\,823 & 53.3\% \\
+        Abril (1--6)   & 5\,310  & 13.0\% \\
+        \hline
+        \textbf{Total} & \textbf{40\,974} & \textbf{100\%} \\
+        \specialrule{.1em}{.05em}{.05em}
+    \end{tabular}
+    \begin{flushleft}
+        \small Fuente: Elaboración propia.
+    \end{flushleft}
+\end{table}
+
+La distribución por fuente de datos del corpus completo se ilustra en la
+Figura \ref{5:fig7} y se detalla por canal en la Tabla \ref{5:table_fuente_gen}.
+X/Twitter es el canal de mayor volumen (37.8\%), seguido por TikTok (16.3\%) y los
+portales de noticias, que en conjunto aportan el 36.1\% del corpus.
 
 \begin{figure}[!ht]
     \begin{center}
         \resizebox{0.85\textwidth}{!}{\input{4/figures/fig7_distribucion_fuentes}}
-        \caption[Distribución del corpus electoral total por fuente de datos]{Distribución del corpus electoral total por las cuatro fuentes de datos (noticias digitales, X/Twitter, YouTube y TikTok), mostrando el volumen relativo de cada canal.\\Fuente: Elaboración propia.}
+        \caption[Distribución del corpus electoral total por fuente de datos]{Distribución del corpus electoral completo por las cuatro fuentes de datos (noticias digitales, X/Twitter, YouTube y TikTok), mostrando el volumen relativo de cada canal.\\Fuente: Elaboración propia.}
         \label{5:fig7}
     \end{center}
 \end{figure}
-sesgo editorial de cada fuente.
-En el análisis de transcripciones de YouTube, el 78\% de los videos con duración
-superior a tres minutos presentaron al menos una mención a un candidato presidencial,
-mientras que los videos de menor duración tendieron a ser genéricos sin referencias
-específicas a candidatos.
 
-Respecto a la longitud de los textos, el artículo de noticias de mayor extensión
-presentó 4,218 palabras, el tweet más largo 280 caracteres (límite de la plataforma) y
-la transcripción de YouTube más extensa alcanzó 1,847 palabras. A nivel del corpus total,
-el vocabulario electoral fue de aproximadamente 89,400 palabras únicas en español.
+\begin{table}[h!]
+    \caption[Cobertura del corpus completo por canal de origen]{Distribución de los 40\,974 documentos del corpus completo por canal de origen.}
+    \label{5:table_fuente_gen}
+    \centering
+    \small
+    \begin{tabular}{ m{5cm}M{2.5cm}M{2cm} }
+        \specialrule{.1em}{.05em}{.05em}
+        \Centering{Canal} & \Centering{Documentos} & \Centering{\%} \\
+        \specialrule{.1em}{.05em}{.05em}
+        X/Twitter      & 15\,495 & 37.8\% \\
+        TikTok         & 6\,670  & 16.3\% \\
+        RPP Noticias   & 5\,787  & 14.1\% \\
+        Diario Correo  & 5\,568  & 13.6\% \\
+        YouTube        & 4\,011  & 9.8\%  \\
+        El Comercio    & 2\,424  & 5.9\%  \\
+        La República   & 1\,019  & 2.5\%  \\
+        \specialrule{.1em}{.05em}{.05em}
+    \end{tabular}
+    \begin{flushleft}
+        \small Fuente: Elaboración propia.
+    \end{flushleft}
+\end{table}
+
+\textbf{Universo filtrado por candidato.} Dado que el objeto de estudio es la
+percepción mediática hacia los candidatos presidenciales, se aisló el subconjunto
+de documentos que mencionan al menos a un candidato: \textbf{6\,293 documentos}
+(15.4\% del corpus total), que contienen 1\,282 temas distintos. Este subconjunto
+constituye el universo analítico más relevante de la investigación, dado que
+presenta un \textit{bleed} no político casi nulo: la categoría
+\texttt{otros\_no\_politico} representa apenas el 0.4\% y deportes el 0\%,
+resultando un corpus 94\% político-relevante. La proporción candidato/total crece
+de forma sostenida hacia el cierre de campaña (de 6\% en enero a 25\% en abril),
+confirmando la intensificación de la cobertura electoral. La distribución por
+fuente de este subconjunto se reporta en la Tabla \ref{5:table_fuente_cand}.
+
+\begin{table}[h!]
+    \caption[Cobertura del corpus filtrado por candidato]{Distribución de los 6\,293 documentos que mencionan al menos un candidato presidencial, por canal de origen.}
+    \label{5:table_fuente_cand}
+    \centering
+    \small
+    \begin{tabular}{ m{5cm}M{2.5cm}M{2cm} }
+        \specialrule{.1em}{.05em}{.05em}
+        \Centering{Canal} & \Centering{Documentos} & \Centering{\%} \\
+        \specialrule{.1em}{.05em}{.05em}
+        X/Twitter      & 3\,086 & 49.0\% \\
+        TikTok         & 1\,401 & 22.3\% \\
+        YouTube        & 760    & 12.1\% \\
+        RPP Noticias   & 459    & 7.3\%  \\
+        Diario Correo  & 411    & 6.5\%  \\
+        El Comercio    & 140    & 2.2\%  \\
+        La República   & 36     & 0.6\%  \\
+        \specialrule{.1em}{.05em}{.05em}
+    \end{tabular}
+    \begin{flushleft}
+        \small Fuente: Elaboración propia.
+    \end{flushleft}
+\end{table}
+
+En el universo filtrado por candidato, las redes sociales (X/Twitter, TikTok y
+YouTube) concentran el 83\% de la cobertura, una dominancia mucho más marcada que
+en el corpus general, lo que evidencia que la conversación electoral en torno a
+los candidatos se desarrolla principalmente en plataformas sociales. La
+distribución temática de este subconjunto, reportada en la Tabla
+\ref{5:table_cat_cand}, está dominada por la categoría \texttt{institucional}
+(42.9\%, principalmente debates y cobertura electoral), seguida por
+\texttt{seguridad} (12.9\%) y \texttt{justicia\_legalidad} (11.4\%).
+
+\begin{table}[h!]
+    \caption[Distribución temática del corpus filtrado por candidato]{Distribución de los documentos que mencionan candidatos por categoría temática (top siete categorías).}
+    \label{5:table_cat_cand}
+    \centering
+    \small
+    \begin{tabular}{ m{5cm}M{2.5cm}M{2cm} }
+        \specialrule{.1em}{.05em}{.05em}
+        \Centering{Categoría} & \Centering{Documentos} & \Centering{\%} \\
+        \specialrule{.1em}{.05em}{.05em}
+        institucional        & 2\,701 & 42.9\% \\
+        seguridad            & 809    & 12.9\% \\
+        justicia\_legalidad  & 715    & 11.4\% \\
+        corrupcion           & 535    & 8.5\%  \\
+        social\_genero (encuestas) & 531 & 8.4\% \\
+        economia             & 283    & 4.5\%  \\
+        educacion            & 265    & 4.2\%  \\
+        \specialrule{.1em}{.05em}{.05em}
+    \end{tabular}
+    \begin{flushleft}
+        \small Fuente: Elaboración propia.
+    \end{flushleft}
+\end{table}
+
+Finalmente, la variable dependiente del estudio —el sentimiento mediático hacia
+cada candidato— se sintetiza en la Tabla \ref{5:table_sent_cand} para los
+candidatos con mayor cobertura. El sentimiento promedio es predominantemente
+negativo, coherente con el tono crítico de la cobertura electoral peruana
+\parencite{pr_alvi2023twitter_election_review}: César Acuña ($-0.335$) y Vladimir
+Cerrón ($-0.406$) presentan los valores más negativos, mientras que Marisol Pérez
+Tello ($+0.106$) y Carlos Álvarez ($+0.062$) son los únicos con sentimiento
+mediático neto positivo.
+
+\begin{table}[h!]
+    \caption[Sentimiento mediático promedio por candidato]{Sentimiento mediático promedio (escala $[-1,1]$) y número de menciones de los candidatos con mayor cobertura en el corpus completo.}
+    \label{5:table_sent_cand}
+    \centering
+    \small
+    \begin{tabular}{ m{4.8cm}M{2.5cm}M{2.5cm} }
+        \specialrule{.1em}{.05em}{.05em}
+        \Centering{Candidato} & \Centering{Menciones} & \Centering{Sentimiento} \\
+        \specialrule{.1em}{.05em}{.05em}
+        Keiko Fujimori        & 1\,071 & $-0.193$ \\
+        Rafael López Aliaga   & 813    & $-0.219$ \\
+        César Acuña           & 670    & $-0.335$ \\
+        Carlos Álvarez        & 384    & $+0.062$ \\
+        Vladimir Cerrón       & 376    & $-0.406$ \\
+        Marisol Pérez Tello   & 268    & $+0.106$ \\
+        \specialrule{.1em}{.05em}{.05em}
+    \end{tabular}
+    \begin{flushleft}
+        \small Fuente: Elaboración propia.
+    \end{flushleft}
+\end{table}
 
 % ──────────────────────────────────────────────────────────────
 \section{Preparación de los datos}
