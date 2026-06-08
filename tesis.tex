@@ -99,6 +99,7 @@
 citecolor=black,
 urlcolor=black,
 bookmarks=true,
+linktoc=all,% hace clicable toda la linea del indice (texto + numero de pagina)
 linkcolor=black,
 pdftitle={Tesis-nombre-alumno},
 pdfauthor={autor nombres}]{hyperref}
@@ -478,6 +479,14 @@ pdfauthor={autor nombres}]{hyperref}
 %\bibliographystyle{apalike} % No funciona
 %\renewcommand{\bibname}{BIBLIOGRAFÍA} % changes the header; default: Bibliography
 
+% Encabezado de bibliografia con \phantomsection para que el enlace del
+% indice apunte al lugar correcto. El bibintoc por defecto de biblatex omite
+% \phantomsection y, combinado con titlesec, el enlace del TOC queda desfasado.
+\defbibheading{bibintoc}[\bibname]{%
+	\chapter*{#1}%
+	\phantomsection
+	\addcontentsline{toc}{chapter}{#1}%
+	\markboth{#1}{#1}}
 \printbibliography[heading=bibintoc,title={Referencias}]
 %\bibliography{biblio/references} % adjust this to fit your BibTex file
 
@@ -487,6 +496,7 @@ pdfauthor={autor nombres}]{hyperref}
 \renewcommand{\appendixtocname}{Anexos} %Esto es para el indice
 \renewcommand{\appendixpagename}{Anexos}
 \clearpage
+\phantomsection
 \addappheadtotoc
 \appendixpage
 \include{anexos/anexo}
