@@ -23,7 +23,7 @@ Desde su fundación, el JNE ha consolidado un rol central en la garantía del ej
 
 En el marco de los procesos electorales, la percepción que los medios de comunicación proyectan sobre los candidatos, partidos políticos y propuestas programáticas se construye y transforma principalmente a través del ecosistema digital. Las plataformas de noticias digitales, X (antes Twitter), YouTube y TikTok se han consolidado como los principales canales de difusión de contenido mediático durante las campañas electorales peruanas. Sin embargo, el análisis sistemático y automatizado de esta cobertura —en términos de su tono, encuadre y temática— ha sido hasta la fecha un reto técnico sin resolver a escala institucional.
 
-La presente investigación se desarrolla como un proyecto académico aplicado orientado al análisis automatizado de la percepción proyectada por los medios de comunicación en ecosistemas digitales peruanos durante el proceso electoral 2026. Para ello, se trabaja con un equipo multidisciplinario conformado por analistas políticos, especialistas en NLP e ingenieros de datos, cuyo interés es evaluar la viabilidad de un sistema automatizado de inteligencia electoral basado en Modelos de Lenguaje de Gran Escala (LLMs) sobre un corpus recolectado entre enero y mayo de 2026.
+La presente investigación se desarrolla como un proyecto académico aplicado orientado al análisis automatizado de la percepción proyectada por los medios de comunicación en ecosistemas digitales peruanos durante el proceso electoral 2026. Para ello, se trabaja con un equipo multidisciplinario conformado por analistas políticos, especialistas en NLP e ingenieros de datos, cuyo interés es evaluar la viabilidad de un sistema automatizado de inteligencia electoral basado en Modelos de Lenguaje de Gran Escala (LLMs) sobre un corpus recolectado entre enero y abril de 2026.
 
 % ─────────────────────────────────────────────────────────────
 \subsection{Descripción de la organización}
@@ -83,7 +83,7 @@ El ecosistema de datos y fuentes de información que alimenta esta cadena se det
 
 \begin{table}[htbp]
     \renewcommand\arraystretch{1.3}
-    \caption[Fuentes de datos del sistema de inteligencia electoral]{Fuentes de datos utilizadas por el sistema de inteligencia electoral y su rol dentro del pipeline analítico. Período de recolección: enero–mayo 2026.}
+    \caption[Fuentes de datos del sistema de inteligencia electoral]{Fuentes de datos utilizadas por el sistema de inteligencia electoral y su rol dentro del pipeline analítico. Período de recolección: enero–abril 2026.}
     \label{tab:fuentes_datos}
     \centering
     \small
@@ -178,7 +178,7 @@ El sistema de inteligencia electoral propuesto tiene como objetivos estratégico
 
 En primer lugar, \textbf{desarrollar un pipeline automatizado de minería de sentimientos} aplicado a la cobertura mediática del proceso electoral peruano, analizando contenidos de cuatro fuentes digitales (noticias web, X/Twitter, YouTube y TikTok) mediante LLMs en modalidad zero-shot y few-shot, capaz de clasificar la polaridad y el encuadre mediático de documentos en español con una exactitud superior al 85\% validada contra etiquetas humanas.
 
-En segundo lugar, \textbf{implementar un sistema de detección dinámica de temas} basado en un enfoque híbrido LLM con catálogo incremental, que combina embeddings de Sentence-BERT multilingüe, retrieval multinivel y clasificación con LLM (\textit{exact}, \textit{alias}, \textit{new}), capaz de identificar automáticamente los temas relevantes emergentes en la cobertura mediática digital y rastrear su evolución temporal durante el período enero–mayo de 2026.
+En segundo lugar, \textbf{implementar un sistema de detección dinámica de temas} basado en un enfoque híbrido LLM con catálogo incremental, que combina embeddings de Sentence-BERT multilingüe, retrieval multinivel y clasificación con LLM (\textit{exact}, \textit{alias}, \textit{new}), capaz de identificar automáticamente los temas relevantes emergentes en la cobertura mediática digital y rastrear su evolución temporal durante el período enero–abril de 2026.
 
 En tercer lugar, \textbf{construir un módulo de análisis de framing mediático comparado} que permita identificar y cuantificar las diferencias en la percepción proyectada sobre los actores políticos por parte de distintos medios y plataformas digitales, habilitando el análisis de sesgos editoriales y divergencias de cobertura.
 
