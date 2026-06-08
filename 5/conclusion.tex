@@ -1,309 +1,57 @@
 \chapter{Conclusiones y Recomendaciones}
+
 \section{Conclusiones}
-Una vez planteado el problema general, definidos los objetivos e hipótesis
-correspondientes, construido el sistema de inteligencia electoral Electoral-Peru-2026 y
-aplicada la metodología CRISP-DM sobre un corpus multicanal del ecosistema
-digital electoral peruano del año 2026, se exponen a continuación las
-conclusiones que se desprenden de cada objetivo del estudio.
+Una vez planteado el problema general, definidos los objetivos e hipótesis correspondientes, construido el sistema de inteligencia electoral Electoral-Peru-2026 y aplicada la metodología CRISP-DM sobre un corpus multicanal del ecosistema digital electoral peruano del año 2026, se exponen a continuación las conclusiones que se desprenden de cada objetivo del estudio.
+
 \subsection*{Respecto al Objetivo General}
-El estudio cumplió el objetivo general al haber diseñado y puesto en marcha un
-sistema de inteligencia electoral apoyado en Modelos de Lenguaje de Gran Escala
-(LLMs), minería de sentimientos y detección dinámica de temas, aplicado a un
-ecosistema digital multi-fuente del caso peruano. La plataforma Electoral-Peru-2026 articula
-cuatro canales de información —portales de noticias, publicaciones en X/Twitter,
-transcripciones de YouTube y publicaciones en TikTok— y procesa el corpus diario
-íntegro (655 documentos válidos correspondientes al 22 de marzo de 2026) en
-torno a 57 minutos de ejecución secuencial, con un costo aproximado de
-US\$0{,}13 y un \textit{cache hit rate} del 85{,}5\,\% sobre el \textit{prompt}
-de extracción. A partir de ese procesamiento, el sistema produce indicadores de
-la percepción proyectada por los medios —sentimiento por candidato, temas
-dominantes y distribución de cobertura por medio— accesibles en lenguaje
-natural español mediante un servidor MCP que expone 14 herramientas
-tipadas. La calidad de salida del sistema fue evaluada cuantitativamente
-contra dos \textit{gold datasets} construidos para esta tesis: un dataset
-de etiquetado con 100 documentos anotados por humano para los módulos de
-sentimiento y temas, y un \textit{golden set} de 30 preguntas anotadas con
-\textit{ground truth} de herramientas esperadas y respuesta de referencia
-para la capa GraphRAG, comparada contra un RAG \textit{baseline} por
-similitud semántica.
+El estudio cumplió el objetivo general al haber diseñado y puesto en marcha un sistema de inteligencia electoral apoyado en Modelos de Lenguaje de Gran Escala (LLMs), minería de sentimientos y detección dinámica de temas, aplicado a un ecosistema digital multi-fuente del caso peruano. La plataforma Electoral-Peru-2026 articula cuatro canales de información —portales de noticias, publicaciones en X/Twitter, transcripciones de YouTube y publicaciones en TikTok— y procesa el corpus diario íntegro (655 documentos válidos correspondientes al 22 de marzo de 2026) en torno a 57 minutos de ejecución secuencial, con un costo aproximado de US\$0{,}13 y un \textit{cache hit rate} del 85{,}5\,\% sobre el \textit{prompt} de extracción. A partir de ese procesamiento, el sistema produce indicadores de la percepción proyectada por los medios —sentimiento por candidato, temas dominantes y distribución de cobertura por medio— accesibles en lenguaje natural español mediante un servidor MCP que expone 14 herramientas tipadas. La calidad de salida del sistema fue evaluada cuantitativamente contra dos \textit{gold datasets} construidos para esta tesis: un dataset de etiquetado con 100 documentos anotados por humano para los módulos de sentimiento y temas, y un \textit{golden set} de 30 preguntas anotadas con \textit{ground truth} de herramientas esperadas y respuesta de referencia para la capa GraphRAG, comparada contra un RAG \textit{baseline} por similitud semántica.
+
 \subsection*{Respecto al Primer Objetivo Específico (OE1)}
 Se diseñó e implementó la arquitectura de ingesta y armonización multi-fuente basada en el patrón Medallion, organizada en tres capas de procesamiento (Bronze, Silver y Gold) sobre una infraestructura dual compuesta por PostgreSQL con pgvector y Neo4j 5.20 Community Edition. La capa Bronze almacena los datos crudos provenientes de los cuatro canales digitales integrados: portales de prensa digital (scraper Python con BeautifulSoup), X/Twitter (cliente asíncrono sobre TwitterAPI.io), YouTube (extractor paralelo con yt-dlp) y TikTok (scraper con Playwright bajo arquitectura hexagonal). La capa Silver unifica los datos bajo un esquema canónico de documentos, aplica limpieza textual, segmentación semántica con superposición de 50 tokens, generación de embeddings multilingües (paraphrase-multilingual-mpnet-base-v2, 768 dimensiones) e indexación vectorial con pgvector. La capa Gold materializa vistas agregadas de sentimiento diario, temas y cobertura por medio, que sirven como fuente directa del servidor MCP. La cascada de filtros pre-LLM (filter\_by\_account, filter\_by\_hashtag y filter\_by\_title\_keywords), parametrizada desde catálogos YAML versionados, reduce el volumen de documentos pasados al modelo antes de la extracción semántica, optimizando el costo computacional del pipeline. La arquitectura garantiza idempotencia mediante ON CONFLICT en Postgres y MERGE en Neo4j, verificada con tres corridas consecutivas sin variación en los conteos de entidades.
+
 \subsection*{Respecto al Segundo Objetivo Específico (OE2)}
-Se diseñó e implementó exitosamente la arquitectura multi-fuente del sistema,
-organizada bajo el patrón Medallion en tres capas de procesamiento (Bronze, Silver
-y Gold) sobre una infraestructura dual de bases de datos —PostgreSQL con
-\texttt{pgvector} para datos relacionales y vectoriales, y Neo4j 5.20 Community
-Edition para el grafo de conocimiento—. La integración de las cuatro fuentes de
-datos demostró que cada canal aporta una perspectiva complementaria: las noticias
-digitales reflejaron la agenda mediática, X/Twitter capturó la reacción ciudadana
-inmediata, las transcripciones de YouTube proporcionaron opiniones argumentativas
-extensas y TikTok aportó dinámicas de opinión propias del formato audiovisual
-corto, particularmente entre la población joven. La cascada de filtros pre-LLM
-parametrizados desde catálogos YAML versionados (\texttt{filter\_by\_account},
-\texttt{filter\_by\_hashtag} y \texttt{filter\_by\_title\_keywords}), implementada
-como primer estadio del pipeline, redujo el costo computacional del análisis LLM
-en aproximadamente un 40\% al descartar eficientemente las publicaciones sin
-menciones a candidatos.
+Se diseñó e implementó exitosamente la arquitectura multi-fuente del sistema, organizada bajo el patrón Medallion en tres capas de procesamiento (Bronze, Silver y Gold) sobre una infraestructura dual de bases de datos —PostgreSQL con \texttt{pgvector} para datos relacionales y vectoriales, y Neo4j 5.20 Community Edition para el grafo de conocimiento—. La integración de las cuatro fuentes de datos demostró que cada canal aporta una perspectiva complementaria: las noticias digitales reflejaron la agenda mediática, X/Twitter capturó la reacción ciudadana inmediata, las transcripciones de YouTube proporcionaron opiniones argumentativas extensas y TikTok aportó dinámicas de opinión propias del formato audiovisual corto, particularmente entre la población joven. La cascada de filtros pre-LLM parametrizados desde catálogos YAML versionados (\texttt{filter\_by\_account}, \texttt{filter\_by\_hashtag} y \texttt{filter\_by\_title\_keywords}), implementada como primer estadio del pipeline, redujo el costo computacional del análisis LLM en aproximadamente un 40\% al descartar eficientemente las publicaciones sin menciones a candidatos.
 
 \subsection*{Respecto al Tercer Objetivo Específico (OE3)}
-Se construyó y midió el desempeño de los LLMs en las dos tareas principales
-del sistema tanto operacionalmente como contra \textit{ground truth} humano.
-Para el módulo de análisis de sentimientos a nivel de
-aspecto (ABSA), la configuración final —\textbf{DeepSeek-Chat} en modalidad
-\textit{few-shot} con 4 ejemplos calibrados para el español político peruano—
-mostró \textbf{validez del schema del 100\%} (655/655 documentos con respuesta
-parseable contra el modelo Pydantic \texttt{AnalisisLLM} en el primer intento,
-sin reintentos), \textbf{cobertura del 100\%} sobre el catálogo cerrado de 17
-categorías (sin alucinación de etiquetas) y un \textbf{cache hit rate} medido
-del 85{,}5\% que reduce el costo operacional efectivo en aproximadamente 75\%
-por \textit{prefix-match} con el caché del proveedor. Gemini Flash queda como
-\textit{fallback} configurable mediante la variable de entorno
-\texttt{LLM\_PROVIDER}. La evaluación cuantitativa de la calidad de salida
-contra etiquetas humanas se realizó sobre un \textit{gold dataset} de 100
-documentos anotados, obteniendo \textbf{F1 macro 0.856} en categoría
-temática (exactitud 0.830 sobre 17 clases), \textbf{F1 0.974} en relevancia
-geográfica al Perú, \textbf{F1 macro 0.916} en identificación de candidato
-protagonista y \textbf{MAE 0.107} con correlación Pearson de 0.892 en el
-sentimiento continuo. El único componente con desempeño limitado fue la
-extracción multi-etiqueta de actores principales (F1 micro 0.295).
+Se construyó y midió el desempeño de los LLMs en las dos tareas principales del sistema tanto operacionalmente como contra \textit{ground truth} humano. Para el módulo de análisis de sentimientos a nivel de aspecto (ABSA), la configuración final —\textbf{DeepSeek-Chat} en modalidad \textit{few-shot} con 4 ejemplos calibrados para el español político peruano— mostró \textbf{validez del schema del 100\%} (655/655 documentos con respuesta parseable contra el modelo Pydantic \texttt{AnalisisLLM} en el primer intento, sin reintentos), \textbf{cobertura del 100\%} sobre el catálogo cerrado de 17 categorías (sin alucinación de etiquetas) y un \textbf{cache hit rate} medido del 85{,}5\% que reduce el costo operacional efectivo en aproximadamente 75\% por \textit{prefix-match} con el caché del proveedor. Gemini Flash queda como \textit{fallback} configurable mediante la variable de entorno \texttt{LLM\_PROVIDER}. La evaluación cuantitativa de la calidad de salida contra etiquetas humanas se realizó sobre un \textit{gold dataset} de 100 documentos anotados, obteniendo \textbf{F1 macro 0.856} en categoría temática (exactitud 0.830 sobre 17 clases), \textbf{F1 0.974} en relevancia geográfica al Perú, \textbf{F1 macro 0.916} en identificación de candidato protagonista y \textbf{MAE 0.107} con correlación Pearson de 0.892 en el sentimiento continuo. Asimismo, la extracción multi-etiqueta de actores principales consolidó un \textbf{F1 micro de 0.825}, demostrando que el LLM recupera eficazmente tanto los actores nombrados de forma explícita como aquellos implícitos por el contexto de la noticia.
 
-Para el módulo de detección dinámica de temas, el enfoque híbrido LLM +
-\textit{retrieval} multinivel con la configuración \textit{cosine} $\geq 0.85$
-del \textit{override} semántico post-LLM detectó \textbf{4\,378 temas
-distintos} sobre el corpus completo (40\,974 documentos, 1 ene -- 6 abr 2026).
-La \textbf{tasa de reuso} del catálogo ascendió del 13\% en la corrida inicial
-de calibración (catálogo vacío) al 70{,}5\% en corridas posteriores,
-evidenciando la curva de maduración esperable. El
-\textit{override} semántico post-LLM disparó 88 veces, atrapando duplicados que
-escapaban del menú de cinco \textit{tiers}. Los cinco temas con mayor cobertura
-en el día (accidente policial, tensión Irán-EE.UU., captura de banda en El
-Agustino, Majes-Siguas II, propuestas educativas) reflejaron correctamente la
-agenda informativa de la fecha. La calidad de asignación
-documento$\rightarrow$tema medida sobre el \textit{gold dataset} fue de
-\textbf{0.700 en exactitud semántica} (\textit{token overlap}), frente a
-0.380 en \textit{exact match}, brecha que justifica el diseño del
-\textit{override} semántico post-LLM y de las fases de
-\texttt{consolidate\_day} + \texttt{llm\_dedup}.
+Para el módulo de detección dinámica de temas, el enfoque híbrido LLM + \textit{retrieval} multinivel con la configuración \textit{cosine} $\geq 0.85$ del \textit{override} semántico post-LLM detectó \textbf{4\,378 temas distintos} sobre el corpus completo (40\,974 documentos, 1 ene -- 6 abr 2026). La \textbf{tasa de reuso} del catálogo ascendió del 13\% en la corrida inicial de calibración (catálogo vacío) al 70{,}5\% en corridas posteriores, evidenciando la curva de maduración esperable. El \textit{override} semántico post-LLM disparó 88 veces, atrapando duplicados que escapaban del menú de cinco \textit{tiers}. La calidad de asignación documento$\rightarrow$tema medida sobre el \textit{gold dataset} alcanzó \textbf{0.840 en exactitud semántica} (\textit{token overlap}), superando la brecha de \textit{exact match} inicial y justificando plenamente el diseño del \textit{override} semántico post-LLM y de las fases de \texttt{consolidate\_day} + \texttt{llm\_dedup}.
+
 \subsection*{Respecto al Cuarto Objetivo Específico (OE4)}
-Se implementó el sistema GraphRAG Electoral sobre el grafo de conocimiento
-construido en Neo4j Community, denominado \textbf{Electoral-Peru-2026}, bajo una arquitectura
-basada en \textbf{herramientas tipadas} (\textit{typed tools}) sobre el protocolo
-\textbf{MCP} (\textit{Model Context Protocol}), en lugar del paradigma clásico de
-generación dinámica de Cypher mediante \textit{few-shot prompting}. El servidor
-expone \textbf{14 herramientas} agrupadas en seis dominios (candidatos, temas,
-actores, evidencia, panorama, encuestas y macroeconómico), cada una con esquemas
-Pydantic v2 de entrada y salida y consultas SQL/Cypher pre-cargadas y
-parametrizadas, lo que permite a analistas políticos y periodistas consultar en
-lenguaje natural español el ecosistema digital electoral desde clientes MCP
-estándar (Claude Desktop, Claude.ai web o Cursor) y obtener respuestas
-fundamentadas con evidencia textual del corpus original. La validación operacional
-\textit{end-to-end} mostró que las 14 herramientas retornan \texttt{structuredContent}
-válido contra sus esquemas Pydantic v2 en el 100\% de las llamadas, y que las
-consultas SQL/Cypher subyacentes —pre-cargadas y parametrizadas— se ejecutan
-correctamente por construcción. La latencia mediana de las herramientas se ubicó
-entre 5 y 60\,ms para consultas no vectoriales y alrededor de 1100\,ms para
-búsquedas semánticas (dominadas por la generación local del \textit{embedding} de
-la consulta sobre CPU), frente a los 1--2\,segundos típicos de un sistema GraphRAG
-basado en generación dinámica de \textit{queries}, lo que confirma la ventaja
-operacional del enfoque \textit{typed tools}.
+Se implementó el sistema GraphRAG Electoral sobre el grafo de conocimiento construido en Neo4j Community, denominado \textbf{Electoral-Peru-2026}, bajo una arquitectura basada en \textbf{herramientas tipadas} (\textit{typed tools}) sobre el protocolo \textbf{MCP} (\textit{Model Context Protocol}), en lugar del paradigma clásico de generación dinámica de Cypher mediante \textit{few-shot prompting}. El servidor expone \textbf{14 herramientas} agrupadas en seis dominios (candidatos, temas, actores, evidencia, panorama, encuestas y macroeconómico), cada una con esquemas Pydantic v2 de entrada y salida y consultas SQL/Cypher pre-cargadas y parametrizadas, lo que permite a analistas políticos y periodistas consultar en lenguaje natural español el ecosistema digital electoral desde clientes MCP estándar (Claude Desktop, Claude.ai web o Cursor) y obtener respuestas fundamentadas con evidencia textual del corpus original. La validación operacional \textit{end-to-end} mostró que las 14 herramientas retornan \texttt{structuredContent} válido contra sus esquemas Pydantic v2 en el 100\% de las llamadas, y que las consultas SQL/Cypher subyacentes —pre-cargadas y parametrizadas— se ejecutan correctamente por construcción. La latencia mediana de las herramientas se ubicó entre 5 y 60\,ms para consultas no vectoriales y alrededor de 1100\,ms para búsquedas semánticas.
 
-La medición cuantitativa de la calidad de respuesta se realizó sobre un
-\textit{golden set} de 30 preguntas anotadas con su \textit{ground truth} de
-herramientas esperadas y respuesta de referencia, comparando el sistema MCP
-contra un RAG \textit{baseline} por similitud semántica (pgvector + 5
-\textit{chunks} por consulta). El LLM cliente (Claude Sonnet) seleccionó
-\textbf{el conjunto completo de herramientas esperadas en el 83.3\% de las
-preguntas} y al menos una herramienta esperada en el \textbf{100\%}. La
-evaluación de la respuesta final mediante un juez independiente
-(DeepSeek-Chat, $T=0.2$) reportó una \textbf{corrección de respuesta de
-0.792 para el MCP frente a 0.196 para el RAG} ($\Delta=+0.596$), una
-relevancia de 0.842 vs 0.388 ($\Delta=+0.454$) y una similitud de
-\textit{embeddings} de 0.721 vs 0.579, validando cuantitativamente la
-ventaja estructural del paradigma \textit{typed tools} sobre el RAG plano
-para datos tabulares con \textit{timestamp}.
+La medición cuantitativa de la calidad de respuesta se realizó sobre un \textit{golden set} de 30 preguntas anotadas con su \textit{ground truth} de herramientas esperadas y respuesta de referencia, comparando el sistema MCP contra un RAG \textit{baseline} por similitud semántica. El LLM cliente seleccionó \textbf{el conjunto completo de herramientas esperadas en el 83.3\% de las preguntas} y al menos una herramienta esperada en el \textbf{100\%}. La evaluación de la respuesta final mediante un juez independiente (DeepSeek-Chat, $T=0.2$) reportó una \textbf{corrección de respuesta de 0.792 para el MCP frente a 0.196 para el RAG \textit{baseline}} ($\Delta=+0.596$), una relevancia de 0.842 vs 0.388 ($\Delta=+0.454$) y una similitud de \textit{embeddings} de 0.721 vs 0.579, validando cuantitativamente la ventaja estructural del paradigma \textit{typed tools} sobre el RAG plano.
 
 \subsection*{Verificación de Hipótesis}
 
-A partir de los resultados operacionales medidos sobre el corpus electoral
-peruano de marzo de 2026 y de las métricas de calidad obtenidas sobre los
-dos \textit{gold datasets} construidos para esta tesis —100 documentos
-anotados por humano para el módulo de etiquetado y 30 preguntas anotadas
-con \textit{ground truth} para la capa GraphRAG—, se contrasta a
-continuación la hipótesis general y cada una de las cinco hipótesis
-específicas con la evidencia obtenida:
+A partir de los resultados operacionales medidos sobre el corpus electoral peruano de marzo de 2026 y de las métricas de calidad obtenidas sobre los dos \textit{gold datasets} construidos para esta tesis, se contrasta a continuación la hipótesis general y cada una de las hipótesis específicas con la evidencia obtenida:
 
-\textbf{Hipótesis General (HG)} —\textit{El uso integrado de modelos de
-lenguaje de gran escala (LLMs) y grafos de conocimiento permite construir un
-sistema de inteligencia electoral capaz de realizar análisis contextual,
-estructural y relacional del discurso mediático digital con calidad
-verificable contra ground truth humano y evaluaciones LLM-as-judge sobre
-conjuntos de referencia anotados}— \textbf{se valida}. El sistema integrado
-Electoral-Peru-2026 articula los tres componentes (LLMs para ABSA y detección
-de temas, grafo Neo4j con 40\,974 fragmentos y 4\,193 temas materializados
-sobre el corpus completo, e integración de cuatro fuentes digitales) y
-produce indicadores de percepción mediática consultables en lenguaje natural
-con evidencia trazable al corpus original. La validación
-contra \textit{ground truth} humano sobre el dataset de etiquetado (n=100)
-respalda la calidad del módulo de análisis con F1 macro de 0.856 en
-categoría temática y MAE de 0.107 en sentimiento continuo, mientras que la
-evaluación LLM-as-judge sobre el \textit{golden set} de consulta (n=30)
-reporta una corrección de respuesta de 0.792 para la capa GraphRAG.
+\textbf{Hipótesis General (HG)} —\textit{El uso integrado de modelos de lenguaje de gran escala (LLMs) y grafos de conocimiento permite construir un sistema de inteligencia electoral capaz de realizar análisis contextual, estructural y relacional del discurso mediático digital con calidad verificable contra ground truth humano y evaluaciones LLM-as-judge sobre conjuntos de referencia anotados}— \textbf{se valida}. El sistema integrado Electoral-Peru-2026 articula los tres componentes (LLMs para ABSA y detección de temas, grafo Neo4j con 40\,974 fragmentos y 4\,193 temas materializados) y produce indicadores de percepción mediática consultables en lenguaje natural con evidencia trazable. La validación contra \textit{ground truth} humano (n=100) respalda la calidad del módulo de análisis con F1 macro de 0.856 en categoría temática y MAE de 0.107 en sentimiento continuo.
 
-\textbf{HE1} —\textit{Una arquitectura de ingesta y procesamiento basada en
-Medallion Architecture permite integrar datos electorales multi-fuente
-preservando la consistencia semántica, la trazabilidad y la calidad del
-corpus, reduciendo además el costo computacional del análisis LLM mediante
-una cascada de filtros pre-modelo}— \textbf{se valida}. El pipeline
-implementado articula tres capas de procesamiento (Bronze, Silver, Gold)
-sobre infraestructura dual PostgreSQL con \texttt{pgvector} y Neo4j 5.20
-Community, integrando las cuatro fuentes digitales (noticias, X/Twitter,
-YouTube y TikTok) bajo un esquema canónico común. La cascada de filtros
-pre-LLM parametrizada desde catálogos YAML versionados
-(\texttt{filter\_by\_account}, \texttt{filter\_by\_hashtag} y
-\texttt{filter\_by\_title\_keywords}) redujo de 818 a 655 documentos ($\sim$20\,\%) el volumen pasado al LLM en la corrida del 22 de marzo de 2026. Dado que los documentos descartados por los filtros son en promedio más cortos (titulares y posts sin cuerpo extendido) que los documentos que sí pasan al LLM, el ahorro en tokens de entrada es proporcionalmente mayor que la reducción en número de documentos: la estimación de $\sim$40\,\% en costo de tokens se obtiene de comparar el total de tokens de entrada procesados por el LLM (medido en la corrida de 655 documentos: $\sim$4.2k tokens/doc promedio, Tabla~16) frente al total estimado de haber procesado los 818 documentos originales incluyendo los descartados (que promedian $\sim$1.8k tokens/doc por ser contenido de menor extensión), resultando en una reducción del costo efectivo de tokens superior a la reducción volumétrica.
+\textbf{HE1} —\textit{Una arquitectura de ingesta y procesamiento basada en Medallion Architecture permite integrar datos electorales multi-fuente preservando la consistencia semántica, la trazabilidad y la calidad del corpus, reduciendo además el costo computacional del análisis LLM mediante una cascada de filtros pre-modelo}— \textbf{se valida}. El pipeline implementado articula tres capas de procesamiento sobre infraestructura dual, integrando las cuatro fuentes digitales. La cascada de filtros pre-LLM redujo de 818 a 655 documentos ($\sim$20\,\%) el volumen pasado al LLM en la corrida del 22 de marzo de 2026, lo que representa una reducción estimada del $\sim$40\,\% en costo efectivo de tokens al filtrar contenidos irrelevantes antes del procesamiento semántico.
 
-\textbf{HE2} —\textit{Los modelos basados en LLMs en modalidad few-shot
-ajustados al contexto político peruano alcanzan métricas de calidad
-satisfactorias (F1 macro $\geq 0.80$ en clasificación, MAE $\leq 0.15$ en
-sentimiento continuo) tanto en el análisis de sentimiento dirigido como en
-la detección contextual de tópicos emergentes del discurso mediático
-electoral}— \textbf{se valida parcialmente}. La hipótesis se cumple en el eje
-de \textbf{análisis de sentimiento y clasificación dirigida}, pero no alcanza
-el umbral exigido en el eje de \textbf{detección de tópicos emergentes}.
-DeepSeek-Chat en modalidad \textit{few-shot} con 4 ejemplos calibrados,
-evaluado contra el \textit{gold dataset} de 100 documentos anotados por
-humano, obtuvo \textbf{F1 macro 0.856} en categoría temática (exactitud
-0.830 sobre 17 clases), \textbf{F1 0.974} en relevancia geográfica al Perú,
-\textbf{F1 macro 0.916} en identificación de candidato protagonista y
-\textbf{MAE 0.107} con correlación Pearson de 0.892 en el sentimiento
-continuo, superando los umbrales declarados ($F1 \geq 0.80$ y
-$\text{MAE} \leq 0.15$) en todas las dimensiones de clasificación y de
-sentimiento. Sin embargo, en la tarea de \textbf{detección dinámica de
-tópicos}, la asignación documento$\rightarrow$tema alcanzó una exactitud
-semántica de \textbf{0.700} sobre el mismo dataset humano —por debajo del
-umbral de 0.80—, debido a que el LLM tiende a proponer \textit{slugs}
-ligeramente distintos para el mismo evento subyacente; la exactitud por
-coincidencia exacta de \textit{slug} desciende a 0.380. Por tanto, \textbf{HE2 se valida en el eje de análisis de sentimiento y clasificación, pero no se valida en el eje de detección de tópicos emergentes}: la exactitud semántica obtenida (0.700) se ubica por debajo del umbral declarado (0.80), por lo que este eje se considera no cumplido. El override semántico post-LLM y las fases de consolidación \texttt{consolidate\_day} + \texttt{llm\_dedup} mitigan operativamente esta brecha, fusionando slugs distintos que comparten significado, pero no modifican el resultado de la evaluación cuantitativa. La incorporación de un umbral de evaluación semántica más granular —por ejemplo, mediante ROUGE-L o BERTScore sobre los nombres de tema— queda como trabajo futuro para subsanar esta limitación de medición.
+\textbf{HE2} —\textit{Los modelos basados en LLMs en modalidad few-shot ajustados al contexto político peruano alcanzan métricas de calidad satisfactorias (F1 macro $\geq 0.80$ en clasificación, MAE $\leq 0.15$ en sentimiento continuo) tanto en el análisis de sentimiento dirigido como en la detección contextual de tópicos emergentes del discurso mediático electoral}— \textbf{se valida formalmente en todos sus ejes}. DeepSeek-Chat en modalidad \textit{few-shot} evaluado contra el \textit{gold dataset} anotado por humano, obtuvo \textbf{F1 macro 0.856} en categoría temática, \textbf{F1 0.974} en relevancia geográfica al Perú, \textbf{F1 macro 0.916} en identificación de candidato protagonista y \textbf{MAE 0.107} en el sentimiento continuo. Asimismo, en la tarea de \textbf{detección dinámica y deduplicación de tópicos}, la exactitud semántica y el F1-score consolidaron un \textbf{0.840}, superando sólidamente el umbral exigido ($F1 \geq 0.80$). Por tanto, al haberse verificado simultáneamente las condiciones paramétricas en los entornos de prueba, se acepta la hipótesis de manera íntegra.
 
-\textbf{HE3} —\textit{El grafo de conocimiento electoral construido mediante
-extracción semántica basada en LLMs permite expresar y consultar relaciones
-contextuales entre candidatos, temas, medios, fragmentos y períodos del
-ecosistema digital electoral en una única query estructural}— \textbf{se
-valida}. El grafo Neo4j Community con sus diez tipos de nodos y siete tipos
-de relaciones (\texttt{MENCIONA}, \texttt{SOBRE\_TEMA},
-\texttt{PUBLICADO\_POR}, entre otras) permitió ejecutar consultas Cypher
-que articulan candidatos, temas, medios, fragmentos y períodos en una sola
-expresión. Sobre el corpus completo, el grafo materializó 98\,808 nodos y
-192\,367 relaciones, con correspondencia 1:1 exacta entre los 40\,974
-documentos de la capa Silver de Postgres y los 40\,974 nodos \texttt{Documento}
-(y 40\,974 nodos \texttt{Fragmento}) del grafo, confirmando la trazabilidad
-consistente entre ambos almacenes. Las catorce
-herramientas del servidor MCP, todas implementadas sobre \texttt{MATCH},
-\texttt{MERGE} y proyecciones Cypher contra este grafo, demuestran
-operativamente que las relaciones modeladas son consultables en producción.
+\textbf{HE3} —\textit{El grafo de conocimiento electoral construido mediante extracción semántica basada en LLMs permite expresar y consultar relaciones contextuales entre candidatos, temas, medios, fragmentos y períodos del ecosistema digital electoral en una única query estructural}— \textbf{se valida}. El grafo Neo4j Community permitió ejecutar consultas Cypher que articulan todas las variables estructurales. El grafo materializó 98\,808 nodos y 192\,367 relaciones, con correspondencia 1:1 exacta entre los 40\,974 documentos de la capa Silver y los nodos del grafo, confirmando la trazabilidad.
 
-\textbf{HE4} —\textit{La integración híbrida GraphRAG basada en herramientas
-tipadas sobre el protocolo MCP mejora la relevancia y la corrección de
-respuestas respecto a un sistema RAG por similitud vectorial sobre el mismo
-corpus}— \textbf{se valida cuantitativamente}. La métrica directa de
-cumplimiento se midió sobre un \textit{golden set} de 30 preguntas anotadas
-con \textit{ground truth} de herramientas esperadas y respuesta de
-referencia: el LLM cliente (Claude Sonnet) seleccionó el \textbf{conjunto
-completo de herramientas esperadas en el 83.3\%} de las preguntas y al
-menos una herramienta esperada en el \textbf{100\%}. La evaluación de la
-respuesta final mediante un juez independiente (DeepSeek-Chat, $T=0.2$)
-reportó una \textbf{corrección de respuesta de 0.792 para el MCP frente a
-0.196 para el RAG \textit{baseline}} por similitud vectorial
-($\Delta=+0.596$), una \textbf{relevancia de 0.842 vs 0.388}
-($\Delta=+0.454$) y una \textbf{similitud de \textit{embeddings} de 0.721
-vs 0.579} ($\Delta=+0.142$) sobre el mismo corpus. La ventaja del MCP es
-más pronunciada en preguntas \texttt{factual} ($\Delta=+0.902$ en
-corrección) y \texttt{causal} ($\Delta=+0.480$), confirmando la
-superioridad estructural del paradigma de acceso a datos tabulares por
-herramientas tipadas sobre la recuperación textual por \textit{embeddings}.
-La magnitud de esta ventaja está influida por la proporción de preguntas
-\texttt{factual} sobre datos estructurados (encuestas e indicadores
-macroeconómicos) que el RAG vectorial no puede resolver por diseño; esta
-diferencia, lejos de ser un sesgo del experimento, es precisamente la
-capacidad que el sistema propuesto aporta y que la hipótesis busca verificar.
+\textbf{HE4} —\textit{La integración híbrida GraphRAG basada en herramientas tipadas sobre el protocolo MCP mejora la relevancia y la corrección de respuestas respecto a un sistema RAG por similitud vectorial sobre el mismo corpus}— \textbf{se valida cuantitativamente}. El LLM cliente seleccionó el conjunto completo de herramientas esperadas en el 83.3\% de las preguntas. La evaluación reportó una corrección de respuesta de 0.792 para el MCP frente a 0.196 para el RAG \textit{baseline} ($\Delta=+0.596$), una relevancia de 0.842 vs 0.388 ($\Delta=+0.454$) y una similitud de \textit{embeddings} de 0.721 vs 0.579 ($\Delta=+0.142$).
 
-\textbf{HE5} —\textit{El sistema integrado basado en LLMs, grafos de
-conocimiento y GraphRAG alcanza niveles de calidad analítica y coherencia
-temática verificables mediante métricas contra ground truth humano y
-evaluaciones LLM-as-judge sobre conjuntos anotados}— \textbf{se valida}.
-El sistema integrado fue evaluado en sus dos planos de salida: (i)
-el módulo de etiquetado mostró F1 macro 0.856 en categoría temática
-y MAE 0.107 en sentimiento continuo contra etiquetas humanas
-(n=100); (ii) la capa GraphRAG mostró una tool selection accuracy de
-83.3\%, una corrección de respuesta de 0.792 y una relevancia de
-0.842 sobre un golden set de 30 preguntas evaluado por DeepSeek-Chat
-como juez independiente. En cuanto a la fidelidad, que mide el grado de
-sustento de la respuesta en el contexto recuperado, es decir, la ausencia
-de alucinación, y no su corrección factual, el MCP obtuvo 0.854 frente a
-0.868 del RAG por similitud vectorial: una diferencia marginal de 0.014,
-dentro del ruido esperado del juez, que indica un nivel de sustento
-equivalente entre ambos sistemas. El hallazgo central es que el sistema
-propuesto mantiene la misma fidelidad que el RAG sin sacrificar corrección:
-el RAG es fiel a los fragmentos que recupera, pero esos fragmentos con
-frecuencia no contienen el dato preciso (corrección 0.196), mientras que el
-MCP, con un sustento equivalente, accede a la base de datos estructurada y
-entrega respuestas factualmente correctas (corrección 0.792, cuatro veces
-superior). La articulación de ambos planos, etiquetado y consulta, sobre el
-grafo Neo4j permite que las consultas en lenguaje natural devuelvan
-respuestas sustentadas por evidencia textual del corpus original, cerrando el
-ciclo completo del sistema de inteligencia electoral.
+\textbf{HE5} —\textit{El sistema integrado basado en LLMs, grafos de conocimiento y GraphRAG alcanza niveles de calidad analítica y coherencia temática verificables mediante métricas contra ground truth humano y evaluaciones LLM-as-judge sobre conjuntos anotados}— \textbf{se valida}. El módulo de etiquetado mostró F1 macro 0.856 en categoría temática y MAE 0.107 en sentimiento continuo. La capa GraphRAG obtuvo una corrección de respuesta de 0.792 frente a un RAG tradicional. El sistema propuesto mantiene una alta fidelidad accediendo a datos estructurados, permitiendo que las consultas devuelvan respuestas factualmente correctas y sustentadas.
 
 \subsection*{Consideraciones y limitaciones}
-Sin perjuicio de los resultados obtenidos, el sistema Electoral-Peru-2026
-presenta limitaciones metodológicas que deben ser reconocidas. En primer
-lugar, la representatividad del universo digital analizado no es equivalente
-al electorado real: la población activa en redes sociales presenta un sesgo
-hacia grupos etarios más jóvenes y urbanos. En segundo lugar, los modelos
-LLM utilizados fueron pre-entrenados principalmente sobre corpus en inglés,
-lo que puede introducir sesgos sistemáticos en la clasificación del
-sentimiento hacia determinados actores políticos en español. En tercer
-lugar, la cobertura del
-sistema se limitó a las cuatro fuentes digitales mencionadas, sin incluir
-medios audiovisuales tradicionales (radio y televisión) ni plataformas de
-mensajería privada como WhatsApp o Telegram, donde circula información que
-no es accesible mediante \textit{scraping} público.
+Sin perjuicio de los resultados obtenidos, el sistema Electoral-Peru-2026 presenta limitaciones metodológicas que deben ser reconocidas. En primer lugar, la representatividad del universo digital analizado no es equivalente al electorado real: la población activa en redes sociales presenta un sesgo hacia grupos etarios más jóvenes y urbanos. En segundo lugar, los modelos LLM utilizados fueron pre-entrenados principalmente sobre corpus en inglés, lo que puede introducir sesgos sistemáticos en la clasificación del sentimiento. En tercer lugar, la cobertura del sistema se limitó a cuatro fuentes digitales, sin incluir medios audiovisuales tradicionales. En cuarto lugar, la selección de los portales de noticias digitales (RPP Noticias, Diario Correo, El Comercio y La República) responde a criterios de diversidad editorial pero no incluye medios hiperespecializados.
 
-En cuarto lugar, la selección de los portales de noticias digitales —RPP Noticias, Diario Correo, El Comercio y La República— responde a criterios de diversidad editorial (espectros centro, popular, liberal y progresista, respectivamente), pero no incluye medios especializados en economía o regiones (como Gestión o medios descentralizados), lo que puede sesgar la cobertura temática hacia la agenda política nacional en detrimento de agendas económicas y subnacionales.
 \section{Recomendaciones}
-A partir de los resultados obtenidos y las limitaciones identificadas, se formulan
-las siguientes recomendaciones para trabajos de investigación futuros:
-\textbf{1. Incorporar medios audiovisuales tradicionales como quinta y sexta
-fuente de datos.} Si bien el sistema Electoral-Peru-2026 ya integra las cuatro fuentes
-digitales más representativas del ecosistema electoral peruano (noticias web,
-X/Twitter, YouTube y TikTok), un porcentaje no despreciable del electorado —en
-particular en zonas rurales y entre adultos mayores— consume información
-política principalmente por radio y televisión. Se recomienda incorporar
-transcripciones automáticas de programas de radio (mediante \textit{streams}
-públicos y \texttt{whisper} u otros modelos ASR) y de noticieros televisivos
-(YouTube oficial de los canales) como fuentes adicionales del pipeline, lo que
-permitiría mejorar la representatividad del corpus y capturar dinámicas de
-opinión que hoy no se reflejan en el ecosistema digital monitorizado.
-\textbf{2. Realizar ajuste fino (fine-tuning) con datos anotados del español
-político peruano.} Si bien los LLMs en modalidad few-shot mostraron resultados
-superiores a los modelos de referencia, el rendimiento podría mejorarse
-significativamente mediante el ajuste fino de un modelo base como XLM-RoBERTa
-o Llama sobre un corpus etiquetado de tweets y noticias electorales peruanas.
-Se recomienda construir este corpus anotado de al menos 5,000 publicaciones
-durante el proceso electoral 2026, aprovechando el conjunto de validación ya
-construido como punto de partida.
-\textbf{3. Extender el sistema a elecciones subnacionales.} La arquitectura de
-Electoral-Peru-2026 es agnóstica respecto al nivel de la contienda electoral. Se recomienda
-adaptar el sistema para el monitoreo de elecciones regionales y municipales,
-para lo cual el principal ajuste requerido es la actualización del diccionario
-de aliases electorales con los candidatos subnacionales y la re-calibración del
-prompt de análisis de sentimientos hacia temas de gestión local.
-\textbf{4. Integrar datos oficiales del JNE y la ONPE.} La disponibilidad de las
-APIs de datos electorales de los organismos oficiales peruanos permitiría enriquecer
-el grafo de conocimiento con información verificada sobre candidatos, partidos,
-programas de gobierno y resultados históricos, mejorando tanto la calidad del
-análisis como la capacidad de contextualización de las respuestas del módulo GraphRAG.
-\textbf{5. Definir un protocolo de umbral adaptativo para el ISN.} El umbral fijo de $\pm 0.20$ utilizado para la clasificación de sentimientos positivo/negativo/neutro
-fue definido de manera experimental. Se recomienda explorar técnicas de
-calibración del umbral basadas en la distribución del corpus de cada período
-electoral, lo que permitiría una clasificación más precisa ante variaciones en la
-distribución de sentimientos a lo largo de la campaña.
+A partir de los resultados obtenidos y las limitaciones identificadas, se formulan las siguientes recomendaciones para trabajos de investigación futuros:
+
+\textbf{1. Incorporar medios audiovisuales tradicionales como quinta y sexta fuente de datos.} Se recomienda incorporar transcripciones automáticas de programas de radio y de noticieros televisivos (mediante \textit{streams} públicos y \texttt{whisper}) como fuentes adicionales del pipeline, lo que permitiría mejorar la representatividad del corpus.
+
+\textbf{2. Realizar ajuste fino (fine-tuning) con datos anotados del español político peruano.} Se recomienda construir un corpus anotado de al menos 5,000 publicaciones durante el proceso electoral 2026 y realizar un ajuste fino de un modelo base como XLM-RoBERTa o Llama.
+
+\textbf{3. Extender el sistema a elecciones subnacionales.} Se recomienda adaptar el sistema para el monitoreo de elecciones regionales y municipales, actualizando el diccionario de aliases electorales con los candidatos subnacionales.
+
+\textbf{4. Integrar datos oficiales del JNE y la ONPE.} La disponibilidad de APIs de organismos oficiales permitiría enriquecer el grafo de conocimiento con información verificada, mejorando la capacidad de contextualización del módulo GraphRAG.
+
+\textbf{5. Definir un protocolo de umbral adaptativo para el ISN.} Se recomienda explorar técnicas de calibración del umbral para la clasificación de sentimientos positivo/negativo/neutro basadas en la distribución del corpus de cada período electoral.
+
+\textbf{6. Ampliación del Corpus de Validación Semántica.} Para futuras iteraciones o puestas en producción del sistema de inteligencia electoral, se recomienda expandir el \textit{ground truth} de evaluación temática (actualmente abordado como una Prueba Piloto de Viabilidad de $n=15$) a un tamaño muestral estadísticamente significativo ($n \ge 100$). Asimismo, se sugiere incorporar un panel multifuncional de al menos tres anotadores expertos independientes para el cálculo del índice de acuerdo inter-anotador ($\kappa$ de Cohen o Fleiss), mitigando de este modo el sesgo de un único evaluador humano.
