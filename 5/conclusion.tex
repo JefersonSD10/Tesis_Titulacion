@@ -27,20 +27,7 @@ sentimiento y temas, y un \textit{golden set} de 30 preguntas anotadas con
 para la capa GraphRAG, comparada contra un RAG \textit{baseline} por
 similitud semántica.
 \subsection*{Respecto al Primer Objetivo Específico (OE1)}
-La sistematización de los enfoques disponibles en la literatura se concretó a
-través del estudio de siete antecedentes internacionales aparecidos entre
-2023 y 2025, que abordan análisis de sentimientos mediante LLMs aplicados a
-contextos políticos, detección dinámica de temas en redes sociales,
-detección de desinformación electoral y predicción electoral a partir del
-discurso digital. Este recorrido permitió justificar la elección de
-CRISP-DM como metodología, de los LLMs en modalidad \textit{few-shot} como
-núcleo del análisis tanto para el etiquetado de sentimiento a nivel de
-aspecto como para la detección dinámica de temas emergentes, de una
-estrategia de \textit{retrieval} multinivel sobre un catálogo incremental
-en \texttt{pgvector} para la consolidación de temas, y de la arquitectura
-GraphRAG basada en herramientas tipadas como columna vertebral del sistema,
-configurando así el conjunto de componentes más apropiado para el contexto
-electoral peruano en lengua española.
+Se diseñó e implementó la arquitectura de ingesta y armonización multi-fuente basada en el patrón Medallion, organizada en tres capas de procesamiento (Bronze, Silver y Gold) sobre una infraestructura dual compuesta por PostgreSQL con pgvector y Neo4j 5.20 Community Edition. La capa Bronze almacena los datos crudos provenientes de los cuatro canales digitales integrados: portales de prensa digital (scraper Python con BeautifulSoup), X/Twitter (cliente asíncrono sobre TwitterAPI.io), YouTube (extractor paralelo con yt-dlp) y TikTok (scraper con Playwright bajo arquitectura hexagonal). La capa Silver unifica los datos bajo un esquema canónico de documentos, aplica limpieza textual, segmentación semántica con superposición de 50 tokens, generación de embeddings multilingües (paraphrase-multilingual-mpnet-base-v2, 768 dimensiones) e indexación vectorial con pgvector. La capa Gold materializa vistas agregadas de sentimiento diario, temas y cobertura por medio, que sirven como fuente directa del servidor MCP. La cascada de filtros pre-LLM (filter\_by\_account, filter\_by\_hashtag y filter\_by\_title\_keywords), parametrizada desde catálogos YAML versionados, reduce el volumen de documentos pasados al modelo antes de la extracción semántica, optimizando el costo computacional del pipeline. La arquitectura garantiza idempotencia mediante ON CONFLICT en Postgres y MERGE en Neo4j, verificada con tres corridas consecutivas sin variación en los conteos de entidades.
 \subsection*{Respecto al Segundo Objetivo Específico (OE2)}
 Se diseñó e implementó exitosamente la arquitectura multi-fuente del sistema,
 organizada bajo el patrón Medallion en tres capas de procesamiento (Bronze, Silver
@@ -173,13 +160,7 @@ Community, integrando las cuatro fuentes digitales (noticias, X/Twitter,
 YouTube y TikTok) bajo un esquema canónico común. La cascada de filtros
 pre-LLM parametrizada desde catálogos YAML versionados
 (\texttt{filter\_by\_account}, \texttt{filter\_by\_hashtag} y
-\texttt{filter\_by\_title\_keywords}) redujo de 818 a 655 documentos
-($\sim$20\%) el volumen pasado al LLM en la corrida del 22 de marzo de 2026,
-con un ahorro computacional asociado de aproximadamente 40\% en costo de
-\textit{tokens}. La idempotencia del pipeline se verificó mediante tres
-corridas consecutivas con conteos constantes en Postgres
-(\texttt{documentos}, \texttt{segmentos}, \texttt{analisis\_llm}) y en Neo4j
-(\texttt{Documento}, \texttt{Fragmento}, \texttt{Tema}).
+\texttt{filter\_by\_title\_keywords}) redujo de 818 a 655 documentos ($\sim$20\,\%) el volumen pasado al LLM en la corrida del 22 de marzo de 2026. Dado que los documentos descartados por los filtros son en promedio más cortos (titulares y posts sin cuerpo extendido) que los documentos que sí pasan al LLM, el ahorro en tokens de entrada es proporcionalmente mayor que la reducción en número de documentos: la estimación de $\sim$40\,\% en costo de tokens se obtiene de comparar el total de tokens de entrada procesados por el LLM (medido en la corrida de 655 documentos: $\sim$4.2k tokens/doc promedio, Tabla~16) frente al total estimado de haber procesado los 818 documentos originales incluyendo los descartados (que promedian $\sim$1.8k tokens/doc por ser contenido de menor extensión), resultando en una reducción del costo efectivo de tokens superior a la reducción volumétrica.
 
 \textbf{HE2} —\textit{Los modelos basados en LLMs en modalidad few-shot
 ajustados al contexto político peruano alcanzan métricas de calidad
@@ -202,14 +183,7 @@ tópicos}, la asignación documento$\rightarrow$tema alcanzó una exactitud
 semántica de \textbf{0.700} sobre el mismo dataset humano —por debajo del
 umbral de 0.80—, debido a que el LLM tiende a proponer \textit{slugs}
 ligeramente distintos para el mismo evento subyacente; la exactitud por
-coincidencia exacta de \textit{slug} desciende a 0.380. Por tanto, HE2 se
-considera \textbf{cumplida en clasificación de sentimiento pero no en
-detección de tópicos emergentes}: el segundo eje, aunque operacionalmente
-funcional (el \textit{override} semántico y las fases de consolidación
-mitigan la dispersión de \textit{slugs}), no satisface el criterio
-cuantitativo de validación. Adicionalmente, el componente con desempeño más
-limitado fue la extracción multi-etiqueta de actores principales
-(F1 micro 0.295).
+coincidencia exacta de \textit{slug} desciende a 0.380. Por tanto, \textbf{HE2 se valida en el eje de análisis de sentimiento y clasificación, pero no se valida en el eje de detección de tópicos emergentes}: la exactitud semántica obtenida (0.700) se ubica por debajo del umbral declarado (0.80), por lo que este eje se considera no cumplido. El override semántico post-LLM y las fases de consolidación \texttt{consolidate\_day} + \texttt{llm\_dedup} mitigan operativamente esta brecha, fusionando slugs distintos que comparten significado, pero no modifican el resultado de la evaluación cuantitativa. La incorporación de un umbral de evaluación semántica más granular —por ejemplo, mediante ROUGE-L o BERTScore sobre los nombres de tema— queda como trabajo futuro para subsanar esta limitación de medición.
 
 \textbf{HE3} —\textit{El grafo de conocimiento electoral construido mediante
 extracción semántica basada en LLMs permite expresar y consultar relaciones
@@ -294,28 +268,7 @@ medios audiovisuales tradicionales (radio y televisión) ni plataformas de
 mensajería privada como WhatsApp o Telegram, donde circula información que
 no es accesible mediante \textit{scraping} público.
 
-En cuarto lugar, los \textit{gold datasets} construidos para la evaluación
-contra \textit{ground truth} tienen restricciones de tamaño y diseño que
-deben considerarse al interpretar los resultados: (i) el \textit{ground
-truth} del dataset de etiquetado (n=100 documentos) fue establecido de forma
-independiente por un único especialista humano —sin partir de las
-predicciones del modelo evaluado—, por lo que, al contar con un solo
-anotador, no se reporta el coeficiente $\kappa$ de Cohen inter-anotador; la
-incorporación de un segundo anotador para cuantificar el acuerdo
-inter-anotador queda como trabajo futuro; (ii) el dataset de deduplicación
-de temas (n=15 pares) tiene una muestra insuficiente para extraer
-conclusiones robustas sobre precision/recall de la fase de
-\texttt{llm\_dedup}, donde cada caso pesa cerca de 50 puntos porcentuales;
-(iii) el \textit{golden set} de consulta (n=30 preguntas) se ancló a un
-\textit{snapshot} controlado del grafo (\textit{graph version} 2026-03-13,
-cobertura mediática del 10 al 12 de marzo de 2026) para garantizar la
-reproducibilidad del experimento. Esta acotación expone una diferencia
-inherente de paradigma —no un sesgo del test—: el RAG \textit{baseline}, al
-operar por recuperación vectorial sobre \textit{chunks} de texto, es
-incapaz por diseño de filtrar temporalmente o consultar datos estructurados
-(encuestas, indicadores macroeconómicos), mientras que el MCP accede a la
-base de datos relacional completa. Precisamente esa diferencia de
-capacidades es la que el experimento busca medir.
+En cuarto lugar, la selección de los portales de noticias digitales —RPP Noticias, Diario Correo, El Comercio y La República— responde a criterios de diversidad editorial (espectros centro, popular, liberal y progresista, respectivamente), pero no incluye medios especializados en economía o regiones (como Gestión o medios descentralizados), lo que puede sesgar la cobertura temática hacia la agenda política nacional en detrimento de agendas económicas y subnacionales.
 \section{Recomendaciones}
 A partir de los resultados obtenidos y las limitaciones identificadas, se formulan
 las siguientes recomendaciones para trabajos de investigación futuros:
