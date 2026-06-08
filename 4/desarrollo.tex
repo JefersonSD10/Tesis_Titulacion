@@ -691,7 +691,7 @@ el valor de referencia de cada campo de forma independiente, constituyendo el
 \textit{ground truth}; y (3) tras ejecutar el pipeline sobre esos mismos
 documentos, validó visualmente la concordancia entre la salida del sistema y
 el \textit{ground truth}, detectando discrepancias en apenas 2 de los 100
-documentos. Los resultados de comparar las predicciones de DeepSeek-Chat
+documentos según el especialista asignado, la cual nos servirá posteriormente para refinamiento con el valor obtenido con el segundo anotador + K de Cohen. Los resultados de comparar las predicciones de DeepSeek-Chat
 contra estas etiquetas humanas se reportan en la Tabla
 \ref{5:table_label_quality}.
 
@@ -729,7 +729,7 @@ confundir entre sí cuando aparece infraestructura o gestión local. El módulo
 de \textbf{sentimiento continuo} presentó un MAE de 0.107 sobre el rango
 $[-1, 1]$ y una correlación Pearson de 0.892 con el etiquetado humano, con
 un sesgo positivo marginal de $+0.051$ que sugiere una ligera tendencia del
-LLM a moderar el sentimiento negativo. La extracción de \textbf{actores principales} consolidó un F1 micro de 0.825, demostrando que el LLM recupera eficazmente tanto los actores nombrados de forma explícita como aquellos implícitos por el contexto de la noticia, superando los retos iniciales de la tarea.
+LLM a moderar el sentimiento negativo. La extracción de \textbf{actores principales} consolidó un F1 micro de 0.825, demostrando que el LLM recupera eficazmente tanto los actores nombrados de forma explícita como aquellos implícitos por el contexto de la noticia, superando los retos iniciales de la tarea, esto fuertemente probado en prompts con un diseño de recuperación de información complementaria donde participan múltiples actores y la captura de actores principales son poco mencionados en el texto o información correspondiente recuperada.
 
 \textbf{Actividad 2: Evaluar módulo de detección de temas}
 \\
