@@ -65,7 +65,7 @@ En la Tabla \ref{4:table1} se muestra la operación de las variables correspondi
     \hline
 
 % Variable dependiente
-\multirow{10}{=}{Dependiente: Calidad/eficacia del sistema de análisis}
+\multirow{13}{=}{Dependiente: Calidad/eficacia del sistema de análisis}
 & \multirow{4}{=}{Sentimiento ciudadano}
 & \multirow{2}{=}{Polaridad de sentimiento}
 & Positivo: $S(d,e) > 0$ \\* \cline{4-4}
@@ -78,7 +78,12 @@ En la Tabla \ref{4:table1} se muestra la operación de las variables correspondi
 & & Temas relevantes & Número y coherencia de temas detectados \\* \cline{3-4}
 & & \multirow{2}{=}{Evolución temporal}
 & Velocidad de emergencia de temas \\* \cline{4-4}
-& & & Cambios de sentimiento por evento electoral \\
+& & & Cambios de sentimiento por evento electoral \\* \cline{2-4}
+& \multirow{3}{=}{Polarización editorial}
+& ISN por fuente
+& $ISN_f(e,t)$ (insumo) \\* \cline{3-4}
+& & ICMC (magnitud) & Desviación estándar del ISN entre fuentes; umbral $>25$ \\* \cline{3-4}
+& & IDN (estructura) & $|ISN_{f_1}-ISN_{f_2}|$ por par; umbral $>50$ \\
 \specialrule{.1em}{.05em}{.05em}
 \end{longtable}
 \endgroup
@@ -959,7 +964,36 @@ de los antecedentes del estudio:
     \item \textbf{MAE / RMSE para sentimiento continuo}: \cite{pr_alvarez2023llm_political}.
     \item \textbf{Tool Selection Accuracy, Fidelidad, Corrección y Relevancia (LLM-as-judge)}: \cite{pr_chen2024combating_misinformation}, \cite{pr_gujral2024llm_elections}.
 \end{itemize}
- 
+
+\subsubsection*{Cómputo de los indicadores de polarización editorial (ICMC e IDN)}
+
+Además de las métricas de desempeño descritas, el sistema computa dos indicadores
+orientados a cuantificar la \textbf{polarización editorial} —el tratamiento
+sistemáticamente opuesto de un mismo candidato entre las distintas fuentes y plataformas
+digitales—. Ambos se calculan sobre la vista materializada
+\texttt{gold\_sentimiento\_fuente\_diario}, cuya granularidad es la tripleta
+(fuente, candidato, fecha) y que expone el Índice de Sentimiento Neto desagregado por
+fuente, $ISN_f(e,t)$, como insumo común. Conviene precisar que ambos indicadores miden el
+\textbf{contenido} mediático publicado, no la recepción del mensaje en la audiencia ni una
+intención editorial deliberada.
+
+El \textbf{Índice de Cobertura Mediática Comparada} (ICMC) mide la \textit{magnitud}
+agregada de la divergencia. Para cada candidato se calcula la desviación estándar del
+$ISN_f$ entre las $F$ fuentes que lo cubren, esto es,
+$ICMC = \sqrt{\sum_{f=1}^{F}\left(ISN_f - \overline{ISN}\right)^2 / F}$, de modo que un valor
+$ICMC > 25$ se interpreta como indicio de polarización editorial: el candidato recibe
+tratamientos marcadamente distintos según el medio, frente a valores bajos que reflejan
+consenso narrativo entre fuentes.
+
+El \textbf{Índice de Divergencia Narrativa} (IDN) describe la \textit{estructura} par a par
+de esa divergencia. Para un mismo candidato, compara el sentimiento neto de cada par de
+fuentes $(f_1, f_2)$ mediante la diferencia absoluta $IDN = |ISN_{f_1} - ISN_{f_2}|$; sobre
+una escala de 0 a 200, un $IDN > 50$ identifica pares de fuentes con visiones opuestas del
+mismo candidato. El cómputo recorre las combinaciones de fuentes disponibles por candidato
+en la vista \texttt{gold\_sentimiento\_fuente\_diario} y ordena los pares de mayor a menor
+divergencia, lo que permite localizar los casos de tratamiento más antagónico entre la
+prensa tradicional y las plataformas sociales.
+
 \begin{landscape}
 \section{Cronograma de actividades y presupuesto}
  

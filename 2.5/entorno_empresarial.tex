@@ -180,7 +180,7 @@ En primer lugar, \textbf{desarrollar un pipeline automatizado de minería de sen
 
 En segundo lugar, \textbf{implementar un sistema de detección dinámica de temas} basado en un enfoque híbrido LLM con catálogo incremental, que combina embeddings de Sentence-BERT multilingüe, retrieval multinivel y clasificación con LLM (\textit{exact}, \textit{alias}, \textit{new}), capaz de identificar automáticamente los temas relevantes emergentes en la cobertura mediática digital y rastrear su evolución temporal durante el período enero–abril de 2026.
 
-En tercer lugar, \textbf{construir un módulo de análisis de framing mediático comparado} que permita identificar y cuantificar las diferencias en la percepción proyectada sobre los actores políticos por parte de distintos medios y plataformas digitales, habilitando el análisis de sesgos editoriales y divergencias de cobertura.
+En tercer lugar, \textbf{construir un módulo de análisis de framing mediático comparado} que permita identificar y cuantificar las diferencias en la percepción proyectada sobre los actores políticos por parte de distintos medios y plataformas digitales, habilitando el análisis de la polarización editorial —el tratamiento sistemáticamente opuesto de un mismo candidato entre fuentes— a través de la divergencia narrativa de su cobertura.
 
 Finalmente, \textbf{diseñar y desplegar un dashboard de visualización actualizado diariamente (near-real-time)} que permita a los usuarios explorar los indicadores de percepción mediática —Índice de Sentimiento Neto (ISN) por fuente, Índice de Relevancia Temática (IRT), Índice de Velocidad de Emergencia (IVE) e Índice de Cobertura Mediática Comparada (ICMC)— de manera interactiva y actualizada.
 
@@ -393,7 +393,7 @@ Los \textbf{procesos operativos} constituyen el núcleo del sistema y comprenden
 
     \item \textbf{Detección dinámica de temas}: Generación de embeddings semánticos con Sentence-BERT multilingüe, construcción de un menú de temas candidatos mediante retrieval multinivel (trending, semántico, léxico, por actor y por evento) y clasificación con LLM en categorías \textit{exact}, \textit{alias} o \textit{new} dentro de un catálogo incremental, con consolidación y deduplicación semántica diaria.
 
-    \item \textbf{Análisis de cobertura mediática comparada}: Cálculo del Índice de Sentimiento Neto (ISN) desagregado por fuente mediática y plataforma, identificación de divergencias de framing entre medios y construcción de los perfiles de cobertura por candidato y período.
+    \item \textbf{Análisis de cobertura mediática comparada}: Cálculo del Índice de Sentimiento Neto (ISN) desagregado por fuente mediática y plataforma, cuantificación de la divergencia narrativa entre fuentes —el mecanismo a través del cual se manifiesta la polarización editorial sobre un mismo candidato— y construcción de los perfiles de cobertura por candidato y período.
 
     \item \textbf{Detección de desinformación}: Verificación automática de los contenidos con mayor viralidad mediante técnicas de RAG, confrontando el contenido con fuentes verificadas y bases de datos de fact-checking.
 
