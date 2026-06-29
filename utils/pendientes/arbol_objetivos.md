@@ -1,10 +1,10 @@
-# Árbol de Objetivos — versión polarización editorial
+# Árbol de Objetivos — versión polarización de la percepción mediática digital
 
 > Reemplaza la imagen `anexos/arbol_objetivos.png`. Es el espejo en positivo del
 > árbol de problemas: medios → objetivo central → fines.
 
 ## Objetivo central
-**Detectar y cuantificar la polarización editorial** en el tratamiento de los
+**Detectar y cuantificar la polarización de la percepción mediática digital** en el tratamiento de los
 candidatos presidenciales entre las distintas fuentes y plataformas digitales,
 mediante un sistema de inteligencia electoral basado en LLMs y grafos de
 conocimiento (caso Elecciones Presidenciales Perú 2026).
@@ -16,10 +16,10 @@ conocimiento (caso Elecciones Presidenciales Perú 2026).
   de forma consistente entre plataformas — **ISN** por fuente, **IRT**, **IVE**.
   (OE2)
 - **M3.** Construir un grafo de conocimiento electoral que **cuantifique la
-  polarización editorial** mediante **ICMC** (magnitud) e **IDN** (estructura).
+  polarización de la percepción mediática digital** mediante **ICMC** (magnitud) e **IDN** (estructura).
   (OE3)
 - **M4.** Exponer el análisis vía GraphRAG sobre MCP para consulta en lenguaje
-  natural, incluida la polarización editorial. (OE4)
+  natural, incluida la polarización de la percepción mediática digital. (OE4)
 - **M5.** Evaluar el sistema contra *ground truth* humano y LLM-as-judge,
   validando que la polarización detectada sea real. (OE5)
 

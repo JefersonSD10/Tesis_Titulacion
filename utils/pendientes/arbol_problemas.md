@@ -1,10 +1,10 @@
-# Árbol de Problemas — versión polarización editorial
+# Árbol de Problemas — versión polarización de la percepción mediática digital
 
 > Reemplaza la imagen `anexos/arbol_problemas.png`. Estructura causa → problema
-> central → efectos. El problema central pasa a ser la **polarización editorial**.
+> central → efectos. El problema central pasa a ser la **polarización de la percepción mediática digital**.
 
 ## Problema central
-**La polarización editorial en la cobertura mediática digital** — un mismo
+**La polarización de la percepción mediática digital en la cobertura mediática digital** — un mismo
 candidato presidencial recibe un tratamiento sistemáticamente opuesto según la
 fuente o plataforma que consume el electorado peruano — **no se detecta ni se
 cuantifica de forma sistemática** con los enfoques tradicionales (encuestas o
@@ -39,7 +39,7 @@ análisis de fuentes aisladas).
         narrativas     para verificar     / volatilidad       temprana
                               ▲
         ┌─────────────── PROBLEMA CENTRAL ───────────────┐
-        │  La polarización editorial entre fuentes/        │
+        │  La polarización de la percepción mediática digital entre fuentes/        │
         │  plataformas no se detecta ni se cuantifica      │
         │  de forma sistemática                            │
         └──────────────────────────────────────────────────┘
