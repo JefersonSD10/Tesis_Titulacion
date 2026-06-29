@@ -11,7 +11,7 @@
 | Todo el doc. | **Renombrado del fenómeno central:** «polarización editorial» → **«polarización de la percepción mediática digital»** (50+ apariciones, ES + EN). Los índices **ICMC** e **IDN** no cambian de nombre. |
 | 9 | Cierre de la **Realidad Problemática (1.1)**: se enuncia el problema específico — un mismo candidato recibe trato opuesto según la fuente/plataforma. |
 | 10 | • **Problema General y PE1–PE5** reformulados (1.2).<br>• **Objetivo General y OE1–OE5** reformulados (1.3). |
-| 12 | **Hipótesis General y HE1–HE5** reformuladas; **HE3** con umbrales falsables **ICMC > 25** e **IDN > 50** (escala 0–200) (1.4). |
+| 12 | **Hipótesis General y HE1–HE5** reformuladas; **HE3** con umbrales verificables **ICMC > 25** e **IDN > 50** (escala 0–200) (1.4). |
 | 13 | **Justificación teórica (1.5.1)**: aporte = operacionalizar la polarización mediante ICMC/IDN sobre grafos. |
 | 14 | **Justificación práctica (1.5.2)**: público objetivo reorientado a **entidades** (JNE/ONPE, verificadores/*fact-checking*, observadores, medios, analistas, consultoras); se retira a la **ciudadanía** como destinatario. |
 | 15 | **Justificación metodológica (1.5.3)**: cálculo de ICMC/IDN sobre las vistas Gold por fuente (`gold_sentimiento_fuente_diario`). |
