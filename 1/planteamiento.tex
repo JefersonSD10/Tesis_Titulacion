@@ -5,7 +5,7 @@ El primer capítulo de la investigación desarrolla la descripción de la realid
 \section{Descripción de la Realidad Problemática}
 
 
-En la última década, el crecimiento acelerado de las redes sociales y los ecosistemas digitales ha transformado significativamente la manera en que se desarrolla la comunicación política y se construye la opinión pública en contextos electorales. Plataformas como Facebook, X/Twitter, Instagram, TikTok y YouTube se han convertido en espacios predominantes para la difusión de información política, la interacción ciudadana y la movilización electoral. A través de estos medios, millones de usuarios consumen contenido, expresan opiniones y participan activamente en debates públicos en tiempo real. \textcite{cr_digital2025}
+En la última década, el crecimiento acelerado de las redes sociales y los ecosistemas digitales ha transformado significativamente la manera en que se desarrolla la comunicación política y se construye la opinión pública en contextos electorales. Plataformas como X/Twitter, TikTok, YouTube y portales de prensa digital se han convertido en espacios predominantes para la difusión de información política, la interacción ciudadana y la movilización electoral. A través de estos medios, millones de usuarios consumen contenido, expresan opiniones y participan activamente en debates públicos en tiempo real. \textcite{cr_digital2025}
 
 De acuerdo con \textcite{cr_digital2025}, más del 64\% de la población mundial utiliza redes sociales, lo que evidencia la masificación de estos entornos como espacios clave para la interacción social y política. Como se observa en la Figura \ref{fig:social_media_global}, este crecimiento ha consolidado a las plataformas digitales como un componente fundamental en la formación de la opinión pública contemporánea.
 
@@ -29,7 +29,7 @@ En América Latina, esta tendencia es aún más pronunciada. Según el \textcite
 	\end{center}
 \end{figure}
 
-En el Perú, el acceso a Internet ha alcanzado aproximadamente el 80\% de la población, equivalente a más de 28 millones de usuarios conectados, según el Instituto Nacional de Estadística e Informática \parencite{cr_inei2024}. Este escenario demuestra la importancia de los ecosistemas digitales como espacios de información, debate político y formación de opinión pública. Por ello, los partidos políticos y actores públicos utilizan cada vez más las redes sociales y medios digitales para comunicarse directamente con la ciudadanía, sin depender únicamente de los medios tradicionales.Figura \ref{fig:internet_peru}
+En el Perú, el acceso a Internet ha alcanzado aproximadamente el 80\% de la población, equivalente a más de 28 millones de usuarios conectados, según el Instituto Nacional de Estadística e Informática \parencite{cr_inei2024}. Este escenario demuestra la importancia de los ecosistemas digitales como espacios de información, debate político y formación de opinión pública. Por ello, los partidos políticos y actores públicos utilizan cada vez más las redes sociales y medios digitales para comunicarse directamente con la ciudadanía, sin depender únicamente de los medios tradicionales.
 
 \begin{figure}[h]
 	\begin{center}
@@ -40,27 +40,29 @@ En el Perú, el acceso a Internet ha alcanzado aproximadamente el 80\% de la pob
 	\end{center}
 \end{figure}
 
-Por otro lado, los métodos tradicionales usados para analizar la opinión pública, como encuestas o estudios estadísticos, presentan limitaciones importantes debido a su costo, periodicidad y limitada capacidad para capturar dinámicas sociales en tiempo real. Además, muchos enfoques computacionales actuales se enfocan únicamente en una sola fuente de datos, como Twitter/X o Facebook, ignorando la complejidad y diversidad de los ecosistemas digitales contemporáneos \textcite{pr_fujiwara2021Socialmedia}.
+Por otro lado, los métodos tradicionales usados para analizar la opinión pública, como encuestas o estudios estadísticos, presentan limitaciones importantes debido a su costo, periodicidad y limitada capacidad para capturar dinámicas sociales en tiempo real. Además, muchos enfoques computacionales actuales se enfocan únicamente en una sola fuente de datos, como Twitter/X o Facebook, ignorando la complejidad y diversidad de los ecosistemas digitales contemporáneos \parencite{pr_fujiwara2021Socialmedia}.
 
-\textcite{pr_alvarez2023llm_political}, manifiesta que los avances en inteligencia artificial, especialmente en Modelos de Lenguaje de Gran Escala (LLMs), han abierto nuevas oportunidades para el análisis de grandes volúmenes de información textual proveniente redes sociales y medios digitales. Con lo cual, estas tecnologías permiten identificar sentimientos, tendencias, comportamiento digital, narrativas políticas y comprender relaciones complejas entre actores, temas y comunidades. 
+\textcite{pr_alvarez2023llm_political} manifiestan que los avances en inteligencia artificial, especialmente en Modelos de Lenguaje de Gran Escala (LLMs), han abierto nuevas oportunidades para el análisis de grandes volúmenes de información textual proveniente redes sociales y medios digitales. Con lo cual, estas tecnologías permiten identificar sentimientos, tendencias, comportamiento digital, narrativas políticas y comprender relaciones complejas entre actores, temas y comunidades. 
 
 En consecuencia, se identifica la necesidad de desarrollar un enfoque integral que permita analizar la percepción actual proyectada por los medios de comunicación en contextos electorales mediante la integración de múltiples fuentes de información, el uso de modelos avanzados de lenguaje y la representación estructurada de relaciones mediante grafos de conocimiento. Como propuesta, se plantea el desarrollo de un sistema de Inteligencia Electoral basado en Modelos de Lenguaje de Gran Escala (LLMs), minería de sentimientos y detección dinámica de temas relevantes. Este sistema permitiría comprender cómo se forma, evoluciona e influye la percepción que los medios de comunicación proyectan en los ecosistemas digitales, así como identificar tendencias, narrativas y dinámicas editoriales que impactan en el comportamiento electoral y en la cobertura mediática de los candidatos.
+
+Dentro de este panorama, se identifica un problema específico que la presente investigación busca caracterizar: un mismo candidato puede recibir un tratamiento sistemáticamente opuesto según la fuente o plataforma digital que consume el electorado. Mientras una fuente proyecta sobre un actor político una valoración predominantemente crítica, otra puede proyectar sobre ese mismo actor una valoración favorable, configurando lo que en este estudio se denomina polarización de la percepción mediática digital. Esta divergencia en el contenido mediático —observable a partir del sentimiento que cada fuente asigna a cada candidato— constituye el fenómeno central que se propone detectar y cuantificar. Cabe precisar que el estudio se circunscribe a medir dicho contenido, sin que ello suponga afirmar un efecto sobre la percepción de la audiencia ni una intención editorial deliberada por parte de las fuentes.
 
 \section{Formulación del Problema}
 
 \subsection{Problema General}
 PG: \newcommand{\ProblemaGeneral}{
-¿Cómo diseñar e implementar un sistema de inteligencia electoral basado en LLMs y grafos de conocimiento que permita analizar de manera integrada el discurso mediático digital multi-fuente sobre candidatos presidenciales en las elecciones Perú 2026, superando las limitaciones de los enfoques tradicionales basados en encuestas o fuentes aisladas?
+¿Cómo diseñar e implementar un sistema de inteligencia electoral basado en LLMs y grafos de conocimiento que permita detectar y cuantificar la polarización de la percepción mediática digital —el tratamiento sistemáticamente opuesto de un mismo candidato entre las distintas fuentes y plataformas digitales que consume el electorado peruano— sobre los candidatos presidenciales en las elecciones presidenciales del Perú 2026, superando las limitaciones de los enfoques tradicionales basados en encuestas o en el análisis de fuentes aisladas?
 }
 \ProblemaGeneral
 
 \subsection{Problemas Específicos}
 
-\newcommand{\Pbone}{¿Cómo diseñar una arquitectura de ingesta y procesamiento basada en Medallion Architecture que permita integrar datos heterogéneos provenientes de prensa digital, X/Twitter, YouTube y TikTok, preservando la trazabilidad y calidad semántica del corpus electoral?}
-\newcommand{\Pbtwo}{¿Cómo utilizar LLMs para realizar análisis contextual del discurso mediático electoral, permitiendo identificar sentimientos dirigidos, ironía, ambigüedad política, jerga regional peruana y tópicos electorales emergentes en entornos digitales de alta volatilidad?}
-\newcommand{\Pbthree}{¿Cómo construir un grafo de conocimiento electoral que represente relaciones contextuales entre candidatos, medios, tópicos, sentimientos y temporalidad a partir de información extraída desde fuentes digitales no estructuradas?}
-\newcommand{\Pbfour}{¿Cómo implementar un sistema GraphRAG soportado mediante MCP que permita consultas en lenguaje natural sobre el ecosistema electoral combinando recuperación textual y razonamiento estructural?}
-\newcommand{\Pbfive}{¿Cómo evaluar la calidad del sistema integrado en términos de precisión semántica, coherencia temática, fidelidad relacional y utilidad analítica mediante métricas cuantitativas y evaluaciones contra \textit{ground truth} humano y LLM-as-judge?}
+\newcommand{\Pbone}{¿Cómo diseñar una arquitectura de ingesta y procesamiento basada en \textit{Medallion Architecture} que integre datos heterogéneos provenientes de prensa digital, X/Twitter, YouTube y TikTok, preservando la trazabilidad y la calidad semántica necesarias para que el contenido electoral sea comparable entre fuentes?}
+\newcommand{\Pbtwo}{¿Cómo utilizar LLMs para realizar el análisis contextual del discurso mediático electoral —identificando sentimiento dirigido, ironía, ambigüedad política, jerga regional peruana y tópicos emergentes—, de modo que el sentimiento asignado a cada candidato sea consistente y comparable entre las distintas fuentes mediáticas?}
+\newcommand{\Pbthree}{¿Cómo construir un grafo de conocimiento electoral que represente las relaciones entre candidatos, medios, tópicos, sentimientos y temporalidad, y permita cuantificar la polarización de la percepción mediática digital —la magnitud y la estructura del tratamiento opuesto de un mismo candidato entre fuentes— a partir de información extraída desde fuentes digitales no estructuradas?}
+\newcommand{\Pbfour}{¿Cómo implementar un sistema GraphRAG soportado mediante MCP que permita consultar en lenguaje natural el ecosistema electoral —incluida la polarización de la percepción mediática digital detectada entre fuentes— combinando recuperación textual y razonamiento estructural sobre el grafo?}
+\newcommand{\Pbfive}{¿Cómo evaluar la calidad del sistema integrado en términos de precisión semántica, coherencia temática, fidelidad relacional y utilidad analítica, validando que los patrones detectados —incluida la polarización de la percepción mediática digital entre fuentes— correspondan a fenómenos reales y no a artefactos del modelo, mediante métricas cuantitativas y evaluaciones contra \textit{ground truth} humano y \textit{LLM-as-judge}?}
 
 \begin{itemize}
 	\item PE1: {\Pbone}
@@ -75,16 +77,16 @@ PG: \newcommand{\ProblemaGeneral}{
 
 \subsection{Objetivo General}
 OG: \newcommand{\ObjetivoGeneral}{
- Diseñar e implementar un sistema de inteligencia electoral basado en LLMs y grafos de conocimiento para el análisis multi-fuente del discurso mediático digital en las elecciones presidenciales del Perú 2026.
+ Diseñar e implementar un sistema de inteligencia electoral basado en LLMs y grafos de conocimiento que detecte y cuantifique la polarización de la percepción mediática digital en el tratamiento de los candidatos presidenciales entre las distintas fuentes y plataformas digitales, en las elecciones presidenciales del Perú 2026.
 }
 \ObjetivoGeneral
 \subsection{Objetivos Específicos}
 
-\newcommand{\Objone}{Diseñar e implementar una arquitectura de ingesta y armonización multi-fuente basada en Medallion Architecture para integrar contenido electoral digital heterogéneo preservando consistencia, trazabilidad y calidad semántica.}
-\newcommand{\Objtwo}{Implementar un modelo de análisis semántico contextual basado en LLMs capaz de identificar polaridad política, ironía, sentimiento dirigido y tópicos electorales emergentes dentro del discurso mediático digital.}
-\newcommand{\Objthree}{Construir un grafo de conocimiento electoral basado en extracción semántica mediante LLMs para representar relaciones entre actores, narrativas y eventos políticos.}
-\newcommand{\Objfour}{Implementar un sistema GraphRAG capaz de combinar recuperación semántica textual y razonamiento estructural sobre grafos para responder consultas electorales en lenguaje natural.}
-\newcommand{\Objfive}{Evaluar el desempeño técnico y analítico del sistema mediante métricas semánticas y estructurales, contrastando las salidas del sistema contra \textit{ground truth} humano de referencia y evaluaciones LLM-as-judge sobre un conjunto de preguntas anotado.}
+\newcommand{\Objone}{Diseñar e implementar una arquitectura de ingesta y armonización multi-fuente basada en \textit{Medallion Architecture} que integre el contenido electoral digital heterogéneo, preservando consistencia, trazabilidad y calidad semántica que garanticen su comparabilidad entre fuentes.}
+\newcommand{\Objtwo}{Implementar un modelo de análisis semántico contextual basado en LLMs capaz de asignar sentimiento dirigido, polaridad política y tópicos emergentes de forma consistente y comparable entre plataformas, operacionalizado mediante el Índice de Sentimiento Neto (ISN) desagregado por fuente y los índices de Relevancia Temática (IRT) y Velocidad de Emergencia (IVE).}
+\newcommand{\Objthree}{Construir un grafo de conocimiento electoral, basado en extracción semántica mediante LLMs, que represente las relaciones entre actores, narrativas y eventos políticos y permita cuantificar la polarización de la percepción mediática digital sobre cada candidato mediante el Índice de Cobertura Mediática Comparada (ICMC), que mide su magnitud agregada entre fuentes, y el Índice de Divergencia Narrativa (IDN), que identifica los pares de fuentes con tratamiento opuesto.}
+\newcommand{\Objfour}{Implementar un sistema GraphRAG capaz de combinar recuperación semántica textual y razonamiento estructural sobre el grafo para responder consultas electorales en lenguaje natural, incluidas las relativas a la polarización de la percepción mediática digital entre fuentes.}
+\newcommand{\Objfive}{Evaluar el desempeño técnico y analítico del sistema mediante métricas semánticas y estructurales, contrastando sus salidas contra \textit{ground truth} humano y evaluaciones \textit{LLM-as-judge}, y validando que la polarización de la percepción mediática digital detectada corresponda a fenómenos reales del proceso electoral.}
 
 \begin{itemize}
 	\item OE1: {\Objone}
@@ -98,16 +100,16 @@ OG: \newcommand{\ObjetivoGeneral}{
 
 \subsection{Hipótesis General}
 HG: \newcommand{\HipotesisGeneral}{
- El uso integrado de modelos de lenguaje de gran escala (LLMs) y grafos de conocimiento permite construir un sistema de inteligencia electoral capaz de realizar análisis contextual, estructural y relacional del discurso mediático digital con calidad verificable contra \textit{ground truth} humano y evaluaciones LLM-as-judge sobre conjuntos de referencia anotados.
+ El uso integrado de modelos de lenguaje de gran escala (LLMs) y grafos de conocimiento permite construir un sistema de inteligencia electoral capaz de detectar y cuantificar de forma verificable la polarización de la percepción mediática digital —el tratamiento sistemáticamente opuesto de un mismo candidato entre fuentes y plataformas digitales— en la cobertura electoral, con calidad contrastable contra \textit{ground truth} humano y evaluaciones \textit{LLM-as-judge} sobre conjuntos de referencia anotados.
 }
 \HipotesisGeneral
 \subsection{Hipótesis Específicas}
 
-\newcommand{\Hone}{Una arquitectura de ingesta y procesamiento basada en \textit{Medallion Architecture} permite integrar datos electorales multi-fuente preservando la consistencia semántica, la trazabilidad y la calidad del corpus, reduciendo además el costo computacional del análisis LLM mediante una cascada de filtros pre-modelo.}
-\newcommand{\Htwo}{Los modelos basados en LLMs en modalidad \textit{few-shot} ajustados al contexto político peruano alcanzan métricas de calidad satisfactorias (F1 macro $\geq 0.80$ en clasificación, MAE $\leq 0.15$ en sentimiento continuo) tanto en el análisis de sentimiento dirigido como en la detección contextual de tópicos emergentes del discurso mediático electoral.}
-\newcommand{\Hthree}{El grafo de conocimiento electoral construido mediante extracción semántica basada en LLMs permite expresar y consultar relaciones contextuales entre candidatos, temas, medios, fragmentos y períodos del ecosistema digital electoral en una única \textit{query} estructural.}
-\newcommand{\Hfour}{La integración híbrida GraphRAG basada en herramientas tipadas sobre el protocolo MCP mejora la relevancia y la corrección de respuestas respecto a un sistema RAG por similitud vectorial sobre el mismo corpus.}
-\newcommand{\Hfive}{El sistema integrado basado en LLMs, grafos de conocimiento y GraphRAG alcanza niveles de calidad analítica y coherencia temática verificables mediante métricas contra \textit{ground truth} humano y evaluaciones LLM-as-judge sobre conjuntos anotados.}
+\newcommand{\Hone}{Una arquitectura de ingesta y procesamiento basada en \textit{Medallion Architecture} permite integrar datos electorales multi-fuente preservando la consistencia semántica, la trazabilidad y la comparabilidad entre fuentes, reduciendo además el costo computacional del análisis LLM mediante una cascada de filtros pre-modelo.}
+\newcommand{\Htwo}{Los modelos basados en LLMs en modalidad \textit{few-shot} ajustados al contexto político peruano alcanzan métricas de calidad satisfactorias (F1 macro $\geq 0.80$ en clasificación, MAE $\leq 0.15$ en sentimiento continuo) en el análisis de sentimiento dirigido (ISN) y en la detección de tópicos emergentes (IRT/IVE), garantizando que el sentimiento asignado a cada candidato sea comparable entre fuentes.}
+\newcommand{\Hthree}{El grafo de conocimiento electoral construido mediante extracción semántica con LLMs permite cuantificar, en una única consulta estructural, la polarización de la percepción mediática digital sobre un mismo candidato entre fuentes, detectando polarización de la percepción mediática digital significativa ($\text{ICMC} > 25$) y pares de fuentes con tratamiento opuesto ($\text{IDN} > 50$ sobre una escala de 0 a 200) para un subconjunto relevante de candidatos presidenciales del ecosistema digital electoral peruano.}
+\newcommand{\Hfour}{La integración híbrida GraphRAG basada en herramientas tipadas sobre el protocolo MCP mejora la relevancia y la corrección de las respuestas —incluidas las consultas sobre polarización de la percepción mediática digital entre fuentes— respecto a un sistema RAG por similitud vectorial sobre el mismo corpus.}
+\newcommand{\Hfive}{El sistema integrado basado en LLMs, grafos de conocimiento y GraphRAG alcanza niveles de calidad analítica y coherencia temática verificables mediante métricas contra \textit{ground truth} humano y evaluaciones \textit{LLM-as-judge} sobre conjuntos anotados, validando que la polarización de la percepción mediática digital detectada corresponda a fenómenos reales del proceso electoral.}
 
 \begin{itemize}
 	\item HE1: \Hone
@@ -130,9 +132,11 @@ Adicionalmente, la incorporación de grafos de conocimiento permite modelar rela
 
 En este sentido, la presente investigación propone un enfoque integrador que articula LLMs, análisis de sentimientos, modelado de tópicos y grafos de conocimiento, contribuyendo a la literatura mediante una aproximación holística que supera las limitaciones de estudios previos centrados en técnicas aisladas. De esta manera, se aporta al desarrollo teórico de la inteligencia electoral como un campo emergente dentro de la analítica de datos y la ciencia política computacional.
 
+Asimismo, constituye un aporte teórico la operacionalización de la polarización de la percepción mediática digital mediante indicadores basados en grafos de conocimiento —el Índice de Cobertura Mediática Comparada (ICMC), que mide su magnitud agregada entre fuentes, y el Índice de Divergencia Narrativa (IDN), que identifica los pares de fuentes con tratamiento opuesto—, los cuales trasladan un fenómeno hasta ahora descrito de forma predominantemente cualitativa a una medición estructural y reproducible del tratamiento opuesto de un mismo candidato entre fuentes.
+
 \subsection{Práctica}
 
-Desde el punto de vista práctico, la investigación responde a la creciente necesidad de comprender la percepción proyectada por los medios de comunicación en contextos electorales de manera oportuna, precisa y escalable. En la actualidad, los procesos electorales están fuertemente influenciados por la dinámica de los ecosistemas digitales, donde plataformas como redes sociales, medios digitales y foros en línea actúan como espacios clave para la formación del discurso mediático sobre los candidatos.
+Desde el punto de vista práctico, la investigación responde a la necesidad de hacer visible la polarización de la percepción mediática digital en la cobertura electoral. Dado que un mismo candidato puede recibir un tratamiento sistemáticamente opuesto según la fuente o plataforma que lo cubre, contar con indicadores que cuantifiquen esa divergencia entre fuentes adquiere un valor analítico e institucional directo. En la actualidad, los procesos electorales están fuertemente influenciados por la dinámica de los ecosistemas digitales, donde plataformas como redes sociales, medios digitales y foros en línea actúan como espacios clave para la formación del discurso mediático sobre los candidatos. En este escenario, los resultados del estudio están orientados a entidades y actores especializados del proceso electoral: organismos electorales como el Jurado Nacional de Elecciones (JNE) y la Oficina Nacional de Procesos Electorales (ONPE), verificadores de información y equipos de \textit{fact-checking}, observadores electorales, medios de comunicación y periodistas especializados en política, así como analistas y consultoras de comunicación estratégica que requieren evidencia cuantificada del tratamiento mediático de los candidatos.
 
 El análisis tradicional de encuestas presenta limitaciones en términos de cobertura, costo y frecuencia de actualización, lo que dificulta capturar cambios dinámicos en el discurso mediático electoral. En contraste, el uso de técnicas de minería de datos sobre información generada en tiempo real permite identificar tendencias emergentes, cambios en el sentimiento editorial y temas de interés prioritario en la cobertura.
 
@@ -150,6 +154,8 @@ Adicionalmente, se propone el uso de técnicas de modelado de tópicos para la d
 
 Finalmente, la integración de estos componentes mediante un enfoque tipo GraphRAG permite combinar capacidades de recuperación de información, razonamiento contextual y análisis estructurado, constituyendo una contribución metodológica significativa en el desarrollo de sistemas de inteligencia electoral basados en inteligencia artificial.
 
+En particular, la propuesta incorpora el cálculo de los índices ICMC e IDN sobre vistas Gold de sentimiento desagregado por fuente —concretamente la vista \texttt{gold\_sentimiento\_fuente\_diario}—, lo que permite cuantificar de manera reproducible la magnitud agregada y la estructura par a par de la polarización de la percepción mediática digital directamente sobre el corpus armonizado, sin alterar los datos existentes del \textit{pipeline}.
+
 \section{Delimitación del Estudio}
 
 \subsection{Espacial}
@@ -159,8 +165,10 @@ La presente investigación se desarrolla geográficamente en el contexto peruano
 
 \subsection{Temporal}
 
-El estudio se centra en el análisis de información digital generada durante el periodo comprendido entre los años 2025 y 2026, considerando publicaciones, comentarios, noticias y contenido relacionado con procesos políticos y electorales difundidos en redes sociales y medios digitales durante dicho intervalo temporales de ecosistemas digitales.
+El estudio se centra en el análisis de información digital generada durante el periodo comprendido entre enero y abril de 2026, considerando publicaciones, comentarios, noticias y contenido relacionado con procesos políticos y electorales difundidos en redes sociales y medios digitales durante dicho intervalo temporales de ecosistemas digitales.
 
 \subsection{Conceptual}
 
 Desde el punto de vista conceptual, la investigación se enfoca en el análisis de la percepción proyectada por los medios de comunicación y el comportamiento editorial digital mediante el uso de Modelos de Lenguaje de Gran Escala (LLMs), minería de sentimientos, detección de temas y grafos de conocimiento.
+
+El alcance conceptual incluye, como fenómeno central, la polarización de la percepción mediática digital —entendida como el tratamiento sistemáticamente opuesto de un mismo candidato entre fuentes y plataformas digitales—, operacionalizada mediante el Índice de Cobertura Mediática Comparada (ICMC) y el Índice de Divergencia Narrativa (IDN), construidos a partir del Índice de Sentimiento Neto (ISN) desagregado por fuente. Se establece, además, un límite explícito del estudio: este mide el contenido mediático difundido por cada fuente, y no la recepción ni el efecto de dicho contenido sobre la percepción de la audiencia, ni la intención editorial deliberada que pudiera subyacer a cada cobertura.

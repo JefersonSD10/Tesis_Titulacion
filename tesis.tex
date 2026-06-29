@@ -59,7 +59,8 @@
 
 %% Formato de URL en referencias
 \DeclareFieldFormat{url}{{Recuperado de}\space\url{#1}}
-
+%% Metadatos del PDF (pdftitle/pdfauthor/...) configurados en las opciones
+%% de \usepackage{hyperref} mas abajo.
 %% Convertir comando cita por textcite para que tenga formato APA
 \let\cite\textcite
 
@@ -94,9 +95,12 @@
 citecolor=black,
 urlcolor=black,
 bookmarks=true,
+linktoc=all,% hace clicable toda la linea del indice (texto + numero de pagina)
 linkcolor=black,
-pdftitle={Tesis-nombre-alumno},
-pdfauthor={autor nombres}]{hyperref}
+pdftitle={Sistema de Inteligencia Electoral basado en LLMs y Grafos de Conocimiento para el Análisis Multi-fuente del Discurso Mediático Digital: Caso Elecciones Presidenciales Perú 2026},
+pdfauthor={Axel Denis Cuadros Huachua, Victor Manuel Ormeño Salazar, Piero Luis Rojas Paucar, Jeferson Joseph Sandoval Díaz},
+pdfsubject={Tesis de grado — Ingeniería de Tecnologías de Información y Sistemas, Universidad ESAN},
+pdfkeywords={inteligencia electoral, LLMs, grafos de conocimiento, GraphRAG, análisis multi-fuente}]{hyperref}
 % xurl permite que las URLs largas se partan en cualquier caracter
 % (carga DESPUES de hyperref para que parchee \url y \href).
 \usepackage{xurl}
@@ -473,6 +477,14 @@ pdfauthor={autor nombres}]{hyperref}
 %\bibliographystyle{apalike} % No funciona
 %\renewcommand{\bibname}{BIBLIOGRAFÍA} % changes the header; default: Bibliography
 
+% Encabezado de bibliografia con \phantomsection para que el enlace del
+% indice apunte al lugar correcto. El bibintoc por defecto de biblatex omite
+% \phantomsection y, combinado con titlesec, el enlace del TOC queda desfasado.
+\defbibheading{bibintoc}[\bibname]{%
+	\chapter*{#1}%
+	\phantomsection
+	\addcontentsline{toc}{chapter}{#1}%
+	\markboth{#1}{#1}}
 \printbibliography[heading=bibintoc,title={Referencias}]
 %\bibliography{biblio/references} % adjust this to fit your BibTex file
 
@@ -482,6 +494,7 @@ pdfauthor={autor nombres}]{hyperref}
 \renewcommand{\appendixtocname}{Anexos} %Esto es para el indice
 \renewcommand{\appendixpagename}{Anexos}
 \clearpage
+\phantomsection
 \addappheadtotoc
 \appendixpage
 \include{anexos/anexo}

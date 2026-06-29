@@ -172,7 +172,7 @@ Varios LLMs son directamente relevantes para los objetivos de esta tesis:
 
 \textbf{BERT} (\textit{Bidirectional Encoder Representations from Transformers}), propuesto por \cite{tec_devlin2018bert}, es un modelo solo-encoder que introduce el pre-entrenamiento bidireccional, permitiendo capturar el contexto tanto izquierdo como derecho de cada token simultáneamente. Ha sido ampliamente adoptado para clasificación de sentimientos y tareas de comprensión textual.
 
-\textbf{DeepSeek} es una familia de modelos de lenguaje desarrollada por la empresa china DeepSeek AI, cuya variante \textit{deepseek-chat} ha demostrado capacidades competitivas con modelos de frontera a una fracción del costo operacional \parencite{tec_deepseek2024}. Una característica técnica diferenciadora es su mecanismo de caché de prefijo (\textit{prompt prefix caching}), que almacena en memoria el prefijo invariante del prompt —catálogos de entidades, instrucciones y ejemplos few-shot— y lo reutiliza entre llamadas, reduciendo el costo efectivo de tokens de entrada hasta en un 75\% cuando la tasa de \textit{cache hit} es alta. En el sistema implementado se observó una tasa de \textit{cache hit} sostenida del 85.5\%, lo que hizo de DeepSeek la opción económicamente más viable para el procesamiento masivo del corpus multimodal recolectado entre enero y mayo de 2026.
+\textbf{DeepSeek} es una familia de modelos de lenguaje desarrollada por la empresa china DeepSeek AI, cuya variante \textit{deepseek-chat} ha demostrado capacidades competitivas con modelos de frontera a una fracción del costo operacional \parencite{tec_deepseek2024}. Una característica técnica diferenciadora es su mecanismo de caché de prefijo (\textit{prompt prefix caching}), que almacena en memoria el prefijo invariante del prompt —catálogos de entidades, instrucciones y ejemplos few-shot— y lo reutiliza entre llamadas, reduciendo el costo efectivo de tokens de entrada hasta en un 75\% cuando la tasa de \textit{cache hit} es alta. En el sistema implementado se observó una tasa de \textit{cache hit} sostenida del 85.5\%, lo que hizo de DeepSeek la opción económicamente más viable para el procesamiento masivo del corpus multimodal recolectado entre enero y abril de 2026.
 
 \textbf{RoBERTa} (\textit{Robustly Optimized BERT Pretraining Approach}) es una versión optimizada de BERT que emplea mayor volumen de datos y elimina el objetivo de predicción de oración siguiente (\textit{next sentence prediction}), logrando mejoras significativas en benchmarks de NLP \parencite{tec_liu2019roberta}.
 
@@ -219,7 +219,7 @@ La implementación práctica de grafos de conocimiento puede realizarse mediante
         \includegraphics[width=0.88\textwidth]{2/figures/knowledge_graph_electoral.png}
         \caption[Fragmento del grafo de conocimiento electoral construido para las Elecciones Presidenciales Perú 2026]{Ejemplo de subgrafo del grafo de conocimiento electoral: nodos representando candidatos, partidos, temas programáticos y medios de comunicación, con aristas tipadas que codifican las relaciones extraídas del discurso mediático digital por el sistema LLM.\\
             Fuente: Elaboración propia basada en \cite{bk_hogan2021knowledge}.}
-        \label{fig:knowledge_graph_electoral}
+        \label{fig:knowledge_graph_electoral_teorico}
     \end{center}
 \end{figure}
 
@@ -271,8 +271,8 @@ El \textbf{enfoque basado en Aprendizaje Profundo y LLMs} utiliza modelos como B
 \begin{figure}[H]
     \begin{center}
         \includegraphics[width=0.82\textwidth]{2/figures/sentiment_comparison.jpg}
-        \caption[Comparación de rendimiento entre enfoques de análisis de sentimientos en texto político]{Comparación de exactitud entre los enfoques léxico, aprendizaje automático clásico y modelos basados en LLMs para análisis de sentimientos en cobertura mediática electoral.\\
-            Fuente: Elaboración propia basada en \cite{tec_liu2012sentiment} y \cite{pr_alvarez2023llm_political}.}
+        \caption[Comparación de rendimiento entre enfoques de análisis de sentimientos en texto político]{Comparación de exactitud entre los enfoques léxico, aprendizaje automático clásico y modelos basados en LLMs para análisis de sentimientos en cobertura mediática electoral. \textbf{Los valores mostrados son estimaciones ilustrativas con fines pedagógicos —no datos empíricos medidos por los autores del presente trabajo—}, construidas a partir de la discusión cualitativa reportada en la literatura citada.\\
+            Fuente: Elaboración propia (estimación ilustrativa) basada en la discusión de \cite{tec_liu2012sentiment} y \cite{pr_alvarez2023llm_political}.}
         \label{fig:sentiment_comparison}
     \end{center}
 \end{figure}
@@ -331,7 +331,7 @@ La \textbf{detección dinámica de temas} (\textit{dynamic topic modeling}) exti
 \begin{figure}[H]
     \begin{center}
         \includegraphics[width=0.88\textwidth]{2/figures/dynamic_topics.jpg}
-        \caption[Evolución temporal de temas detectados mediante BERTopic dinámico en cobertura mediática]{Ejemplo de evolución temporal de temas detectados mediante el módulo de topic modeling dinámico de BERTopic, mostrando la frecuencia relativa de cada tema por período de tiempo en la cobertura mediática electoral entre enero y mayo de 2026.\\
+        \caption[Evolución temporal de temas detectados mediante BERTopic dinámico en cobertura mediática]{Ejemplo de evolución temporal de temas detectados mediante el módulo de topic modeling dinámico de BERTopic, mostrando la frecuencia relativa de cada tema por período de tiempo en la cobertura mediática electoral entre enero y abril de 2026.\\
             Fuente: \cite{tec_grootendorst2022bertopic}. \textit{BERTopic: Neural Topic Modeling with a Class-Based TF-IDF Procedure}.}
         \label{fig:dynamic_topics}
     \end{center}
@@ -347,7 +347,7 @@ El concepto de \textbf{framing} o encuadre mediático, desarrollado por \cite{bk
 
 La \textbf{teoría de la agenda-setting}, propuesta originalmente por \cite{bk_mccombs2004agenda}, postula que los medios de comunicación no determinan qué piensan los ciudadanos, pero sí influyen significativamente en \textit{sobre qué} piensan: los temas que reciben mayor cobertura mediática tienden a ser percibidos por la ciudadanía como los más importantes. En el ecosistema digital actual, esta dinámica se extiende a plataformas como X/Twitter, YouTube y TikTok, donde los medios tradicionales compiten con creadores de contenido independientes en la construcción de la agenda pública.
 
-Para la presente investigación, el análisis del framing mediático se operacionaliza mediante la detección automática de la polaridad del sentimiento (positivo, negativo, neutral) y la identificación de los temas predominantes en los contenidos producidos por cada medio en las cuatro fuentes analizadas —noticias digitales, tweets, videos de YouTube y publicaciones de TikTok— durante el período enero–mayo de 2026. Las relaciones de framing identificadas son además codificadas como aristas tipadas en el grafo de conocimiento electoral, lo que permite consultas estructuradas sobre los encuadres predominantes de cada medio hacia cada actor político.
+Para la presente investigación, el análisis del framing mediático se operacionaliza mediante la detección automática de la polaridad del sentimiento (positivo, negativo, neutral) y la identificación de los temas predominantes en los contenidos producidos por cada medio en las cuatro fuentes analizadas —noticias digitales, tweets, videos de YouTube y publicaciones de TikTok— durante el período enero–abril de 2026. Las relaciones de framing identificadas son además codificadas como aristas tipadas en el grafo de conocimiento electoral, lo que permite consultas estructuradas sobre los encuadres predominantes de cada medio hacia cada actor político.
 
 % ──────────────────────────────────────────────────────────────
 \subsection{Ingeniería de Prompts}
@@ -386,10 +386,10 @@ En el sistema desarrollado, cada documento —independientemente de su fuente (n
 
 Los \textbf{ecosistemas digitales} son entornos mediáticos complejos conformados por la interacción de múltiples plataformas digitales —redes sociales, sitios de noticias, foros, plataformas de video— a través de las cuales los medios de comunicación y los ciudadanos producen, consumen y difunden información política \parencite{mc_chadwick2013hybrid}. En el contexto electoral, estos ecosistemas constituyen la principal arena de debate político contemporáneo, superando en muchos aspectos a los medios tradicionales en velocidad, alcance e interactividad.
 
-Para la presente investigación se recolectaron datos de cuatro fuentes digitales durante el período enero–mayo de 2026:
+Para la presente investigación se recolectaron datos de cuatro fuentes digitales durante el período enero–abril de 2026:
 
 \begin{enumerate}
-    \item \textbf{Portales de noticias digitales}: Artículos y titulares extraídos mediante scrapers \textit{aiohttp} + \textit{BeautifulSoup} de ocho medios de comunicación peruanos. Constituyen la fuente primaria del análisis de framing mediático, al reflejar directamente la línea editorial de cada medio.
+    \item \textbf{Portales de noticias digitales}: Artículos y titulares extraídos mediante scrapers \textit{aiohttp} + \textit{BeautifulSoup} de ocho medios de comunicación peruanos. Constituyen la fuente primaria del análisis de framing mediático, al reflejar directamente la línea editorial de cada medio. Ahora bien, dado que plataformas como TikTok no poseen una línea editorial formal, el constructo que esta investigación examina de forma transversal es el posicionamiento valorativo agregado de cada fuente o plataforma —denominado aquí «polarización de la percepción mediática digital»— y no la línea editorial en sentido estricto.
 
     \item \textbf{X/Twitter}: Tweets, retweets y menciones recolectados mediante la API de tercero TwitterAPI.io. Permiten capturar tanto el discurso de las cuentas oficiales de los medios de comunicación como la reacción ciudadana ante su cobertura.
 
@@ -405,7 +405,7 @@ La recolección de datos multimodales para análisis electoral generalmente sigu
 \begin{figure}[H]
     \begin{center}
         \includegraphics[width=0.85\textwidth]{2/figures/data_collection_pipeline.png}
-        \caption[Pipeline de recolección y preprocesamiento de datos multimodales para análisis del discurso mediático electoral]{Pipeline de recolección y preprocesamiento de datos multimodales para el análisis multi-fuente del discurso mediático digital (enero–mayo 2026): definición de criterios de búsqueda, recolección vía scrapers y APIs, transcripción de contenido audiovisual, filtrado, limpieza, normalización y extracción de entidades para el grafo de conocimiento.\\
+        \caption[Pipeline de recolección y preprocesamiento de datos multimodales para análisis del discurso mediático electoral]{Pipeline de recolección y preprocesamiento de datos multimodales para el análisis multi-fuente del discurso mediático digital (enero–abril 2026): definición de criterios de búsqueda, recolección vía scrapers y APIs, transcripción de contenido audiovisual, filtrado, limpieza, normalización y extracción de entidades para el grafo de conocimiento.\\
             Fuente: Elaboración propia basada en \cite{pr_alvi2023twitter_election_review}.}
         \label{fig:data_collection_pipeline}
     \end{center}
@@ -455,9 +455,9 @@ El sistema de inteligencia electoral propuesto en la presente investigación art
 
 \subsubsection{Medición del Discurso Mediático Digital en Contexto Electoral}
 
-El \textbf{análisis multi-fuente del discurso mediático digital} en el contexto electoral se refiere a la caracterización sistemática de las valoraciones, encuadres narrativos y relaciones entre actores que los medios de comunicación expresan —de manera explícita o implícita— a través de sus contenidos en múltiples plataformas digitales hacia candidatos, partidos políticos, propuestas programáticas e instituciones democráticas. A diferencia del análisis de una única plataforma, el enfoque multi-fuente permite identificar convergencias y divergencias en la construcción del discurso político entre la prensa digital, Twitter, YouTube y TikTok.
+El \textbf{análisis multi-fuente del discurso mediático digital} en el contexto electoral se refiere a la caracterización sistemática de las valoraciones, encuadres narrativos y relaciones entre actores que los medios de comunicación expresan —de manera explícita o implícita— a través de sus contenidos en múltiples plataformas digitales hacia candidatos, partidos políticos, propuestas programáticas e instituciones democráticas. A diferencia del análisis de una única plataforma, el enfoque multi-fuente permite identificar convergencias y divergencias narrativas en la construcción del discurso político entre la prensa digital, Twitter, YouTube y TikTok. Esta divergencia narrativa —el tratamiento sistemáticamente opuesto de un mismo candidato entre fuentes y plataformas— constituye el mecanismo en el que se sustenta la polarización de la percepción mediática digital y a través del cual esta se hace observable y medible.
 
-Su medición mediante LLMs y grafos de conocimiento ofrece ventajas sustanciales respecto al análisis de contenido mediático tradicional: es continua (no puntual), de bajo costo, capaz de procesar miles de piezas de contenido simultáneamente, de detectar cambios en el tono de la cobertura asociados a eventos específicos de la campaña, y de representar de forma estructurada y auditable las relaciones discursivas identificadas \parencite{pr_gujral2024llm_elections}. En la presente investigación, este análisis se realiza sobre un corpus recolectado entre enero y mayo de 2026, abarcando las cuatro fuentes digitales descritas.
+Su medición mediante LLMs y grafos de conocimiento ofrece ventajas sustanciales respecto al análisis de contenido mediático tradicional: es continua (no puntual), de bajo costo, capaz de procesar miles de piezas de contenido simultáneamente, de detectar cambios en el tono de la cobertura asociados a eventos específicos de la campaña, y de representar de forma estructurada y auditable las relaciones discursivas identificadas \parencite{pr_gujral2024llm_elections}. En la presente investigación, este análisis se realiza sobre un corpus recolectado entre enero y abril de 2026, abarcando las cuatro fuentes digitales descritas.
 
 Sin embargo, es importante reconocer sus limitaciones metodológicas: los LLMs multilingües entrenados principalmente en inglés pueden introducir distorsiones sistemáticas al analizar el español político peruano, y la representatividad de las fuentes digitales seleccionadas no abarca la totalidad del ecosistema mediático nacional. La triangulación con otras fuentes y la interpretación crítica de los resultados son, por tanto, componentes indispensables del sistema \parencite{pr_gujral2024llm_elections}.
 

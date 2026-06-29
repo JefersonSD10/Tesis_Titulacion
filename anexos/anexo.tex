@@ -3,23 +3,32 @@
 \appendix
 \setcounter{section}{0}% Reset numbering for sections
 \renewcommand{\thesection}{\Alph{section}}% Adjust section printing (from here onward)
+\renewcommand{\thesubsection}{\Alph{section}.\arabic{subsection}}% Subsections of appendix: H.1, H.2 (not 0.8.1)
+\renewcommand{\thesubsubsection}{\Alph{section}.\arabic{subsection}.\arabic{subsubsection}}
 
+% Bloque unificado de anexos en orientacion horizontal (Arbol de Problemas,
+% Arbol de Objetivos y Matriz de Consistencia). Se usa un solo entorno
+% \begin{landscape} para evitar paginas en blanco entre cada anexo y se
+% aplica el pagestyle 'horizontal' que oculta el encabezado largo (que no
+% entra correctamente al rotar la pagina) dejando unicamente el numero de
+% pagina al pie.
+
+\begin{landscape} 
 % ──────────────────────────────────────────────────────────────
 \section{Árbol de Problemas}
 % ──────────────────────────────────────────────────────────────
 
 \label{anexo1}
 
-\begin{figure}[h]
-	\begin{center}
-		\includegraphics[width=1.05\textwidth]{anexos/arbol_problemas.png}
-		\caption[Árbol de problemas de la investigación]{Árbol de problemas identificados en la investigación sobre análisis de la percepción actual proyectada por los medios de comunicación en contextos electorales mediante inteligencia electoral.\\
-		Fuente: Elaboración propia.}
-		\label{fig:arbol_problemas}
-	\end{center}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1.15\textwidth]{anexos/arbol_problemas.png}
+	\caption[Árbol de problemas de la investigación]{Árbol de problemas identificados en la investigación sobre análisis de la percepción actual proyectada por los medios de comunicación en contextos electorales mediante inteligencia electoral.\\
+	Fuente: Elaboración propia.}
+	\label{fig:arbol_problemas}
 \end{figure}
 
-\clearpage
+\newpage
 
 % ──────────────────────────────────────────────────────────────
 \section{Árbol de Objetivos}
@@ -27,105 +36,36 @@
 
 \label{anexo2}
 
-\begin{figure}[h]
-	\begin{center}
-		\includegraphics[width=1.05\textwidth]{anexos/arbol_objetivos.png}
-		\caption[Árbol de objetivos de la investigación]{Árbol de objetivos que estructuran la investigación sobre análisis de percepciones con LLMs y detección dinámica de temas en ecosistemas digitales.\\
-		Fuente: Elaboración propia.}
-		\label{fig:arbol_objetivos}
-	\end{center}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1.15\textwidth]{anexos/arbol_objetivos.png}
+	\caption[Árbol de objetivos de la investigación]{Árbol de objetivos que estructuran la investigación sobre análisis de percepciones con LLMs y detección dinámica de temas en ecosistemas digitales.\\
+	Fuente: Elaboración propia.}
+	\label{fig:arbol_objetivos}
 \end{figure}
 
-\clearpage
+\newpage
 
 % ──────────────────────────────────────────────────────────────
-\begin{landscape}
-    \section{Matriz de Consistencia}
-    \label{anexo3}
-    
-    \begingroup
-    \renewcommand\arraystretch{1.3}
-    \small
-    \begin{longtable}{p{2.8cm} p{3.2cm} p{3.2cm} p{2.8cm} p{2.8cm} p{2.8cm} p{2.8cm}}
-        
-        \caption[Matriz de consistencia de la investigación]{Matriz de consistencia que articula problema general, objetivo general, hipótesis general, variables, dimensiones e indicadores de la investigación.}\\
-        \label{tbl:matriz_consistencia} \\
-        
-        \specialrule{.1em}{.05em}{.05em}
-        \centering\textbf{TÍTULO} & \centering\textbf{PROBLEMA} & \centering\textbf{OBJETIVO} & \centering\textbf{HIPÓTESIS} & \centering\textbf{VARIABLE} & \centering\textbf{DIMENSIÓN} & \centering\arraybackslash\textbf{INDICADOR} \\
-        \specialrule{.1em}{.05em}{.05em}
-        \endfirsthead
+\section{Matriz de Consistencia}
+% ──────────────────────────────────────────────────────────────
 
-        \caption[]{Matriz de consistencia (continuación).}\\
-        \specialrule{.1em}{.05em}{.05em}
-        \centering\textbf{TÍTULO} & \centering\textbf{PROBLEMA} & \centering\textbf{OBJETIVO} & \centering\textbf{HIPÓTESIS} & \centering\textbf{VARIABLE} & \centering\textbf{DIMENSIÓN} & \centering\arraybackslash\textbf{INDICADOR} \\
-        \specialrule{.1em}{.05em}{.05em}
-        \endhead
-        
-        % Variable Independiente
-        \multirow{12}{=}{Sistema de Inteligencia Electoral basado en LLMs y Grafos de Conocimiento para el Análisis Multi-fuente del Discurso Mediático Digital: Caso Elecciones Presidenciales Perú 2026}
-        & \multirow{5}{=}{PG: ¿Cómo diseñar e implementar un sistema de inteligencia electoral basado en LLMs y grafos de conocimiento que permita analizar de manera integrada el discurso mediático digital multi-fuente sobre candidatos presidenciales en las elecciones Perú 2026?}
-        & \multirow{5}{=}{OG: Desarrollar un sistema de inteligencia electoral basado en LLMs y grafos de conocimiento que permita analizar de manera integrada el discurso mediático digital multi-fuente sobre los candidatos presidenciales de las elecciones Perú 2026.}
-        & \multirow{5}{=}{HG: El uso integrado de LLMs y grafos de conocimiento permite construir un sistema de inteligencia electoral capaz de realizar análisis contextual, estructural y relacional del discurso mediático digital con calidad verificable contra \textit{ground truth} humano y evaluaciones LLM-as-judge.}
-        & \multirow{5}{=}{Independiente: Sistema de Inteligencia Electoral con LLM y Grafos de Conocimiento}
-        & \multirow{5}{=}{Arquitectura del sistema integrado}
-        & \multirow{5}{=}{Integración de módulos Medallion, ABSA, detección híbrida LLM, Neo4j y GraphRAG sobre MCP} \\
-        & & & & & & \\
-        & & & & & & \\
-        & & & & & & \\
-        \hline
+\label{anexo3}
 
-        % Variable Dependiente
-        & PE1: ¿Cómo diseñar una arquitectura de ingesta y procesamiento basada en Medallion Architecture que permita integrar datos heterogéneos de prensa digital, X/Twitter, YouTube y TikTok?
-        & OE1: Diseñar e implementar una arquitectura de ingesta y armonización multi-fuente basada en Medallion Architecture preservando consistencia, trazabilidad y calidad semántica.
-        & HE1: Una arquitectura Medallion permite integrar datos electorales multi-fuente preservando consistencia, trazabilidad y calidad del corpus, reduciendo el costo computacional mediante filtros pre-LLM.
-        & \multirow{12}{=}{Dependiente: Calidad analítica del sistema de inteligencia electoral sobre el discurso mediático digital}
-        & Arquitectura de ingesta y filtrado
-        & Reducción de costo computacional pre-LLM \\
-        \cline{2-4} \cline{6-7}
-
-        & PE2: ¿Cómo utilizar LLMs para análisis contextual del discurso mediático, identificando sentimientos dirigidos, ironía, jerga peruana y tópicos electorales emergentes?
-        & OE2: Implementar un modelo de análisis semántico contextual basado en LLMs capaz de identificar polaridad, ironía, sentimiento dirigido y tópicos electorales emergentes.
-        & HE2: Los LLMs en modalidad \textit{few-shot} ajustados al contexto político peruano alcanzan métricas de calidad satisfactorias (F1 macro $\geq 0.80$, MAE $\leq 0.15$) en sentimiento y detección de tópicos.
-        &
-        & Calidad del etiquetado LLM
-        & Exactitud, F1 macro/micro y MAE contra \textit{ground truth} humano \\
-        \cline{2-4} \cline{6-7}
-
-        & PE3: ¿Cómo construir un grafo de conocimiento electoral que represente relaciones contextuales entre candidatos, medios, tópicos, sentimientos y temporalidad?
-        & OE3: Construir un grafo de conocimiento electoral basado en extracción semántica mediante LLMs para representar relaciones entre actores, narrativas y eventos políticos.
-        & HE3: El grafo de conocimiento Neo4j permite expresar y consultar relaciones contextuales entre candidatos, temas, medios, fragmentos y períodos en una única \textit{query} estructural.
-        &
-        & Estructura del grafo de conocimiento
-        & Tipos de nodos y relaciones; conteos del subgrafo diario \\
-        \cline{2-4} \cline{6-7}
-
-        & PE4: ¿Cómo implementar un sistema GraphRAG soportado mediante MCP que permita consultas en lenguaje natural sobre el ecosistema electoral?
-        & OE4: Implementar un sistema GraphRAG capaz de combinar recuperación semántica textual y razonamiento estructural sobre grafos para responder consultas en lenguaje natural.
-        & HE4: La integración híbrida GraphRAG basada en herramientas tipadas sobre MCP mejora la relevancia y la corrección de respuestas respecto a un sistema RAG por similitud vectorial.
-        &
-        & Calidad de respuesta del sistema GraphRAG
-        & \textit{Tool selection accuracy}; tríada Ragas (\textit{faithfulness}, \textit{correctness}, \textit{relevancy}) \\
-        \cline{2-4} \cline{6-7}
-
-        & PE5: ¿Cómo evaluar la calidad del sistema integrado mediante métricas cuantitativas y evaluaciones contra \textit{ground truth} humano y LLM-as-judge?
-        & OE5: Evaluar el desempeño técnico y analítico del sistema mediante métricas semánticas y estructurales, contrastando las salidas contra \textit{ground truth} humano y evaluaciones LLM-as-judge.
-        & HE5: El sistema integrado alcanza niveles de calidad analítica y coherencia temática verificables mediante métricas contra \textit{ground truth} humano y evaluaciones LLM-as-judge sobre conjuntos anotados.
-        &
-        & Evaluación integral del sistema
-        & Métricas sobre \textit{gold datasets} de etiquetado (n=100) y consulta (n=30) \\
-
-        \specialrule{.1em}{.05em}{.05em}
-    \end{longtable}
-    \endgroup
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1.15\textwidth]{anexos/matriz_consistencia.png}
+	\caption[Matriz de consistencia]{Matriz que muestra la consistencia entre los objetivos, hipótesis y metodología de la investigación.\\
+	Fuente: Elaboración propia.}
+	\label{fig:matriz_consistencia}
+\end{figure}
 \end{landscape}
-
 \clearpage
 
 % ──────────────────────────────────────────────────────────────
 \section{Configuración de Parámetros del Módulo ABSA con LLM}
 % ──────────────────────────────────────────────────────────────
-
+\addtocounter{table}{-1}
 \label{anexo4}
 
 \begin{table}[h]
@@ -206,9 +146,6 @@
 		\hline
 
 		\texttt{llm\_dedup\_day} & Máx. 200 pares/día & Deduplicación con LLM Juez sobre pares sospechosos, acotada por costo \\
-		\hline
-
-		Coherencia Semántica & $C_v$ & Métrica de validación de la calidad temática del catálogo \\
 
 		\specialrule{.1em}{.05em}{.05em}
 	\end{tabular}
@@ -276,39 +213,33 @@
 
 \label{anexo7}
 
-\begin{table}[h]
-	\centering
-	\small
-	\setlength{\LTpost}{0pt}
-	\begin{longtable}{p{3cm} p{7cm} p{3cm}}
-		\specialrule{.1em}{.05em}{.05em}
-		\centering\textbf{CATEGORÍA} & \centering\textbf{TÉRMINOS} & \centering\arraybackslash\textbf{CANTIDAD} \\
-		\specialrule{.1em}{.05em}{.05em}
-		\endhead
-		
-		Procesos Electorales & elección, voto, votación, candidato, campaña, debate, mitin, encuesta, sondeo & 9 \\
-		\hline
-		
-		Términos Políticos & gobierno, política, legislatura, congreso, república, democracia, parlamento & 7 \\
-		\hline
-		
-		Instituciones & ONPE, JNE, RENIEC, INE, INEI, MINDEF & 6 \\
-		\hline
-		
-		Temas de Campaña & economía, seguridad, educación, salud, corrupción, gobernabilidad, infraestructura & 7 \\
-		\hline
-		
-		Hashtags Electorales & \#EleccionesPerú2026, \#Voto2026, \#DebatePresidencial, \#CuéntaTuVoto & 4+ \\
-		\hline
-		
-		Candidatos & Nombres completos, apodos, siglas de partidos & Dinámico según proceso \\
-		
-		\specialrule{.1em}{.05em}{.05em}
-		
-	\end{longtable}
-	\caption[Diccionario de palabras clave electorales]{Vocabulario controlado utilizado para filtrar publicaciones relevantes en el corpus multi-fuente durante el período de análisis electoral.}
-	\label{tbl:diccionario_palabras_clave}
-\end{table}
+\begingroup
+\renewcommand\arraystretch{1.3}
+\small
+\setlength{\LTpost}{0pt}
+
+\begin{longtable}{p{3cm} p{7cm} p{3cm}}
+	\caption[Diccionario de palabras clave electorales]{Vocabulario controlado utilizado para filtrar publicaciones relevantes en el corpus multi-fuente durante el período de análisis electoral.} \label{tbl:diccionario_palabras_clave} \\
+
+	\specialrule{.1em}{.05em}{.05em}
+	\centering\textbf{CATEGORÍA} & \centering\textbf{TÉRMINOS} & \centering\arraybackslash\textbf{CANTIDAD} \\
+	\specialrule{.1em}{.05em}{.05em}
+	\endfirsthead
+
+	\specialrule{.1em}{.05em}{.05em}
+	\centering\textbf{CATEGORÍA} & \centering\textbf{TÉRMINOS} & \centering\arraybackslash\textbf{CANTIDAD} \\
+	\specialrule{.1em}{.05em}{.05em}
+	\endhead
+
+	Procesos Electorales & elección, voto, votación, candidato, campaña, debate, mitin, encuesta, sondeo & 9 \\ \hline
+	Términos Políticos & gobierno, política, legislatura, congreso, república, democracia, parlamento & 7 \\ \hline
+	Instituciones & ONPE, JNE, RENIEC, INE, INEI, MINDEF & 6 \\ \hline
+	Temas de Campaña & economía, seguridad, educación, salud, corrupción, gobernabilidad, infraestructura & 7 \\ \hline
+	Hashtags Electorales & \#EleccionesPerú2026, \#Voto2026, \#DebatePresidencial, \#CuéntaTuVoto & 4+ \\ \hline
+	Candidatos & Nombres completos, apodos, siglas de partidos & Dinámico según proceso \\
+	\specialrule{.1em}{.05em}{.05em}
+\end{longtable}
+\endgroup
 
 \clearpage
 
@@ -339,21 +270,6 @@ Para la evaluación del módulo de análisis de sentimientos a nivel de aspecto,
 \end{equation}
 
 Donde TP (Verdaderos Positivos), TN (Verdaderos Negativos), FP (Falsos Positivos), FN (Falsos Negativos) representan los conteos de clasificación por clase.
-
-\subsection{Métricas de Coherencia Temática del Catálogo Incremental}
-
-Para la validación de la detección dinámica de temas mediante el enfoque híbrido LLM con catálogo incremental, se utilizó la métrica $C_v$ de coherencia semántica:
-
-\begin{equation}
-C_v = \frac{1}{|\text{Temas}|}\sum_{t}\text{cohere}_V(W_t)
-\end{equation}
-
-Donde $W_t$ es el conjunto de palabras clave del tema $t$, y $\text{cohere}_V$ es la función de coherencia vectorial. Rangos de interpretación:
-\begin{itemize}
-	\item $C_v < 0.4$: Coherencia baja
-	\item $0.4 \leq C_v < 0.6$: Coherencia media
-	\item $C_v \geq 0.6$: Coherencia alta
-\end{itemize}
 
 \clearpage
 

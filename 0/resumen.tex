@@ -3,9 +3,10 @@
 
 \chapter*{Resumen}
 \markboth{Resumen}{Resumen}
+\phantomsection
 \addcontentsline{toc}{chapter}{Resumen}
 
-ELos ecosistemas digitales han transformado significativamente la forma en que se desarrolla la comunicación política durante los procesos electorales. Plataformas como periódicos digitales, X/Twitter, YouTube y TikTok generan continuamente grandes volúmenes de información relacionados con candidatos, partidos políticos y acontecimientos coyunturales. Sin embargo, muchos enfoques tradicionales de análisis electoral presentan limitaciones al centrarse únicamente en encuestas o en una sola fuente de datos, dificultando la comprensión integral de la percepción proyectada por los medios de comunicación en entornos digitales.
+Los ecosistemas digitales han transformado significativamente la forma en que se desarrolla la comunicación política durante los procesos electorales. Plataformas como periódicos digitales, X/Twitter, YouTube y TikTok generan continuamente grandes volúmenes de información relacionados con candidatos, partidos políticos y acontecimientos coyunturales. Sin embargo, muchos enfoques tradicionales de análisis electoral presentan limitaciones al centrarse únicamente en encuestas o en una sola fuente de datos, dificultando la comprensión integral de la percepción proyectada por los medios de comunicación en entornos digitales.
 
 La presente investigación propone el desarrollo de un sistema de Inteligencia Electoral basado en Modelos de Lenguaje de Gran Escala (LLMs), minería de sentimientos y detección dinámica de temas relevantes, orientado al análisis de la percepción mediática proyectada hacia candidatos presidenciales en ecosistemas digitales electorales. La propuesta integra información multi-fuente proveniente de prensa digital, redes sociales y plataformas audiovisuales, permitiendo analizar distintas dimensiones del discurso político digital.
 
@@ -13,20 +14,22 @@ La arquitectura del sistema se fundamenta en un pipeline tipo Medallion para la 
 
 Adicionalmente, se implementa un sistema GraphRAG soportado mediante herramientas MCP, permitiendo realizar consultas en lenguaje natural sobre información estructurada y no estructurada para generar respuestas contextualizadas. Los resultados esperados buscan demostrar que la integración de LLMs, grafos de conocimiento y análisis multi-fuente mejora la contextualización, cobertura y capacidad analítica frente a enfoques tradicionales de inteligencia electoral.
 
-La investigación contribuye con una propuesta metodológica y tecnológica orientada al análisis automatizado del comportamiento mediático electoral en contextos digitales, proporcionando un prototipo capaz de apoyar procesos de monitoreo político y análisis estratégico basados en inteligencia artificial.
+La investigación aborda como problema específico la polarización de la percepción mediática digital —el tratamiento sistemáticamente opuesto de un mismo candidato entre las distintas fuentes y plataformas digitales que consume el electorado—, cuantificada mediante el Índice de Cobertura Mediática Comparada (ICMC), que mide su magnitud agregada entre fuentes, y el Índice de Divergencia Narrativa (IDN), que identifica los pares de fuentes con tratamiento opuesto. Así, contribuye con una propuesta metodológica y tecnológica orientada al análisis automatizado del comportamiento mediático electoral en contextos digitales, proporcionando un prototipo capaz de apoyar procesos de monitoreo político y análisis estratégico basados en inteligencia artificial.
 
-\textbf{Palabras clave:} inteligencia electoral, modelos de lenguaje de gran escala, minería de sentimientos, detección dinámica de temas, grafos de conocimiento, GraphRAG, análisis multi-fuente.
+\textbf{Palabras clave:} inteligencia electoral, polarización de la percepción mediática digital, ICMC, IDN, modelos de lenguaje de gran escala, minería de sentimientos, detección dinámica de temas, grafos de conocimiento, GraphRAG, análisis multi-fuente.
 \clearpage
 
 \chapter*{Abstract}
 \markboth{Abstract}{Abstract}
+\phantomsection
+\addcontentsline{toc}{chapter}{Abstract}
 
 In contemporary electoral processes, digital ecosystems generate massive volumes of information from multiple sources such as digital news media, audiovisual platforms, and social networks. However, traditional approaches to electoral media discourse analysis present limitations by treating these sources homogeneously, ignoring their structural differences and the editorial richness with which each outlet frames the candidates. In this context, this research proposes an Electoral Intelligence system based on Large Language Models (LLMs), focused on sentiment mining and dynamic topic detection to analyze the current perception projected by media outlets toward presidential candidates in digital electoral ecosystems.
 
 The proposed approach integrates a multi-source framework combining data from digital newspapers, X/Twitter, YouTube, and TikTok, capturing four complementary dimensions of electoral media discourse: the press agenda, social-network conversation, extended audiovisual content, and short-form audiovisual narrative. Based on this, an extended Medallion architecture is implemented, where data is processed through efficient filtering techniques, semantic analysis using LLMs, and dynamic topic detection through a hybrid LLM approach with an incremental catalog. The processed information is then structured into a knowledge graph, modeling relationships such as media coverage, topic co-occurrence, and coverage distribution by outlet.
 
-Additionally, a GraphRAG-based system is incorporated, enabling natural language queries over the knowledge graph by combining structured and unstructured information to generate grounded responses. This approach allows not only the identification of sentiment trends and dominant topics, but also the analysis of complex dynamics such as temporal evolution of media framing, editorial emphases, and divergences between editorial lines across outlets.
+Additionally, a GraphRAG-based system is incorporated, enabling natural language queries over the knowledge graph by combining structured and unstructured information to generate grounded responses. This approach allows not only the identification of sentiment trends and dominant topics, but also the analysis of complex dynamics such as temporal evolution of media framing, editorial emphases, and digital media-perception polarization (measured by the ICMC and IDN indices).
 
 Expected results indicate that the integration of LLMs, knowledge graphs, and multi-source analysis overcomes the limitations of traditional approaches, providing a richer and more contextualized understanding of electoral media behavior. Thus, this research contributes an innovative electoral intelligence model, along with an analytical prototype capable of supporting strategic decision-making and advancing the study of electoral media coverage in Latin American contexts.
 
-\textbf{Keywords: } electoral intelligence, large language models (LLMs), sentiment mining, topic detection, knowledge graphs, GraphRAG, multi-source analysis, media-projected perception.
+\textbf{Keywords: } electoral intelligence, digital media-perception polarization, ICMC, IDN, large language models (LLMs), sentiment mining, topic detection, knowledge graphs, GraphRAG, multi-source analysis, media-projected perception.

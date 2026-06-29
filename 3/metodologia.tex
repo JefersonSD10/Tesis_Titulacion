@@ -18,8 +18,16 @@ El estudio propuesto adopta un \textbf{enfoque cuantitativo}, esto porque de acu
 La población fue el conjunto de todas las publicaciones digitales en español relacionadas con el proceso electoral peruano, generadas en plataformas de redes sociales (X/Twitter), plataformas de videos cortos (TikTok), canales de contenido audiovisual (YouTube) y portales de noticias digitales durante el período de campaña presidencial analizado.
  
 \subsection{Muestra}
- 
+
 La muestra estuvo conformada por publicaciones recolectadas de cuatro fuentes de datos independientes durante el período electoral analizado: (1) artículos y noticias digitales de los principales portales de prensa peruanos (El Comercio, La República, RPP, Diario Correo); (2) videos YouTube correspondientes a los candidatos y programas periodísticos de cobertura electoral; (3) tweets de la plataforma X/Twitter; y (4) videos y transcripciones de la red social TikTok. La extracción se delimitó mediante palabras clave electorales, \textit{hashtags} de campaña y menciones a cuentas oficiales. El criterio de delimitación temporal obedeció a la necesidad de capturar el período de mayor actividad del ecosistema digital electoral, excluyendo etapas de baja intensidad que distorsionarían los patrones de sentimiento y emergencia de temas.
+
+\textbf{Tamaño muestral y técnica de muestreo.} En la corrida completa del pipeline se procesaron \textbf{40\,974 documentos}, recolectados a lo largo de \textbf{96 días consecutivos} (del 1 de enero al 6 de abril de 2026), tras la aplicación de los filtros pre-LLM de la arquitectura Medallion. Dado que el universo de publicaciones digitales es dinámico, continuo y no tiene un marco muestral cerrado ni un tamaño poblacional finito y conocido, se adoptó un \textbf{muestreo no probabilístico por conveniencia} \parencite{bk_hernandez2014metodologia}: la muestra quedó definida por los documentos accesibles a través de los scrapers y las APIs disponibles en el período delimitado, filtrados por los criterios de relevancia electoral descritos.
+
+\textbf{Criterios de inclusión}: (a) publicación en español; (b) fecha de publicación dentro del período de campaña presidencial analizado; (c) contenido textual que mencione al menos un candidato presidencial o un término del diccionario electoral; (d) fuente perteneciente a los cuatro canales definidos (noticias digitales, X/Twitter, YouTube, TikTok).
+
+\textbf{Criterios de exclusión}: (a) publicaciones duplicadas o reediciones sin contenido nuevo; (b) documentos con menos de 30 tokens útiles tras el preprocesamiento; (c) contenido en idioma distinto al español; (d) publicaciones fuera del período temporal delimitado.
+
+\textbf{Representatividad.} Dada la técnica de muestreo no probabilístico utilizada, la muestra \textbf{no es estadísticamente representativa} del universo completo de publicaciones digitales sobre las elecciones peruanas 2026. Los resultados tienen validez interna para los canales, medios y período analizados, pero no permiten generalizar estadísticamente al conjunto de toda la conversación digital electoral. Esta limitación se reconoce explícitamente y deberá considerarse al interpretar los indicadores producidos por el sistema.
 
 \subsection{Operacionalización de variables}
  
@@ -35,14 +43,14 @@ En la Tabla \ref{4:table1} se muestra la operación de las variables correspondi
     \specialrule{.1em}{.05em}{.05em}
 
     % Variable independiente
-    \multirow{10}{3cm}[-6ex]{\centering Independiente: Sistema de Inteligencia Electoral GraphRAG Híbrido}
+    \multirow{10}{3cm}[-6ex]{\centering Independiente: Arquitectura de recuperacion (MCP vs RAG)}
     & \multirow{5}{4.2cm}[-1ex]{\centering Arquitectura de Extracción y Análisis (LLMs)}
     & \multicolumn{2}{c}{\centering Configuración del pipeline de análisis} \\
     \cline{3-4}
     & & \multirow{4}{3.6cm}[0ex]{\centering Efectividad del análisis predictivo}
     & Exactitud en clasificación de sentimiento y detección de actores \\
     \cline{4-4}
-    & & & Coherencia semántica de temas (C\textsubscript{v}) \\
+    & & & Corrección de respuesta (Answer Correctness) (C\textsubscript{v}) \\
     \cline{4-4}
     & & & Latencia de procesamiento e ingesta (ms) \\
     \cline{2-4}
@@ -52,12 +60,12 @@ En la Tabla \ref{4:table1} se muestra la operación de las variables correspondi
     & & \multirow{4}{3.6cm}[0ex]{\centering Efectividad de recuperación (Retrieval)}
     & Latencia de consulta vía Model Context Protocol (ms) \\
     \cline{4-4}
-    & & & Exhaustividad de contexto en nodos (Recall R@k) \\
+    & & & Exactitud en selección de herramientas (Tool Selection Accuracy) \\
 
     \hline
 
 % Variable dependiente
-\multirow{10}{=}{Dependiente: Percepción actual proyectada por los medios de comunicación en ecosistemas digitales}
+\multirow{13}{=}{Dependiente: Calidad/eficacia del sistema de análisis}
 & \multirow{4}{=}{Sentimiento ciudadano}
 & \multirow{2}{=}{Polaridad de sentimiento}
 & Positivo: $S(d,e) > 0$ \\* \cline{4-4}
@@ -70,7 +78,12 @@ En la Tabla \ref{4:table1} se muestra la operación de las variables correspondi
 & & Temas relevantes & Número y coherencia de temas detectados \\* \cline{3-4}
 & & \multirow{2}{=}{Evolución temporal}
 & Velocidad de emergencia de temas \\* \cline{4-4}
-& & & Cambios de sentimiento por evento electoral \\
+& & & Cambios de sentimiento por evento electoral \\* \cline{2-4}
+& \multirow{3}{=}{Polarización de la percepción mediática digital}
+& ISN por fuente
+& $ISN_f(e,t)$ (insumo) \\* \cline{3-4}
+& & ICMC (magnitud) & Desviación estándar del ISN entre fuentes; umbral $>25$ \\* \cline{3-4}
+& & IDN (estructura) & $|ISN_{f_1}-ISN_{f_2}|$ por par; umbral $>50$ \\
 \specialrule{.1em}{.05em}{.05em}
 \end{longtable}
 \endgroup
@@ -125,7 +138,7 @@ educación, salud, corrupción y gobernabilidad.
  
 Según lo explicado en el Capítulo II del presente trabajo, internamente en los sistemas de
 analítica de negocio, la Minería de Datos y Big Data, las tres principales metodologías más usadas son
-SEMMA, CRISP-DM y KDD \parencite{tec_braulio2015metodologiasdm}. Para elegir la
+SEMMA, CRISP-DM y KDD \parencite{tec_moine2011metodologiasdm}. Para elegir la
 metodología de implementación, se creó la Tabla \ref{4:table2} con el propósito de  realizar una comparativa de las variables empleadas por los distintos antecedentes presentados para el estudio propuesto.
  
 \vspace{2ex}
@@ -209,14 +222,14 @@ Grupo D
     \small Fuente: Elaboración propia.
 \end{flushleft}
  
-De las tres metodologías señaladas por \citeauthor{tec_braulio2015metodologiasdm}, la mayor parte de los antecedentes analizados siguen secuencias de actividades enmarcadas en CRISP-DM, abarcando etapas como en entendimiento del negocio, la recuperación de la información y el procesamiento los datos, la creación del modelo y la evaluación de los resultados. Asimismo, las siguientes características identificadas en los antecedentes influyeron en la selección de la metodología CRISP-DM para el presente estudio:
+De las tres metodologías señaladas por \citeauthor{tec_moine2011metodologiasdm}, la mayor parte de los antecedentes analizados siguen secuencias de actividades enmarcadas en CRISP-DM, abarcando etapas como en entendimiento del negocio, la recuperación de la información y el procesamiento los datos, la creación del modelo y la evaluación de los resultados. Asimismo, las siguientes características identificadas en los antecedentes influyeron en la selección de la metodología CRISP-DM para el presente estudio:
 
  
 \begin{itemize}
     \item La metodología contempla entre sus fases la comprensión del negocio además
     de la parte técnica. Esta fase es crucial ya que en ella se define el problema a resolver
     —la falta de un sistema de análisis automatizado de percepción pública electoral en
-    tiempo real— y se establecen los objetivos del sistema.
+    —la falta de un sistema de análisis automatizado de percepción pública electoral con procesamiento por lotes diario (near-real-time)— y se establecen los objetivos del sistema.
  
     \item Ayuda a los responsables del proyecto en la planificación y toma de decisiones
     (fase de Despliegue) a partir de los resultados obtenidos, convirtiendo los indicadores
@@ -782,7 +795,7 @@ En la fase final de la metodología, el sistema de inteligencia electoral se imp
     \small Fuente: Elaboración propia.
 \end{flushleft}
  
-Tras evaluar el desempeño de cada módulo del sistema, se procedió a tomar los resultados y realizar una comparativa respecto a los antecedentes analizados, llevando a cabo una prueba de demostración, en la cual el sistema completo operó en tiempo real durante una semana de campaña electoral. Los especificaciones de esta prueba y sus resultados se presentan en el Capítulo V.
+Tras evaluar el desempeño de cada módulo del sistema, se procedió a tomar los resultados y realizar una comparativa respecto a los antecedentes analizados, llevando a cabo una prueba de demostración, en la cual el sistema completo operó en modalidad de procesamiento por lotes diario (near-real-time) durante una semana de campaña electoral. Los especificaciones de esta prueba y sus resultados se presentan en el Capítulo V.
  
 \subsection{Metodología para la medición de resultados}
 \label{4:metricas-resultados}
@@ -938,7 +951,7 @@ recuperados, evaluada por un modelo juez independiente:
 
 Las métricas de fidelidad, corrección y relevancia se computan mediante un esquema
 \textit{LLM-as-judge} con un modelo distinto al que genera las respuestas
-—DeepSeek-Chat como juez con temperatura $0.2$ y respuesta forzada a JSON— para evitar
+—Claude-Sonnet como juez con temperatura $0.2$ y respuesta forzada a JSON— para evitar
 sesgos de auto-evaluación y asegurar trazabilidad de los puntajes.
 
 La selección de las métricas se realizó tras comparar aquellas empleadas por los autores
@@ -951,7 +964,36 @@ de los antecedentes del estudio:
     \item \textbf{MAE / RMSE para sentimiento continuo}: \cite{pr_alvarez2023llm_political}.
     \item \textbf{Tool Selection Accuracy, Fidelidad, Corrección y Relevancia (LLM-as-judge)}: \cite{pr_chen2024combating_misinformation}, \cite{pr_gujral2024llm_elections}.
 \end{itemize}
- 
+
+\subsubsection*{Cómputo de los indicadores de polarización de la percepción mediática digital (ICMC e IDN)}
+
+Además de las métricas de desempeño descritas, el sistema computa dos indicadores
+orientados a cuantificar la \textbf{polarización de la percepción mediática digital} —el tratamiento
+sistemáticamente opuesto de un mismo candidato entre las distintas fuentes y plataformas
+digitales—. Ambos se calculan sobre la vista materializada
+\texttt{gold\_sentimiento\_fuente\_diario}, cuya granularidad es la tripleta
+(fuente, candidato, fecha) y que expone el Índice de Sentimiento Neto desagregado por
+fuente, $ISN_f(e,t)$, como insumo común. Conviene precisar que ambos indicadores miden el
+\textbf{contenido} mediático publicado, no la recepción del mensaje en la audiencia ni una
+intención editorial deliberada.
+
+El \textbf{Índice de Cobertura Mediática Comparada} (ICMC) mide la \textit{magnitud}
+agregada de la divergencia. Para cada candidato se calcula la desviación estándar del
+$ISN_f$ entre las $F$ fuentes que lo cubren, esto es,
+$ICMC = \sqrt{\sum_{f=1}^{F}\left(ISN_f - \overline{ISN}\right)^2 / F}$, de modo que un valor
+$ICMC > 25$ se interpreta como indicio de polarización de la percepción mediática digital: el candidato recibe
+tratamientos marcadamente distintos según el medio, frente a valores bajos que reflejan
+consenso narrativo entre fuentes.
+
+El \textbf{Índice de Divergencia Narrativa} (IDN) describe la \textit{estructura} par a par
+de esa divergencia. Para un mismo candidato, compara el sentimiento neto de cada par de
+fuentes $(f_1, f_2)$ mediante la diferencia absoluta $IDN = |ISN_{f_1} - ISN_{f_2}|$; sobre
+una escala de 0 a 200, un $IDN > 50$ identifica pares de fuentes con visiones opuestas del
+mismo candidato. El cómputo recorre las combinaciones de fuentes disponibles por candidato
+en la vista \texttt{gold\_sentimiento\_fuente\_diario} y ordena los pares de mayor a menor
+divergencia, lo que permite localizar los casos de tratamiento más antagónico entre la
+prensa tradicional y las plataformas sociales.
+
 \begin{landscape}
 \section{Cronograma de actividades y presupuesto}
  
