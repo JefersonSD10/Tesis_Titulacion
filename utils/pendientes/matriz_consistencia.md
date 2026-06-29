@@ -1,24 +1,53 @@
-# Matriz de Consistencia — versión polarización de la percepción mediática digital
+# Prompt de imagen — Anexo: Matriz de Consistencia
 
-> Reemplaza la imagen `anexos/matriz_consistencia.png`. Refleja la formulación
-> nueva (problema específico = **polarización de la percepción mediática digital**, operacionalizada con
-> **ICMC** e **IDN** sobre la base del **ISN** desagregado por fuente).
-> Estructura 1:1 — cada fila Problema ↔ Objetivo ↔ Hipótesis ↔ Variable ↔ Indicador.
+> Pega el siguiente prompt en un generador de imágenes (o pídelo como tabla/diagrama)
+> para producir `anexos/matriz_consistencia.png`. El texto íntegro de cada celda está
+> en la tesis (§1.2 Problemas, §1.3 Objetivos, §1.4 Hipótesis); aquí va condensado
+> para que quepa legible en la imagen.
 
-## Fila general
+**Prompt:**
 
-| | Problema | Objetivo | Hipótesis | Variables | Indicadores / Metodología |
-|---|---|---|---|---|---|
-| **General** | **PG.** ¿Cómo diseñar e implementar un sistema de inteligencia electoral basado en LLMs y grafos de conocimiento que permita **detectar y cuantificar la polarización de la percepción mediática digital** —el tratamiento sistemáticamente opuesto de un mismo candidato entre las distintas fuentes y plataformas digitales que consume el electorado peruano— sobre los candidatos presidenciales en las elecciones del Perú 2026, superando las limitaciones de los enfoques basados en encuestas o fuentes aisladas? | **OG.** Diseñar e implementar un sistema de inteligencia electoral basado en LLMs y grafos de conocimiento que **detecte y cuantifique la polarización de la percepción mediática digital** en el tratamiento de los candidatos presidenciales entre las distintas fuentes y plataformas digitales, en las elecciones del Perú 2026. | **HG.** El uso integrado de LLMs y grafos de conocimiento permite construir un sistema de inteligencia electoral capaz de **detectar y cuantificar de forma verificable la polarización de la percepción mediática digital** en la cobertura electoral, con calidad contrastable contra *ground truth* humano y evaluaciones LLM-as-judge. | **Indep.:** LLMs + grafos de conocimiento. **Dep.:** polarización de la percepción mediática digital | **ISN** (insumo), **ICMC** (magnitud), **IDN** (estructura); calidad: F1 macro, MAE. Enfoque CRISP-DM, corpus multi-fuente. |
+Crea una imagen de una **matriz de consistencia** de tesis: una tabla limpia y profesional, orientación horizontal (A4 apaisado), fondo blanco, encabezados con fondo de color y texto blanco, filas con líneas finas, tipografía sans-serif legible y texto en español sin errores ortográficos. Cinco columnas con estos encabezados: **Problema · Objetivo · Hipótesis · Variables · Indicadores / Metodología**. Una primera fila «GENERAL» destacada y cinco filas específicas numeradas (1 a 5); resalta la **fila 3** con un sombreado distinto porque carga el concepto central. Contenido condensado de cada celda:
 
-## Filas específicas
+**Fila GENERAL**
+- Problema (PG): ¿Cómo diseñar un sistema de inteligencia electoral con LLMs y grafos de conocimiento que detecte y cuantifique la polarización de la percepción mediática digital —trato sistemáticamente opuesto de un mismo candidato entre fuentes/plataformas que consume el electorado— en las elecciones del Perú 2026, superando los enfoques por encuestas o fuentes aisladas?
+- Objetivo (OG): Diseñar e implementar ese sistema que detecte y cuantifique la polarización de la percepción mediática digital en el tratamiento de los candidatos entre fuentes y plataformas.
+- Hipótesis (HG): LLMs + grafos permiten detectar y cuantificar de forma verificable esa polarización, con calidad contrastable contra ground truth humano y LLM-as-judge.
+- Variables: Indep. = LLMs + grafos de conocimiento. Dep. = polarización de la percepción mediática digital.
+- Indicadores: ISN (insumo), ICMC (magnitud), IDN (estructura); calidad F1 macro, MAE. Enfoque CRISP-DM, corpus multi-fuente.
 
-| # | Problema específico | Objetivo específico | Hipótesis específica | Indicador / Variable |
-|---|---|---|---|---|
-| **1** | **PE1.** ¿Cómo diseñar una arquitectura de ingesta y procesamiento basada en Medallion Architecture que integre datos heterogéneos de prensa digital, X/Twitter, YouTube y TikTok, preservando trazabilidad y calidad semántica para que el contenido sea **comparable entre fuentes**? | **OE1.** Diseñar e implementar una arquitectura de ingesta y armonización multi-fuente basada en Medallion Architecture que integre el contenido electoral digital heterogéneo, garantizando consistencia, trazabilidad y **comparabilidad entre fuentes**. | **HE1.** Una arquitectura Medallion permite integrar datos electorales multi-fuente preservando consistencia semántica, trazabilidad y **comparabilidad entre fuentes**, reduciendo el costo computacional del análisis LLM mediante una cascada de filtros pre-modelo. | Comparabilidad / trazabilidad del corpus; reducción de volumen pre-LLM |
-| **2** | **PE2.** ¿Cómo utilizar LLMs para el análisis contextual del discurso (sentimiento dirigido, ironía, ambigüedad, jerga peruana, tópicos), de modo que el sentimiento por candidato sea **consistente y comparable entre fuentes**? | **OE2.** Implementar un modelo de análisis semántico contextual basado en LLMs que asigne sentimiento dirigido, polaridad política y tópicos de forma consistente entre plataformas, operacionalizado mediante el **ISN desagregado por fuente** y los índices **IRT** e **IVE**. | **HE2.** Los LLMs en modalidad *few-shot* ajustados al contexto peruano alcanzan calidad satisfactoria (F1 macro ≥ 0.80, MAE ≤ 0.15) en sentimiento dirigido (ISN) y detección de tópicos (IRT/IVE), garantizando comparabilidad entre fuentes. | **ISN** por fuente, **IRT**, **IVE**; F1 macro ≥ 0.80, MAE ≤ 0.15 |
-| **3** (clave) | **PE3.** ¿Cómo construir un grafo de conocimiento electoral que represente relaciones entre candidatos, medios, tópicos, sentimientos y temporalidad, y permita **cuantificar la polarización de la percepción mediática digital** —magnitud y estructura del tratamiento opuesto de un mismo candidato entre fuentes—? | **OE3.** Construir un grafo de conocimiento electoral, basado en extracción semántica con LLMs, que permita **cuantificar la polarización de la percepción mediática digital** sobre cada candidato mediante el **ICMC** (magnitud agregada entre fuentes) y el **IDN** (pares de fuentes con tratamiento opuesto). | **HE3.** El grafo permite cuantificar, en una única consulta estructural, la polarización de la percepción mediática digital sobre un mismo candidato, detectando **polarización de la percepción mediática digital significativa (ICMC > 25)** y **pares con tratamiento opuesto (IDN > 50** sobre escala 0–200**)** para un subconjunto relevante de candidatos. | **ICMC** (umbral > 25), **IDN** (umbral > 50) |
-| **4** | **PE4.** ¿Cómo implementar un sistema GraphRAG sobre MCP que permita consultar en lenguaje natural el ecosistema electoral —incluida la **polarización de la percepción mediática digital** detectada— combinando recuperación textual y razonamiento estructural? | **OE4.** Implementar un sistema GraphRAG que combine recuperación semántica textual y razonamiento estructural sobre el grafo para responder consultas en lenguaje natural, incluidas las relativas a la **polarización de la percepción mediática digital entre fuentes**. | **HE4.** La integración híbrida GraphRAG sobre MCP mejora la relevancia y corrección de las respuestas —incluidas las consultas sobre polarización de la percepción mediática digital— frente a un RAG por similitud vectorial sobre el mismo corpus. | Corrección de respuesta (Answer Correctness), relevancia, selección de herramientas |
-| **5** | **PE5.** ¿Cómo evaluar la calidad del sistema (precisión semántica, coherencia temática, fidelidad relacional, utilidad analítica) validando que los patrones detectados —incluida la **polarización de la percepción mediática digital**— correspondan a fenómenos reales y no a artefactos del modelo? | **OE5.** Evaluar el desempeño técnico y analítico del sistema mediante métricas semánticas y estructurales, contrastando sus salidas contra *ground truth* humano y LLM-as-judge, y validando que la **polarización de la percepción mediática digital detectada** corresponda a fenómenos reales. | **HE5.** El sistema integrado alcanza niveles de calidad analítica y coherencia temática verificables mediante métricas contra *ground truth* humano y LLM-as-judge, validando que la polarización de la percepción mediática digital detectada corresponda a fenómenos reales. | F1 macro, MAE, Answer Correctness; validación contra ground truth |
+**Fila 1**
+- PE1: ¿Arquitectura Medallion que integre prensa, X/Twitter, YouTube y TikTok preservando trazabilidad para que el contenido sea comparable entre fuentes?
+- OE1: Diseñar e implementar esa arquitectura de ingesta y armonización multi-fuente, garantizando comparabilidad entre fuentes.
+- HE1: Una arquitectura Medallion integra datos multi-fuente preservando consistencia y comparabilidad, reduciendo el costo del análisis LLM con filtros pre-modelo.
+- Indicador: comparabilidad / trazabilidad del corpus; reducción de volumen pre-LLM.
 
-La fila **3** (clave) carga el concepto central (polarización de la percepción mediática digital).
+**Fila 2**
+- PE2: ¿Usar LLMs para el análisis contextual (sentimiento dirigido, ironía, jerga peruana, tópicos) con sentimiento por candidato consistente y comparable entre fuentes?
+- OE2: Modelo de análisis semántico con LLMs que asigne sentimiento y tópicos consistentes, operacionalizado con ISN por fuente e índices IRT e IVE.
+- HE2: LLMs few-shot ajustados al contexto peruano logran F1 macro ≥ 0.80 y MAE ≤ 0.15 en ISN y tópicos (IRT/IVE).
+- Indicador: ISN por fuente, IRT, IVE; F1 macro ≥ 0.80, MAE ≤ 0.15.
+
+**Fila 3 (clave — resaltar)**
+- PE3: ¿Grafo de conocimiento que represente relaciones candidato-medio-tópico-tiempo y permita cuantificar la polarización de la percepción mediática digital (magnitud y estructura del trato opuesto entre fuentes)?
+- OE3: Construir el grafo (extracción semántica con LLMs) que cuantifique esa polarización por candidato con ICMC (magnitud agregada) e IDN (pares con tratamiento opuesto).
+- HE3: El grafo cuantifica en una única consulta la polarización, detectando polarización significativa (ICMC > 25) y pares con tratamiento opuesto (IDN > 50, escala 0–200).
+- Indicador: ICMC (umbral > 25), IDN (umbral > 50).
+
+**Fila 4**
+- PE4: ¿GraphRAG sobre MCP para consultar en lenguaje natural el ecosistema electoral, incluida la polarización detectada, combinando recuperación textual y razonamiento estructural?
+- OE4: Implementar el GraphRAG que combine recuperación semántica y razonamiento estructural para responder consultas, incluidas las de polarización entre fuentes.
+- HE4: GraphRAG sobre MCP mejora relevancia y corrección de respuestas frente a un RAG por similitud vectorial sobre el mismo corpus.
+- Indicador: Answer Correctness, relevancia, selección de herramientas.
+
+**Fila 5**
+- PE5: ¿Evaluar la calidad del sistema (precisión semántica, coherencia temática, fidelidad relacional, utilidad) validando que los patrones —incluida la polarización— sean reales y no artefactos del modelo?
+- OE5: Evaluar el desempeño técnico y analítico contra ground truth humano y LLM-as-judge, validando que la polarización detectada sea real.
+- HE5: El sistema alcanza calidad analítica y coherencia temática verificables, validando que la polarización detectada corresponda a fenómenos reales.
+- Indicador: F1 macro, MAE, Answer Correctness; validación contra ground truth.
+
+Asegura que cada fila quede alineada horizontalmente (Problema ↔ Objetivo ↔ Hipótesis de la misma fila tratan el mismo tema) y que el texto sea legible.
+
+---
+
+> **Sugerencia:** una tabla con tanto texto se renderiza mucho mejor con una herramienta de **tablas/diagramas** (o pidiendo el resultado como **HTML/SVG** y exportándolo a PNG) que con un generador de imagen raster, que tiende a deformar el texto largo.

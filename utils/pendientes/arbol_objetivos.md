@@ -1,50 +1,30 @@
-# Árbol de Objetivos — versión polarización de la percepción mediática digital
+# Prompt de imagen — Anexo: Árbol de Objetivos
 
-> Reemplaza la imagen `anexos/arbol_objetivos.png`. Es el espejo en positivo del
-> árbol de problemas: medios → objetivo central → fines.
+> Pega el siguiente prompt en un generador de imágenes (Gemini / DALL·E / Midjourney / etc.)
+> para producir `anexos/arbol_objetivos.png`. Es el espejo en positivo del árbol de problemas.
 
-## Objetivo central
-**Detectar y cuantificar la polarización de la percepción mediática digital** en el tratamiento de los
-candidatos presidenciales entre las distintas fuentes y plataformas digitales,
-mediante un sistema de inteligencia electoral basado en LLMs y grafos de
-conocimiento (caso Elecciones Presidenciales Perú 2026).
+**Prompt:**
 
-## Medios (van debajo del objetivo; espejo de las causas)
-- **M1.** Integrar y armonizar contenido multi-fuente (Medallion) para hacerlo
-  **comparable entre fuentes**. (OE1)
-- **M2.** Analizar el discurso con LLMs asignando sentimiento dirigido y tópicos
-  de forma consistente entre plataformas — **ISN** por fuente, **IRT**, **IVE**.
-  (OE2)
-- **M3.** Construir un grafo de conocimiento electoral que **cuantifique la
-  polarización de la percepción mediática digital** mediante **ICMC** (magnitud) e **IDN** (estructura).
-  (OE3)
-- **M4.** Exponer el análisis vía GraphRAG sobre MCP para consulta en lenguaje
-  natural, incluida la polarización de la percepción mediática digital. (OE4)
-- **M5.** Evaluar el sistema contra *ground truth* humano y LLM-as-judge,
-  validando que la polarización detectada sea real. (OE5)
+Crea un diagrama tipo «árbol de objetivos» académico, como infografía limpia y profesional, en orientación horizontal (A4 apaisado), fondo blanco, tipografía sans-serif legible y texto en español sin errores ortográficos. Es el espejo en positivo de un árbol de problemas. Organízalo en tres niveles conectados por flechas verticales que apuntan hacia ARRIBA (los medios logran el objetivo, el objetivo conduce a los fines):
 
-## Fines (van arriba del objetivo; espejo de los efectos)
-- **F1.** El electorado y los analistas pueden contrastar cómo difiere el
-  tratamiento de un candidato según la fuente.
-- **F2.** Verificadores, JNE y ciudadanía disponen de evidencia cuantificada
-  (ICMC/IDN) para monitorear el equilibrio de la cobertura.
-- **F3.** Menor exposición a burbujas narrativas y a la desinformación.
-- **F4.** Detección temprana de narrativas contrapuestas emergentes entre fuentes.
+NIVEL INFERIOR — banda «MEDIOS» (cinco cajas en fila, tono verde-azulado):
+- M1 (OE1): Integrar y armonizar contenido multi-fuente con arquitectura Medallion para hacerlo comparable entre fuentes.
+- M2 (OE2): Analizar el discurso con LLMs asignando sentimiento dirigido y tópicos de forma consistente entre plataformas — ISN por fuente, IRT, IVE.
+- M3 (OE3): Construir un grafo de conocimiento electoral que cuantifique la polarización de la percepción mediática digital mediante ICMC (magnitud) e IDN (estructura).
+- M4 (OE4): Exponer el análisis vía GraphRAG sobre MCP para consulta en lenguaje natural, incluida la polarización detectada.
+- M5 (OE5): Evaluar el sistema contra ground truth humano y LLM-as-judge, validando que la polarización detectada sea real.
 
-```
-        ┌─────────────────────── FINES ─────────────────────────┐
-        F1 contraste   F2 evidencia      F3 menor          F4 alerta
-        entre fuentes  ICMC/IDP p/       desinformación    temprana
-                       verificar
-                              ▲
-        ┌─────────────── OBJETIVO CENTRAL ───────────────┐
-        │  Detectar y cuantificar la polarización          │
-        │  editorial entre fuentes/plataformas mediante     │
-        │  LLMs + grafos de conocimiento                    │
-        └──────────────────────────────────────────────────┘
-                              ▲
-        ┌─────────────────────── MEDIOS ────────────────────────┐
-        M1 ingesta   M2 análisis   M3 grafo +    M4 GraphRAG  M5 evaluación
-        Medallion    LLM (ISN/     ICMC/IDN      sobre MCP    vs ground
-        comparable   IRT/IVE)                                  truth
-```
+NIVEL CENTRAL — banda «OBJETIVO CENTRAL» (una sola caja, grande y destacada, tono verde intenso, el elemento más prominente del diagrama):
+«Detectar y cuantificar la polarización de la percepción mediática digital en el tratamiento de los candidatos presidenciales entre las distintas fuentes y plataformas digitales, mediante un sistema de inteligencia electoral basado en LLMs y grafos de conocimiento (caso Elecciones Presidenciales Perú 2026).»
+
+NIVEL SUPERIOR — banda «FINES» (cuatro cajas en fila, tono celeste):
+- F1: El electorado y los analistas pueden contrastar cómo difiere el tratamiento de un candidato según la fuente.
+- F2: Verificadores y el JNE disponen de evidencia cuantificada (ICMC/IDN) para monitorear el equilibrio de la cobertura.
+- F3: Menor exposición a las burbujas narrativas y a la desinformación.
+- F4: Detección temprana de narrativas contrapuestas emergentes entre fuentes.
+
+Estilo: cajas con esquinas redondeadas, líneas finas, etiqueta de banda («MEDIOS», «OBJETIVO CENTRAL», «FINES») a la izquierda de cada nivel, paleta sobria y composición equilibrada, apropiada para un anexo de tesis. Mantén la simetría estructural con el árbol de problemas.
+
+---
+
+> **Sugerencia:** los generadores de imagen raster suelen deformar texto largo. Para máxima fidelidad del texto, pide al modelo que lo entregue como **diagrama vectorial (SVG)** o como código (Graphviz/Mermaid) y expórtalo a PNG.

@@ -1,15 +1,18 @@
 # Pendientes de modificación manual (imágenes y decisiones de asesor)
 
 Estos artefactos **no se editan desde LaTeX** porque son imágenes PNG o
-requieren decisión del asesor. Aquí están sus **versiones actualizadas en
-texto/markdown** con la nueva formulación (polarización de la percepción mediática digital · ICMC/IDN)
-para que regeneres los PNG o decidas.
+requieren decisión del asesor. Para los tres diagramas, este directorio contiene
+un **prompt de generación de imagen** (uno por archivo) con la nueva formulación
+(polarización de la percepción mediática digital · ICMC/IDN): pega cada prompt en
+un generador de imágenes para regenerar el PNG correspondiente.
 
-| Archivo | Reemplaza a | Acción |
+| Archivo (prompt) | Reemplaza a | Acción |
 |---|---|---|
-| `matriz_consistencia.md` | `anexos/matriz_consistencia.png` | Regenerar PNG con esta matriz |
-| `arbol_problemas.md` | `anexos/arbol_problemas.png` | Regenerar PNG con este árbol |
-| `arbol_objetivos.md` | `anexos/arbol_objetivos.png` | Regenerar PNG con este árbol |
+| `matriz_consistencia.md` | `anexos/matriz_consistencia.png` | Pegar el prompt en un generador de imágenes → PNG |
+| `arbol_problemas.md` | `anexos/arbol_problemas.png` | Pegar el prompt en un generador de imágenes → PNG |
+| `arbol_objetivos.md` | `anexos/arbol_objetivos.png` | Pegar el prompt en un generador de imágenes → PNG |
+
+> Cada `.md` es **el prompt completo** (estructura, niveles, colores, texto exacto). Para texto fiel, conviene pedir el resultado como SVG/HTML o código de diagrama (Graphviz/Mermaid) y exportarlo a PNG.
 
 ## Decisiones que quedaron fuera de la edición automática
 
